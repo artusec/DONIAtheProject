@@ -1,4 +1,4 @@
-package Modelo;
+package Modelo.ObjetosModelo;
 
 public class Video {
 

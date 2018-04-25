@@ -1,16 +1,19 @@
-package Modelo;
+package Modelo.ObjetosModelo;
 
-public class Biblioteca implements Lista {
-    
+public class Genero {
+	
+    private String id;
+    private String nombre;
+
     public String getId() {
-		return null;
+		return id;
     }
 
     public void setId(String id) {
     }
 
     public String getNombre() {
-		return null;
+		return id;
     }
 
     public void setNombre(String nombre) {

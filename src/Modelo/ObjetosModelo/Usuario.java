@@ -1,4 +1,4 @@
-package Modelo;
+package Modelo.ObjetosModelo;
 import java.util.List;
 
 public class Usuario {

@@ -1,21 +1,19 @@
-package Modelo;
+package Modelo.ObjetosModelo;
 
-public class Genero {
+public class ListaNomal implements Lista {
 	
-    private String id;
-    private String nombre;
-
     public String getId() {
-		return id;
+		return null;
     }
 
     public void setId(String id) {
     }
 
     public String getNombre() {
-		return id;
+		return null;
     }
 
     public void setNombre(String nombre) {
     }
+
 }
