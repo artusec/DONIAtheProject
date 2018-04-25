@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry excluding="Modelo/Lista/|Modelo/Usuario/|Modelo/Genero/|Modelo/Cancion/" kind="src" path="src"/>
+	<classpathentry kind="src" path="src/Modelo/Cancion"/>
+	<classpathentry kind="src" path="src/Modelo/Genero"/>
+	<classpathentry kind="src" path="src/Modelo/Lista"/>
+	<classpathentry kind="src" path="src/Modelo/Usuario"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

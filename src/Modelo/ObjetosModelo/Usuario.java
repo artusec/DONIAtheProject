@@ -13,6 +13,7 @@ public class Usuario {
     }
 
     public void setId(String id) {
+    	this.id = id;
     }
 
     public String getNombre() {
@@ -20,6 +21,7 @@ public class Usuario {
     }
 
     public void setNombre(String nombre) {
+    	this.nombre = nombre;
     }
 
     public String getClave() {
@@ -27,5 +29,6 @@ public class Usuario {
     }
 
     public void setClave(String clave) {
+    	this.clave = clave;
     }
 }

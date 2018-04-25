@@ -10,7 +10,7 @@ public class Video {
     }
 
     public void setEnlace(String enlace) {
-    		this.enlace = enlace;
+    	this.enlace = enlace;
     }
 
     public String getEnlaceDescarga() {
@@ -18,6 +18,6 @@ public class Video {
     }
 
     public void setEnlaceDescarga(String enlace) {
-    		this.enlaceDescarga = enlace;
+    	this.enlaceDescarga = enlace;
     }
 }

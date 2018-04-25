@@ -9,6 +9,6 @@ public class Letra {
     }
 
     public void setLetra(String letra) {
-    		this.letra = letra;
+    	this.letra = letra;
     }
 }

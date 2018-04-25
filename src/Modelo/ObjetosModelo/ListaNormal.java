@@ -1,6 +1,6 @@
 package Modelo.ObjetosModelo;
 
-public class ListaNomal implements Lista {
+public class ListaNormal implements Lista {
 	
     public String getId() {
 		return null;

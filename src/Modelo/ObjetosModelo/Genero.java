@@ -10,12 +10,14 @@ public class Genero {
     }
 
     public void setId(String id) {
+    	this.id = id;
     }
 
     public String getNombre() {
-		return id;
+		return nombre;
     }
 
     public void setNombre(String nombre) {
+    	this.nombre = nombre;
     }
 }
