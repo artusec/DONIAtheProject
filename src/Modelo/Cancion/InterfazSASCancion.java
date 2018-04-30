@@ -1,3 +1,5 @@
+package Modelo.Cancions;
+
 
 
 public interface InterfazSASCancion {

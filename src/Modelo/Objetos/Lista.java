@@ -1,4 +1,4 @@
-package Modelo.ObjetosModelo;
+package Modelo.Objetos;
 
 public interface Lista {
 	

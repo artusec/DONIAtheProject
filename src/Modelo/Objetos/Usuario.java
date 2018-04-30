@@ -1,4 +1,4 @@
-package Modelo.ObjetosModelo;
+package Modelo.Objetos;
 import java.util.List;
 
 public class Usuario {
@@ -9,15 +9,15 @@ public class Usuario {
     public List<Genero> gustos;
 
     public String getId() {
-		return clave;
+		return id;
     }
 
     public void setId(String id) {
-    	this.id = id;
+    		this.id = id;
     }
 
     public String getNombre() {
-		return clave;
+		return nombre;
     }
 
     public void setNombre(String nombre) {
@@ -29,6 +29,6 @@ public class Usuario {
     }
 
     public void setClave(String clave) {
-    	this.clave = clave;
+    		this.clave = clave;
     }
 }

@@ -1,10 +1,6 @@
 package Controlador.DAO;
 
-import Modelo.ObjetosModelo.Cancion;
-import Modelo.ObjetosModelo.Genero;
-import Modelo.ObjetosModelo.Lista;
-import Modelo.ObjetosModelo.ListaNormal;
-import Modelo.ObjetosModelo.Usuario;
+import Modelo.Objetos.*;
 
 public interface InterfazDAOFachada {
 	

@@ -1,7 +1,7 @@
-package Modelo.ObjetosModelo;
+package Modelo.Objetos;
 
-public class ListaNormal implements Lista {
-	
+public class Biblioteca implements Lista {
+    
     public String getId() {
 		return null;
     }
@@ -15,5 +15,4 @@ public class ListaNormal implements Lista {
 
     public void setNombre(String nombre) {
     }
-
 }

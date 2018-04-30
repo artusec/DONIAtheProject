@@ -1,3 +1,4 @@
+package Modelo.Generos;
 
 
 public class FachadaGenero implements InterfazFachadaGenero {
