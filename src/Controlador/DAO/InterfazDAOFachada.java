@@ -3,7 +3,6 @@ package Controlador.DAO;
 import Modelo.Objetos.*;
 
 public interface InterfazDAOFachada {
-	
     Genero getGeneroDB(String idGenero);
     Cancion getCancionDB(String idCancion);
     ListaNormal getListaDB(String idLista);
@@ -12,5 +11,4 @@ public interface InterfazDAOFachada {
     void setGenero(Genero genero);
     void setUsuario(Usuario usuario);
     void setLista(Lista lista);
-
 }

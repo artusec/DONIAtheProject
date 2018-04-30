@@ -1,14 +1,31 @@
 package Modelo.Objetos;
 
+import Excepciones.ErrorCreacionObjeto;
+
 public class Letra {
 
-    private String letra;
+    private String id;
+    private String texto;
 
-    public String getLetra() {
-		return letra;
-    }
+    public Letra(String id, String texto) throws ErrorCreacionObjeto {
+		this.setId(id);
+		this.setTexto(texto);
+	}
 
-    public void setLetra(String letra) {
-    	this.letra = letra;
-    }
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) throws ErrorCreacionObjeto {
+		if (id == null) throw new ErrorCreacionObjeto();
+		this.id = id;
+	}
+
+	public String getTexto() {
+		return texto;
+	}
+
+	public void setTexto(String texto) {
+		this.texto = texto;
+	}
 }
