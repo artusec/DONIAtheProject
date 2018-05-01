@@ -19,7 +19,7 @@ public class DAOFachada implements InterfazDAOFachada {
 		return this.sasdao.getCancionDB(idCancion);
     }
 
-    public ListaNormal getListaDB(String idLista) {
+    public Lista getListaDB(String idLista) {
 		return this.getListaDB(idLista);
     }
 

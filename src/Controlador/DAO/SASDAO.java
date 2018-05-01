@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Date;
+import java.util.List;
 
 import Excepciones.ErrorCreacionObjeto;
 import Modelo.Objetos.*;
@@ -73,7 +74,7 @@ public class SASDAO implements InterfazSASDAO {
      * @throws SQLException 
      */
     private boolean conectado() throws SQLException {
-    		return this.DBconn !=  null && !this.DBconn.isClosed();
+    		return this.DBconn != null && !this.DBconn.isClosed();
     }
     
     public Cancion getCancionDB(String idCancion) {
@@ -164,17 +165,103 @@ public class SASDAO implements InterfazSASDAO {
 		return null;
 	}
 
-	public ListaNormal getListaDB(String idLista) {
-		return null;
-    }
+	public Lista getListaDB(String idLista) {
+		try {
+			if (this.conectado() && idLista != null) {
+				Lista lista = null;
+			    PreparedStatement stat = this.DBconn.prepareStatement("select * from cancion where cancion = " + idLista + ";");
+			    ResultSet datosLista = stat.executeQuery();
+				if(datosLista.next()) {
+					//si ha leido bien lo que queriamos
+					String id = datosLista.getString("lista");
+					String titulo = datosLista.getString("nombre");
+					
+					/*
+					 * 
+					 * MIRAR SI ESTA BIEN LO SIGUIENTE
+					 * 
+					 */
+					
+					List<Cancion> canciones = null;
+					
+					String idCancion = datosLista.getString("cancion");;
+					while (idCancion != null) {
+						canciones.add(this.getCancionDB(idCancion));
+						idCancion = datosLista.getString("cancion");
+					}
+					
+					lista = new ListaNormal(id, titulo, canciones);
+				}
+				return lista;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (ErrorCreacionObjeto e) {
+			e.printStackTrace();
+		}
+		return null;  
+	}
 
     public Genero getGeneroDB(String idGenero) {
+    	try {
+			if (this.conectado() && idGenero != null) {
+				Genero genero = null;
+			    PreparedStatement stat = this.DBconn.prepareStatement("select * from cancion where cancion = " + idGenero + ";");
+			    ResultSet datosGenero = stat.executeQuery();
+				if(datosGenero.next()) {
+					//si ha leido bien lo que queriamos
+					String id = datosGenero.getString("genero");
+					String nombre = datosGenero.getString("nombre");
+					
+					genero = new Genero(id, nombre);
+				}
+				return genero;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (ErrorCreacionObjeto e) {
+			e.printStackTrace();
+		}
 		return null;
     }
 
     public Usuario getUsuarioDB(String idUsuario, String clave) {
-		return null;
-    }
+    	try {
+			if (this.conectado() && idUsuario != null) {
+				Usuario usuario = null;
+			    PreparedStatement stat = this.DBconn.prepareStatement("select * from cancion where cancion = " + idUsuario + ";");
+			    ResultSet datosUsuario = stat.executeQuery();
+				if(datosUsuario.next()) {
+					//si ha leido bien lo que queriamos
+					String id = datosUsuario.getString("usuario");
+					String titulo = datosUsuario.getString("nombre");
+					String autor = datosUsuario.getString("clave");
+					
+					/*
+					 * 
+					 * MIRAR SI ESTA BIEN LO SIGUIENTE
+					 * 
+					 */
+					
+					List<Genero> generos = null;
+					
+					String idGenero = datosUsuario.getString("genero");;
+					while (idGenero != null) {
+						generos.add(this.getGeneroDB(idGenero));
+						idGenero = datosUsuario.getString("cancion");
+					}
+					
+					usuario = new Usuario(id, titulo, autor, null);
+				}
+				return usuario;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (ErrorCreacionObjeto e) {
+			e.printStackTrace();
+		}
+		return null;   
+	}
 
     public void setCancion(Cancion cancion) {
     }

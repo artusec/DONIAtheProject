@@ -1,12 +1,13 @@
-package Modelo.Cancions;
-
-
+import Excepciones.ErrorConsultaLetra;
+import Modelo.Objetos.Cancion;
+import Modelo.Objetos.Letra;
+import Modelo.Objetos.Video;
 
 public interface InterfazSASCancion {
 	
-    void descargaVideo(String cancion);
-    void consultaCancion(String cancion);
-    void consultaLetra(String cancion);
-    void consultaVideo(String cancion);
+    String descargaVideo(String cancion);
+    Cancion consultaCancion(String cancion);
+    Letra consultaLetra(String cancion) throws ErrorConsultaLetra;
+    Video consultaVideo(String cancion);
 
 }

@@ -1,4 +1,4 @@
-package Modelo.Generos;
+
 
 
 public interface InterfazSASGenero {

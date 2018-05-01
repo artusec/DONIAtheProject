@@ -1,6 +1,8 @@
 package Modelo.Objetos;
 import java.util.List;
 
+import Excepciones.ErrorCreacionObjeto;
+
 public class Usuario {
     
     private String id;
@@ -8,12 +10,20 @@ public class Usuario {
     private String clave;
     public List<Genero> gustos;
 
-    public String getId() {
+    public Usuario(String id, String nombre, String clave, List<Genero> gustos) throws ErrorCreacionObjeto {
+    	this.setId(id);
+    	this.setNombre(nombre);
+    	this.setClave(clave);
+    	this.setGustos(gustos);
+	}
+
+	public String getId() {
 		return id;
     }
 
-    public void setId(String id) {
-    		this.id = id;
+    public void setId(String id) throws ErrorCreacionObjeto {
+    	if (id == null) throw new ErrorCreacionObjeto();
+    	this.id = id;
     }
 
     public String getNombre() {
@@ -29,6 +39,14 @@ public class Usuario {
     }
 
     public void setClave(String clave) {
-    		this.clave = clave;
+    	this.clave = clave;
     }
+    
+    public List<Genero> getGustos(){
+		return gustos;
+    }
+    
+	public void setGustos(List<Genero> gustos) {
+		this.gustos = gustos;
+	}
 }

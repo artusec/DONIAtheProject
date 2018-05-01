@@ -1,11 +1,12 @@
 import java.util.List;
-import Modelo.ObjetosModelo.Cancion;
-import Modelo.ObjetosModelo.Genero;
-import Modelo.ObjetosModelo.ListaNormal;
+
+import Modelo.Objetos.Cancion;
+import Modelo.Objetos.Genero;
+import Modelo.Objetos.ListaNormal;
 
 public interface InterfazListaFachada {
 	
-    ListaNormal consulta(ListaNormal lista);
+    void consulta(ListaNormal lista);
     void borrar(ListaNormal lista);
     void modificar(String nombre, ListaNormal lista);
     void crearLista(List<Cancion> canciones, String nombre);
