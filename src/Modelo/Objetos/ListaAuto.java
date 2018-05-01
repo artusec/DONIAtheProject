@@ -1,18 +1,23 @@
 package Modelo.Objetos;
 
-import java.util.List;
+import java.util.ArrayList;
 
 import Excepciones.ErrorCreacionObjeto;
 
-public class ListaAuto extends Lista {
+public class ListaAuto extends ListaNormal {
 	
 	private Genero genero;
 	
     public ListaAuto(String id, String nombre, Genero genero) throws ErrorCreacionObjeto {
     		super(id, nombre);
-		//TODO
+    		this.setGenero(genero);
     }
 
+    public ListaAuto(String id, String nombre, Genero genero, ArrayList<Cancion> canciones) throws ErrorCreacionObjeto {
+		super(id, nombre, canciones);
+		this.setGenero(genero);
+}
+    
 	public Genero getGenero() {
 		return genero;
 	}
