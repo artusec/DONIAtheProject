@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -169,25 +170,20 @@ public class SASDAO implements InterfazSASDAO {
 		try {
 			if (this.conectado() && idLista != null) {
 				Lista lista = null;
-			    PreparedStatement stat = this.DBconn.prepareStatement("select * from cancion where cancion = " + idLista + ";");
+			    PreparedStatement stat = this.DBconn.prepareStatement("select * from lista where lista = " + idLista + ";");
 			    ResultSet datosLista = stat.executeQuery();
 				if(datosLista.next()) {
-					//si ha leido bien lo que queriamos
+					//si ha leido bien lo que queriamos obtenemos datos
 					String id = datosLista.getString("lista");
 					String titulo = datosLista.getString("nombre");
-					
-					/*
-					 * 
-					 * MIRAR SI ESTA BIEN LO SIGUIENTE
-					 * 
-					 */
-					
-					List<Cancion> canciones = null;
-					
-					String idCancion = datosLista.getString("cancion");;
-					while (idCancion != null) {
-						canciones.add(this.getCancionDB(idCancion));
-						idCancion = datosLista.getString("cancion");
+					//procedimiento para obtener lista de canciones
+					ArrayList<Cancion> canciones = new ArrayList<Cancion>();
+				    PreparedStatement stat2 = this.DBconn.prepareStatement("select * from rlistacancion where lista = " + idLista + ";");
+				    ResultSet datosListaCanciones = stat2.executeQuery();
+				    while(datosListaCanciones.next()) {
+				    		String idCancion = datosListaCanciones.getString("cancion");
+				    		Cancion cancion = this.getCancionDB(idCancion);
+				    		canciones.add(cancion);
 					}
 					
 					lista = new ListaNormal(id, titulo, canciones);
@@ -203,10 +199,10 @@ public class SASDAO implements InterfazSASDAO {
 	}
 
     public Genero getGeneroDB(String idGenero) {
-    	try {
+    		try {
 			if (this.conectado() && idGenero != null) {
 				Genero genero = null;
-			    PreparedStatement stat = this.DBconn.prepareStatement("select * from cancion where cancion = " + idGenero + ";");
+			    PreparedStatement stat = this.DBconn.prepareStatement("select * from genero where genero = " + idGenero + ";");
 			    ResultSet datosGenero = stat.executeQuery();
 				if(datosGenero.next()) {
 					//si ha leido bien lo que queriamos
@@ -225,6 +221,7 @@ public class SASDAO implements InterfazSASDAO {
 		return null;
     }
 
+    //TODO: revisar
     public Usuario getUsuarioDB(String idUsuario, String clave) {
     	try {
 			if (this.conectado() && idUsuario != null) {
@@ -240,6 +237,9 @@ public class SASDAO implements InterfazSASDAO {
 					/*
 					 * 
 					 * MIRAR SI ESTA BIEN LO SIGUIENTE
+					 * 
+					 * :( no esta bien
+					 * pero casi!!!! :)
 					 * 
 					 */
 					

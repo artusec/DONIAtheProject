@@ -1,5 +1,6 @@
 package Excepciones;
 
+//porque hacemos esto tan concreto wero mio??!?!?!
 public class ErrorConsultaLetra extends Exception {
 
 	/**

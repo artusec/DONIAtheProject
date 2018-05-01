@@ -4,12 +4,21 @@ import java.util.List;
 
 import Excepciones.ErrorCreacionObjeto;
 
-public class ListaAuto extends ListaNormal {
-    public ListaAuto(String id, String nombre, List<Cancion> canciones) throws ErrorCreacionObjeto {
-		super(id, nombre, canciones);
-		// TODO Auto-generated constructor stub
+public class ListaAuto extends Lista {
+	
+	private Genero genero;
+	
+    public ListaAuto(String id, String nombre, Genero genero) throws ErrorCreacionObjeto {
+    		super(id, nombre);
+		//TODO
+    }
+
+	public Genero getGenero() {
+		return genero;
 	}
 
-	public Genero genero;
-
+	public void setGenero(Genero genero) throws ErrorCreacionObjeto {
+		if (genero == null) throw new ErrorCreacionObjeto();
+		this.genero = genero;
+	}
 }

@@ -1,19 +1,64 @@
 package Modelo.Objetos;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import Excepciones.ErrorCreacionObjeto;
 
-public interface Lista {
+public abstract class Lista {
 	
-    public String getId();
-    public void setId(String id) throws ErrorCreacionObjeto;
-    public String getNombre();
-    public void setNombre(String nombre);
+	private String id;
+	private String nombre;
+	private ArrayList<Cancion> canciones;
+	
+	public Lista(String id, String nombre) throws ErrorCreacionObjeto {
+		this.setId(id);
+		this.setNombre(nombre);
+		this.inicializaCanciones();
+	}
+
+	public Lista(String id, String nombre, ArrayList<Cancion> canciones) throws ErrorCreacionObjeto {
+		this.setId(id);
+		this.setNombre(nombre);
+		this.setCanciones(canciones); //solo para las listas creadas en el dao
+	}
+	
+	private void inicializaCanciones() {
+		this.canciones = new ArrayList<Cancion>();
+	}
+	
+    private void setCanciones(ArrayList<Cancion> canciones) throws ErrorCreacionObjeto {
+    		if (canciones == null) throw new ErrorCreacionObjeto();
+		this.canciones = canciones;
+	}
+
+	public String getId() {
+		return this.id;
+    }
+
+    public void setId(String id) throws ErrorCreacionObjeto {
+	    	if (id == null) throw new ErrorCreacionObjeto();
+	    	this.id = id;
+    }
+
+    public String getNombre() {
+		return this.nombre;
+    }
+
+    public void setNombre(String nombre) {
+    	this.nombre = nombre;
+    }
     
-    
-    //¿Habria que hacaer insertar cancion y eliminar cancion no?
-    
-    public void insertaCancion(Cancion cancion);
-    public void eliminaCancion(Cancion cancion);
-    
- 
+	public List<Cancion> getCanciones(){
+		return this.canciones;
+	}
+
+	public void insertaCancion(Cancion cancion) {
+		//comprobar cosas antes!!!!!!!! this.canciones.add(cancion);
+	}
+
+	public void eliminaCancion(Cancion cancion) {
+		//comprobar cosas antes!!!!!!!! this.canciones.remove(cancion);
+	}
+	
 }

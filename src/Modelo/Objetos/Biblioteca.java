@@ -1,34 +1,16 @@
 package Modelo.Objetos;
 
-public class Biblioteca implements Lista {
+import java.util.ArrayList;
+
+import Excepciones.ErrorCreacionObjeto;
+
+public class Biblioteca extends Lista {
     
-    public String getId() {
-		return null;
-    }
-
-    public void setId(String id) {
-    }
-
-    public String getNombre() {
-		return null;
-    }
-
-    public void setNombre(String nombre) {
-    }
-
-	public int numCanciones() {
-		return 0;
+    public Biblioteca(String id, String nombre) throws ErrorCreacionObjeto {
+		super(id, nombre);
 	}
 
-	@Override
-	public void insertaCancion(Cancion cancion) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void eliminaCancion(Cancion cancion) {
-		// TODO Auto-generated method stub
-		
+    public Biblioteca(String id, String nombre, ArrayList<Cancion> canciones) throws ErrorCreacionObjeto {
+		super(id, nombre, canciones);
 	}
 }

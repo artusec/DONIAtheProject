@@ -8,8 +8,8 @@ public class Genero {
     private String nombre;
 
     public Genero(String id, String nombre) throws ErrorCreacionObjeto {
-    	this.setId(id);
-    	this.setNombre(nombre);
+	    	this.setId(id);
+	    	this.setNombre(nombre);
 	}
 
 	public String getId() {
@@ -17,15 +17,16 @@ public class Genero {
     }
 
     public void setId(String id) throws ErrorCreacionObjeto {
-    	if (id == null) throw new ErrorCreacionObjeto();
-    	this.id = id;    
+	    	if (id == null) throw new ErrorCreacionObjeto();
+	    	this.id = id;    
     }
 
     public String getNombre() {
 		return nombre;
     }
 
-    public void setNombre(String nombre) {
-    	this.nombre = nombre;
+    public void setNombre(String nombre) throws ErrorCreacionObjeto {
+    		if (nombre == null) throw new ErrorCreacionObjeto();
+    		this.nombre = nombre;
     }
 }
