@@ -4,13 +4,11 @@ import Modelo.Objetos.Genero;
 import Modelo.Objetos.ListaNormal;
 
 public interface InterfazSASLista {
-	
-    ListaNormal consulta(ListaNormal lista);
-    void borrar(ListaNormal lista);
-    void modificar(String nombre, ListaNormal lista);
+	Lista consulta(Lista lista);
+    void borrar(Lista lista);
+    void modificar(String nombre, Lista lista);
     void crearLista(List<Cancion> canciones, String nombre);
     void crearListaAuto(String nombre, List<Genero> generos);
-    void mostrar(ListaNormal lista);
-    void aniadirCancion(Cancion cancion, ListaNormal lista);
-
+    void mostrar(Lista lista);
+    void aniadirCancion(Cancion cancion, Lista lista);
 }

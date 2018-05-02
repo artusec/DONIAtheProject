@@ -70,7 +70,7 @@ public class SASDAO implements InterfazSASDAO {
     }
     
     /**
-     * Chack de si esta conectado a la DB
+     * Check de si esta conectado a la DB
      * @return
      * @throws SQLException 
      */
@@ -197,6 +197,40 @@ public class SASDAO implements InterfazSASDAO {
 		}
 		return null;  
 	}
+	
+	public Lista getListaAutoDB(String idLista) {
+		try {
+			if (this.conectado() && idLista != null) {
+				Lista lista = null;
+			    PreparedStatement stat = this.DBconn.prepareStatement("select * from listaauto where lista = " + idLista + ";");
+			    ResultSet datosLista = stat.executeQuery();
+				if(datosLista.next()) {
+					//si ha leido bien lo que queriamos obtenemos datos
+					String id = datosLista.getString("lista");
+					String titulo = datosLista.getString("nombre");
+					String idGenero = datosLista.getString("genero");
+					Genero genero = this.getGeneroDB(idGenero);
+					//procedimiento para obtener lista de canciones
+					ArrayList<Cancion> canciones = new ArrayList<Cancion>();
+				    PreparedStatement stat2 = this.DBconn.prepareStatement("select * from rlistacancion where lista = " + idLista + ";");
+				    ResultSet datosListaCanciones = stat2.executeQuery();
+				    while(datosListaCanciones.next()) {
+				    		String idCancion = datosListaCanciones.getString("cancion");
+				    		Cancion cancion = this.getCancionDB(idCancion);
+				    		canciones.add(cancion);
+					}
+					
+					lista = new ListaAuto(id, titulo, genero, canciones);
+				}
+				return lista;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (ErrorCreacionObjeto e) {
+			e.printStackTrace();
+		}
+		return null;  
+	}
 
     public Genero getGeneroDB(String idGenero) {
     		try {
@@ -221,37 +255,28 @@ public class SASDAO implements InterfazSASDAO {
 		return null;
     }
 
-    //TODO: revisar
     public Usuario getUsuarioDB(String idUsuario, String clave) {
     	try {
 			if (this.conectado() && idUsuario != null) {
 				Usuario usuario = null;
-			    PreparedStatement stat = this.DBconn.prepareStatement("select * from cancion where cancion = " + idUsuario + ";");
+			    PreparedStatement stat = this.DBconn.prepareStatement("select * from usuario where usuario = " + idUsuario + ";");
 			    ResultSet datosUsuario = stat.executeQuery();
 				if(datosUsuario.next()) {
 					//si ha leido bien lo que queriamos
 					String id = datosUsuario.getString("usuario");
 					String titulo = datosUsuario.getString("nombre");
 					String autor = datosUsuario.getString("clave");
-					
-					/*
-					 * 
-					 * MIRAR SI ESTA BIEN LO SIGUIENTE
-					 * 
-					 * :( no esta bien
-					 * pero casi!!!! :)
-					 * 
-					 */
-					
-					List<Genero> generos = null;
-					
-					String idGenero = datosUsuario.getString("genero");;
-					while (idGenero != null) {
-						generos.add(this.getGeneroDB(idGenero));
-						idGenero = datosUsuario.getString("cancion");
+					//procedimiento para obtener lista de generos
+					ArrayList<Genero> generos = new ArrayList<Genero>();
+					PreparedStatement stat2 = this.DBconn.prepareStatement("select * from rusuariogenero where usuario = " + idUsuario + ";");
+				    ResultSet datosListaGeneros = stat2.executeQuery();
+				    while(datosListaGeneros.next()) {
+				    		String idGenero = datosListaGeneros.getString("genero");
+				    		Genero genero = this.getGeneroDB(idGenero);
+				    		generos.add(genero);
 					}
 					
-					usuario = new Usuario(id, titulo, autor, null);
+					usuario = new Usuario(id, titulo, autor, generos);
 				}
 				return usuario;
 			}
@@ -264,14 +289,18 @@ public class SASDAO implements InterfazSASDAO {
 	}
 
     public void setCancion(Cancion cancion) {
+    		//algoritmo para los set: comprobar si esta id, si update (si haces delete puede hacer cascade y seria catastrofico); si no insert
     }
 
     public void setUsuario(Usuario usuario) {
+    		
     }
 
     public void setGenero(Genero genero) {
+    		
     }
 
     public void setLista(Lista lista) {
+    		
     }
 }

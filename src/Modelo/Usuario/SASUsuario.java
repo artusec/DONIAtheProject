@@ -16,5 +16,4 @@ public class SASUsuario implements InterfazSASUsuario {
 	public void registro(String user, String pass) {
 		
 	}
-
 }

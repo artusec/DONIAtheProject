@@ -1,6 +1,4 @@
 
-
-
 public class SASGenero implements InterfazSASGenero {
 	
     public void Aniadir(String gusto) {
@@ -11,5 +9,4 @@ public class SASGenero implements InterfazSASGenero {
 
     public void Mostrar() {
     }
-
 }

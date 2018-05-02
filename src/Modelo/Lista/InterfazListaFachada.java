@@ -5,13 +5,11 @@ import Modelo.Objetos.Genero;
 import Modelo.Objetos.ListaNormal;
 
 public interface InterfazListaFachada {
-	
-    void consulta(ListaNormal lista);
-    void borrar(ListaNormal lista);
-    void modificar(String nombre, ListaNormal lista);
-    void crearLista(List<Cancion> canciones, String nombre);
-    void crearListaAuto(String nombre, List<Genero> generos);
-    void mostrar(ListaNormal lista);
-    void aniadirCancion(Cancion cancion, ListaNormal lista);
-
+    public void consulta(Lista lista);
+    public void borrar(Lista lista);
+    public void modificar(String nombre, Lista lista);
+    public void crearLista(List<Cancion> canciones, String nombre);
+    public void crearListaAuto(String nombre, List<Genero> generos);
+    public void mostrar(Lista lista);
+    public void aniadirCancion(Cancion cancion, Lista lista);
 }
