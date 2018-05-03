@@ -22,28 +22,28 @@ public abstract class DBstruct {
 			"  CONSTRAINT 'cancion_genero_FK' FOREIGN KEY ('genero') REFERENCES 'genero' ('genero') ON DELETE SET NULL ON UPDATE CASCADE,\n" + 
 			"  CONSTRAINT 'cancion_letra_FK' FOREIGN KEY ('letra') REFERENCES 'letra' ('letra') ON DELETE SET NULL ON UPDATE CASCADE,\n" + 
 			"  CONSTRAINT 'cancion_video_FK' FOREIGN KEY ('video') REFERENCES 'video' ('video') ON DELETE SET NULL ON UPDATE CASCADE\n" + 
-			") ENGINE=InnoDB DEFAULT CHARSET=latin1";
+			") ENGINE=InnoDB DEFAULT CHARSET=latin1 \n";
 	private static String video = "CREATE TABLE 'video' (\n" + 
 			"  'enlace' varchar(100) NOT NULL,\n" + 
 			"  'enlaceDescarga' varchar(100) DEFAULT NULL,\n" + 
 			"  'video' varchar(100) NOT NULL,\n" + 
 			"  PRIMARY KEY ('video')\n" + 
-			") ENGINE=InnoDB DEFAULT CHARSET=latin1;";
+			") ENGINE=InnoDB DEFAULT CHARSET=latin1 \n;";
 	private static String letra = "CREATE TABLE 'letra' (\n" + 
 			"  'texto' text NOT NULL,\n" + 
 			"  'letra' varchar(100) NOT NULL,\n" + 
 			"  PRIMARY KEY ('letra')\n" + 
-			") ENGINE=InnoDB DEFAULT CHARSET=latin1";
+			") ENGINE=InnoDB DEFAULT CHARSET=latin1 \n";
 	private static String genero = "CREATE TABLE 'genero' (\n" + 
 			"  'genero' varchar(100) NOT NULL,\n" + 
 			"  'nombre' varchar(100) NOT NULL,\n" + 
 			"  PRIMARY KEY ('genero')\n" + 
-			") ENGINE=InnoDB DEFAULT CHARSET=latin1";
+			") ENGINE=InnoDB DEFAULT CHARSET=latin1 \n";
 	private static String lista = "CREATE TABLE 'lista' (\n" + 
 			"  'lista' varchar(100) NOT NULL,\n" + 
 			"  'nombre' varchar(100) NOT NULL,\n" + 
 			"  PRIMARY KEY ('lista')\n" + 
-			") ENGINE=InnoDB DEFAULT CHARSET=latin1";
+			") ENGINE=InnoDB DEFAULT CHARSET=latin1 \n";
 	private static String rlistacancion = "CREATE TABLE 'rlistacancion' (\n" + 
 			"  'lista' varchar(100) NOT NULL,\n" + 
 			"  'cancion' varchar(100) NOT NULL,\n" + 
@@ -51,31 +51,34 @@ public abstract class DBstruct {
 			"  KEY 'rlistacancion_cancion_FK' ('cancion'),\n" + 
 			"  CONSTRAINT 'rlistacancion_cancion_FK' FOREIGN KEY ('cancion') REFERENCES 'cancion' ('cancion') ON DELETE CASCADE ON UPDATE CASCADE,\n" + 
 			"  CONSTRAINT 'rlistacancion_lista_FK' FOREIGN KEY ('lista') REFERENCES 'lista' ('lista') ON DELETE CASCADE ON UPDATE CASCADE\n" + 
-			") ENGINE=InnoDB DEFAULT CHARSET=latin1";
+			") ENGINE=InnoDB DEFAULT CHARSET=latin1 \n";
 	private static String listaauto = "CREATE TABLE 'listaauto' (\n" + 
 			"  'lista' varchar(100) NOT NULL,\n" + 
 			"  'genero' varchar(100) NOT NULL,\n" + 
 			"  PRIMARY KEY ('lista'),\n" + 
 			"  KEY 'listaauto_genero_FK' ('genero'),\n" + 
 			"  CONSTRAINT 'listaauto_genero_FK' FOREIGN KEY ('genero') REFERENCES 'genero' ('genero'),\n" + 
-			"  CONSTRAINT 'listaauto_lista_FK' FOREIGN KEY ('lista') REFERENCES 'lista' ('lista')\n" + 
-			") ENGINE=InnoDB DEFAULT CHARSET=latin1";
+			"  CONSTRAINT 'listaauto_listanormal_FK' FOREIGN KEY ('lista') REFERENCES 'listanormal' ('lista') ON DELETE CASCADE ON UPDATE CASCADE\n" + 
+			") ENGINE=InnoDB DEFAULT CHARSET=latin1 \n";
 	private static String listanormal = "CREATE TABLE 'listanormal' (\n" + 
 			"  'lista' varchar(100) NOT NULL,\n" + 
+			"  'usuario' varchar(100) NOT NULL,\n" + 
 			"  PRIMARY KEY ('lista'),\n" + 
-			"  CONSTRAINT 'listanormal_lista_FK' FOREIGN KEY ('lista') REFERENCES 'lista' ('lista')\n" + 
-			") ENGINE=InnoDB DEFAULT CHARSET=latin1";
+			"  KEY 'listanormal_usuario_FK' ('usuario'),\n" + 
+			"  CONSTRAINT 'listanormal_lista_FK' FOREIGN KEY ('lista') REFERENCES 'lista' ('lista') ON DELETE CASCADE ON UPDATE CASCADE,\n" + 
+			"  CONSTRAINT 'listanormal_usuario_FK' FOREIGN KEY ('usuario') REFERENCES 'usuario' ('usuario') ON DELETE CASCADE ON UPDATE CASCADE\n" + 
+			") ENGINE=InnoDB DEFAULT CHARSET=latin1 \n";
 	private static String biblioteca = "CREATE TABLE 'biblioteca' (\n" + 
 			"  'lista' varchar(100) NOT NULL,\n" + 
 			"  PRIMARY KEY ('lista'),\n" + 
 			"  CONSTRAINT 'biblioteca_lista_FK' FOREIGN KEY ('lista') REFERENCES 'lista' ('lista')\n" + 
-			") ENGINE=InnoDB DEFAULT CHARSET=latin1";
+			") ENGINE=InnoDB DEFAULT CHARSET=latin1 \n";
 	private static String usuario = "CREATE TABLE 'usuario' (\n" + 
 			"  'usuario' varchar(100) NOT NULL,\n" + 
 			"  'nombre' varchar(100) DEFAULT NULL,\n" + 
 			"  'clave' varchar(100) NOT NULL,\n" + 
 			"  PRIMARY KEY ('usuario')\n" + 
-			") ENGINE=InnoDB DEFAULT CHARSET=latin1";
+			") ENGINE=InnoDB DEFAULT CHARSET=latin1 \n";
 	private static String rusuariogenero = "CREATE TABLE 'rusuariogenero' (\n" + 
 			"  'usuario' varchar(100) NOT NULL,\n" + 
 			"  'genero' varchar(100) NOT NULL,\n" + 
@@ -83,28 +86,89 @@ public abstract class DBstruct {
 			"  KEY 'rusuariogenero_genero_FK' ('genero'),\n" + 
 			"  CONSTRAINT 'rusuariogenero_genero_FK' FOREIGN KEY ('genero') REFERENCES 'genero' ('genero') ON DELETE CASCADE ON UPDATE CASCADE,\n" + 
 			"  CONSTRAINT 'rusuariogenero_usuario_FK' FOREIGN KEY ('usuario') REFERENCES 'usuario' ('usuario') ON DELETE CASCADE ON UPDATE CASCADE\n" + 
-			") ENGINE=InnoDB DEFAULT CHARSET=latin1";
-	private static String rusuariolista = "CREATE TABLE 'rusuariolista' (\n" + 
-			"  'usuario' varchar(100) NOT NULL,\n" + 
-			"  'lista' varchar(100) NOT NULL,\n" + 
-			"  PRIMARY KEY ('usuario','lista'),\n" + 
-			"  KEY 'rusuariolista_lista_FK' ('lista'),\n" + 
-			"  CONSTRAINT 'rusuariolista_lista_FK' FOREIGN KEY ('lista') REFERENCES 'lista' ('lista') ON DELETE CASCADE ON UPDATE CASCADE,\n" + 
-			"  CONSTRAINT 'rusuariolista_usuario_FK' FOREIGN KEY ('usuario') REFERENCES 'usuario' ('usuario') ON DELETE CASCADE ON UPDATE CASCADE\n" + 
-			") ENGINE=InnoDB DEFAULT CHARSET=latin1";
+			") ENGINE=InnoDB DEFAULT CHARSET=latin1 \n";
 	private static String usuarioadmin = "CREATE TABLE 'usuarioadmin' (\n" + 
 			"  'usuario' varchar(100) NOT NULL,\n" + 
 			"  PRIMARY KEY ('usuario'),\n" + 
 			"  CONSTRAINT 'usuarioadmin_usuario_FK' FOREIGN KEY ('usuario') REFERENCES 'usuario' ('usuario') ON DELETE CASCADE ON UPDATE CASCADE\n" + 
-			") ENGINE=InnoDB DEFAULT CHARSET=latin1";
+			") ENGINE=InnoDB DEFAULT CHARSET=latin1 \n";
 	
+	//SENTENCIAS CREACION TABLAS
 	public static String getCancion() {
 		return cancion;
+	}
+	public static String getVideo() {
+		return video;
 	}
 	public static String getLetra() {
 		return letra;
 	}
 	public static String getGenero() {
 		return genero;
+	}
+	public static String getLista() {
+		return lista;
+	}
+	public static String getRlistacancion() {
+		return rlistacancion;
+	}
+	public static String getListaauto() {
+		return listaauto;
+	}
+	public static String getListanormal() {
+		return listanormal;
+	}
+	public static String getBiblioteca() {
+		return biblioteca;
+	}
+	public static String getUsuario() {
+		return usuario;
+	}
+	public static String getRusuariogenero() {
+		return rusuariogenero;
+	}
+	public static String getUsuarioadmin() {
+		return usuarioadmin;
+	}
+	
+	//SENTENCIAS DE INSERCION
+	public static String insertCancion(String id, String titulo, String autor, int duracion, String album,
+			String genero, String video, String letra) {
+		return 	"INSERT INTO donia.cancion" +
+				"(cancion, titulo, autor, duracion, album, genero, video, letra)" +
+				"VALUES('" + id + "'," + "'" + titulo + "'," + "'" + autor + "'," + "'" + duracion + "'," +
+				"'" + album + "'," + "'" + genero + "'," + "'" + video + "'," + "'" + letra + "')";
+	}
+	
+	public static String insertUsuario(String id, String nombre, String clave) {
+		return "INSERT INTO donia.usuario" +
+				"(usuario, nombre, clave)" +
+				"VALUES('" + usuario + "'," + "'" + nombre + "'," + "'" + clave + "')";
+	}
+	
+	public static String insertGenero(String id, String nombre) {
+		return "INSERT INTO donia.genero" +
+				"(id, nombre)" +
+				"VALUES('" + id + "'," + "'" + nombre + "')";
+	}
+	
+	//SENTENCIAS DE ACTUALIZACION
+	public static String updateCancion(String id, String titulo, String autor, int duracion, String album,
+			String genero, String video, String letra) {
+		return 	"UPDATE donia.cancion \n" +
+				"SET titulo='" + titulo + "', autor='" + autor + "', duracion=" + duracion + 
+				", album='" + album + "', genero='" + genero + "', video='" + video + "', letra='" + letra + "' \n" +
+				"WHERE cancion='" + id + "'";
+	}
+	public static String updateUsuario(String id, String nombre, String clave) {
+		return 	"UPDATE donia.usuario \n" +
+		"SET nombre='" + nombre + "', clave=" + clave + "' \n" +
+		"WHERE usuario='" + id + "'";
+	}
+	
+	public static String updateGenero(String id, String nombre) {
+		return 	"UPDATE donia.genero \n" +
+				"SET nombre='" + nombre + "' \n" +
+				"WHERE genero='" + id + "'";
 	}
 }

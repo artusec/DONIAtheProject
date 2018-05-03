@@ -1,5 +1,5 @@
 package Modelo.Objetos;
-import java.util.List;
+import java.util.ArrayList;
 
 import Excepciones.ErrorCreacionObjeto;
 
@@ -8,9 +8,9 @@ public class Usuario {
     private String id;
     private String nombre;
     private String clave;
-    public List<Genero> gustos;
+    public ArrayList<Genero> gustos;
 
-    public Usuario(String id, String nombre, String clave, List<Genero> gustos) throws ErrorCreacionObjeto {
+    public Usuario(String id, String nombre, String clave, ArrayList<Genero> gustos) throws ErrorCreacionObjeto {
 	    	this.setId(id);
 	    	this.setNombre(nombre);
 	    	this.setClave(clave);
@@ -44,11 +44,11 @@ public class Usuario {
     		this.clave = clave;
     }
     
-    public List<Genero> getGustos(){
+    public ArrayList<Genero> getGustos(){
 		return gustos;
     }
     
-	public void setGustos(List<Genero> gustos) {
+	public void setGustos(ArrayList<Genero> gustos) {
 		this.gustos = gustos;
 	}
 }

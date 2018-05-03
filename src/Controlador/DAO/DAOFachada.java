@@ -2,6 +2,7 @@ package Controlador.DAO;
 
 import Modelo.Objetos.*;
 import Controlador.DAO.SASDAO;
+import Excepciones.ErrorAutenticacion;
 
 public class DAOFachada implements InterfazDAOFachada {
 	
@@ -35,7 +36,7 @@ public class DAOFachada implements InterfazDAOFachada {
     		this.sasdao.setGenero(genero);
     }
 
-    public void setUsuario(Usuario usuario) {
+    public void setUsuario(Usuario usuario) throws ErrorAutenticacion {
     		this.sasdao.setUsuario(usuario);
     }
 

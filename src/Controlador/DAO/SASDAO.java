@@ -5,8 +5,9 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
+
+import Excepciones.ErrorAutenticacion;
 import Excepciones.ErrorCreacionObjeto;
 import Modelo.Objetos.*;
 
@@ -27,10 +28,8 @@ public class SASDAO implements InterfazSASDAO {
     		try {
 				this.initDB();
 			} catch (ClassNotFoundException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
     }
@@ -41,11 +40,20 @@ public class SASDAO implements InterfazSASDAO {
      * @throws ClassNotFoundException 
      */
     private void initDB() throws ClassNotFoundException, SQLException {
-    		//de algun modo deberi crear una mariaDB en localhost que sa llame donia con user = usr pass = usr
+    		//de algun modo deberia crear una mariaDB en localhost que sa llame donia con user = usr pass = usr
+    		
+    		//creacion de tablas
     		this.conectaDB();
-    		//tests
-        Statement stmt = this.DBconn.createStatement();
-        stmt.executeUpdate(DBstruct.getCancion());
+    		if (this.conectado()) {
+    			String sentencia = DBstruct.getUsuario() + DBstruct.getUsuarioadmin() +
+    					DBstruct.getGenero() + DBstruct.getRusuariogenero() +
+    					DBstruct.getLista() + DBstruct.getBiblioteca() +
+    					DBstruct.getListanormal() + DBstruct.getListaauto() +
+    					DBstruct.getLetra() + DBstruct.getVideo() +
+    					DBstruct.getCancion() + DBstruct.getRlistacancion();
+		    PreparedStatement ps = this.DBconn.prepareStatement(sentencia + ";");
+		    ps.executeQuery();
+    		}
     }
     
     /**
@@ -252,7 +260,7 @@ public class SASDAO implements InterfazSASDAO {
 		return null;
     }
 
-    public Usuario getUsuarioDB(String idUsuario, String clave) {
+    public Usuario getUsuarioDB(String idUsuario, String clave) throws ErrorAutenticacion {
     	try {
 			if (this.conectado() && idUsuario != null) {
 				Usuario usuario = null;
@@ -261,8 +269,9 @@ public class SASDAO implements InterfazSASDAO {
 				if(datosUsuario.next()) {
 					//si ha leido bien lo que queriamos
 					String id = datosUsuario.getString("usuario");
-					String titulo = datosUsuario.getString("nombre");
-					String autor = datosUsuario.getString("clave");
+					String nombre = datosUsuario.getString("nombre");
+					String claveObtenida = datosUsuario.getString("clave");
+					if (claveObtenida != clave) throw new ErrorAutenticacion("Contraseña incorrecta para el usuario: " + nombre);
 					//procedimiento para obtener lista de generos
 					ArrayList<Genero> generos = new ArrayList<Genero>();
 					PreparedStatement stat2 = this.DBconn.prepareStatement("select * from rusuariogenero where usuario = " + idUsuario + ";");
@@ -273,7 +282,7 @@ public class SASDAO implements InterfazSASDAO {
 				    		generos.add(genero);
 					}
 					
-					usuario = new Usuario(id, titulo, autor, generos);
+					usuario = new Usuario(id, nombre, claveObtenida, generos);
 				}
 				return usuario;
 			}
@@ -286,18 +295,119 @@ public class SASDAO implements InterfazSASDAO {
 	}
 
     public void setCancion(Cancion cancion) {
-    		//algoritmo para los set: comprobar si esta id, si update (si haces delete puede hacer cascade y seria catastrofico); si no insert
+	    	try {
+				if (this.conectado() && cancion != null) {
+					//recabar datos
+					String id = cancion.getId();
+					String titulo = cancion.getTitulo();
+					String autor = cancion.getAutor();
+					int duracion = cancion.getDuracion();
+					String album = cancion.getAlbum();
+					//las siguientes comprobaciones previenen errores en la DB
+					String genero = cancion.getGenero().getId();
+					if (!this.existeGenero(genero)) genero = null;
+					String video = cancion.getVideo().getId();
+					if (!this.existeVideo(video)) genero = null;
+					String letra = cancion.getLetra().getId();
+					if (!this.existeLetra(letra)) letra = null;
+					
+					String sentencia = "";
+					//comprobar cancion
+					if (this.existeCancion(id)) {
+						//actualizar DB
+						sentencia = DBstruct.updateCancion(id, titulo, autor, duracion, album, genero, video, letra);
+					} else {
+						//insertar datos
+						sentencia = DBstruct.insertCancion(id, titulo, autor, duracion, album, genero, video, letra);
+					}
+					PreparedStatement ps = this.DBconn.prepareStatement(sentencia + ';');
+					ps.executeQuery();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
     }
 
-    public void setUsuario(Usuario usuario) {
-    		
+    public void setUsuario(Usuario usuario) throws ErrorAutenticacion {
+     	try {
+			if (this.conectado() && usuario != null) {
+				//recabar datos
+				String id = usuario.getId();
+				String nombre = usuario.getNombre();
+				String clave = usuario.getClave();
+				ArrayList<Genero> generos = usuario.getGustos();
+				
+				String sentencia = "";
+				//comprobar usuario
+				if (this.existeUsuario(id, clave)) {
+					//actualizar DB
+					sentencia = DBstruct.updateUsuario(id, nombre, clave);
+				} else {
+					//insertar datos
+					sentencia = DBstruct.insertUsuario(id, nombre, clave);
+				}
+				if (generos != null) {
+					this.setGenerosUsuario(id, generos);
+				}
+				PreparedStatement ps = this.DBconn.prepareStatement(sentencia + ';');
+				ps.executeQuery();
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
     }
 
     public void setGenero(Genero genero) {
-    		
+     	try {
+			if (this.conectado() && genero != null) {
+				//recabar datos
+				String id = genero.getId();
+				String nombre = genero.getNombre();
+				
+				String sentencia = "";
+				//comprobar genero
+				if (this.existeGenero(id)) {
+					//actualizar DB
+					sentencia = DBstruct.updateGenero(id, nombre);
+				} else {
+					//insertar datos
+					sentencia = DBstruct.insertGenero(id, nombre);
+				}
+				PreparedStatement ps = this.DBconn.prepareStatement(sentencia + ';');
+				ps.executeQuery();
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
     }
 
     public void setLista(Lista lista) {
-    		
+    		//TODO este es un puto rollo ademas va a haber que pasarl el user al que pertenece la lista
+    }
+    
+    private void setGenerosUsuario(String idUsuario, ArrayList<Genero> generos) {
+    		//TODO otro puto rollazo
+		//borar generos antiguos de rusuariosgenero
+		//escribir nuevos generos en rusuariosgenero
+    }
+    
+    private boolean existeCancion(String cancionId) {
+    		return this.getCancionDB(cancionId) != null;
+    }
+    
+    private boolean existeUsuario(String usuarioId, String clave) throws ErrorAutenticacion {
+		return this.getUsuarioDB(usuarioId, clave) != null;
+    }
+    
+    private boolean existeGenero(String generoId) {
+		return this.getGeneroDB(generoId) != null;
+    }
+    
+    private boolean existeVideo(String videoId) {
+		return this.getVideoDB(videoId) != null;
+    }
+    
+    private boolean existeLetra(String letraId) {
+		return this.getLetraDB(letraId) != null;
     }
 }

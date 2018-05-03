@@ -9,9 +9,9 @@ public class Cancion {
     private String autor;
     private String album;
     private int duracion; //en segundos
-    public Letra letra;
-    public Video video;
-    public Genero genero;
+    private Letra letra;
+    private Video video;
+    private Genero genero;
 
     public Cancion(String id, String titulo, String autor, String album,
     					int duracion, Letra letra, Video video, Genero genero) throws ErrorCreacionObjeto {
