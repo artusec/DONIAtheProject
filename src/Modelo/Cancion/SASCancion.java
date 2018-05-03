@@ -22,7 +22,7 @@ public class SASCancion implements InterfazSASCancion {
 	//	escribe nada en pantalla
 	
 	public Letra consultaLetra(String cancion) {
-	    	return letra this.interfazDAOFachada.getCancionDB(cancion).getLetra();
+	    	return this.interfazDAOFachada.getCancionDB(cancion).getLetra();
 	}
 	
     public Video consultaVideo(String cancion) {
