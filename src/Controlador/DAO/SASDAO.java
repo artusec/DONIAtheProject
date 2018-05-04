@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import Excepciones.ErrorAutenticacion;
+import Excepciones.ErrorContrasteDatos;
 import Excepciones.ErrorCreacionObjeto;
 import Modelo.Objetos.*;
 
@@ -319,6 +320,8 @@ public class SASDAO implements InterfazSASDAO {
 					} else {
 						//insertar datos
 						sentencia = DBstruct.insertCancion(id, titulo, autor, duracion, album, genero, video, letra);
+						//anadir la cancion a la biblioteca
+						sentencia += '\n' + DBstruct.insertRlistaCancion(DBstruct.getIdBiblioteca(), id);
 					}
 					PreparedStatement ps = this.DBconn.prepareStatement(sentencia + ';');
 					ps.executeQuery();
@@ -328,7 +331,7 @@ public class SASDAO implements InterfazSASDAO {
 			}
     }
 
-    public void setUsuario(Usuario usuario) throws ErrorAutenticacion {
+    public void setUsuario(Usuario usuario) throws ErrorAutenticacion, ErrorContrasteDatos {
      	try {
 			if (this.conectado() && usuario != null) {
 				//recabar datos
@@ -347,7 +350,7 @@ public class SASDAO implements InterfazSASDAO {
 					sentencia = DBstruct.insertUsuario(id, nombre, clave);
 				}
 				if (generos != null) {
-					this.setGenerosUsuario(id, generos);
+					this.setGenerosUsuario(usuario, generos);
 				}
 				PreparedStatement ps = this.DBconn.prepareStatement(sentencia + ';');
 				ps.executeQuery();
@@ -381,14 +384,74 @@ public class SASDAO implements InterfazSASDAO {
 		}
     }
 
-    public void setLista(Lista lista) {
-    		//TODO este es un puto rollo ademas va a haber que pasarl el user al que pertenece la lista
+    public void setLista(Lista lista, Usuario usuario) throws ErrorAutenticacion, ErrorContrasteDatos {
+	    	try {
+			if (this.conectado() && lista != null && usuario != null) {
+				//recabar datos lista
+				String idLista = lista.getId();
+				String nombreLista = lista.getNombre();
+				//recabar datos usuario
+				String idUsuario = usuario.getId();
+				String clave = usuario.getClave();
+				//comprobar usuario
+				if (!this.existeUsuario(idUsuario, clave))
+					throw new ErrorContrasteDatos();
+				String sentencia = "";
+				//comprobar lista
+				if (this.existeLista(idLista)) {
+					//actualizar DB
+					sentencia = DBstruct.updateLista(idLista, nombreLista);
+					//limpiar antigua lista de canciones
+					sentencia += DBstruct.deleteRlistaCancion(idLista);
+				} else {
+					//insertar lista
+					sentencia = DBstruct.insertLista(idLista, nombreLista);
+				}
+				//insertar canciones en la lista
+				if (lista.getCanciones() != null) {
+					for(Cancion cancion : lista.getCanciones()) {
+						sentencia += DBstruct.insertRlistaCancion(idLista, cancion.getId()) + '\n';
+					}
+				}
+				PreparedStatement ps = this.DBconn.prepareStatement(sentencia + ';');
+				ps.executeQuery();
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
     }
     
-    private void setGenerosUsuario(String idUsuario, ArrayList<Genero> generos) {
-    		//TODO otro puto rollazo
-		//borar generos antiguos de rusuariosgenero
-		//escribir nuevos generos en rusuariosgenero
+    private void setGenerosUsuario(Usuario usuario, ArrayList<Genero> generos) throws ErrorAutenticacion, ErrorContrasteDatos {
+	    	try {
+			if (this.conectado() && usuario != null && generos != null) {
+				//recabar datos usuario
+				String idUsuario = usuario.getId();
+				String clave = usuario.getClave();
+				//comprobar usuario
+				if (!this.existeUsuario(idUsuario, clave))
+					throw new ErrorContrasteDatos();
+				//borrar generos del usuario
+				String sentencia = "";
+				sentencia += DBstruct.deleteRgeneroUsuario(idUsuario);
+				PreparedStatement ps = this.DBconn.prepareStatement(sentencia + ';');
+				ps.executeQuery();
+				sentencia = "";
+				//generos uno a uno
+				for (Genero genero : generos ) {
+					//recabar datos genero
+					String id = genero.getId();
+					if (this.existeGenero(id)) {
+						//actualizar DB
+						sentencia = DBstruct.insertRgeneroUsuario(id, idUsuario);
+					}
+					sentencia += " \n";
+				}
+				PreparedStatement ps2 = this.DBconn.prepareStatement(sentencia + ';');
+				ps2.executeQuery();
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
     }
     
     private boolean existeCancion(String cancionId) {
@@ -397,6 +460,10 @@ public class SASDAO implements InterfazSASDAO {
     
     private boolean existeUsuario(String usuarioId, String clave) throws ErrorAutenticacion {
 		return this.getUsuarioDB(usuarioId, clave) != null;
+    }
+    
+    private boolean existeLista(String listaId) {
+		return this.getListaDB(listaId) != null;
     }
     
     private boolean existeGenero(String generoId) {

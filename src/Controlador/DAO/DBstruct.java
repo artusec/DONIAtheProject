@@ -1,11 +1,18 @@
 package Controlador.DAO;
 
 /**
- * Esta clase proporciona las serntencias SQL para la creacion de datos en maria
+ * Esta clase proporciona las serntencias SQL para la creacion de tablas, insercion,
+ * eliminacion y actualizacion en maria
  * 
  * @author borja
  */
 public abstract class DBstruct {
+	
+	// IDs ENTIDADES UNICAS OBLIGATORIAS
+	private static String idUsuarioAdmin = "u0";
+	private static String idBiblioteca = "l0";
+	
+	// SENTENCIAS CREACION TABLAS
 	private static String cancion = "CREATE TABLE 'cancion' (\n" + 
 			"  'cancion' varchar(100) NOT NULL,\n" + 
 			"  'titulo' varchar(100) NOT NULL,\n" + 
@@ -93,7 +100,15 @@ public abstract class DBstruct {
 			"  CONSTRAINT 'usuarioadmin_usuario_FK' FOREIGN KEY ('usuario') REFERENCES 'usuario' ('usuario') ON DELETE CASCADE ON UPDATE CASCADE\n" + 
 			") ENGINE=InnoDB DEFAULT CHARSET=latin1 \n";
 	
-	//SENTENCIAS CREACION TABLAS
+	// IDs ENTIDADES UNICAS OBLIGATORIAS
+	public static String getIdBiblioteca() {
+		return idBiblioteca;
+	}
+	public static String getIdUsuarioAdmin() {
+		return idUsuarioAdmin;
+	}
+	
+	// SENTENCIAS CREACION TABLAS
 	public static String getCancion() {
 		return cancion;
 	}
@@ -148,8 +163,26 @@ public abstract class DBstruct {
 	
 	public static String insertGenero(String id, String nombre) {
 		return "INSERT INTO donia.genero" +
-				"(id, nombre)" +
+				"(genero, nombre)" +
 				"VALUES('" + id + "'," + "'" + nombre + "')";
+	}
+	
+	public static String insertLista(String id, String nombre) {
+		return "INSERT INTO donia.lista" +
+				"(lista, nombre)" +
+				"VALUES('" + lista + "'," + "'" + nombre + "')";
+	}
+	
+	public static String insertRlistaCancion(String lista, String cancion) {
+		return 	"INSERT INTO donia.rlistacancion" +
+				"(lista, cancion)" +
+				"VALUES('" + lista + "'," + "'" + cancion + "')";
+	}
+	
+	public static String insertRgeneroUsuario(String genero, String usuario) {
+		return 	"INSERT INTO donia.rgenerousuario" +
+				"(genero, usuario)" +
+				"VALUES('" + genero + "'," + "'" + usuario + "')";
 	}
 	
 	//SENTENCIAS DE ACTUALIZACION
@@ -170,5 +203,21 @@ public abstract class DBstruct {
 		return 	"UPDATE donia.genero \n" +
 				"SET nombre='" + nombre + "' \n" +
 				"WHERE genero='" + id + "'";
+	}
+	
+	public static String updateLista(String id, String nombre) {
+		return "UPDATE donia.lista \n" +
+				"SET nombre='" + nombre + "' \n" +
+				"WHERE genero='" + id + "'";
+	}
+	
+	// SENTENCIAS DE ELIMINACION
+	public static String deleteRlistaCancion(String idLista) {
+		return "DELETE FROM donia.rlistacancion \n" + 
+				"WHERE lista='" + idLista + "'";
+	}
+	public static String deleteRgeneroUsuario(String idUsuario) {
+		return "DELETE FROM donia.rgenerousuario \n" + 
+				"WHERE usuario='" + idUsuario + "'";
 	}
 }

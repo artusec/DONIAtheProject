@@ -1,6 +1,7 @@
 package Controlador.DAO;
 
 import Excepciones.ErrorAutenticacion;
+import Excepciones.ErrorContrasteDatos;
 import Modelo.Objetos.*;
 
 public interface InterfazDAOFachada {
@@ -10,6 +11,6 @@ public interface InterfazDAOFachada {
     Usuario getUsuarioDB(String idUsuario, String clave);
     void setCancion(Cancion cancion);
     void setGenero(Genero genero);
-    void setUsuario(Usuario usuario) throws ErrorAutenticacion;
-    void setLista(Lista lista);
+    void setUsuario(Usuario usuario) throws ErrorAutenticacion, ErrorContrasteDatos;
+    void setLista(Lista lista, Usuario usuario) throws ErrorAutenticacion, ErrorContrasteDatos ;
 }
