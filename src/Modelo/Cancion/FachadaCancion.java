@@ -12,7 +12,6 @@ public class FachadaCancion implements InterfazFachadaCancion {
 
     public Letra consultaLetra(String cancion) {
     	return interfazSASCancion.consultaLetra(cancion);
-    	// donde tratamos la excepcion?
     }
 
     public Cancion consultaCancion(String cancion) {

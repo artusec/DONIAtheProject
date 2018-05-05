@@ -7,7 +7,7 @@ public interface InterfazSASCancion {
 	
     String descargaVideo(String cancion);
     Cancion consultaCancion(String cancion);
-    Letra consultaLetra(String cancion) throws ErrorConsultaLetra;
+    Letra consultaLetra(String cancion);
     Video consultaVideo(String cancion);
 
 }
