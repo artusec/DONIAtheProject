@@ -6,14 +6,6 @@ import Modelo.Objetos.Video;
 public class SASCancion implements InterfazSASCancion {
 	
 	private InterfazDAOFachada interfazDAOFachada;
-	
-   /* public Letra consultaLetra(String cancion) throws ErrorConsultaLetra {
-	    	return this.interfazDAOFachada.getCancionDB(cancion).getLetra();
-	    if (letra == null)
-	    		throw new ErrorConsultaLetra();
-	    	else
-	    		return letra;
-    }*/
 
 	//Para los siguientes metodos:
 	//Si hubiese errores en el acceso a datos el dao nos notifica
@@ -29,6 +21,12 @@ public class SASCancion implements InterfazSASCancion {
     }
 
     public Cancion consultaCancion(String cancion) {
+		/*
+		 * Segun nuestro diagrama de secuencia esto deberia devolver un enlace
+		 * o un error
+		 * ¿No habria que añadir la parte del error?
+		 * 		(Que si el getCancionDB devuelve null, lanzaramos un error)
+    	*/
     		return this.interfazDAOFachada.getCancionDB(cancion);
     }
 

@@ -1,4 +1,3 @@
-import Excepciones.ErrorConsultaLetra;
 import Modelo.Objetos.Cancion;
 import Modelo.Objetos.Letra;
 import Modelo.Objetos.Video;
@@ -12,15 +11,7 @@ public class FachadaCancion implements InterfazFachadaCancion {
     }
 
     public Letra consultaLetra(String cancion) {
-    	try {
-			return interfazSASCancion.consultaLetra(cancion);
-		} catch (ErrorConsultaLetra e) {
-			e.printStackTrace();
-		}
-		return null;
-		
-    	// donde tratamos la excepcion? De momento con este chusco
-
+    	return interfazSASCancion.consultaLetra(cancion);
     }
 
     public Cancion consultaCancion(String cancion) {
