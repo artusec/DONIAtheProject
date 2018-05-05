@@ -61,4 +61,16 @@ public abstract class Lista {
 		//comprobar cosas antes!!!!!!!! this.canciones.remove(cancion);
 	}
 	
+	public int getDuracion() {
+		int total = 0;
+		for (Cancion cancion : canciones) {
+			total += cancion.getDuracion();
+		}
+	
+		return total;
+	}
+	
+	public abstract String getGenero();
+
+	
 }

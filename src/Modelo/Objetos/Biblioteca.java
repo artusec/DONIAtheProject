@@ -13,4 +13,9 @@ public class Biblioteca extends Lista {
     public Biblioteca(String id, String nombre, ArrayList<Cancion> canciones) throws ErrorCreacionObjeto {
 		super(id, nombre, canciones);
 	}
+
+	@Override
+	public String getGenero() {
+		return "Sin genero definido";
+	}
 }

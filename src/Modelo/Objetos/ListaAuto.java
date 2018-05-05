@@ -16,14 +16,16 @@ public class ListaAuto extends ListaNormal {
     public ListaAuto(String id, String nombre, Genero genero, ArrayList<Cancion> canciones) throws ErrorCreacionObjeto {
 		super(id, nombre, canciones);
 		this.setGenero(genero);
-}
+    }
     
-	public Genero getGenero() {
-		return genero;
-	}
-
 	public void setGenero(Genero genero) throws ErrorCreacionObjeto {
 		if (genero == null) throw new ErrorCreacionObjeto();
 		this.genero = genero;
+	}
+	
+	@Override
+	public String getGenero() {
+		
+		return genero.getNombre();
 	}
 }

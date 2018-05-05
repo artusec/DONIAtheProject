@@ -13,4 +13,10 @@ public class ListaNormal extends Lista {
 	public ListaNormal(String id, String nombre, ArrayList<Cancion> canciones) throws ErrorCreacionObjeto {
 		super(id, nombre, canciones);
 	}
+
+	@Override
+	public String getGenero() {
+		
+		return "Sin genero definido";
+	}
 }

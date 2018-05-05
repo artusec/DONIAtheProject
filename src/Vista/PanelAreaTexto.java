@@ -6,7 +6,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
-public abstract class PanelAreaTexto extends JPanel {
+public class PanelAreaTexto extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	protected JTextArea areatexto;

@@ -10,8 +10,10 @@ public abstract class ModeloTabla<T> extends DefaultTableModel implements Observ
 	protected String[] columnIds;
 	protected List<T> lista;
 	
-	public ModeloTabla() {
-		
+	public ModeloTabla(String[] columnaCanciones /*Controlador ctrl*/) {
+		this.lista = null;
+		this.columnIds = columnaCanciones;
+		// ctrl.addObserver(this);
 	}
 	
 	@Override

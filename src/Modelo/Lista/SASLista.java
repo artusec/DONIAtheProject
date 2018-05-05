@@ -1,7 +1,7 @@
 import java.util.List;
 import Modelo.Objetos.Cancion;
 import Modelo.Objetos.Genero;
-import Modelo.Objetos.ListaNormal;
+import Modelo.Objetos.Lista;
 
 public class SASLista implements InterfazSASLista {
 	

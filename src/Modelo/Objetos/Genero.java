@@ -29,4 +29,9 @@ public class Genero {
     		if (nombre == null) throw new ErrorCreacionObjeto();
     		this.nombre = nombre;
     }
+    
+    public String toString()
+    {
+    	return nombre;
+    }
 }

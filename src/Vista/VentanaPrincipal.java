@@ -1,10 +1,12 @@
 package Vista;
 
+import java.awt.BorderLayout;
+import java.awt.GridLayout;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
-
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 import Modelo.Objetos.Cancion;
 import Modelo.Objetos.Lista;
@@ -13,13 +15,12 @@ public class VentanaPrincipal extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	
-	static private final String[] columnCanciones = {"#", "Titulo", "Artista", "Genero"};
+	static private final String[] columnCanciones = {"#", "Titulo", "Artista", "Genero", "Duracion"};
 	static private final String[] columnLista = {"#", "Nombre", "Duracion", "Genero"};
 
 	private PanelAreaTexto panelDeLetras;
-	private PanelTabla<Lista> listas;
-	private PanelTabla<Cancion> canciones;
-	private PanelAreaTexto informacion;
+	private PanelTabla<Lista> panelListas;
+	private PanelTabla<Cancion> panelCanciones;
 	private ToolBar toolBar;
 	
 	public VentanaPrincipal ()
@@ -75,12 +76,70 @@ public class VentanaPrincipal extends JFrame {
 		
 		 });
 		
+		
+		JPanel panelSupremo = creaPanelSupremo();
+		this.setContentPane(panelSupremo);
+		
+		addToolBar(panelSupremo);
+		
+		JPanel panelCentral = createPanelCentral();
+		panelSupremo.add(panelCentral, BorderLayout.CENTER);
+
+		creaPanelListas(panelCentral);
+		creaPanelCanciones(panelCentral);
+		createPanelLetras(panelCentral);
 		 
-		 this.pack();
-		 this.setVisible(true);
+		pack();
+		setVisible(true);
 	}
 
 	
+	private JPanel creaPanelSupremo() {
+		JPanel principal = new JPanel();
+		principal.setLayout(new BorderLayout());
+		return principal;
+	}
+
+	private void addToolBar(JPanel panelSupremo) {
+		toolBar = new ToolBar(this /*, ctrl*/);
+		panelSupremo.add(toolBar, BorderLayout.EAST);
+		
+	}
 	
+	private JPanel createPanelCentral() {
+		JPanel panelCentral = new JPanel();		
+		panelCentral.setLayout(new GridLayout(3,1));
+		return panelCentral;
+	}
+	
+
+	private void creaPanelListas(JPanel panelCentral) {
+		JPanel izquierda = new JPanel();
+		ToolBarListas barListas = new ToolBarListas(this/*, ctrl*/);
+		izquierda.add(barListas, BorderLayout.SOUTH);
+		panelListas = new PanelTabla<Lista>("Listas de reproduccion", new ModeloTablaListas(columnLista/*, ctrl*/));
+		izquierda.add(panelListas);
+		panelCentral.add(izquierda);
+		
+	}
+	
+	private void creaPanelCanciones(JPanel panelCentral) {
+		JPanel medio = new JPanel();
+		ToolBarCanciones barCanciones = new ToolBarCanciones(this/*, ctrl*/);
+		medio.add(barCanciones, BorderLayout.SOUTH);
+		panelCanciones = new PanelTabla<Cancion>("Canciones", new ModeloTablaCanciones(columnCanciones /* ctrl */));
+		medio.add(panelCanciones);
+		panelCentral.add(medio);
+		
+	}
+	
+	private void createPanelLetras(JPanel panelCentral) {
+		JPanel derecha = new JPanel();
+		PanelBarraEstado barra = new PanelBarraEstado("");
+		derecha.add(barra, BorderLayout.NORTH);
+		panelDeLetras = new PanelAreaTexto("Letra", false);
+		panelDeLetras.areatexto.setText("¡Elige una cancion para ver su letra!");
+		panelCentral.add(panelDeLetras);
+	}
 	
 }
