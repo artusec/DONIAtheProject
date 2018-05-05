@@ -17,10 +17,10 @@ public class VentanaPrincipal extends JFrame {
 	static private final String[] columnLista = {"#", "Nombre", "Duracion", "Genero"};
 
 	private PanelAreaTexto panelDeLetras;
-	private PanelAreaTexto buscador;
 	private PanelTabla<Lista> listas;
 	private PanelTabla<Cancion> canciones;
-	private PanelAreaTexto informacion; // Esto podria ser un PabelBarraEstado
+	private PanelAreaTexto informacion;
+	private ToolBar toolBar;
 	
 	public VentanaPrincipal ()
 	{

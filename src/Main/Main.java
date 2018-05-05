@@ -1,10 +1,20 @@
 package Main;
 
+import Vista.VentanaPrincipal;
+
 public class Main {
-	/**
-	 * Aqui empieza todo...
-	 */
-	public static void Main (final String[] args) {
-		System.out.println("dfsajg");
+	
+	public static void main (String [] args) {
+		iniciar();
 	}
+	
+	private static void iniciar(){	
+		try {
+			new VentanaPrincipal();
+		}
+		catch (Exception e) { // Aqui se pondran todos los posibles errores al iniciar
+			e.printStackTrace();
+		}
+	}
+
 }
