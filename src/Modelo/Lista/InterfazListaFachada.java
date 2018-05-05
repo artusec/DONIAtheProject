@@ -3,7 +3,6 @@ import java.util.List;
 import Modelo.Objetos.Cancion;
 import Modelo.Objetos.Genero;
 import Modelo.Objetos.Lista;
-import Modelo.Objetos.ListaNormal;
 
 public interface InterfazListaFachada {
     public void consulta(Lista lista);

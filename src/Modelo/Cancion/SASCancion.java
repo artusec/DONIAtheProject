@@ -1,5 +1,4 @@
 import Controlador.DAO.InterfazDAOFachada;
-import Excepciones.ErrorConsultaLetra;
 import Modelo.Objetos.Cancion;
 import Modelo.Objetos.Letra;
 import Modelo.Objetos.Video;
