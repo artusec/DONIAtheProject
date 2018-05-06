@@ -1,12 +1,16 @@
 package Vista;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+
+import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.border.Border;
 
 import Modelo.Objetos.Cancion;
 import Modelo.Objetos.Lista;
@@ -15,6 +19,8 @@ public class VentanaPrincipal extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	
+	public static Border bordePorDefecto = BorderFactory.createLineBorder(Color.black, 2);
+
 	static private final String[] columnCanciones = {"#", "Titulo", "Artista", "Genero", "Duracion"};
 	static private final String[] columnLista = {"#", "Nombre", "Duracion", "Genero"};
 
@@ -103,19 +109,21 @@ public class VentanaPrincipal extends JFrame {
 
 	private void addToolBar(JPanel panelSupremo) {
 		toolBar = new ToolBar(this /*, ctrl*/);
+		toolBar.setLayout(new GridLayout(6, 1));
 		panelSupremo.add(toolBar, BorderLayout.EAST);
 		
 	}
 	
 	private JPanel createPanelCentral() {
-		JPanel panelCentral = new JPanel();		
-		panelCentral.setLayout(new GridLayout(3,1));
+		JPanel panelCentral = new JPanel();
+		panelCentral.setLayout(new GridLayout(1,3));
 		return panelCentral;
 	}
 	
 
 	private void creaPanelListas(JPanel panelCentral) {
 		JPanel izquierda = new JPanel();
+		izquierda.setLayout(new GridLayout(2, 1));
 		ToolBarListas barListas = new ToolBarListas(this/*, ctrl*/);
 		izquierda.add(barListas, BorderLayout.SOUTH);
 		panelListas = new PanelTabla<Lista>("Listas de reproduccion", new ModeloTablaListas(columnLista/*, ctrl*/));
@@ -126,6 +134,7 @@ public class VentanaPrincipal extends JFrame {
 	
 	private void creaPanelCanciones(JPanel panelCentral) {
 		JPanel medio = new JPanel();
+		medio.setLayout(new GridLayout(2, 1));
 		ToolBarCanciones barCanciones = new ToolBarCanciones(this/*, ctrl*/);
 		medio.add(barCanciones, BorderLayout.SOUTH);
 		panelCanciones = new PanelTabla<Cancion>("Canciones", new ModeloTablaCanciones(columnCanciones /* ctrl */));
