@@ -211,6 +211,11 @@ public abstract class DBstruct {
 				"WHERE genero='" + id + "'";
 	}
 	
+	//TODO
+	public static String updateGeneroLista(String idLista, String idGenero) {
+		return null;
+	}
+	
 	// SENTENCIAS DE ELIMINACION
 	public static String deleteRlistaCancion(String idLista) {
 		return "DELETE FROM donia.rlistacancion \n" + 

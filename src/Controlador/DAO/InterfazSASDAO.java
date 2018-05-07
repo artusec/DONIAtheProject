@@ -1,8 +1,7 @@
 package Controlador.DAO;
 
 import Excepciones.ErrorAutenticacion;
-import Excepciones.ErrorContrasteDatos;
-import Modelo.Objetos.*;
+import Model.Objetos.*;
 
 public interface InterfazSASDAO {
     Cancion getCancionDB(String idCancion);
@@ -10,7 +9,8 @@ public interface InterfazSASDAO {
     Genero getGeneroDB(String idGenero);
     Usuario getUsuarioDB(String idUsuario, String clave) throws ErrorAutenticacion;
     void setGenero(Genero genero);
-    void setLista(Lista lista, Usuario usuario) throws ErrorAutenticacion, ErrorContrasteDatos;
     void setCancion(Cancion cancion);
-    void setUsuario(Usuario usuario) throws ErrorAutenticacion, ErrorContrasteDatos;
+    void setUsuario(Usuario usuario) throws ErrorAutenticacion;
+    void setLista(Lista lista, Usuario usuario) throws ErrorAutenticacion;
+	void setListaAuto(Lista lista, Genero genero, Usuario usuario) throws ErrorAutenticacion;
 }

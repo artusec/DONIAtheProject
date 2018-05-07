@@ -1,6 +1,6 @@
 package Vista;
 
-import Modelo.Objetos.Lista;
+import Model.Objetos.Lista;
 
 public class ModeloTablaListas extends ModeloTabla<Lista> {
 

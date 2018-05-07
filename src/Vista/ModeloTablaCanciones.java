@@ -1,6 +1,6 @@
 package Vista;
 
-import Modelo.Objetos.Cancion;
+import Model.Objetos.Cancion;
 
 public class ModeloTablaCanciones extends ModeloTabla<Cancion> {
 

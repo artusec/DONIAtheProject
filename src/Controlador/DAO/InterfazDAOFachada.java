@@ -1,16 +1,16 @@
 package Controlador.DAO;
 
 import Excepciones.ErrorAutenticacion;
-import Excepciones.ErrorContrasteDatos;
-import Modelo.Objetos.*;
+import Model.Objetos.*;
 
 public interface InterfazDAOFachada {
-    Genero getGeneroDB(String idGenero);
-    Cancion getCancionDB(String idCancion);
-    Lista getListaDB(String idLista);
-    Usuario getUsuarioDB(String idUsuario, String clave);
-    void setCancion(Cancion cancion);
-    void setGenero(Genero genero);
-    void setUsuario(Usuario usuario) throws ErrorAutenticacion, ErrorContrasteDatos;
-    void setLista(Lista lista, Usuario usuario) throws ErrorAutenticacion, ErrorContrasteDatos ;
+	public Genero getGeneroDB(String idGenero);
+	public Cancion getCancionDB(String idCancion);
+	public Lista getListaDB(String idLista);
+	public Usuario getUsuarioDB(String idUsuario, String clave) throws ErrorAutenticacion;
+	public void setCancion(Cancion cancion);
+	public void setGenero(Genero genero);
+	public void setUsuario(Usuario usuario) throws ErrorAutenticacion;
+	public void setLista(Lista lista, Usuario usuario) throws ErrorAutenticacion;
+	public void setListaAuto(Lista lista, Genero genero, Usuario usuario) throws ErrorAutenticacion;
 }

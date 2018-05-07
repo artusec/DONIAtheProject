@@ -1,9 +1,9 @@
 package Controlador.DAO;
 
-import Modelo.Objetos.*;
 import Controlador.DAO.SASDAO;
 import Excepciones.ErrorAutenticacion;
 import Excepciones.ErrorContrasteDatos;
+import Model.Objetos.*;
 
 public class DAOFachada implements InterfazDAOFachada {
 	
@@ -25,7 +25,7 @@ public class DAOFachada implements InterfazDAOFachada {
 		return this.getListaDB(idLista);
     }
 
-    public Usuario getUsuarioDB(String idUsuario, String clave) {
+    public Usuario getUsuarioDB(String idUsuario, String clave) throws ErrorAutenticacion {
 		return this.getUsuarioDB(idUsuario, clave);
     }
 
@@ -37,11 +37,15 @@ public class DAOFachada implements InterfazDAOFachada {
     		this.sasdao.setGenero(genero);
     }
 
-    public void setUsuario(Usuario usuario) throws ErrorAutenticacion, ErrorContrasteDatos {
+    public void setUsuario(Usuario usuario) throws ErrorAutenticacion {
     		this.sasdao.setUsuario(usuario);
     }
 
-    public void setLista(Lista lista, Usuario usuario) throws ErrorAutenticacion, ErrorContrasteDatos  {
+    public void setLista(Lista lista, Usuario usuario) throws ErrorAutenticacion {
     		this.sasdao.setLista(lista, usuario);
+    }
+    
+    public void setListaAuto(Lista lista, Genero genero, Usuario usuario) throws ErrorAutenticacion{
+    		this.sasdao.setListaAuto(lista, genero, usuario);
     }
 }
