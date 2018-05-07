@@ -1,6 +1,6 @@
 package Vista;
 
-import laskdjf.Objetos.Lista;
+import Model.Objetos.Lista;
 
 public class ModeloTablaListas extends ModeloTabla<Lista> {
 

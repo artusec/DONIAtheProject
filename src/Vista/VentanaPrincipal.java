@@ -10,11 +10,10 @@ import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JToolBar;
 import javax.swing.border.Border;
 
-import laskdjf.Objetos.Cancion;
-import laskdjf.Objetos.Lista;
+import Model.Objetos.Cancion;
+import Model.Objetos.Lista;
 
 public class VentanaPrincipal extends JFrame {
 
@@ -138,7 +137,7 @@ public class VentanaPrincipal extends JFrame {
 		medio.setLayout(new GridLayout(2, 1));
 		ToolBarCanciones barCanciones = new ToolBarCanciones(this/*, ctrl*/);
 		medio.add(barCanciones, BorderLayout.SOUTH);
-		panelCanciones = new PanelTabla<Cancion>("Canciones", new ModeloTablaCanciones(columnCanciones /* ctrl */));
+		panelCanciones = new PanelTabla<Model.Objetos.Cancion>("Canciones", new ModeloTablaCanciones(columnCanciones /* ctrl */));
 		medio.add(panelCanciones);
 		panelCentral.add(medio);
 		
@@ -152,5 +151,4 @@ public class VentanaPrincipal extends JFrame {
 		panelDeLetras.areatexto.setText("¡Elige una cancion para ver su letra!");
 		panelCentral.add(panelDeLetras);
 	}
-	
 }

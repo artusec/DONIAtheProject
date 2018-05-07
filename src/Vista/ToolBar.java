@@ -12,7 +12,7 @@ public class ToolBar extends JToolBar implements ObservadorAplicacion {
 	
 	private static final long serialVersionUID = 1L;
 	
-	public ToolBar(VentanaPrincipal mainWindow /*Controlador contr*/)
+	public ToolBar()
 	{
 		super();
 		// contr.addObserver(this);
