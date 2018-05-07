@@ -5,13 +5,11 @@ import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
-
 import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
-
 import Modelo.Objetos.Cancion;
 import Modelo.Objetos.Lista;
 
@@ -125,22 +123,20 @@ public class VentanaPrincipal extends JFrame {
 		JPanel izquierda = new JPanel();
 		izquierda.setLayout(new GridLayout(2, 1));
 		ToolBarListas barListas = new ToolBarListas(this/*, ctrl*/);
-		izquierda.add(barListas, BorderLayout.SOUTH);
 		panelListas = new PanelTabla<Lista>("Listas de reproduccion", new ModeloTablaListas(columnLista/*, ctrl*/));
 		izquierda.add(panelListas);
-		panelCentral.add(izquierda);
-		
+		izquierda.add(barListas, BorderLayout.SOUTH);
+		panelCentral.add(izquierda);	
 	}
 	
 	private void creaPanelCanciones(JPanel panelCentral) {
 		JPanel medio = new JPanel();
 		medio.setLayout(new GridLayout(2, 1));
-		ToolBarCanciones barCanciones = new ToolBarCanciones(this/*, ctrl*/);
-		medio.add(barCanciones, BorderLayout.SOUTH);
 		panelCanciones = new PanelTabla<Cancion>("Canciones", new ModeloTablaCanciones(columnCanciones /* ctrl */));
 		medio.add(panelCanciones);
+		ToolBarCanciones barCanciones = new ToolBarCanciones(this/*, ctrl*/);
+		medio.add(barCanciones, BorderLayout.SOUTH);
 		panelCentral.add(medio);
-		
 	}
 	
 	private void createPanelLetras(JPanel panelCentral) {
@@ -151,5 +147,4 @@ public class VentanaPrincipal extends JFrame {
 		panelDeLetras.areatexto.setText("¡Elige una cancion para ver su letra!");
 		panelCentral.add(panelDeLetras);
 	}
-	
 }
