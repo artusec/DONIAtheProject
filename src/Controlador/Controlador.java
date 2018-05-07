@@ -1,5 +1,7 @@
 package Controlador;
 
-public class Controlador {
+import Model.Objetos.Usuario;
 
+public class Controlador {
+	private Usuario usuarioActual;
 }

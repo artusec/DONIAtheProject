@@ -108,7 +108,7 @@ public class VentanaPrincipal extends JFrame {
 	}
 
 	private void addToolBar(JPanel panelSupremo) {
-		toolBar = new ToolBar();
+		toolBar = new ToolBar(this);
 		toolBar.setLayout(new GridLayout(6, 1));
 		panelSupremo.add(toolBar, BorderLayout.EAST);
 		
@@ -137,7 +137,7 @@ public class VentanaPrincipal extends JFrame {
 		medio.setLayout(new GridLayout(2, 1));
 		ToolBarCanciones barCanciones = new ToolBarCanciones(this/*, ctrl*/);
 		medio.add(barCanciones, BorderLayout.SOUTH);
-		panelCanciones = new PanelTabla<Model.Objetos.Cancion>("Canciones", new ModeloTablaCanciones(columnCanciones /* ctrl */));
+		panelCanciones = new PanelTabla<Cancion>("Canciones", new ModeloTablaCanciones(columnCanciones /* ctrl */));
 		medio.add(panelCanciones);
 		panelCentral.add(medio);
 		
