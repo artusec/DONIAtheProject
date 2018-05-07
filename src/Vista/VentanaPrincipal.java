@@ -10,6 +10,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JToolBar;
 import javax.swing.border.Border;
 
 import Modelo.Objetos.Cancion;
@@ -108,7 +109,7 @@ public class VentanaPrincipal extends JFrame {
 	}
 
 	private void addToolBar(JPanel panelSupremo) {
-		toolBar = new ToolBar(this /*, ctrl*/);
+		toolBar = new ToolBar();
 		toolBar.setLayout(new GridLayout(6, 1));
 		panelSupremo.add(toolBar, BorderLayout.EAST);
 		

@@ -52,14 +52,6 @@ public abstract class Lista {
 	public List<Cancion> getCanciones(){
 		return this.canciones;
 	}
-
-	public void insertaCancion(Cancion cancion) {
-		//comprobar cosas antes!!!!!!!! this.canciones.add(cancion);
-	}
-
-	public void eliminaCancion(Cancion cancion) {
-		//comprobar cosas antes!!!!!!!! this.canciones.remove(cancion);
-	}
 	
 	public int getDuracion() {
 		int total = 0;
@@ -69,8 +61,4 @@ public abstract class Lista {
 	
 		return total;
 	}
-	
-	public abstract String getGenero();
-
-	
 }

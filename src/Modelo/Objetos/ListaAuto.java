@@ -23,9 +23,7 @@ public class ListaAuto extends ListaNormal {
 		this.genero = genero;
 	}
 	
-	@Override
-	public String getGenero() {
-		
-		return genero.getNombre();
+	public Genero getGenero() {
+		return genero;
 	}
 }
