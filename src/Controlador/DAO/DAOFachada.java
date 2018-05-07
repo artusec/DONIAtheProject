@@ -1,9 +1,9 @@
 package Controlador.DAO;
 
-import Modelo.Objetos.*;
 import Controlador.DAO.SASDAO;
 import Excepciones.ErrorAutenticacion;
 import Excepciones.ErrorContrasteDatos;
+import Model.Objetos.*;
 
 public class DAOFachada implements InterfazDAOFachada {
 	

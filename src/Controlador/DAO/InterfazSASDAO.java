@@ -1,8 +1,7 @@
 package Controlador.DAO;
 
 import Excepciones.ErrorAutenticacion;
-import Excepciones.ErrorContrasteDatos;
-import Modelo.Objetos.*;
+import Model.Objetos.*;
 
 public interface InterfazSASDAO {
     Cancion getCancionDB(String idCancion);

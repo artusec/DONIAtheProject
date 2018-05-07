@@ -13,8 +13,8 @@ import javax.swing.JPanel;
 import javax.swing.JToolBar;
 import javax.swing.border.Border;
 
-import Modelo.Objetos.Cancion;
-import Modelo.Objetos.Lista;
+import laskdjf.Objetos.Cancion;
+import laskdjf.Objetos.Lista;
 
 public class VentanaPrincipal extends JFrame {
 

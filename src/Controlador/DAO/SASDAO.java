@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import Excepciones.ErrorAutenticacion;
 import Excepciones.ErrorContrasteDatos;
 import Excepciones.ErrorCreacionObjeto;
-import Modelo.Objetos.*;
+import Model.Objetos.*;
 
 public class SASDAO implements InterfazSASDAO {
 	

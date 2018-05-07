@@ -4,6 +4,8 @@ package Excepciones;
  * Esta clase es para los errores al escribir algo en la base de datos que romperia
  * la consistencia
  * 
+ * De momento DEPRECATED
+ * 
  * @author borja
  */
 public class ErrorContrasteDatos extends Exception {
