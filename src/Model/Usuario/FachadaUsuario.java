@@ -2,29 +2,34 @@ package Model.Usuario;
 
 import Excepciones.ErrorAutenticacion;
 import Excepciones.ErrorCreacionObjeto;
+import Model.Objetos.Usuario;
 
 public class FachadaUsuario implements InterfazFachadaUsuario {
 	
     public InterfazSASUsuario interfazSASUsuario;
 
-    public void borrar(String user, String pass) {
-    		interfazSASUsuario.borrar(user, pass);
-    }
+	@Override
+	public void borrar(Usuario usuario) throws ErrorAutenticacion {
+		interfazSASUsuario.borrar(usuario);
+	}
 
-    public void modificar(String user, String pass) throws ErrorCreacionObjeto, ErrorAutenticacion{
-    		interfazSASUsuario.modificar(user, pass);
-    }
+	@Override
+	public void salir(Usuario usuario) {
+		interfazSASUsuario.salir(usuario);
+	}
 
-    public void salir(String user) {
-    		interfazSASUsuario.salir(user);
-    }
+	@Override
+	public void registro(String id, String nombre, String pass) {
+		interfazSASUsuario.registro(id, nombre, pass);
+	}
 
-    public void ingreso(String user, String pass) {
-    		interfazSASUsuario.ingreso(user, pass);
-    }
+	@Override
+	public void modificar(Usuario usuario, String nombre, String pass) throws ErrorCreacionObjeto, ErrorAutenticacion {
+		interfazSASUsuario.modificar(usuario, nombre, pass);
+	}
 
-    public void registro(String user, String pass) {
-    		interfazSASUsuario.registro(user, pass);
-    }
-
+	@Override
+	public Usuario ingreso(String id, String pass) throws ErrorAutenticacion {
+		return interfazSASUsuario.ingreso(id, pass);
+	}
 }

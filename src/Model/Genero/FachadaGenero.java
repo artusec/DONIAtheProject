@@ -1,21 +1,20 @@
 package Model.Genero;
 
-
+import Model.Objetos.Genero;
 
 public class FachadaGenero implements InterfazFachadaGenero {
 	
     public InterfazSASGenero interfazSASGenero;
-
-    public void Aniadir(String gusto) {
-    	interfazSASGenero.Aniadir(gusto);
+    @Override
+    public void Anadir(Genero genero) {
+    		interfazSASGenero.Anadir(genero);
     }
-
-    public void Eliminar(String gusto) {
-    	interfazSASGenero.Eliminar(gusto);
+    @Override
+    public void Eliminar(Genero genero) {
+    		interfazSASGenero.Eliminar(genero);
     }
-
-    public void Mostrar() {
-    	interfazSASGenero.Mostrar();
+    @Override
+    public void Consultar(Genero genero) {
+    		interfazSASGenero.Consultar(genero);
     }
-
 }

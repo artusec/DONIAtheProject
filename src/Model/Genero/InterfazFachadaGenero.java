@@ -1,11 +1,9 @@
 package Model.Genero;
 
-
+import Model.Objetos.Genero;
 
 public interface InterfazFachadaGenero {
-	
-    void Aniadir(String gusto);
-    void Eliminar(String gusto);
-    void Mostrar();
-
+	void Anadir(Genero genero);
+    void Eliminar(Genero genero);
+    void Consultar(Genero genero);
 }

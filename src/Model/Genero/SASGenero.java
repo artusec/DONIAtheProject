@@ -1,6 +1,7 @@
 package Model.Genero;
 
 import Controlador.DAO.InterfazDAOFachada;
+import Model.Objetos.Genero;
 
 public class SASGenero implements InterfazSASGenero {
 	
