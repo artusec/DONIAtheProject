@@ -29,14 +29,7 @@ public class SASGenero implements InterfazSASGenero {
      * @param id id del genero
      * @return el genero buscado, null si no existe
      */
-    public Genero Consultar(String id) {
-    		return dao.getGeneroDB(id);
+    public Genero Consultar(String idGenero) {
+    		return dao.getGeneroDB(idGenero);
     }
-
-	@Override
-	public void Consultar(Genero genero) {
-		// TODO Auto-generated method stub
-		
-	}
-
 }

@@ -14,7 +14,7 @@ public class FachadaGenero implements InterfazFachadaGenero {
     		interfazSASGenero.Eliminar(genero);
     }
     @Override
-    public void Consultar(Genero genero) {
-    		interfazSASGenero.Consultar(genero);
+    public Genero Consultar(String idGenero) {
+    		return interfazSASGenero.Consultar(idGenero);
     }
 }

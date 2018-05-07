@@ -97,9 +97,4 @@ public abstract class Lista {
 			total += cancion.getDuracion();
 		return total;
 	}
-
-	public Object getGenero() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 }

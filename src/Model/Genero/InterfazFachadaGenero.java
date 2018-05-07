@@ -4,6 +4,6 @@ import Model.Objetos.Genero;
 
 public interface InterfazFachadaGenero {
 	void Anadir(Genero genero);
-    void Eliminar(Genero genero);
-    void Consultar(Genero genero);
+	void Eliminar(Genero genero);
+	Genero Consultar(String idGenero);
 }

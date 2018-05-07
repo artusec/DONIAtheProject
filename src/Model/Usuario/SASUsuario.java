@@ -67,11 +67,6 @@ public class SASUsuario implements InterfazSASUsuario {
      */
 	public void registro(String id, String nombre, String pass) throws ErrorCreacionObjeto, ErrorAutenticacion {
 		Usuario usuario = new Usuario(id, nombre, pass);
-		try {
-			dao.setUsuario(usuario);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		dao.setUsuario(usuario);
 	}
 }
