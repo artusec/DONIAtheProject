@@ -1,8 +1,7 @@
 package Model.Lista;
 
-import java.util.List;
-
 import Excepciones.ErrorAutenticacion;
+import Excepciones.ErrorCreacionObjeto;
 import Model.Objetos.*;
 
 public class ListaFachada implements InterfazListaFachada {
@@ -10,7 +9,7 @@ public class ListaFachada implements InterfazListaFachada {
     public InterfazSASLista interfazSASLista;
 
     @Override
-    public void crearLista(String nombre) throws ErrorAutenticacion {
+    public void crearLista(String nombre) throws ErrorAutenticacion, ErrorCreacionObjeto {
     		interfazSASLista.crearLista(nombre);
     }
 
@@ -35,12 +34,12 @@ public class ListaFachada implements InterfazListaFachada {
 	}
 
 	@Override
-	public void anadirCancion(Cancion cancion, Lista lista) {
+	public void anadirCancion(Cancion cancion, Lista lista) throws ErrorAutenticacion {
 		interfazSASLista.anadirCancion(cancion, lista);		
 	}
 
 	@Override
-	public void eliminarCancion(Cancion cancion, Lista lista) {
+	public void eliminarCancion(Cancion cancion, Lista lista) throws ErrorAutenticacion {
 		interfazSASLista.eliminarCancion(cancion, lista);	
 	}
 }

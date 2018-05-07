@@ -3,8 +3,10 @@ package Model.Lista;
 import java.util.ArrayList;
 import java.util.List;
 
+import Controlador.Controlador;
 import Controlador.DAO.InterfazDAOFachada;
 import Excepciones.ErrorAutenticacion;
+import Excepciones.ErrorCreacionObjeto;
 import Model.Objetos.*;
 
 /**
@@ -15,6 +17,7 @@ public class SASLista implements InterfazSASLista {
 	
 	private InterfazDAOFachada dao;
 	//hay un objeto dao, solo que no se donde deberiamos ponerlo
+	private Controlador controlador;
 	//tambien necesitamos en algunas clases (como esta) saber cual es el usuario con el que estamos trabajando ahora
 	
 	/**
@@ -34,7 +37,7 @@ public class SASLista implements InterfazSASLista {
      * @param lista lista a borrar
      */
     public void borrar(Lista lista) {
-    		dao.borrarLista(lista, usuario);
+    		dao.borrarLista(lista, controlador.getUsuarioActual());
     }
     
     /**
@@ -44,17 +47,18 @@ public class SASLista implements InterfazSASLista {
      */
     public void modificar(String nombre, Lista lista) throws ErrorAutenticacion{
     		lista.setNombre(nombre);
-    		dao.setLista(lista, usuario);
+    		dao.setLista(lista, controlador.getUsuarioActual());
     }
 
     /**
      * Crea una lista vacia (las canciones se anaden aparte) y la guarda en la DB
      * @param nombre nombre de la lista
+     * @throws ErrorCreacionObjeto 
      */
     @Override
-    public void crearLista(String nombre) throws ErrorAutenticacion {
+    public void crearLista(String nombre) throws ErrorAutenticacion, ErrorCreacionObjeto {
     		ListaNormal lista = new ListaNormal(/*l aputa id*/"a", nombre);
-    		dao.setLista(lista, usuario);
+    		dao.setLista(lista, controlador.getUsuarioActual());
     }
 
     /**
@@ -70,7 +74,7 @@ public class SASLista implements InterfazSASLista {
     		for (Cancion cancion : canciones) {
     			this.anadirCancion(cancion, lista);
     		}
-    		dao.setListaAuto(lista, usuario, genero);
+    		dao.setListaAuto(lista, genero, controlador.getUsuarioActual());
     }
 
     /**
@@ -78,13 +82,14 @@ public class SASLista implements InterfazSASLista {
      * la cancion en la lista
      * @param cancion cancion a anadir
      * @param lista lista objetivo
+     * @throws ErrorAutenticacion 
      */
     @Override
-    public void anadirCancion(Cancion cancion, Lista lista) {
+    public void anadirCancion(Cancion cancion, Lista lista) throws ErrorAutenticacion {
     		if (dao.getCancionDB(cancion.getId()).equals(cancion)) {
     			//comprueba que vamos a anadir una cancion valida
     			lista.anadirCancion(cancion);
-    			dao.setLista(lista, usuario);
+    			dao.setLista(lista, controlador.getUsuarioActual());
     		}
     }
     
@@ -92,12 +97,13 @@ public class SASLista implements InterfazSASLista {
      * Elimina de la DB la pertenencia de una cancion a una lista
      * @param cancion cancion a eliminar
      * @param lista lista objetivo
+     * @throws ErrorAutenticacion 
      */
     @Override
-    public void eliminarCancion(Cancion cancion, Lista lista) {
+    public void eliminarCancion(Cancion cancion, Lista lista) throws ErrorAutenticacion {
     		if (dao.getCancionDB(cancion.getId()).equals(cancion)) {
     			lista.eliminarCancion(cancion);
-    			dao.setLista(lista, usuario);
+    			dao.setLista(lista, controlador.getUsuarioActual());
     		}
     }
 
