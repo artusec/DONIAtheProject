@@ -17,7 +17,7 @@ public class ModeloTablaListas extends ModeloTabla<Lista> {
 		 case 0: s = indiceFil; break;
 		 case 1: s = this.lista.get(indiceFil).getNombre(); break;
 		 case 2: s = this.lista.get(indiceFil).getDuracion(); break;
-		 case 3: s = this.lista.get(indiceFil).getGenero(); break; // Lee abajo
+		 case 3: s = this.lista.get(indiceFil).getGenero(); break;
 		 default: assert (false);
 		 }
 		 return s;

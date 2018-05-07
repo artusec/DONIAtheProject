@@ -1,8 +1,6 @@
 package Model.Lista;
 
 import java.util.ArrayList;
-import java.util.List;
-
 import Controlador.Controlador;
 import Controlador.DAO.InterfazDAOFachada;
 import Excepciones.ErrorAutenticacion;
@@ -29,15 +27,15 @@ public class SASLista implements InterfazSASLista {
 	 * @return la lista buscada, null si no existe
 	 */
     public Lista consultar(String id) {
-    		return dao.getListaDB(id);
+    	return dao.getListaDB(id);
     }
     
     /**
-     * borra una lsita existente (obvio)
+     * borra una lista existente (obvio)
      * @param lista lista a borrar
      */
     public void borrar(Lista lista) {
-    		dao.borrarLista(lista, controlador.getUsuarioActual());
+    	dao.borrarLista(lista, controlador.getUsuarioActual());
     }
     
     /**
@@ -65,9 +63,10 @@ public class SASLista implements InterfazSASLista {
      * Crea una listaAuto con sus temas correspondientes y la guarda en la DB
      * @param nombre nombre de la lista
      * @param genero el genero del cual seleccionar las canciones
+     * @throws ErrorCreacionObjeto 
      */
     @Override
-    public void crearListaAuto(String nombre, Genero genero) throws ErrorAutenticacion {
+    public void crearListaAuto(String nombre, Genero genero) throws ErrorAutenticacion, ErrorCreacionObjeto {
     		ListaAuto lista = new ListaAuto("a"/*TODO*/, nombre, genero);
     		//obtener lista de canciones con el genero que nos interesa
     		ArrayList<Cancion> canciones = dao.getCancionesGeneroDB(genero.getId());

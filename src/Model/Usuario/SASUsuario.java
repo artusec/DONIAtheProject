@@ -1,9 +1,8 @@
-import java.util.ArrayList;
+package Model.Usuario;
 
 import Controlador.DAO.InterfazDAOFachada;
 import Excepciones.ErrorAutenticacion;
 import Excepciones.ErrorCreacionObjeto;
-import Model.Objetos.Genero;
 import Model.Objetos.Usuario;
 
 public class SASUsuario implements InterfazSASUsuario {
@@ -63,9 +62,16 @@ public class SASUsuario implements InterfazSASUsuario {
      * @param id el id de usuario
      * @param nombre nombre del usuario
      * @param pass contrasena
+     * @throws ErrorCreacionObjeto 
+     * @throws ErrorAutenticacion 
      */
-	public void registro(String id, String nombre, String pass) {
+	public void registro(String id, String nombre, String pass) throws ErrorCreacionObjeto, ErrorAutenticacion {
 		Usuario usuario = new Usuario(id, nombre, pass);
-		dao.setUsuario(usuario);
+		try {
+			dao.setUsuario(usuario);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }

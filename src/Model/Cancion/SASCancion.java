@@ -1,7 +1,6 @@
 package Model.Cancion;
 
 import Controlador.DAO.InterfazDAOFachada;
-import Excepciones.ErrorAutenticacion;
 import Excepciones.ErrorCreacionObjeto;
 import Model.Objetos.*;
 

@@ -19,7 +19,7 @@ public class FachadaUsuario implements InterfazFachadaUsuario {
 	}
 
 	@Override
-	public void registro(String id, String nombre, String pass) {
+	public void registro(String id, String nombre, String pass) throws ErrorCreacionObjeto, ErrorAutenticacion {
 		interfazSASUsuario.registro(id, nombre, pass);
 	}
 

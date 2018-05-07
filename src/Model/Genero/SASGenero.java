@@ -32,4 +32,11 @@ public class SASGenero implements InterfazSASGenero {
     public Genero Consultar(String id) {
     		return dao.getGeneroDB(id);
     }
+
+	@Override
+	public void Consultar(Genero genero) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

@@ -14,7 +14,7 @@ public class ListaFachada implements InterfazListaFachada {
     }
 
     @Override
-    public void crearListaAuto(String nombre, Genero genero) throws ErrorAutenticacion {
+    public void crearListaAuto(String nombre, Genero genero) throws ErrorAutenticacion, ErrorCreacionObjeto {
     		interfazSASLista.crearListaAuto(nombre, genero);
     }
 
