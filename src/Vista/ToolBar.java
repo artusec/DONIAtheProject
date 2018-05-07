@@ -102,7 +102,8 @@ public class ToolBar extends JToolBar implements ObservadorAplicacion {
 		{
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				int a = JOptionPane.showOptionDialog(new JFrame(), "¿Seguro que quieres salir?", "SALIR", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, null, null);
+				int a = JOptionPane.showOptionDialog(new JFrame(), "¿Seguro que quieres salir?", "SALIR",
+						JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, null, null);
 				
 				if (a == 0)
 					System.exit(0);
@@ -110,5 +111,7 @@ public class ToolBar extends JToolBar implements ObservadorAplicacion {
 		 });
 		
 		this.add(salir);
+		
+		this.setFloatable(false);
 	}
 }
