@@ -2,6 +2,7 @@
 import java.util.List;
 
 import Controlador.DAO.InterfazDAOFachada;
+import Excepciones.ErrorAutenticacion;
 import Modelo.Objetos.Cancion;
 import Modelo.Objetos.Genero;
 import Modelo.Objetos.Lista;
@@ -41,7 +42,7 @@ public class SASLista implements InterfazSASLista {
      * @param nombre el nuevo nombre
      * @param lista lista a modificar
      */
-    public void modificar(String nombre, Lista lista) {
+    public void modificar(String nombre, Lista lista) throws ErrorAutenticacion{
     		lista.setNombre(nombre);
     		dao.setLista(lista, usuario);
     }
@@ -50,7 +51,7 @@ public class SASLista implements InterfazSASLista {
      * Crea una lista vacia (las canciones se anaden aparte) y la guarda en la DB
      * @param nombre nombre de la lista
      */
-    public void crearLista(String nombre) {
+    public void crearLista(String nombre) throws ErrorAutenticacion{
     		Lista lista = new lista(nombre, genero);
     		dao.setLista(lista, usuario);
     }
@@ -60,7 +61,7 @@ public class SASLista implements InterfazSASLista {
      * @param nombre nombre de la lista
      * @param genero el genero del cual seleccionar las canciones
      */
-    public void crearListaAuto(String nombre, Genero genero) {
+    public void crearListaAuto(String nombre, Genero genero) throws ErrorAutenticacion{
     		ListaAuto lista = new listaAuto(nombre, genero);
     		//obtener lista de canciones con el genero que nos interesa
     		ArrayList<Cancion> canciones = dao.getCancionGeneroDB(idCancion, idGenero);

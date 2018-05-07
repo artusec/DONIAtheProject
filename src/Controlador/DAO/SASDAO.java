@@ -84,6 +84,7 @@ public class SASDAO implements InterfazSASDAO {
     		return this.DBconn != null && !this.DBconn.isClosed();
     }
     
+    @Override
     public Cancion getCancionDB(String idCancion) {
     		try {
 			if (this.conectado() && idCancion != null) {
@@ -172,6 +173,7 @@ public class SASDAO implements InterfazSASDAO {
 		return null;
 	}
 
+	@Override
 	public Lista getListaDB(String idLista) {
 		try {
 			if (this.conectado() && idLista != null) {
@@ -203,7 +205,7 @@ public class SASDAO implements InterfazSASDAO {
 		}
 		return null;  
 	}
-	
+
 	public Lista getListaAutoDB(String idLista) {
 		try {
 			if (this.conectado() && idLista != null) {
@@ -237,7 +239,8 @@ public class SASDAO implements InterfazSASDAO {
 		}
 		return null;  
 	}
-
+	
+	@Override
     public Genero getGeneroDB(String idGenero) {
     		try {
 			if (this.conectado() && idGenero != null) {
@@ -261,6 +264,7 @@ public class SASDAO implements InterfazSASDAO {
 		return null;
     }
 
+    @Override
     public Usuario getUsuarioDB(String idUsuario, String clave) throws ErrorAutenticacion {
     	try {
 			if (this.conectado() && idUsuario != null) {
@@ -295,6 +299,7 @@ public class SASDAO implements InterfazSASDAO {
 		return null;   
 	}
 
+    @Override
     public void setCancion(Cancion cancion) {
 	    	try {
 				if (this.conectado() && cancion != null) {
@@ -331,7 +336,8 @@ public class SASDAO implements InterfazSASDAO {
 			}
     }
 
-    public void setUsuario(Usuario usuario) throws ErrorAutenticacion, ErrorContrasteDatos {
+    @Override
+    public void setUsuario(Usuario usuario) throws ErrorAutenticacion {
      	try {
 			if (this.conectado() && usuario != null) {
 				//recabar datos
@@ -360,6 +366,7 @@ public class SASDAO implements InterfazSASDAO {
 		}
     }
 
+    @Override
     public void setGenero(Genero genero) {
      	try {
 			if (this.conectado() && genero != null) {
@@ -384,7 +391,8 @@ public class SASDAO implements InterfazSASDAO {
 		}
     }
 
-    public void setLista(Lista lista, Usuario usuario) throws ErrorAutenticacion, ErrorContrasteDatos {
+    @Override
+    public void setLista(Lista lista, Usuario usuario) throws ErrorAutenticacion {
 	    	try {
 			if (this.conectado() && lista != null && usuario != null) {
 				//recabar datos lista
@@ -395,7 +403,7 @@ public class SASDAO implements InterfazSASDAO {
 				String clave = usuario.getClave();
 				//comprobar usuario
 				if (!this.existeUsuario(idUsuario, clave))
-					throw new ErrorContrasteDatos();
+					throw new ErrorAutenticacion();
 				String sentencia = "";
 				//comprobar lista
 				if (this.existeLista(idLista)) {
@@ -421,7 +429,26 @@ public class SASDAO implements InterfazSASDAO {
 		}
     }
     
-    private void setGenerosUsuario(Usuario usuario, ArrayList<Genero> generos) throws ErrorAutenticacion, ErrorContrasteDatos {
+    @Override
+	public void setListaAuto(Lista lista, Genero genero, Usuario usuario) throws ErrorAutenticacion {
+		this.setLista(lista, usuario);
+		//recabar datos
+		String idLista = lista.getId();
+		String idGenero = genero.getId();
+		//comprobar genero
+		if (this.existeGenero(idGenero)) {
+			String sentencia = DBstruct.updateGeneroLista(idLista, idGenero);
+			PreparedStatement ps;
+			try {
+				ps = this.DBconn.prepareStatement(sentencia + ';');
+				ps.executeQuery(); 
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+    
+    private void setGenerosUsuario(Usuario usuario, ArrayList<Genero> generos) throws ErrorAutenticacion {
 	    	try {
 			if (this.conectado() && usuario != null && generos != null) {
 				//recabar datos usuario
@@ -429,7 +456,7 @@ public class SASDAO implements InterfazSASDAO {
 				String clave = usuario.getClave();
 				//comprobar usuario
 				if (!this.existeUsuario(idUsuario, clave))
-					throw new ErrorContrasteDatos();
+					throw new ErrorAutenticacion();
 				//borrar generos del usuario
 				String sentencia = "";
 				sentencia += DBstruct.deleteRgeneroUsuario(idUsuario);
