@@ -1,12 +1,21 @@
+package Genero;
+
+import Controlador.DAO.InterfazDAOFachada;
 
 public class SASGenero implements InterfazSASGenero {
 	
-    public void Aniadir(String gusto) {
+	private InterfazDAOFachada dao;
+	//hay un objeto dao, solo que no se donde deberiamos ponerlo
+	
+    public void Anadir(Genero genero) {
+    		dao.setGenero(genero);
     }
 
-    public void Eliminar(String gusto) {
-    }
+    public void Eliminar(Genero genero) {
+    		dao.borrarGeneroDB(genero);
+    	}
 
-    public void Mostrar() {
+    public Genero Consultar(String id) {
+    		return dao.getGeneroDB(id);
     }
 }

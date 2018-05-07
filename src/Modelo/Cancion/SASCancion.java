@@ -5,32 +5,46 @@ import Modelo.Objetos.Video;
 
 public class SASCancion implements InterfazSASCancion {
 	
-	private InterfazDAOFachada interfazDAOFachada;
+	private InterfazDAOFachada dao;
 
 	//Para los siguientes metodos:
 	//Si hubiese errores en el acceso a datos el dao nos notifica
 	//Si letra (u otro atributo) no estuviese definida para el objeto, la gui recoge en null y no
 	//	escribe nada en pantalla
 	
+	/**
+	 * Devuelve una cancion de la DB
+	 * @param cancion id de la cancion
+	 * @return
+	 */
+    public Cancion consultaCancion(String cancion) {
+    		return this.dao.getCancionDB(cancion);
+    }
+	
+	/**
+	 * Devuelve la letra de una cancion
+	 * @param cancion id de la cancion
+	 * @return
+	 */
 	public Letra consultaLetra(String cancion) {
-	    	return this.interfazDAOFachada.getCancionDB(cancion).getLetra();
+	    	return this.dao.getCancionDB(cancion).getLetra();
 	}
 	
+	/**
+	 * Devuelve el video de una cancion
+	 * @param cancion id de la cancion
+	 * @return
+	 */
     public Video consultaVideo(String cancion) {
-    		return this.interfazDAOFachada.getCancionDB(cancion).getVideo();
+    		return this.dao.getCancionDB(cancion).getVideo();
     }
 
-    public Cancion consultaCancion(String cancion) {
-		/*
-		 * Segun nuestro diagrama de secuencia esto deberia devolver un enlace
-		 * o un error
-		 * ¿No habria que añadir la parte del error?
-		 * 		(Que si el getCancionDB devuelve null, lanzaramos un error)
-    	*/
-    		return this.interfazDAOFachada.getCancionDB(cancion);
-    }
-
+	/**
+	 * Devuelve el enlace de descarga del un video de la DB
+	 * @param cancion id de la cancion
+	 * @return 
+	 */
     public String descargaVideo(String cancion) {
-    		return this.interfazDAOFachada.getCancionDB(cancion).getVideo().getEnlaceDescarga();
+    		return this.dao.getCancionDB(cancion).getVideo().getEnlaceDescarga();
     }
 }

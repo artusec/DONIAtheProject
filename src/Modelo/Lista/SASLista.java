@@ -6,6 +6,10 @@ import Modelo.Objetos.Cancion;
 import Modelo.Objetos.Genero;
 import Modelo.Objetos.Lista;
 
+/**
+ * Clase SASLista
+ *
+ */
 public class SASLista implements InterfazSASLista {
 	
 	private InterfazDAOFachada dao;
@@ -17,17 +21,26 @@ public class SASLista implements InterfazSASLista {
 	 * 
 	 * TODO: quizas la lista deberia ser un string con la id
 	 * 
-	 * @param lista
-	 * @return
+	 * @param id id de la lista a consultar
+	 * @return la lista
 	 */
-    public Lista consultar(Lista lista) {
-    		return dao.getListaDB(lista.getId());
+    public Lista consultar(String id) {
+    		return dao.getListaDB(id);
     }
-
+    
+    /**
+     * borra una lsita existente (obvio)
+     * @param lista lista a borrar
+     */
     public void borrar(Lista lista) {
-    		dao.borrarLista(lista.getId, usuario);
+    		dao.borrarLista(lista, usuario);
     }
-
+    
+    /**
+     * modifica una lista existente
+     * @param nombre el nuevo nombre
+     * @param lista lista a modificar
+     */
     public void modificar(String nombre, Lista lista) {
     		lista.setNombre(nombre);
     		dao.setLista(lista, usuario);
@@ -35,7 +48,7 @@ public class SASLista implements InterfazSASLista {
 
     /**
      * Crea una lista vacia (las canciones se anaden aparte) y la guarda en la DB
-     * @param nombre
+     * @param nombre nombre de la lista
      */
     public void crearLista(String nombre) {
     		Lista lista = new lista(nombre, genero);
@@ -44,7 +57,8 @@ public class SASLista implements InterfazSASLista {
 
     /**
      * Crea una listaAuto con sus temas correspondientes y la guarda en la DB
-     * @param nombre
+     * @param nombre nombre de la lista
+     * @param genero el genero del cual seleccionar las canciones
      */
     public void crearListaAuto(String nombre, Genero genero) {
     		ListaAuto lista = new listaAuto(nombre, genero);
@@ -59,8 +73,8 @@ public class SASLista implements InterfazSASLista {
     /**
      * Guarda en el dao la pertenencia de una cancion a una lista, vamos que mete
      * la cancion en la lista
-     * @param cancion
-     * @param lista
+     * @param cancion cancion a anadir
+     * @param lista lista objetivo
      */
     public void anadirCancion(Cancion cancion, Lista lista) {
     		dao.setListaCancion(cancion, lista, usuario);
