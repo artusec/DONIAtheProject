@@ -3,14 +3,27 @@ package Vista;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.Frame;
 import java.awt.GridLayout;
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import javax.swing.BorderFactory;
+import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
 import javax.swing.border.Border;
+
+import com.sun.media.jfxmedia.events.NewFrameEvent;
 import Controlador.Controlador;
 import Model.Objetos.Cancion;
 import Model.Objetos.Lista;
@@ -30,12 +43,14 @@ public class VentanaPrincipal extends JFrame {
 	private ToolBar toolBar;
 	private Controlador controlador;
 	
+	private JDialog Login;
+	
 
 	public VentanaPrincipal (Controlador controlador)
 	{
 		super("Donia");
 		this.controlador = controlador;
-		
+		Login = new JDialog(new JFrame("Login"), true);
 		this.initGUI();
 	}
 	
@@ -56,7 +71,7 @@ public class VentanaPrincipal extends JFrame {
 
 			@Override
 			public void windowClosing(WindowEvent e) {
-				int a = JOptionPane.showOptionDialog(new JFrame(), "¿Seguro que quieres salir?", "SALIR",
+				int a = JOptionPane.showOptionDialog(new JFrame(), "�Seguro que quieres salir?", "SALIR",
 						JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, null, null);
 				
 				if (a == 0)
@@ -99,11 +114,90 @@ public class VentanaPrincipal extends JFrame {
 		createPanelLetras(panelCentral);
 		 
 		pack();
+		this.login();
 		setVisible(true);
 		setExtendedState(java.awt.Frame.MAXIMIZED_BOTH);
 	}
 
 	
+	private void login() {
+		Login.setLayout(null);
+
+		JLabel titleLabel = new JLabel("Login Screen");
+		titleLabel.setLocation(0, 0);
+		titleLabel.setSize(290, 30);
+		titleLabel.setHorizontalAlignment(0);
+		Login.add(titleLabel);
+
+		// Creation of a Panel to contain the JLabels
+		JPanel textPanel = new JPanel();
+		textPanel.setLayout(null);
+		textPanel.setLocation(10, 35);
+		textPanel.setSize(70, 80);
+		Login.add(textPanel);
+
+		// Username Label
+		JLabel usernameLabel = new JLabel("Username");
+		usernameLabel.setLocation(0, 0);
+		usernameLabel.setSize(70, 40);
+		usernameLabel.setHorizontalAlignment(4);
+		textPanel.add(usernameLabel);
+
+		// Login Label
+		JLabel passwordLabel = new JLabel("Password");
+		passwordLabel.setLocation(0, 40);
+		passwordLabel.setSize(70, 40);
+		passwordLabel.setHorizontalAlignment(4);
+		textPanel.add(passwordLabel);
+
+		// TextFields Panel Container
+		JPanel panelForTextFields = new JPanel();
+		panelForTextFields.setLayout(null);
+		panelForTextFields.setLocation(110, 40);
+		panelForTextFields.setSize(100, 70);
+		Login.add(panelForTextFields);
+
+		// Username Textfield
+		JTextField usernameField = new JTextField(8);
+		usernameField.setLocation(0, 0);
+		usernameField.setSize(100, 30);
+		panelForTextFields.add(usernameField);
+
+		// Login Textfield
+		JPasswordField loginField = new JPasswordField(8);
+		loginField.setEchoChar('*');
+		loginField.setLocation(0, 40);
+		loginField.setSize(100, 30);
+		panelForTextFields.add(loginField);
+
+		// Creation of a Panel to contain the completion JLabels
+		JPanel completionPanel = new JPanel();
+		completionPanel.setLayout(null);
+		completionPanel.setLocation(240, 35);
+		completionPanel.setSize(70, 80);
+		Login.add(completionPanel);
+
+		// Button for Logging in
+		JButton loginButton = new JButton("Login");
+		loginButton.setLocation(130, 120);
+		loginButton.setSize(80, 30);
+		loginButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("oeoee");
+			}
+		});
+		Login.add(loginButton);
+		Login.setSize(310, 200);
+		Login.setLocation((Toolkit.getDefaultToolkit().getScreenSize().width)/2 - getWidth()/2, (Toolkit.getDefaultToolkit().getScreenSize().height)/2 - getHeight()/2);
+
+		Login.setVisible(true);
+
+		
+		
+	}
+
 	private JPanel creaPanelSupremo() {
 		JPanel principal = new JPanel();
 		principal.setLayout(new BorderLayout());
@@ -156,7 +250,7 @@ public class VentanaPrincipal extends JFrame {
 		PanelBarraEstado barra = new PanelBarraEstado("svjknvjndvkjsndkjv", controlador);
 		derecha.add(barra, BorderLayout.NORTH);
 		panelDeLetras = new PanelAreaTexto("Letra", false);
-		panelDeLetras.areatexto.setText("¡Elige una cancion para ver su letra!");
+		panelDeLetras.areatexto.setText("�Elige una cancion para ver su letra!");
 		panelCentral.add(panelDeLetras);
 	}
 	
