@@ -1,16 +1,13 @@
 package Controlador;
 
 import Excepciones.ErrorAutenticacion;
+import Excepciones.ErrorConsulta;
 import Excepciones.ErrorCreacionObjeto;
-import Model.Cancion.InterfazFachadaCancion;
-import Model.Cancion.InterfazSASCancion;
 import Model.Lista.InterfazListaFachada;
 import Model.Objetos.Cancion;
 import Model.Objetos.Genero;
-import Model.Objetos.Letra;
 import Model.Objetos.Lista;
 import Model.Objetos.Usuario;
-import Model.Objetos.Video;
 import Vista.VentanaPrincipal;
 
 public class ControlLista {
@@ -47,25 +44,30 @@ public class ControlLista {
 	    	}
     }
 
-    public void crearListaAuto(String nombre, Genero genero) {
-    	try {
-    			fLista.crearListaAuto(nombre, genero, usuarioActual);
+    public void crearListaAuto(String nombre, Genero genero, int duracion) {
+    		try {
+    			fLista.crearListaAuto(nombre, genero, usuarioActual, duracion);
 		} catch (ErrorAutenticacion | ErrorCreacionObjeto e) {
 			ventanaPrincipal.muestraError(e);
 		}
     }
 
 	public Lista consulta(String idLista) {
-    		return fLista.consulta(idLista);		
+    		try {
+				return fLista.consulta(idLista);
+			} catch (ErrorConsulta e) {
+				ventanaPrincipal.muestraError(e);
+			}
+    		return null;
 	}
 
 	public void borrar(Lista lista) {
-		fLista.borrar(lista);
+		fLista.borrar(lista, usuarioActual);
 	}
 
 	public void modificar(String nombre, Lista lista) {
 		try {
-			fLista.modificar(nombre, lista);
+			fLista.modificar(nombre, lista, usuarioActual);
 		} catch (ErrorAutenticacion e) {
 			ventanaPrincipal.muestraError(e);
 		}		
@@ -74,7 +76,7 @@ public class ControlLista {
 	public void anadirCancion(Cancion cancion, Lista lista) {
 		try {
 			fLista.anadirCancion(cancion, lista, usuarioActual);
-		} catch (ErrorAutenticacion | ErrorCreacionObjeto e) {
+		} catch (ErrorAutenticacion e) {
 			ventanaPrincipal.muestraError(e);
 		}
 	}
@@ -82,7 +84,7 @@ public class ControlLista {
 	public void eliminarCancion(Cancion cancion, Lista lista) {
 		try {
 			fLista.eliminarCancion(cancion, lista, usuarioActual);
-		} catch (ErrorAutenticacion | ErrorCreacionObjeto e) {
+		} catch (ErrorAutenticacion e) {
 			ventanaPrincipal.muestraError(e);
 		}
 	}

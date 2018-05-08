@@ -45,11 +45,8 @@ public class ControlUsuario {
 	}
 	
 	public void salir(Usuario usuario) {
-		try {
-			fUsuario.borrar(usuario);
-		} catch (ErrorAutenticacion e) {
-			ventanaPrincipal.muestraError(e);
-		}
+		fUsuario.salir(usuario);
+		this.usuarioActual = null;
 	}
 	
 	public void registro(String id, String nombre, String pass) {
@@ -70,7 +67,8 @@ public class ControlUsuario {
 	
 	public Usuario ingreso(String id, String pass) {
 		try {
-			return fUsuario.ingreso(id, pass);
+			this.usuarioActual = fUsuario.ingreso(id, pass);
+			return usuarioActual;
 		} catch (ErrorAutenticacion e) {
 			ventanaPrincipal.muestraError(e);
 		}

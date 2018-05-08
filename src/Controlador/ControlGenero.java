@@ -1,5 +1,6 @@
 package Controlador;
 
+import Excepciones.ErrorConsulta;
 import Model.Cancion.InterfazSASCancion;
 import Model.Genero.InterfazFachadaGenero;
 import Model.Objetos.Genero;
@@ -42,6 +43,11 @@ public class ControlGenero {
 	}
 
 	public Genero Consultar(String idGenero) {
-		return fGenero.Consultar(idGenero);
+		try {
+			return fGenero.Consultar(idGenero);
+		} catch (ErrorConsulta e) {
+			ventanaPrincipal.muestraError(e);
+		}
+		return null;
 	}
 }
