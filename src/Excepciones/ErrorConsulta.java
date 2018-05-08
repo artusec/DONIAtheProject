@@ -1,26 +1,26 @@
 package Excepciones;
 
 //porque hacemos esto tan concreto wero mio??!?!?!
-public class ErrorConsultaLetra extends Exception {
+public class ErrorConsulta extends Exception {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	public ErrorConsultaLetra() {
+	public ErrorConsulta() {
         super();
     }
 
-	public ErrorConsultaLetra(String message) {
+	public ErrorConsulta(String message) {
         super(message);
     }
 
-	public ErrorConsultaLetra(String message, Throwable cause) {
+	public ErrorConsulta(String message, Throwable cause) {
         super(message, cause);
     }
 
-    public ErrorConsultaLetra(Throwable cause) {
+    public ErrorConsulta(Throwable cause) {
         super(cause);
     }
 }
