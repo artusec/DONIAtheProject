@@ -2,5 +2,9 @@
 <classpath>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry excluding="Modelo/Lista/|Modelo/Usuario/|Modelo/Genero/|Modelo/Cancion/" kind="src" path="src"/>
+<<<<<<< HEAD
+=======
+	<classpathentry kind="src" path="iconos"/>
+>>>>>>> branch 'master' of https://gitlab.com/DONIAtheProject/DONIAapp.git
 	<classpathentry kind="output" path="bin"/>
 </classpath>
