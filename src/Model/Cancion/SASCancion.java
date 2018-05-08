@@ -15,25 +15,38 @@ public class SASCancion implements InterfazSASCancion {
 	//	escribe nada en pantalla
 	
 	@Override
+	/**
+	 * Añade una canción a la base de datos
+	 * @param titulo titulo de la canción
+	 * @param autor autor de la canción
+	 * @param album álbum al que pertenece la canción
+	 * @param duracion duración de la canción
+	 * @param letra letra de la canción
+	 * @param video video de la canción
+	 * @param genero género de la canción
+	 * @throws ErrorCreacionObjeto
+	 */
 	public void creaCancion(String titulo, String autor, String album,
 				int duracion, Letra letra, Video video, Genero genero) throws ErrorCreacionObjeto {
-		Usuario usuario = dao.getUsuarioDB(idUsuario, clave);
-		if (/*validar que el usuario actual es admin*/usuario. true){
+		//if (/*validar que el usuario actual es admin*/ true){ //Este if se hace en controlador
 			Cancion cancion = new Cancion(/*TODO generador de ids*/"a", titulo, autor, album, duracion, letra, video, genero);
 			if (cancion == null)
 				throw new ErrorCreacionObjeto("Error al crear la canción");
 			else
 				dao.setCancion(cancion);
 			//la cancion deberia eliminarse anadirse sola a la biblioteca
-		}
 	}
 	
 	@Override
-	public void eliminaCancion(Cancion cancion) {
-		if (/*validar que el usuario actual es admin*/ true){
+	/**
+	 * Elimina una canción de la base de datos
+	 * @param cancion canción a eliminar
+	 * @throws 
+	 */
+	public void eliminaCancion(Cancion cancion) { 
+		//if (/*validar que el usuario actual es admin*/ true){ //Se hace en el controlador
 			dao.eliminarCancion(cancion);
 			//la cancion deberia eliminarse sola de la biblioteca
-		}
 	}
 	
 	/**

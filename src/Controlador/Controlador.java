@@ -5,6 +5,7 @@ import java.util.List;
 import Model.Objetos.Usuario;
 import Vista.ObservadorAplicacion;
 
+//TODO DEPRECATED
 public class Controlador {
 	
 	private Usuario usuarioActual;

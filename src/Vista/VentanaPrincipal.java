@@ -122,15 +122,16 @@ public class VentanaPrincipal extends JFrame {
 	private void login() {
 		JLabel usuario = new JLabel("Usuario:");
 		JTextField user = new JTextField("Usuario");
-		JLabel contra = new JLabel("Contrasea:");
-		JPasswordField pass = new JPasswordField("Contrasea");
+
+		JLabel contra = new JLabel("Contraseña:");
+		JPasswordField pass = new JPasswordField("Contraseña");
 		JPanel textos = new JPanel(new FlowLayout());
 		
-		textos.setPreferredSize(new Dimension(400, 200));
-		textos.add(usuario,CENTER_ALIGNMENT);
-		textos.add(user, CENTER_ALIGNMENT);
-		textos.add(contra,CENTER_ALIGNMENT);
-		textos.add(pass,CENTER_ALIGNMENT);
+		textos.add(usuario);
+		textos.add(user);
+		textos.add(contra);
+		textos.add(pass);
+
 	
 		
 		Login.setLayout(new BorderLayout());
