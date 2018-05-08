@@ -22,7 +22,7 @@ public class ToolBar extends JToolBar implements ObservadorAplicacion {
 
 		JButton perfil = new JButton();
 		perfil.setToolTipText("Ver tu perfil");
-		perfil.setIcon(new ImageIcon(("src//Vista//iconos Donia//perfil.png")));
+		perfil.setIcon(new ImageIcon("src\\icons\\perfil.png"));
 		perfil.addActionListener(new ActionListener()
 		{
 			@Override
@@ -37,7 +37,7 @@ public class ToolBar extends JToolBar implements ObservadorAplicacion {
 		
 		JButton verGustos = new JButton();
 		verGustos.setToolTipText("Ver gustos musicales");
-		verGustos.setIcon(new ImageIcon(("src\\Vista\\iconos Donia\\gustos.png")));
+		verGustos.setIcon(new ImageIcon("src\\icons\\gustos.png"));
 		verGustos.addActionListener(new ActionListener()
 		{
 			@Override
@@ -54,7 +54,7 @@ public class ToolBar extends JToolBar implements ObservadorAplicacion {
 		
 		JButton aniadirCancion = new JButton();
 		aniadirCancion.setToolTipText("Añadir nueva cancion");
-		aniadirCancion.setIcon(new ImageIcon(("src\\Vista\\iconos Donia\\addCancion.png")));
+		aniadirCancion.setIcon(new ImageIcon("src\\icons\\addCancion.png"));
 		aniadirCancion.addActionListener(new ActionListener()
 		{
 			@Override
@@ -69,7 +69,7 @@ public class ToolBar extends JToolBar implements ObservadorAplicacion {
 		
 		JButton eliminarCancion = new JButton();
 		eliminarCancion.setToolTipText("Eliminar cancion");
-		eliminarCancion.setIcon(new ImageIcon(("src\\Vista\\iconos Donia\\eliminarCancion.png")));
+		eliminarCancion.setIcon(new ImageIcon("src\\icons\\eliminarCancion.png"));
 		eliminarCancion.addActionListener(new ActionListener()
 		{
 			@Override
@@ -84,7 +84,7 @@ public class ToolBar extends JToolBar implements ObservadorAplicacion {
 		
 		JButton modifCancion = new JButton();
 		modifCancion.setToolTipText("Modificar cancion");
-		modifCancion.setIcon(new ImageIcon(("src\\Vista\\iconos Donia\\modificarCancion.png")));
+		modifCancion.setIcon(new ImageIcon("src\\icons\\modificarCancion.png"));
 		modifCancion.addActionListener(new ActionListener()
 		{
 			@Override
@@ -96,10 +96,9 @@ public class ToolBar extends JToolBar implements ObservadorAplicacion {
 		
 		this.add(modifCancion);
 		
-		
 		JButton salir = new JButton();
 		salir.setToolTipText("Salir");
-		salir.setIcon(new ImageIcon(("src\\Vista\\iconos Donia\\exit.png")));
+		salir.setIcon(new ImageIcon("src\\icons\\exit.png"));
 		salir.addActionListener(new ActionListener()
 		{
 			@Override
@@ -113,7 +112,5 @@ public class ToolBar extends JToolBar implements ObservadorAplicacion {
 		 });
 		
 		this.add(salir);
-		
-		this.setFloatable(false);
 	}
 }
