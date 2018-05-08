@@ -82,6 +82,7 @@ public class SASDAO implements InterfazSASDAO {
     		return this.DBconn != null && !this.DBconn.isClosed();
     }
     
+    // --------------- GET ---------------
     @Override
     public Cancion getCancionDB(String idCancion) {
     		try {
@@ -297,6 +298,7 @@ public class SASDAO implements InterfazSASDAO {
 		return null;   
 	}
 
+    // --------------- SET ---------------
     @Override
     public void setCancion(Cancion cancion) {
 	    	try {
@@ -479,6 +481,7 @@ public class SASDAO implements InterfazSASDAO {
 		}
     }
     
+    // --------------- EXISTE ---------------
     private boolean existeCancion(String cancionId) {
     		return this.getCancionDB(cancionId) != null;
     }
@@ -502,4 +505,34 @@ public class SASDAO implements InterfazSASDAO {
     private boolean existeLetra(String letraId) {
 		return this.getLetraDB(letraId) != null;
     }
+
+	@Override
+	public ArrayList<Cancion> getCancionesGeneroDB(String id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void eliminarLista(Lista lista, Usuario usuarioActual) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void eliminarCancion(Cancion cancion) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void eliminarGenero(Genero genero, Usuario usuario) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void eliminarUsuario(Usuario usuario) {
+		// TODO Auto-generated method stub
+		
+	}
 }
