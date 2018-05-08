@@ -10,7 +10,6 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
-
 import Controlador.Controlador;
 import Model.Objetos.Cancion;
 import Model.Objetos.Lista;
@@ -46,7 +45,7 @@ public class VentanaPrincipal extends JFrame {
 
 			@Override
 			public void windowActivated(WindowEvent e) {
-
+				
 			}
 
 			@Override
@@ -100,6 +99,7 @@ public class VentanaPrincipal extends JFrame {
 		 
 		pack();
 		setVisible(true);
+		setExtendedState(java.awt.Frame.MAXIMIZED_BOTH);
 	}
 
 	
@@ -155,5 +155,11 @@ public class VentanaPrincipal extends JFrame {
 		panelDeLetras = new PanelAreaTexto("Letra", false);
 		panelDeLetras.areatexto.setText("¡Elige una cancion para ver su letra!");
 		panelCentral.add(panelDeLetras);
+	}
+	
+	public void muestraError(Exception e)
+	{
+		JOptionPane.showOptionDialog(new JFrame(), e.getMessage(), "ERROR", JOptionPane.PLAIN_MESSAGE, 
+				JOptionPane.ERROR_MESSAGE, null, null, null);
 	}
 }
