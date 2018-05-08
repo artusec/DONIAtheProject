@@ -14,12 +14,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JPopupMenu;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.JToolBar;
-
-import org.omg.PortableInterceptor.USER_EXCEPTION;
-
-import Controlador.Controlador;
 import Excepciones.ErrorCreacionObjeto;
 import Model.Objetos.Usuario;
 

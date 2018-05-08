@@ -3,8 +3,6 @@ package Vista;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
-import Controlador.Controlador;
-
 public abstract class ModeloTabla<T> extends DefaultTableModel implements ObservadorAplicacion {
 	
 	private static final long serialVersionUID = 1L;

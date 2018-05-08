@@ -1,6 +1,5 @@
 package Main;
 
-import Controlador.Controlador;
 import Vista.VentanaPrincipal;
 
 public class Main {
