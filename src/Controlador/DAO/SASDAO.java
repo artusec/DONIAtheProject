@@ -365,9 +365,9 @@ public class SASDAO implements InterfazSASDAO {
     }
 
     @Override
-    public void setGenero(Genero genero) {
+    public void setGenero(Genero genero, Usuario usuario) {
      	try {
-			if (this.conectado() && genero != null) {
+			if (this.conectado() && genero != null && usuario != null) {
 				//recabar datos
 				String id = genero.getId();
 				String nombre = genero.getNombre();

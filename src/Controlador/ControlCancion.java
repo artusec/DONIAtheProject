@@ -1,8 +1,9 @@
 package Controlador;
 
 import Excepciones.ErrorAutenticacion;
+import Excepciones.ErrorConsulta;
 import Excepciones.ErrorCreacionObjeto;
-import Model.Cancion.InterfazSASCancion;
+import Model.Cancion.InterfazFachadaCancion;
 import Model.Objetos.Cancion;
 import Model.Objetos.Genero;
 import Model.Objetos.Letra;
@@ -12,16 +13,27 @@ import Vista.VentanaPrincipal;
 
 public class ControlCancion {
 	
-	//el controlador necesita el usuario actual para acceder a solo a sus listas
-	Usuario usuarioActual = null;
-	InterfazSASCancion fCancion;
+	InterfazFachadaCancion fCancion;
 	VentanaPrincipal ventanaPrincipal;
+	//el controlador necesita el usuario actual para acceder a solo a sus listas
+	Usuario usuarioActual;
 
-	public ControlCancion() {
-		
+	public ControlCancion(VentanaPrincipal ventanaPrincipal, InterfazFachadaCancion fCancion,
+							Usuario usuarioActual) {
+		this.setfCancion(fCancion);
+		this.setUsuarioActual(usuarioActual);
+		this.setVentanaPrincipal(ventanaPrincipal);
+	}
+	
+	private void setfCancion(InterfazFachadaCancion fCancion) {
+		this.fCancion = fCancion;
 	}
 
-	public void setUsuarioActual(Usuario usuarioActual) {
+	private void setVentanaPrincipal(VentanaPrincipal ventanaPrincipal) {
+		this.ventanaPrincipal = ventanaPrincipal;
+	}
+
+	private void setUsuarioActual(Usuario usuarioActual) {
 		this.usuarioActual = usuarioActual;
 	}
 	
@@ -30,7 +42,7 @@ public class ControlCancion {
 		if (this.usuarioActual.getId() == "u0") {
 			//si es administrador puede hacer esto
 			try {
-				fCancion.creaCancion(titulo, autor, album, duracion, letra, video, genero);
+				fCancion.creaCancion(titulo, autor, album, duracion, genero, letra, video);
 			} catch (ErrorCreacionObjeto e) {
 				//notifica
 				ventanaPrincipal.muestraError(e);
@@ -57,18 +69,38 @@ public class ControlCancion {
 	}
 	
 	public void consultaVideo(String cancion) {
-		fCancion.consultaVideo(cancion);
+		try {
+			fCancion.consultaVideo(cancion);
+		} catch (ErrorConsulta e) {
+			//notifica
+			ventanaPrincipal.muestraError(e);
+		}
 	}
 	
 	public void consultaLetra(String cancion) {
-		fCancion.consultaLetra(cancion);
+		try {
+			fCancion.consultaLetra(cancion);
+		} catch (ErrorConsulta e) {
+			//notifica
+			ventanaPrincipal.muestraError(e);
+		}
 	}
 	
 	public void consultaCancion(String cancion) {
-		fCancion.consultaCancion(cancion);
+		try {
+			fCancion.consultaCancion(cancion);
+		} catch (ErrorConsulta e) {
+			//notifica
+			ventanaPrincipal.muestraError(e);
+		}
 	}
 	
 	public void descargaVideo(String cancion) {
-		fCancion.descargaVideo(cancion);
+		try {
+			fCancion.descargaVideo(cancion);
+		} catch (ErrorConsulta e) {
+			//notifica
+			ventanaPrincipal.muestraError(e);
+		}
 	}
 }

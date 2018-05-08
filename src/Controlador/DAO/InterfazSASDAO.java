@@ -1,16 +1,26 @@
 package Controlador.DAO;
 
+import java.util.ArrayList;
+
 import Excepciones.ErrorAutenticacion;
 import Model.Objetos.*;
 
 public interface InterfazSASDAO {
-    Cancion getCancionDB(String idCancion);
-    Lista getListaDB(String idLista);
-    Genero getGeneroDB(String idGenero);
-    Usuario getUsuarioDB(String idUsuario, String clave) throws ErrorAutenticacion;
-    void setGenero(Genero genero);
-    void setCancion(Cancion cancion);
-    void setUsuario(Usuario usuario) throws ErrorAutenticacion;
-    void setLista(Lista lista, Usuario usuario) throws ErrorAutenticacion;
-	void setListaAuto(Lista lista, Genero genero, Usuario usuario) throws ErrorAutenticacion;
+	// GET
+	public Genero getGeneroDB(String idGenero);
+	public Cancion getCancionDB(String idCancion);
+	public ArrayList<Cancion> getCancionesGeneroDB(String id);
+	public Lista getListaDB(String idLista);
+	public Usuario getUsuarioDB(String idUsuario, String clave) throws ErrorAutenticacion;
+	// SET
+	public void setCancion(Cancion cancion);
+	public void setGenero(Genero genero, Usuario usuario);
+	public void setUsuario(Usuario usuario) throws ErrorAutenticacion;
+	public void setLista(Lista lista, Usuario usuario) throws ErrorAutenticacion;
+	public void setListaAuto(Lista lista, Genero genero, Usuario usuario) throws ErrorAutenticacion;
+	// ELIMINAR
+	public void eliminarLista(Lista lista, Usuario usuarioActual);
+	public void eliminarCancion(Cancion cancion);
+	public void eliminarGenero(Genero genero, Usuario usuario);
+	public void eliminarUsuario(Usuario usuario);
 }

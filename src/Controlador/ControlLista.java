@@ -2,6 +2,7 @@ package Controlador;
 
 import Excepciones.ErrorAutenticacion;
 import Excepciones.ErrorCreacionObjeto;
+import Model.Cancion.InterfazFachadaCancion;
 import Model.Cancion.InterfazSASCancion;
 import Model.Lista.InterfazListaFachada;
 import Model.Objetos.Cancion;
@@ -19,11 +20,22 @@ public class ControlLista {
 	InterfazListaFachada fLista;
 	VentanaPrincipal ventanaPrincipal;
 
-	public ControlLista() {
-		
+	public ControlLista(VentanaPrincipal ventanaPrincipal, InterfazListaFachada fLista,
+			Usuario usuarioActual) {
+		this.setfLista(fLista);
+		this.setUsuarioActual(usuarioActual);
+		this.setVentanaPrincipal(ventanaPrincipal);
 	}
 
-	public void setUsuarioActual(Usuario usuarioActual) {
+	private void setfLista(InterfazListaFachada fLista) {
+		this.fLista = fLista;
+	}
+
+	private void setVentanaPrincipal(VentanaPrincipal ventanaPrincipal) {
+		this.ventanaPrincipal = ventanaPrincipal;
+	}
+
+	private void setUsuarioActual(Usuario usuarioActual) {
 		this.usuarioActual = usuarioActual;
 	}
 	
@@ -37,7 +49,7 @@ public class ControlLista {
 
     public void crearListaAuto(String nombre, Genero genero) {
     	try {
-	    		fLista.crearListaAuto(nombre, genero, usuarioActual);
+    			fLista.crearListaAuto(nombre, genero, usuarioActual);
 		} catch (ErrorAutenticacion | ErrorCreacionObjeto e) {
 			ventanaPrincipal.muestraError(e);
 		}

@@ -6,18 +6,21 @@ import Excepciones.ErrorAutenticacion;
 import Model.Objetos.*;
 
 public interface InterfazDAOFachada {
+	// GET
 	public Genero getGeneroDB(String idGenero);
 	public Cancion getCancionDB(String idCancion);
+	public ArrayList<Cancion> getCancionesGeneroDB(String id);
 	public Lista getListaDB(String idLista);
 	public Usuario getUsuarioDB(String idUsuario, String clave) throws ErrorAutenticacion;
+	// SET
 	public void setCancion(Cancion cancion);
-	public void setGenero(Genero genero);
+	public void setGenero(Genero genero, Usuario usuario);
 	public void setUsuario(Usuario usuario) throws ErrorAutenticacion;
 	public void setLista(Lista lista, Usuario usuario) throws ErrorAutenticacion;
 	public void setListaAuto(Lista lista, Genero genero, Usuario usuario) throws ErrorAutenticacion;
-	public void borrarLista(Lista lista, Usuario usuarioActual);
+	// ELIMINAR
+	public void eliminarLista(Lista lista, Usuario usuarioActual);
 	public void eliminarCancion(Cancion cancion);
-	public ArrayList<Cancion> getCancionesGeneroDB(String id);
-	public void borrarGeneroDB(Genero genero);
-	public void borrarUsuario(Usuario usuario);
+	public void eliminarGenero(Genero genero, Usuario usuario);
+	public void eliminarUsuario(Usuario usuario);
 }
