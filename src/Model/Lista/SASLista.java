@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import Controlador.Controlador;
 import Controlador.DAO.InterfazDAOFachada;
 import Excepciones.ErrorAutenticacion;
+import Excepciones.ErrorConsulta;
 import Excepciones.ErrorCreacionObjeto;
+import Model.Lista.InterfazSASLista;
 import Model.Objetos.*;
 
 /**
@@ -25,17 +27,25 @@ public class SASLista implements InterfazSASLista {
 	 * 
 	 * @param id id de la lista a consultar
 	 * @return la lista buscada, null si no existe
+	 * @throws ErrorConsulta 
 	 */
-    public Lista consultar(String id) {
-    		return dao.getListaDB(id);
+	@Override
+    public Lista consulta(String id) throws ErrorConsulta {
+		Lista lista = dao.getListaDB(id);
+		if (lista == null)
+			throw new ErrorConsulta("Error al consultar lista");
+		else
+			return lista;
     }
     
+	
     /**
      * borra una lista existente (obvio)
      * @param lista lista a borrar
      */
-    public void borrar(Lista lista) {
-    		dao.eliminarLista(lista, controlador.getUsuarioActual());
+    @Override
+    public void borrar(Lista lista, Usuario usuario) {
+    	dao.eliminarLista(lista, usuario);
     }
     
     /**
@@ -43,9 +53,10 @@ public class SASLista implements InterfazSASLista {
      * @param nombre el nuevo nombre
      * @param lista lista a modificar
      */
-    public void modificar(String nombre, Lista lista) throws ErrorAutenticacion{
+    @Override
+    public void modificar(String nombre, Lista lista, Usuario usuario) throws ErrorAutenticacion{
     		lista.setNombre(nombre);
-    		dao.setLista(lista, controlador.getUsuarioActual());
+    		dao.setLista(lista, usuario);
     }
 
     /**
@@ -54,9 +65,12 @@ public class SASLista implements InterfazSASLista {
      * @throws ErrorCreacionObjeto 
      */
     @Override
-    public void crearLista(String nombre) throws ErrorAutenticacion, ErrorCreacionObjeto {
+    public void crearLista(String nombre, Usuario usuario) throws ErrorAutenticacion, ErrorCreacionObjeto {
     		ListaNormal lista = new ListaNormal(/*l aputa id*/"a", nombre);
-    		dao.setLista(lista, controlador.getUsuarioActual());
+    		if (lista == null)
+    			throw new ErrorCreacionObjeto("Error al crear la lista");
+    		else
+    			dao.setLista(lista, usuario);
     }
 
     /**
@@ -66,14 +80,27 @@ public class SASLista implements InterfazSASLista {
      * @throws ErrorCreacionObjeto 
      */
     @Override
-    public void crearListaAuto(String nombre, Genero genero) throws ErrorAutenticacion, ErrorCreacionObjeto {
+    public void crearListaAuto(String nombre, Genero genero, Usuario usuario, int duracionMax) throws ErrorAutenticacion, ErrorCreacionObjeto {
     		ListaAuto lista = new ListaAuto("a"/*TODO*/, nombre, genero);
-    		//obtener lista de canciones con el genero que nos interesa
-    		ArrayList<Cancion> canciones = dao.getCancionesGeneroDB(genero.getId());
-    		for (Cancion cancion : canciones) {
-    			this.anadirCancion(cancion, lista);
+    		if (lista == null)
+    			throw new ErrorCreacionObjeto("Error al crear lista auto");
+    		else {
+	    		//obtener lista de canciones con el genero que nos interesa
+    			int duracion = 0;
+	    		int i = 0;
+    			ArrayList<Cancion> canciones = dao.getCancionesGeneroDB(genero.getId());
+	    		Cancion cancion = canciones.get(i);
+	    		duracion += cancion.getDuracion();
+	    		while (duracion < duracionMax && i < canciones.size()) {
+	    			this.anadirCancion(cancion, lista, usuario);
+		    		cancion = canciones.get(i);
+		    		duracion += cancion.getDuracion();
+		    		i++;
+	    		}
+	    		dao.setListaAuto(lista, genero, usuario);
+	    		if (i == canciones.size())
+	    			throw new ErrorCreacionObjeto("No hay suficiente canciones para llegar a la duración deseada");
     		}
-    		dao.setListaAuto(lista, genero, controlador.getUsuarioActual());
     }
 
     /**
@@ -84,11 +111,11 @@ public class SASLista implements InterfazSASLista {
      * @throws ErrorAutenticacion 
      */
     @Override
-    public void anadirCancion(Cancion cancion, Lista lista) throws ErrorAutenticacion {
+    public void anadirCancion(Cancion cancion, Lista lista, Usuario usuario) throws ErrorAutenticacion {
     		if (dao.getCancionDB(cancion.getId()).equals(cancion)) {
     			//comprueba que vamos a anadir una cancion valida
     			lista.anadirCancion(cancion);
-    			dao.setLista(lista, controlador.getUsuarioActual());
+    			dao.setLista(lista, usuario);
     		}
     }
     
@@ -99,19 +126,10 @@ public class SASLista implements InterfazSASLista {
      * @throws ErrorAutenticacion 
      */
     @Override
-    public void eliminarCancion(Cancion cancion, Lista lista) throws ErrorAutenticacion {
+    public void eliminarCancion(Cancion cancion, Lista lista, Usuario usuario) throws ErrorAutenticacion {
     		if (dao.getCancionDB(cancion.getId()).equals(cancion)) {
     			lista.eliminarCancion(cancion);
-    			dao.setLista(lista, controlador.getUsuarioActual());
+    			dao.setLista(lista, usuario);
     		}
     }
-
-    /**
-     * Obtiene de la DB la lista seleccionada
-     * @params idLista la id de la lista a mostrar, null si no se encuentra
-     */
-    @Override
-	public Lista consulta(String idLista) {
-		return dao.getListaDB(idLista);
-	}
 }
