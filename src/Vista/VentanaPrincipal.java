@@ -2,6 +2,7 @@ package Vista;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
@@ -129,7 +130,9 @@ public class VentanaPrincipal extends JFrame {
 		izquierda.setLayout(new BorderLayout());
 		ToolBarListas barListas = new ToolBarListas(this, controlador);
 		barListas.setFloatable(false);
-		panelListas = new PanelTabla<Lista>("Listas de reproduccion", new ModeloTablaListas(columnLista, controlador));
+		setFont(new Font("MyStyle", 1, 20));
+		String titulo = "Listas de reproduccion";
+		panelListas = new PanelTabla<Lista>(titulo, new ModeloTablaListas(columnLista, controlador));
 		panelListas.setAutoscrolls(true);
 		izquierda.add(panelListas);
 		izquierda.add(barListas, BorderLayout.SOUTH);

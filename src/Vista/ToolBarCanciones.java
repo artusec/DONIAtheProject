@@ -1,5 +1,6 @@
 package Vista;
 
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -16,11 +17,13 @@ public class ToolBarCanciones extends JToolBar implements ObservadorAplicacion {
 	public ToolBarCanciones(VentanaPrincipal mainWindow , Controlador controlador)
 	{
 		super();
-		//controlador.addObservador(this);
+		controlador.addObservador(this);
+		
+		setLayout(new GridLayout(1, 3));
 		
 		JButton aniadirCancion = new JButton();
 		aniadirCancion.setToolTipText("Añadir cancion");
-		aniadirCancion.setIcon(new ImageIcon("-------------"));
+		aniadirCancion.setIcon(new ImageIcon("src\\icons\\add.png"));
 		aniadirCancion.addActionListener(new ActionListener() {
 			
 			@Override
@@ -33,22 +36,21 @@ public class ToolBarCanciones extends JToolBar implements ObservadorAplicacion {
 		
 		JButton eliminarCancion = new JButton();
 		eliminarCancion.setToolTipText("Eliminar cancion de la lista");
-		eliminarCancion.setIcon(new ImageIcon(("------------")));
-		eliminarCancion.addActionListener(new ActionListener()
-		{
+		eliminarCancion.setIcon(new ImageIcon("src\\icons\\delete.png"));
+		eliminarCancion.addActionListener(new ActionListener() {
+			
 			@Override
-			public void actionPerformed(ActionEvent arg0) {
+			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				
 			}
-		 });
-		
+		});		
 		this.add(eliminarCancion);
 		
 		
 		JButton meGusta = new JButton();
 		meGusta.setToolTipText("Me gusta esta cancion");
-		meGusta.setIcon(new ImageIcon(("------------")));
+		meGusta.setIcon(new ImageIcon(("src\\icons\\hand.png")));
 		meGusta.addActionListener(new ActionListener()
 		{
 			@Override
