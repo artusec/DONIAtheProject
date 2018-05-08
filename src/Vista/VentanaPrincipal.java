@@ -3,9 +3,6 @@ package Vista;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.Frame;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -22,8 +19,6 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.Border;
-
-import com.sun.media.jfxmedia.events.NewFrameEvent;
 import Controlador.Controlador;
 import Model.Objetos.Cancion;
 import Model.Objetos.Lista;
@@ -34,8 +29,8 @@ public class VentanaPrincipal extends JFrame {
 	
 	public static Border bordePorDefecto = BorderFactory.createLineBorder(Color.black, 2);
 
-	static private final String[] columnCanciones = {"#", "Titulo", "Artista", "Genero", "Duracion"};
-	static private final String[] columnLista = {"#", "Nombre", "Duracion", "Genero"};
+	static private final String[] columnCanciones = {"#", "Title", "Artist", "Genre", "Duration"};
+	static private final String[] columnLista = {"#", "Name", "Duration", "Genre"};
 
 	private PanelAreaTexto panelDeLetras;
 	private PanelTabla<Lista> panelListas;
@@ -71,7 +66,7 @@ public class VentanaPrincipal extends JFrame {
 
 			@Override
 			public void windowClosing(WindowEvent e) {
-				int a = JOptionPane.showOptionDialog(new JFrame(), "�Seguro que quieres salir?", "SALIR",
+				int a = JOptionPane.showOptionDialog(new JFrame(), "Do you really want to exit?", "SALIR",
 						JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, null, null);
 				
 				if (a == 0)
@@ -190,12 +185,10 @@ public class VentanaPrincipal extends JFrame {
 		});
 		Login.add(loginButton);
 		Login.setSize(310, 200);
-		Login.setLocation((Toolkit.getDefaultToolkit().getScreenSize().width)/2 - getWidth()/2, (Toolkit.getDefaultToolkit().getScreenSize().height)/2 - getHeight()/2);
+		Login.setLocation((Toolkit.getDefaultToolkit().getScreenSize().width)/2 - getWidth()/2,
+				(Toolkit.getDefaultToolkit().getScreenSize().height)/2 - getHeight()/2);
 
 		Login.setVisible(true);
-
-		
-		
 	}
 
 	private JPanel creaPanelSupremo() {
@@ -225,7 +218,7 @@ public class VentanaPrincipal extends JFrame {
 		ToolBarListas barListas = new ToolBarListas(this, controlador);
 		barListas.setFloatable(false);
 		setFont(new Font("MyStyle", 1, 20));
-		String titulo = "Listas de reproduccion";
+		String titulo = "Play lists";
 		panelListas = new PanelTabla<Lista>(titulo, new ModeloTablaListas(columnLista, controlador));
 		panelListas.setAutoscrolls(true);
 		izquierda.add(panelListas);
@@ -236,7 +229,7 @@ public class VentanaPrincipal extends JFrame {
 	private void creaPanelCanciones(JPanel panelCentral) {
 		JPanel medio = new JPanel();
 		medio.setLayout(new BorderLayout());
-		panelCanciones = new PanelTabla<Cancion>("Canciones", new ModeloTablaCanciones(columnCanciones, controlador));
+		panelCanciones = new PanelTabla<Cancion>("Songs", new ModeloTablaCanciones(columnCanciones, controlador));
 		panelCanciones.setAutoscrolls(true);
 		medio.add(panelCanciones);
 		ToolBarCanciones barCanciones = new ToolBarCanciones(this, controlador);
@@ -247,10 +240,10 @@ public class VentanaPrincipal extends JFrame {
 	
 	private void createPanelLetras(JPanel panelCentral) {
 		JPanel derecha = new JPanel();
-		PanelBarraEstado barra = new PanelBarraEstado("svjknvjndvkjsndkjv", controlador);
+		PanelBarraEstado barra = new PanelBarraEstado("", controlador);
 		derecha.add(barra, BorderLayout.NORTH);
-		panelDeLetras = new PanelAreaTexto("Letra", false);
-		panelDeLetras.areatexto.setText("�Elige una cancion para ver su letra!");
+		panelDeLetras = new PanelAreaTexto("Lists", false);
+		panelDeLetras.areatexto.setText("Choose a song to see its lyrics!");
 		panelCentral.add(panelDeLetras);
 	}
 	
