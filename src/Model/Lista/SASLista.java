@@ -1,7 +1,6 @@
 package Model.Lista;
 
 import java.util.ArrayList;
-import Controlador.Controlador;
 import Controlador.DAO.InterfazDAOFachada;
 import Excepciones.ErrorAutenticacion;
 import Excepciones.ErrorConsulta;
@@ -17,7 +16,6 @@ public class SASLista implements InterfazSASLista {
 	
 	private InterfazDAOFachada dao;
 	//hay un objeto dao, solo que no se donde deberiamos ponerlo
-	private Controlador controlador;
 	//tambien necesitamos en algunas clases (como esta) saber cual es el usuario con el que estamos trabajando ahora
 	
 	/**
