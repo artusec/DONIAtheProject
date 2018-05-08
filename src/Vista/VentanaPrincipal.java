@@ -2,14 +2,27 @@ package Vista;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.Frame;
 import java.awt.GridLayout;
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import javax.swing.BorderFactory;
+import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
 import javax.swing.border.Border;
+
+import com.sun.media.jfxmedia.events.NewFrameEvent;
 
 import Controlador.Controlador;
 import Model.Objetos.Cancion;
@@ -30,12 +43,14 @@ public class VentanaPrincipal extends JFrame {
 	private ToolBar toolBar;
 	private Controlador controlador;
 	
+	private JDialog Login;
+	
 
 	public VentanaPrincipal (Controlador controlador)
 	{
 		super("Donia");
 		this.controlador = controlador;
-		
+		Login = new JDialog(new JFrame("Login"), true);
 		this.initGUI();
 	}
 	
@@ -99,10 +114,45 @@ public class VentanaPrincipal extends JFrame {
 		createPanelLetras(panelCentral);
 		 
 		pack();
+		this.login();
 		setVisible(true);
 	}
 
 	
+	private void login() {
+		JLabel usuario = new JLabel("Usuario:");
+		JTextField user = new JTextField("Usuario");
+		JLabel contra = new JLabel("Contraseña:");
+		JPasswordField pass = new JPasswordField("Contraseña");
+		JPanel textos = new JPanel(new FlowLayout());
+		
+		textos.add(usuario);
+		textos.add(user);
+		textos.add(contra);
+		textos.add(pass);
+	
+		
+		Login.setLayout(new BorderLayout());
+		
+		JButton login = new JButton("Login");
+		login.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO ///COMPROBAR EN LA BASE DE DATOS SI EXISTE
+				//Ctrl.usuarioExiste();
+				
+			}
+		});
+		Login.add(textos,BorderLayout.CENTER);
+		Login.add(login, BorderLayout.PAGE_END);
+		Login.setLocation((Toolkit.getDefaultToolkit().getScreenSize().width)/2 - getWidth()/2, (Toolkit.getDefaultToolkit().getScreenSize().height)/2 - getHeight()/2);
+		Login.pack();
+		Login.setVisible(true);
+		
+		
+	}
+
 	private JPanel creaPanelSupremo() {
 		JPanel principal = new JPanel();
 		principal.setLayout(new BorderLayout());
