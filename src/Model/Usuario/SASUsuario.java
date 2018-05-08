@@ -20,7 +20,6 @@ public class SASUsuario implements InterfazSASUsuario {
     public Usuario ingreso(String id, String pass) throws ErrorAutenticacion {
     		Usuario buscado = dao.getUsuarioDB(id, pass);
     		if (buscado != null)
-    			//llamada a controlador ajustando el nuevo usuario seleccionado y lanzondo la  ventana principal
     			return buscado;
     		else
     			throw new ErrorAutenticacion();
