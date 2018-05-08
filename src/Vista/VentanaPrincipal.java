@@ -2,6 +2,7 @@ package Vista;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Frame;
@@ -70,7 +71,7 @@ public class VentanaPrincipal extends JFrame {
 
 			@Override
 			public void windowClosing(WindowEvent e) {
-				int a = JOptionPane.showOptionDialog(new JFrame(), "Â¿Seguro que quieres salir?", "SALIR",
+				int a = JOptionPane.showOptionDialog(new JFrame(), "ï¿½Seguro que quieres salir?", "SALIR",
 						JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, null, null);
 				
 				if (a == 0)
@@ -120,35 +121,79 @@ public class VentanaPrincipal extends JFrame {
 
 	
 	private void login() {
-		JLabel usuario = new JLabel("Usuario:");
-		JTextField user = new JTextField("Usuario");
-		JLabel contra = new JLabel("Contraseña:");
-		JPasswordField pass = new JPasswordField("Contraseña");
-		JPanel textos = new JPanel(new FlowLayout());
-		
-		textos.add(usuario);
-		textos.add(user);
-		textos.add(contra);
-		textos.add(pass);
-	
-		
-		Login.setLayout(new BorderLayout());
-		
-		JButton login = new JButton("Login");
-		login.addActionListener(new ActionListener() {
+		Login.setLayout(null);
+
+		JLabel titleLabel = new JLabel("Login Screen");
+		titleLabel.setLocation(0, 0);
+		titleLabel.setSize(290, 30);
+		titleLabel.setHorizontalAlignment(0);
+		Login.add(titleLabel);
+
+		// Creation of a Panel to contain the JLabels
+		JPanel textPanel = new JPanel();
+		textPanel.setLayout(null);
+		textPanel.setLocation(10, 35);
+		textPanel.setSize(70, 80);
+		Login.add(textPanel);
+
+		// Username Label
+		JLabel usernameLabel = new JLabel("Username");
+		usernameLabel.setLocation(0, 0);
+		usernameLabel.setSize(70, 40);
+		usernameLabel.setHorizontalAlignment(4);
+		textPanel.add(usernameLabel);
+
+		// Login Label
+		JLabel passwordLabel = new JLabel("Password");
+		passwordLabel.setLocation(0, 40);
+		passwordLabel.setSize(70, 40);
+		passwordLabel.setHorizontalAlignment(4);
+		textPanel.add(passwordLabel);
+
+		// TextFields Panel Container
+		JPanel panelForTextFields = new JPanel();
+		panelForTextFields.setLayout(null);
+		panelForTextFields.setLocation(110, 40);
+		panelForTextFields.setSize(100, 70);
+		Login.add(panelForTextFields);
+
+		// Username Textfield
+		JTextField usernameField = new JTextField(8);
+		usernameField.setLocation(0, 0);
+		usernameField.setSize(100, 30);
+		panelForTextFields.add(usernameField);
+
+		// Login Textfield
+		JPasswordField loginField = new JPasswordField(8);
+		loginField.setEchoChar('*');
+		loginField.setLocation(0, 40);
+		loginField.setSize(100, 30);
+		panelForTextFields.add(loginField);
+
+		// Creation of a Panel to contain the completion JLabels
+		JPanel completionPanel = new JPanel();
+		completionPanel.setLayout(null);
+		completionPanel.setLocation(240, 35);
+		completionPanel.setSize(70, 80);
+		Login.add(completionPanel);
+
+		// Button for Logging in
+		JButton loginButton = new JButton("Login");
+		loginButton.setLocation(130, 120);
+		loginButton.setSize(80, 30);
+		loginButton.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO ///COMPROBAR EN LA BASE DE DATOS SI EXISTE
-				//Ctrl.usuarioExiste();
-				
+				System.out.println("oeoee");
 			}
 		});
-		Login.add(textos,BorderLayout.CENTER);
-		Login.add(login, BorderLayout.PAGE_END);
+		Login.add(loginButton);
+		Login.setSize(310, 200);
 		Login.setLocation((Toolkit.getDefaultToolkit().getScreenSize().width)/2 - getWidth()/2, (Toolkit.getDefaultToolkit().getScreenSize().height)/2 - getHeight()/2);
-		Login.pack();
+
 		Login.setVisible(true);
+
 		
 		
 	}
@@ -179,7 +224,9 @@ public class VentanaPrincipal extends JFrame {
 		izquierda.setLayout(new BorderLayout());
 		ToolBarListas barListas = new ToolBarListas(this, controlador);
 		barListas.setFloatable(false);
-		panelListas = new PanelTabla<Lista>("Listas de reproduccion", new ModeloTablaListas(columnLista, controlador));
+		setFont(new Font("MyStyle", 1, 20));
+		String titulo = "Listas de reproduccion";
+		panelListas = new PanelTabla<Lista>(titulo, new ModeloTablaListas(columnLista, controlador));
 		panelListas.setAutoscrolls(true);
 		izquierda.add(panelListas);
 		izquierda.add(barListas, BorderLayout.SOUTH);
@@ -203,7 +250,7 @@ public class VentanaPrincipal extends JFrame {
 		PanelBarraEstado barra = new PanelBarraEstado("svjknvjndvkjsndkjv", controlador);
 		derecha.add(barra, BorderLayout.NORTH);
 		panelDeLetras = new PanelAreaTexto("Letra", false);
-		panelDeLetras.areatexto.setText("Â¡Elige una cancion para ver su letra!");
+		panelDeLetras.areatexto.setText("ï¿½Elige una cancion para ver su letra!");
 		panelCentral.add(panelDeLetras);
 	}
 	
