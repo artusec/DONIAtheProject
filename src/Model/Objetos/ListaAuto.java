@@ -23,7 +23,13 @@ public class ListaAuto extends ListaNormal {
 		this.genero = genero;
 	}
 	
+	/*
 	public Genero getGenero() {
 		return genero;
+	}*/
+	
+    // Igual esto se borra en el futuro porque es muy chusco
+	public String getGenero() {
+		return genero.getNombre();
 	}
 }

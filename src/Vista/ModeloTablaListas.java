@@ -1,13 +1,14 @@
 package Vista;
 
+import Controlador.Controlador;
 import Model.Objetos.Lista;
 
 public class ModeloTablaListas extends ModeloTabla<Lista> {
 
 	private static final long serialVersionUID = 1L;
 
-	public ModeloTablaListas(String[] columnaCanciones/*, Controlador ctrl*/) {
-		super(columnaCanciones/*, ctrl*/);
+	public ModeloTablaListas(String[] columnaCanciones, Controlador controlador) {
+		super(columnaCanciones, controlador);
 	}
 
 	@Override
@@ -22,6 +23,4 @@ public class ModeloTablaListas extends ModeloTabla<Lista> {
 		 }
 		 return s;
 	 }
-	
-	// ...
 }

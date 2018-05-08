@@ -3,6 +3,8 @@ package Vista;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
+import Controlador.Controlador;
+
 public abstract class ModeloTabla<T> extends DefaultTableModel implements ObservadorAplicacion {
 	
 	private static final long serialVersionUID = 1L;
@@ -10,10 +12,10 @@ public abstract class ModeloTabla<T> extends DefaultTableModel implements Observ
 	protected String[] columnIds;
 	protected List<T> lista;
 	
-	public ModeloTabla(String[] columnaCanciones /*Controlador ctrl*/) {
+	public ModeloTabla(String[] columnaCanciones, Controlador ctrl) {
 		this.lista = null;
 		this.columnIds = columnaCanciones;
-		// ctrl.addObserver(this);
+		ctrl.addObservador(this);
 	}
 	
 	@Override
@@ -33,5 +35,7 @@ public abstract class ModeloTabla<T> extends DefaultTableModel implements Observ
 	{
 		return this.lista == null ? 0 : this.lista.size();
 	}
+	
+	public boolean isCellEditable (int row, int column) { return false; }
 }
 

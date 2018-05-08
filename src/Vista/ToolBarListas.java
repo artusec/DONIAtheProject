@@ -7,14 +7,16 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JToolBar;
 
+import Controlador.Controlador;
+
 public class ToolBarListas extends JToolBar implements ObservadorAplicacion {
 
 	private static final long serialVersionUID = 1L;
 
-	public ToolBarListas(VentanaPrincipal mainWindow /*Controlador contr*/)
+	public ToolBarListas(VentanaPrincipal mainWindow /*Controlador contr*/, Controlador controlador)
 	{
 		super();
-		// contr.addObserver(this);
+		//controlador.addObservador(this);
 		
 		JButton nuevLista = new JButton();
 		nuevLista.setToolTipText("Crea una nueva lista vacia");
@@ -59,6 +61,4 @@ public class ToolBarListas extends JToolBar implements ObservadorAplicacion {
 		
 		this.add(listaAuto);
 	}
-	
-
 }

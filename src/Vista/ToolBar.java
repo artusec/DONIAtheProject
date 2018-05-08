@@ -8,19 +8,21 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JToolBar;
 
+import Controlador.Controlador;
+
 public class ToolBar extends JToolBar implements ObservadorAplicacion {
 	
 	private static final long serialVersionUID = 1L;
 	
-	public ToolBar(VentanaPrincipal mainWindow /*Controlador contr*/)
+	public ToolBar(VentanaPrincipal mainWindow, Controlador contr)
 	{
 		super();
-		// contr.addObserver(this);
+		contr.addObservador(this);
 		
 
 		JButton perfil = new JButton();
 		perfil.setToolTipText("Ver tu perfil");
-		perfil.setIcon(new ImageIcon(("src/Vista/iconos Donia/perfil.png")));
+		perfil.setIcon(new ImageIcon(("src//Vista//iconos Donia//perfil.png")));
 		perfil.addActionListener(new ActionListener()
 		{
 			@Override
