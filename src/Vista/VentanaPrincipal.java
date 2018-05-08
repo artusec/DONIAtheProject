@@ -120,37 +120,79 @@ public class VentanaPrincipal extends JFrame {
 
 	
 	private void login() {
-		JLabel usuario = new JLabel("Usuario:");
-		JTextField user = new JTextField("Usuario");
+		Login.setLayout(null);
 
-		JLabel contra = new JLabel("Contraseña:");
-		JPasswordField pass = new JPasswordField("Contraseña");
-		JPanel textos = new JPanel(new FlowLayout());
-		
-		textos.add(usuario);
-		textos.add(user);
-		textos.add(contra);
-		textos.add(pass);
+		JLabel titleLabel = new JLabel("Login Screen");
+		titleLabel.setLocation(0, 0);
+		titleLabel.setSize(290, 30);
+		titleLabel.setHorizontalAlignment(0);
+		Login.add(titleLabel);
 
-	
-		
-		Login.setLayout(new BorderLayout());
-		
-		JButton login = new JButton("Login");
-		login.addActionListener(new ActionListener() {
+		// Creation of a Panel to contain the JLabels
+		JPanel textPanel = new JPanel();
+		textPanel.setLayout(null);
+		textPanel.setLocation(10, 35);
+		textPanel.setSize(70, 80);
+		Login.add(textPanel);
+
+		// Username Label
+		JLabel usernameLabel = new JLabel("Username");
+		usernameLabel.setLocation(0, 0);
+		usernameLabel.setSize(70, 40);
+		usernameLabel.setHorizontalAlignment(4);
+		textPanel.add(usernameLabel);
+
+		// Login Label
+		JLabel passwordLabel = new JLabel("Password");
+		passwordLabel.setLocation(0, 40);
+		passwordLabel.setSize(70, 40);
+		passwordLabel.setHorizontalAlignment(4);
+		textPanel.add(passwordLabel);
+
+		// TextFields Panel Container
+		JPanel panelForTextFields = new JPanel();
+		panelForTextFields.setLayout(null);
+		panelForTextFields.setLocation(110, 40);
+		panelForTextFields.setSize(100, 70);
+		Login.add(panelForTextFields);
+
+		// Username Textfield
+		JTextField usernameField = new JTextField(8);
+		usernameField.setLocation(0, 0);
+		usernameField.setSize(100, 30);
+		panelForTextFields.add(usernameField);
+
+		// Login Textfield
+		JPasswordField loginField = new JPasswordField(8);
+		loginField.setEchoChar('*');
+		loginField.setLocation(0, 40);
+		loginField.setSize(100, 30);
+		panelForTextFields.add(loginField);
+
+		// Creation of a Panel to contain the completion JLabels
+		JPanel completionPanel = new JPanel();
+		completionPanel.setLayout(null);
+		completionPanel.setLocation(240, 35);
+		completionPanel.setSize(70, 80);
+		Login.add(completionPanel);
+
+		// Button for Logging in
+		JButton loginButton = new JButton("Login");
+		loginButton.setLocation(130, 120);
+		loginButton.setSize(80, 30);
+		loginButton.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO ///COMPROBAR EN LA BASE DE DATOS SI EXISTE
-				//Ctrl.usuarioExiste();
-				
+				System.out.println("oeoee");
 			}
 		});
-		Login.add(textos,BorderLayout.CENTER);
-		Login.add(login, BorderLayout.PAGE_END);
+		Login.add(loginButton);
+		Login.setSize(310, 200);
 		Login.setLocation((Toolkit.getDefaultToolkit().getScreenSize().width)/2 - getWidth()/2, (Toolkit.getDefaultToolkit().getScreenSize().height)/2 - getHeight()/2);
-		Login.pack();
+
 		Login.setVisible(true);
+
 		
 		
 	}
