@@ -32,7 +32,7 @@ public class SASUsuario implements InterfazSASUsuario {
      * @throws ErrorDeAutenticacion si se ha producido un error al validar los datos del usuario
      */
     public void borrar(Usuario Usuario) throws ErrorAutenticacion {
-    		dao.borrarUsuario(Usuario);
+    		dao.eliminarUsuario(Usuario);
     }
 
     /**

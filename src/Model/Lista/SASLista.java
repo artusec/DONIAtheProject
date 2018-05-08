@@ -27,7 +27,7 @@ public class SASLista implements InterfazSASLista {
 	 * @return la lista buscada, null si no existe
 	 */
     public Lista consultar(String id) {
-    	return dao.getListaDB(id);
+    		return dao.getListaDB(id);
     }
     
     /**
@@ -35,7 +35,7 @@ public class SASLista implements InterfazSASLista {
      * @param lista lista a borrar
      */
     public void borrar(Lista lista) {
-    	dao.borrarLista(lista, controlador.getUsuarioActual());
+    		dao.eliminarLista(lista, controlador.getUsuarioActual());
     }
     
     /**

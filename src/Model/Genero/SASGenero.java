@@ -14,7 +14,8 @@ public class SASGenero implements InterfazSASGenero {
 	 * Anade un genero a la DB
 	 * @param genero genero a anadir
 	 */
-    public void Anadir(Usuario usuario, Genero genero) { //Falta acabar setgenero
+	@Override
+    public void Anadir(Genero genero, Usuario usuario) { //Falta acabar setgenero
     		dao.setGenero(genero, usuario);
     }
 
@@ -22,7 +23,8 @@ public class SASGenero implements InterfazSASGenero {
 	 * Elimina un genero de la DB
 	 * @param genero genero a eliminar
 	 */
-    public void Eliminar(Usuario usuario, Genero genero) { //Falta acabar borrargeneroDB
+	@Override
+    public void Eliminar(Genero genero, Usuario usuario) { //Falta acabar borrargeneroDB
     		dao.eliminarGenero(genero, usuario);
     	}
 
@@ -32,6 +34,7 @@ public class SASGenero implements InterfazSASGenero {
      * @return el genero buscado, null si no existe
      * @throws ErrorConsulta 
      */
+	@Override
     public Genero Consultar(String idGenero) throws ErrorConsulta {
     	Genero genero = dao.getGeneroDB(idGenero);
     	if (genero == null)
