@@ -20,7 +20,7 @@ public class ToolBarListas extends JToolBar implements ObservadorAplicacion {
 		setLayout(new GridLayout(1, 3));
 		
 		JButton nuevLista = new JButton();
-		nuevLista.setToolTipText("Crea una nueva lista vacia");
+		nuevLista.setToolTipText("Create a new empty list");
 		nuevLista.setIcon(new ImageIcon(("src\\icons\\add.png")));
 		nuevLista.addActionListener(new ActionListener()
 		{
@@ -35,7 +35,7 @@ public class ToolBarListas extends JToolBar implements ObservadorAplicacion {
 		
 		
 		JButton eliminarLista = new JButton();
-		eliminarLista.setToolTipText("Eliminar una lista");
+		eliminarLista.setToolTipText("Delete a list");
 		eliminarLista.setIcon(new ImageIcon(("src\\icons\\delete.png")));
 		eliminarLista.addActionListener(new ActionListener()
 		{
@@ -49,7 +49,7 @@ public class ToolBarListas extends JToolBar implements ObservadorAplicacion {
 		this.add(eliminarLista);
 		
 		JButton listaAuto = new JButton();
-		listaAuto.setToolTipText("Crear automaticamente una lista");
+		listaAuto.setToolTipText("Create a list automatically");
 		listaAuto.setIcon(new ImageIcon(("src\\icons\\auto.png")));
 		listaAuto.addActionListener(new ActionListener()
 		{

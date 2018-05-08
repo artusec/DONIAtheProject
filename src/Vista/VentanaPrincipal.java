@@ -218,8 +218,7 @@ public class VentanaPrincipal extends JFrame {
 		ToolBarListas barListas = new ToolBarListas(this, controlador);
 		barListas.setFloatable(false);
 		setFont(new Font("MyStyle", 1, 20));
-		String titulo = "Play lists";
-		panelListas = new PanelTabla<Lista>(titulo, new ModeloTablaListas(columnLista, controlador));
+		panelListas = new PanelTabla<Lista>("Playlists", new ModeloTablaListas(columnLista, controlador));
 		panelListas.setAutoscrolls(true);
 		izquierda.add(panelListas);
 		izquierda.add(barListas, BorderLayout.SOUTH);
