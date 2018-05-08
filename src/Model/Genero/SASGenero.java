@@ -15,7 +15,7 @@ public class SASGenero implements InterfazSASGenero {
 	 * @param genero genero a anadir
 	 */
     public void Anadir(Usuario usuario, Genero genero) { //Falta acabar setgenero
-    		dao.setGenero(usuario, genero);
+    		dao.setGenero(genero, usuario);
     }
 
     /**
@@ -23,7 +23,7 @@ public class SASGenero implements InterfazSASGenero {
 	 * @param genero genero a eliminar
 	 */
     public void Eliminar(Usuario usuario, Genero genero) { //Falta acabar borrargeneroDB
-    		dao.borrarGeneroDB(usuario, genero);
+    		dao.eliminarGenero(genero, usuario);
     	}
 
     /**
@@ -35,7 +35,7 @@ public class SASGenero implements InterfazSASGenero {
     public Genero Consultar(String idGenero) throws ErrorConsulta {
     	Genero genero = dao.getGeneroDB(idGenero);
     	if (genero == null)
-    		throw new ErrorConsulta("Error al consultar género");
+    		throw new ErrorConsulta("Error al consultar genero");
     	else
     		return genero;
     }

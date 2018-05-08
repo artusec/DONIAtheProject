@@ -63,27 +63,26 @@ public class DAOFachada implements InterfazDAOFachada {
     // ----------- ELIMINAR -----------
 	@Override
 	public void eliminarLista(Lista lista, Usuario usuarioActual) {
-		// TODO Auto-generated method stub
+		this.sasdao.eliminarLista(lista, usuarioActual);
 	}
 
 	@Override
 	public void eliminarCancion(Cancion cancion) {
-		// TODO Auto-generated method stub
+		this.sasdao.eliminarCancion(cancion);
 	}
 
 	@Override
 	public ArrayList<Cancion> getCancionesGeneroDB(String id) {
-		// TODO Auto-generated method stub
-		return null;
+		return this.sasdao.getCancionesGeneroDB(id);
 	}
 
 	@Override
 	public void eliminarGenero(Genero genero, Usuario usuario) {
-		// TODO Auto-generated method stub
+		this.sasdao.eliminarGenero(genero, usuario);
 	}
 
 	@Override
 	public void eliminarUsuario(Usuario usuario) {
-		// TODO Auto-generated method stub
+		this.sasdao.eliminarUsuario(usuario);
 	}
 }
