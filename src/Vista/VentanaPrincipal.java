@@ -30,6 +30,7 @@ public class VentanaPrincipal extends JFrame {
 	private ToolBar toolBar;
 	private Controlador controlador;
 	
+
 	public VentanaPrincipal (Controlador controlador)
 	{
 		super("Donia");
