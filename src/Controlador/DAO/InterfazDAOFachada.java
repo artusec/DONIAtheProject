@@ -12,6 +12,9 @@ public interface InterfazDAOFachada {
 	public ArrayList<Cancion> getCancionesGeneroDB(String id);
 	public Lista getListaDB(String idLista);
 	public Usuario getUsuarioDB(String idUsuario, String clave) throws ErrorAutenticacion;
+	public long getUltimoIdCancion();
+	public long getUltimoIdLista();
+	public long getUltimoIdGenero();
 	// SET
 	public void setCancion(Cancion cancion);
 	public void setGenero(Genero genero, Usuario usuario);

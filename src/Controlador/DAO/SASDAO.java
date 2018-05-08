@@ -304,6 +304,24 @@ public class SASDAO implements InterfazSASDAO {
 		return null;
 	}
     
+	@Override
+	public long getUltimoIdCancion() {
+		//TODO
+		return 0;
+	}
+
+	@Override
+	public long getUltimoIdLista() {
+		//TODO
+		return 0;
+	}
+
+	@Override
+	public long getUltimoIdGenero() {
+		//TODO
+		return 0;
+	}
+	
     // --------------- SET ---------------
     @Override
     public void setCancion(Cancion cancion) {

@@ -34,6 +34,21 @@ public class DAOFachada implements InterfazDAOFachada {
 		return this.getUsuarioDB(idUsuario, clave);
     }
 
+	@Override
+	public long getUltimoIdCancion() {
+		return this.sasdao.getUltimoIdCancion();
+	}
+
+	@Override
+	public long getUltimoIdLista() {
+		return this.sasdao.getUltimoIdLista();
+	}
+
+	@Override
+	public long getUltimoIdGenero() {
+		return this.sasdao.getUltimoIdGenero();
+	}
+	
     // ----------- SET -----------
     @Override
     public void setCancion(Cancion cancion) {

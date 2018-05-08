@@ -10,6 +10,24 @@ public class SASGenero implements InterfazSASGenero {
 	private InterfazDAOFachada dao;
 	//hay un objeto dao, solo que no se donde deberiamos ponerlo
 	
+	public SASGenero(InterfazDAOFachada dao) {
+		this.setDao(dao);
+	}
+	
+	private void setDao(InterfazDAOFachada dao) {
+		this.dao = dao;
+	}
+	
+	/**
+	 * Genera un id adecuado para el nuevo objeto a crear, consultando la DB
+	 * @return nuevo id
+	 */
+	private String GeneradorId() {
+		long idCuenta = dao.getUltimoIdGenero();
+		return "l" + idCuenta;
+	}
+	
+	
 	/**
 	 * Anade un genero a la DB
 	 * @param genero genero a anadir

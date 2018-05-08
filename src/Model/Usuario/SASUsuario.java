@@ -10,6 +10,14 @@ public class SASUsuario implements InterfazSASUsuario {
 	private InterfazDAOFachada dao;
 	//hay un objeto dao, solo que no se donde deberiamos ponerlo
 	
+	public SASUsuario(InterfazDAOFachada dao) {
+		this.setDao(dao);
+	}
+	
+	private void setDao(InterfazDAOFachada dao) {
+		this.dao = dao;
+	}
+	
 	/**
 	 * Verifica los datos de inicio de sesion y genera el usuario seleccionado
 	 * @param id id de usuario

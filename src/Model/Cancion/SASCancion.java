@@ -8,30 +8,47 @@ import Model.Objetos.*;
 public class SASCancion implements InterfazSASCancion {
 	
 	private InterfazDAOFachada dao;//esto no se donde deberia ir controlador quizas?
-
+	
 	//Para los siguientes metodos:
 	//Si hubiese errores en el acceso a datos el dao nos notifica
 	//Si letra (u otro atributo) no estuviese definida para el objeto, la gui recoge en null y no
 	//	escribe nada en pantalla
 	
+	public SASCancion(InterfazDAOFachada dao) {
+		this.setDao(dao);
+	}
+	
+	private void setDao(InterfazDAOFachada dao) {
+		this.dao = dao;
+	}
+	
+	/**
+	 * Genera un id adecuado para el nuevo objeto a crear, consultando la DB
+	 * @return nuevo id
+	 */
+	private String GeneradorId() {
+		long idCuenta = dao.getUltimoIdCancion();
+		return "l" + idCuenta;
+	}
+	
 	@Override
 	/**
-	 * Añade una canción a la base de datos
-	 * @param titulo titulo de la canción
-	 * @param autor autor de la canción
-	 * @param album álbum al que pertenece la canción
-	 * @param duracion duración de la canción
-	 * @param letra letra de la canción
-	 * @param video video de la canción
-	 * @param genero género de la canción
+	 * Aï¿½ade una canciï¿½n a la base de datos
+	 * @param titulo titulo de la canciï¿½n
+	 * @param autor autor de la canciï¿½n
+	 * @param album ï¿½lbum al que pertenece la canciï¿½n
+	 * @param duracion duraciï¿½n de la canciï¿½n
+	 * @param letra letra de la canciï¿½n
+	 * @param video video de la canciï¿½n
+	 * @param genero gï¿½nero de la canciï¿½n
 	 * @throws ErrorCreacionObjeto
 	 */
 	public void creaCancion(String titulo, String autor, String album,
 				int duracion, Letra letra, Video video, Genero genero) throws ErrorCreacionObjeto {
 		//if (/*validar que el usuario actual es admin*/ true){ //Este if se hace en controlador
-			Cancion cancion = new Cancion(/*TODO generador de ids*/"a", titulo, autor, album, duracion, letra, video, genero);
+			Cancion cancion = new Cancion(this.GeneradorId(), titulo, autor, album, duracion, letra, video, genero);
 			if (cancion == null)
-				throw new ErrorCreacionObjeto("Error al crear la canción");
+				throw new ErrorCreacionObjeto("Error al crear la canciï¿½n");
 			else
 				dao.setCancion(cancion);
 			//la cancion deberia eliminarse anadirse sola a la biblioteca
@@ -39,14 +56,14 @@ public class SASCancion implements InterfazSASCancion {
 	
 	@Override
 	/**
-	 * Elimina una canción de la base de datos
-	 * @param cancion canción a eliminar
+	 * Elimina una canciï¿½n de la base de datos
+	 * @param cancion canciï¿½n a eliminar
 	 * @throws 
 	 */
 	public void eliminaCancion(Cancion cancion) { 
 		//if (/*validar que el usuario actual es admin*/ true){ //Se hace en el controlador
-			dao.eliminarCancion(cancion);
-			//la cancion deberia eliminarse sola de la biblioteca
+		dao.eliminarCancion(cancion);
+		//la cancion deberia eliminarse de la biblioteca en el dao
 	}
 	
 	/**

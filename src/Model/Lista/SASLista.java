@@ -18,6 +18,23 @@ public class SASLista implements InterfazSASLista {
 	//hay un objeto dao, solo que no se donde deberiamos ponerlo
 	//tambien necesitamos en algunas clases (como esta) saber cual es el usuario con el que estamos trabajando ahora
 	
+	public SASLista(InterfazDAOFachada dao) {
+		this.setDao(dao);
+	}
+	
+	private void setDao(InterfazDAOFachada dao) {
+		this.dao = dao;
+	}
+
+	/**
+	 * Genera un id adecuado para el nuevo objeto a crear, consultando la DB
+	 * @return nuevo id
+	 */
+	private String GeneradorId() {
+		long idCuenta = dao.getUltimoIdLista();
+		return "l" + idCuenta;
+	}
+	
 	/**
 	 * Devuelve la lista solicitada
 	 * 
@@ -35,7 +52,6 @@ public class SASLista implements InterfazSASLista {
 		else
 			return lista;
     }
-    
 	
     /**
      * borra una lista existente (obvio)
@@ -97,12 +113,12 @@ public class SASLista implements InterfazSASLista {
 	    		}
 	    		dao.setListaAuto(lista, genero, usuario);
 	    		if (i == canciones.size())
-	    			throw new ErrorCreacionObjeto("No hay suficiente canciones para llegar a la duración deseada");
+	    			throw new ErrorCreacionObjeto("No hay suficiente canciones para llegar a la duraciï¿½n deseada");
     		}
     }
 
     /**
-     * Guarda en la DB la pertenencia de una cancion a una lista, vamos que mete
+     * Guardafo en la DB la pertenencia de una cancion a una lista, vamos que mete
      * la cancion en la lista
      * @param cancion cancion a anadir
      * @param lista lista objetivo
