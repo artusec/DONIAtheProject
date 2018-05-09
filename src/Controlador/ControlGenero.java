@@ -1,33 +1,24 @@
 package Controlador;
 
 import Excepciones.ErrorConsulta;
-import Model.Cancion.InterfazSASCancion;
+import Model.Genero.FachadaGenero;
 import Model.Genero.InterfazFachadaGenero;
 import Model.Objetos.Genero;
 import Model.Objetos.Usuario;
 import Vista.VentanaPrincipal;
 
-//TODO: revisar mucho el fuckin sas loko
-
 public class ControlGenero {
 
 	InterfazFachadaGenero fGenero;
-	VentanaPrincipal ventanaPrincipal;
 	Usuario usuarioActual;
 
-	public ControlGenero(VentanaPrincipal ventanaPrincipal, InterfazFachadaGenero fGenero,
-						Usuario usuarioActual) {
-		this.setfGenero(fGenero);
+	public ControlGenero(Usuario usuarioActual) {
+		this.setfGenero();
 		this.setUsuarioActual(usuarioActual);
-		this.setVentanaPrincipal(ventanaPrincipal);
 	}
 	
-	private void setfGenero(InterfazFachadaGenero fGenero) {
-		this.fGenero = fGenero;
-	}
-
-	private void setVentanaPrincipal(VentanaPrincipal ventanaPrincipal) {
-		this.ventanaPrincipal = ventanaPrincipal;
+	private void setfGenero() {
+		this.fGenero = new FachadaGenero();
 	}
 
 	private void setUsuarioActual(Usuario usuarioActual) {
@@ -36,17 +27,19 @@ public class ControlGenero {
 	
 	public void Anadir(Genero genero) {
 		fGenero.Anadir(genero, usuarioActual);
+		VentanaPrincipal.actualizaGeneros();
 	}
 	
 	public void Eliminar(Genero genero) {
 		fGenero.Eliminar(genero, usuarioActual);
+		VentanaPrincipal.actualizaGeneros();
 	}
 
 	public Genero Consultar(String idGenero) {
 		try {
 			return fGenero.Consultar(idGenero);
 		} catch (ErrorConsulta e) {
-			ventanaPrincipal.muestraError(e);
+			VentanaPrincipal.muestraError(e);
 		}
 		return null;
 	}
