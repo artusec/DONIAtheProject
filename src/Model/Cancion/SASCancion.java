@@ -22,15 +22,6 @@ public class SASCancion implements InterfazSASCancion {
 		this.dao = dao;
 	}
 	
-	/**
-	 * Genera un id adecuado para el nuevo objeto a crear, consultando la DB
-	 * @return nuevo id
-	 */
-	private String GeneradorId() {
-		long idCuenta = dao.getUltimoIdCancion();
-		return "l" + idCuenta;
-	}
-	
 	@Override
 	/**
 	 * Anade una cancion a la base de datos

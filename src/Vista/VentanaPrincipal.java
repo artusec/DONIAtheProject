@@ -256,14 +256,33 @@ public class VentanaPrincipal extends JFrame {
 		panelCentral.add(panelDeLetras);
 	}
 	
-	public static void muestraError(Exception e)
+	public PanelTabla<Cancion> getPanelCanciones()
 	{
+		return panelCanciones;
+	}
+
+	public static void muestraError(Exception e) {
 		JOptionPane.showOptionDialog(new JFrame(), e.getMessage(), "ERROR", JOptionPane.PLAIN_MESSAGE, 
 				JOptionPane.ERROR_MESSAGE, null, null, null);
 	}
 	
-	public PanelTabla<Cancion> getPanelCanciones()
-	{
-		return panelCanciones;
+	public static void actualizaCanciones() {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	public static void actualizaGeneros() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public static void actualizaListas() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public static void actualizaUsuario() {
+		// TODO Auto-generated method stub
+		
 	}
 }

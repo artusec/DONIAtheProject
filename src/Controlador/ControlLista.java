@@ -8,6 +8,7 @@ import Model.Lista.ListaFachada;
 import Model.Objetos.Cancion;
 import Model.Objetos.Genero;
 import Model.Objetos.Lista;
+import Model.Objetos.ListaAuto;
 import Model.Objetos.Usuario;
 import Vista.VentanaPrincipal;
 
@@ -40,9 +41,9 @@ public class ControlLista {
 	    	}
     }
 
-    public void crearListaAuto(String nombre, Genero genero, int duracion) {
+    public void crearListaAuto(ListaAuto listaAuto, Genero genero, int duracion) {
     		try {
-    			fLista.crearListaAuto(nombre, genero, usuarioActual, duracion);
+    			fLista.crearListaAuto(listaAuto, genero, usuarioActual, duracion);
     			VentanaPrincipal.actualizaListas();
 		} catch (ErrorAutenticacion | ErrorCreacionObjeto e) {
 			VentanaPrincipal.muestraError(e);
@@ -58,7 +59,7 @@ public class ControlLista {
     		return null;
 	}
 
-	public void borrar(Lista lista) {
+	public void eliminar(Lista lista) {
 		try {
 			fLista.eliminar(lista, usuarioActual);
 			VentanaPrincipal.actualizaListas();
@@ -67,7 +68,7 @@ public class ControlLista {
 		}
 	}
 
-	public void modificar(String nombre, Lista lista) {
+	public void modificar(Lista lista) {
 		try {
 			fLista.modificar(lista, usuarioActual);
 			VentanaPrincipal.actualizaListas();
@@ -81,7 +82,7 @@ public class ControlLista {
 			fLista.anadirCancion(cancion, lista, usuarioActual);
 			VentanaPrincipal.actualizaListas();
 		} catch (ErrorAutenticacion e) {
-			ventanaPrincipal.muestraError(e);
+			VentanaPrincipal.muestraError(e);
 		}
 	}
 
