@@ -8,9 +8,8 @@ public class FachadaCancion implements InterfazFachadaCancion {
     
 	public InterfazSASCancion interfazSASCancion;
 
-    public void creaCancion(String titulo, String autor, String album, int duracion,
-			Genero genero, Letra letra, Video video) throws ErrorCreacionObjeto {
-    		interfazSASCancion.creaCancion(titulo, autor, album, duracion, letra, video, genero);
+    public void creaCancion(Cancion cancion) throws ErrorCreacionObjeto {
+    		interfazSASCancion.creaCancion(cancion);
 	}
 	
 	public void eliminaCancion(Cancion cancion) {

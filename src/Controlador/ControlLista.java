@@ -15,7 +15,7 @@ public class ControlLista {
 
 	//el controlador necesita el usuario actual para acceder a solo a sus listas
 	Usuario usuarioActual = null;
-	InterfazListaFachada fLista;
+	InterfazFachadaLista fLista;
 	VentanaPrincipal ventanaPrincipal;
 
 	public ControlLista(Usuario usuarioActual) {

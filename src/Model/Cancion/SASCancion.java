@@ -33,22 +33,21 @@ public class SASCancion implements InterfazSASCancion {
 	
 	@Override
 	/**
-	 * A�ade una canci�n a la base de datos
-	 * @param titulo titulo de la canci�n
-	 * @param autor autor de la canci�n
-	 * @param album �lbum al que pertenece la canci�n
-	 * @param duracion duraci�n de la canci�n
-	 * @param letra letra de la canci�n
-	 * @param video video de la canci�n
-	 * @param genero g�nero de la canci�n
+	 * Anade una cancion a la base de datos
+	 * @param titulo titulo de la cancion
+	 * @param autor autor de la cancion
+	 * @param album album al que pertenece la cancion
+	 * @param duracion duracion de la cancion
+	 * @param letra letra de la cancion
+	 * @param video video de la cancion
+	 * @param genero genero de la cancion
 	 * @throws ErrorCreacionObjeto
 	 */
-	public void creaCancion(String titulo, String autor, String album,
-				int duracion, Letra letra, Video video, Genero genero) throws ErrorCreacionObjeto {
+	public void creaCancion(Cancion cancion) throws ErrorCreacionObjeto {
 		//if (/*validar que el usuario actual es admin*/ true){ //Este if se hace en controlador
-			Cancion cancion = new Cancion(this.GeneradorId(), titulo, autor, album, duracion, letra, video, genero);
+			//Cancion cancion = new Cancion(this.GeneradorId(), titulo, autor, album, duracion, letra, video, genero);
 			if (cancion == null)
-				throw new ErrorCreacionObjeto("Error al crear la canci�n");
+				throw new ErrorCreacionObjeto("Error al crear la cancion");
 			else
 				dao.setCancion(cancion);
 			//la cancion deberia eliminarse anadirse sola a la biblioteca
@@ -56,11 +55,11 @@ public class SASCancion implements InterfazSASCancion {
 	
 	@Override
 	/**
-	 * Elimina una canci�n de la base de datos
-	 * @param cancion canci�n a eliminar
+	 * Elimina una cancion de la base de datos
+	 * @param cancion cancion a eliminar
 	 * @throws 
 	 */
-	public void eliminaCancion(Cancion cancion) { 
+	public void eliminaCancion(Cancion cancion) { //Revisar diagrama cuando este hecha la funcion del dao
 		//if (/*validar que el usuario actual es admin*/ true){ //Se hace en el controlador
 		dao.eliminarCancion(cancion);
 		//la cancion deberia eliminarse de la biblioteca en el dao
