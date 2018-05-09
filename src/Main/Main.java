@@ -26,7 +26,6 @@ public class Main {
 	
 	
 	public static void main (String [] args) {
-		
 		iniciarGUI();
 		iniciarControladores();
 	}
@@ -41,7 +40,7 @@ public class Main {
 
 	private static void iniciarGUI()
 	{	 
-		// vista = new VentanaPrincipal();	
+		vista = new VentanaPrincipal();	
 	}
 
 }

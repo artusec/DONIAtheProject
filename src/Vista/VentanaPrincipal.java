@@ -49,14 +49,13 @@ public class VentanaPrincipal extends JFrame {
 	private JDialog Login;
 	
 
-	public VentanaPrincipal (ControlCancion controlCancion, ControlGenero controlGenero,
-							ControlLista controlLista, ControlUsuario controlUsuario) {
+	public VentanaPrincipal () {
 		super("Donia");
 		
-		this.controlCancion = controlCancion;
-		this.controlGenero = controlGenero;
-		this.controlLista = controlLista;
-		this.controlUsuario = controlUsuario;
+		this.controlCancion = new ControlCancion(null);
+		this.controlGenero = new ControlGenero(null);
+		this.controlLista = new ControlLista(null);
+		this.controlUsuario = new ControlUsuario(null);
 		
 		Login = new JDialog(new JFrame("Login"), true);
 		initGUI();
