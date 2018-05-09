@@ -1,15 +1,25 @@
 package Vista;
 
-import Controlador.Controlador;
+
+import Controlador.ControlCancion;
+import Controlador.ControlLista;
 import Model.Objetos.Cancion;
 
 public class ModeloTablaCanciones extends ModeloTabla<Cancion> {
 
 	private static final long serialVersionUID = 1L;
 	
-	public ModeloTablaCanciones(String[] columnIdCanciones, Controlador controlador)
-	{
-		super(columnIdCanciones, controlador);
+	private ControlCancion controlCancion;
+	private ControlLista controlLista;
+
+	
+	public ModeloTablaCanciones(String[] columnIdCanciones, ControlCancion controlCancion, ControlLista controlLista) {
+		
+		super(columnIdCanciones);
+		this.controlLista = controlLista;
+		this.controlCancion = controlCancion;
+		
+		
 	}
 	
 	 @Override
@@ -26,5 +36,10 @@ public class ModeloTablaCanciones extends ModeloTabla<Cancion> {
 		 return s;
 	 }
 	 
+	 public void actualizarDatos(String idLista) {
+		 lista.clear();
+		 lista.addAll(controlLista.consulta(idLista).getCanciones());
+	 }
 	 
+
 }

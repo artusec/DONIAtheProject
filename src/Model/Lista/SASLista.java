@@ -56,6 +56,7 @@ public class SASLista implements InterfazSASLista {
     /**
      * borra una lista existente (obvio)
      * @param lista lista a borrar
+     * @param usuario usuario que desea borrar la lista
      */
     @Override
     public void eliminar(Lista lista, Usuario usuario) { //Falta hacer la funcion eliminarLista de BD y revisar diagramas despues
@@ -76,6 +77,7 @@ public class SASLista implements InterfazSASLista {
     /**
      * Crea una lista vacia (las canciones se anaden aparte) y la guarda en la DB
      * @param nombre nombre de la lista
+     * @param usuario usuario que desea crear la lista
      * @throws ErrorCreacionObjeto 
      */
     @Override
@@ -89,8 +91,10 @@ public class SASLista implements InterfazSASLista {
 
     /**
      * Crea una listaAuto con sus temas correspondientes y la guarda en la DB
-     * @param nombre nombre de la lista
+     * @param lista objeto que se quiere crear
      * @param genero el genero del cual seleccionar las canciones
+     * @param usuario usuario que quiere crear la lista
+     * @int duracionMax duracion maxima que se quiere para la lista
      * @throws ErrorCreacionObjeto 
      */
     @Override
@@ -122,6 +126,7 @@ public class SASLista implements InterfazSASLista {
      * la cancion en la lista
      * @param cancion cancion a anadir
      * @param lista lista objetivo
+     * @param usuario usuario que quiere anadir la cancion
      * @throws ErrorAutenticacion 
      */
     @Override
@@ -137,6 +142,7 @@ public class SASLista implements InterfazSASLista {
      * Elimina de la DB la pertenencia de una cancion a una lista
      * @param cancion cancion a eliminar
      * @param lista lista objetivo
+     * @param usuario usuario que quiere eliminar la cancion
      * @throws ErrorAutenticacion 
      */
     @Override

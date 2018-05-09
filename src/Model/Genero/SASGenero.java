@@ -40,6 +40,7 @@ public class SASGenero implements InterfazSASGenero {
     /**
 	 * Elimina un genero de la DB
 	 * @param genero genero a eliminar
+	 * @param usuario usuario que quiere eliminar el genero
 	 */
 	@Override
     public void Eliminar(Genero genero, Usuario usuario) { //Falta acabar borrargeneroDB y mirar luego el diagrama

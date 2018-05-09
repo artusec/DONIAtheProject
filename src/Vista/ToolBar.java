@@ -17,18 +17,22 @@ import javax.swing.JPopupMenu;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.JToolBar;
+
+import Controlador.ControlCancion;
+import Controlador.ControlGenero;
+import Controlador.ControlLista;
+import Controlador.ControlUsuario;
 import Excepciones.ErrorCreacionObjeto;
 import Model.Objetos.Usuario;
 
-public class ToolBar extends JToolBar implements ObservadorAplicacion {
+public class ToolBar extends JToolBar {
 	
 	private static final long serialVersionUID = 1L;
 	
-	public ToolBar(VentanaPrincipal mainWindow, Controlador contr)
+	public ToolBar(VentanaPrincipal mainWindow, ControlCancion controlCancion, ControlGenero controlGenero,
+			ControlLista controlLista, ControlUsuario controlUsuario)
 	{
-		super();
-		contr.addObservador(this);
-		
+		super();	
 
 		JButton perfil = new JButton();
 		perfil.setToolTipText("Account");
