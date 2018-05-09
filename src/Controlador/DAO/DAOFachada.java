@@ -3,6 +3,10 @@ package Controlador.DAO;
 import java.util.ArrayList;
 import Controlador.DAO.SASDAO;
 import Excepciones.ErrorAutenticacion;
+import Excepciones.ErrorConsulta;
+import Excepciones.ErrorCreacionObjeto;
+import Excepciones.ErrorEliminacion;
+import Excepciones.ErrorGuardado;
 import Model.Objetos.*;
 
 public class DAOFachada implements InterfazDAOFachada {
@@ -15,12 +19,12 @@ public class DAOFachada implements InterfazDAOFachada {
     
     // ----------- GET -----------
     @Override
-    public Genero getGeneroDB(String idGenero) {
+    public Genero getGeneroDB(String idGenero) throws ErrorConsulta, ErrorCreacionObjeto {
 		return this.sasdao.getGeneroDB(idGenero);
     }
 
     @Override
-    public Cancion getCancionDB(String idCancion) {
+    public Cancion getCancionDB(String idCancion) throws ErrorCreacionObjeto, ErrorConsulta {
 		return this.sasdao.getCancionDB(idCancion);
     }
 
@@ -33,71 +37,56 @@ public class DAOFachada implements InterfazDAOFachada {
     public Usuario getUsuarioDB(String idUsuario, String clave) throws ErrorAutenticacion {
 		return this.getUsuarioDB(idUsuario, clave);
     }
-
-	@Override
-	public long getUltimoIdCancion() {
-		return this.sasdao.getUltimoIdCancion();
-	}
-
-	@Override
-	public long getUltimoIdLista() {
-		return this.sasdao.getUltimoIdLista();
-	}
-
-	@Override
-	public long getUltimoIdGenero() {
-		return this.sasdao.getUltimoIdGenero();
-	}
 	
     // ----------- SET -----------
     @Override
-    public void setCancion(Cancion cancion) {
+    public void setCancion(Cancion cancion) throws ErrorGuardado, ErrorCreacionObjeto {
     		this.sasdao.setCancion(cancion);
     }
 
     @Override
-    public void setGenero(Genero genero, Usuario usuario) {
+    public void setGenero(Genero genero, Usuario usuario) throws ErrorAutenticacion, ErrorGuardado {
     		this.sasdao.setGenero(genero, usuario);
     }
 
     @Override
-    public void setUsuario(Usuario usuario) throws ErrorAutenticacion {
+    public void setUsuario(Usuario usuario) throws ErrorAutenticacion, ErrorGuardado {
     		this.sasdao.setUsuario(usuario);
     }
 
     @Override
-    public void setLista(Lista lista, Usuario usuario) throws ErrorAutenticacion {
+    public void setLista(Lista lista, Usuario usuario) throws ErrorAutenticacion, ErrorGuardado {
     		this.sasdao.setLista(lista, usuario);
     }
     
     @Override
-    public void setListaAuto(Lista lista, Genero genero, Usuario usuario) throws ErrorAutenticacion{
+    public void setListaAuto(Lista lista, Genero genero, Usuario usuario) throws ErrorAutenticacion, ErrorGuardado{
     		this.sasdao.setListaAuto(lista, genero, usuario);
     }
 
     // ----------- ELIMINAR -----------
 	@Override
-	public void eliminarLista(Lista lista, Usuario usuarioActual) {
-		this.sasdao.eliminarLista(lista, usuarioActual);
+	public void eliminarLista(Lista lista, Usuario usuarioActual) throws ErrorAutenticacion, ErrorEliminacion {
+		this.sasdao.eliminarLista(lista);
 	}
 
 	@Override
-	public void eliminarCancion(Cancion cancion) {
+	public void eliminarCancion(Cancion cancion) throws ErrorEliminacion {
 		this.sasdao.eliminarCancion(cancion);
 	}
 
 	@Override
-	public ArrayList<Cancion> getCancionesGeneroDB(String id) {
+	public ArrayList<Cancion> getCancionesGeneroDB(String id) throws ErrorConsulta, ErrorCreacionObjeto {
 		return this.sasdao.getCancionesGeneroDB(id);
 	}
 
 	@Override
-	public void eliminarGenero(Genero genero, Usuario usuario) {
+	public void eliminarGenero(Genero genero, Usuario usuario) throws ErrorEliminacion, ErrorAutenticacion {
 		this.sasdao.eliminarGenero(genero, usuario);
 	}
 
 	@Override
-	public void eliminarUsuario(Usuario usuario) {
+	public void eliminarUsuario(Usuario usuario) throws ErrorEliminacion, ErrorAutenticacion {
 		this.sasdao.eliminarUsuario(usuario);
 	}
 }

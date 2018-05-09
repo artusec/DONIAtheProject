@@ -210,18 +210,44 @@ public abstract class DBstruct {
 				"SET nombre='" + nombre + "' \n" +
 				"WHERE genero='" + id + "'";
 	}
-	
-	//TODO
 	public static String updateGeneroLista(String idLista, String idGenero) {
-		return null;
+		return "UPDATE donia.listaauto\n" + 
+				"SET genero='"+ idGenero +"' " + 
+				"WHERE lista='" + idLista + "'";
 	}
 	
 	// SENTENCIAS DE ELIMINACION
+	public static String deleteLista(String idLista) {
+		return "DELETE FROM donia.lista \n" + 
+				"WHERE lista='" + idLista + "'";
+	}
+	
+	public static String deleteCancion(String idCancion) {
+		return "DELETE FROM donia.cancion \n" + 
+				"WHERE cancion='" + idCancion + "'";
+	}
+	
+	public static String deleteGenero(String idGenero) {
+		return "DELETE FROM donia.genero \n" + 
+				"WHERE genero='" + idGenero + "'";
+	}
+	public static String deleteUsuario(String idUsuario) {
+		return "DELETE FROM donia.usuario \n" + 
+				"WHERE usuario='" + idUsuario + "'";
+	}
+	
 	public static String deleteRlistaCancion(String idLista) {
 		return "DELETE FROM donia.rlistacancion \n" + 
 				"WHERE lista='" + idLista + "'";
 	}
-	public static String deleteRgeneroUsuario(String idUsuario) {
+	
+	public static String deleteRgeneroUsuario(String idUsuario, String idGenero) {
+		return "DELETE FROM donia.rgenerousuario \n" + 
+				"WHERE usuario='" + idUsuario + "' AND cancion='" + idGenero + "'";
+	}
+	
+	
+	public static String deleteRgenerosUsuario(String idUsuario) {
 		return "DELETE FROM donia.rgenerousuario \n" + 
 				"WHERE usuario='" + idUsuario + "'";
 	}

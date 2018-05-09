@@ -2,13 +2,15 @@ package Model.Cancion;
 
 import Excepciones.ErrorConsulta;
 import Excepciones.ErrorCreacionObjeto;
+import Excepciones.ErrorEliminacion;
+import Excepciones.ErrorGuardado;
 import Model.Objetos.*;
 
 public interface InterfazFachadaCancion {
-    Cancion consultaCancion(String cancion) throws ErrorConsulta;
-    Letra consultaLetra(String cancion) throws ErrorConsulta;
-    Video consultaVideo(String cancion) throws ErrorConsulta;
-    String descargaVideo(String cancion) throws ErrorConsulta;
-    void creaCancion(Cancion cancion) throws ErrorCreacionObjeto;
-    void eliminaCancion(Cancion cancion);
+	void creaCancion(Cancion cancion) throws ErrorCreacionObjeto, ErrorGuardado;
+	void eliminaCancion(Cancion cancion) throws ErrorEliminacion;
+    String descargaVideo(String cancion) throws ErrorConsulta, ErrorCreacionObjeto;
+    Cancion consultaCancion(String idCancion) throws ErrorConsulta, ErrorCreacionObjeto;
+    Letra consultaLetra(String idCancion) throws ErrorConsulta, ErrorCreacionObjeto;
+    Video consultaVideo(String idCancion) throws ErrorConsulta, ErrorCreacionObjeto;
 }
