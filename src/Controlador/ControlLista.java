@@ -4,6 +4,7 @@ import Excepciones.ErrorAutenticacion;
 import Excepciones.ErrorConsulta;
 import Excepciones.ErrorCreacionObjeto;
 import Model.Lista.InterfazListaFachada;
+import Model.Lista.FachadaLista;
 import Model.Objetos.Cancion;
 import Model.Objetos.Genero;
 import Model.Objetos.Lista;
@@ -17,19 +18,13 @@ public class ControlLista {
 	InterfazListaFachada fLista;
 	VentanaPrincipal ventanaPrincipal;
 
-	public ControlLista(VentanaPrincipal ventanaPrincipal, InterfazListaFachada fLista,
-			Usuario usuarioActual) {
-		this.setfLista(fLista);
+	public ControlLista(Usuario usuarioActual) {
+		this.setfLista();
 		this.setUsuarioActual(usuarioActual);
-		this.setVentanaPrincipal(ventanaPrincipal);
 	}
 
-	private void setfLista(InterfazListaFachada fLista) {
-		this.fLista = fLista;
-	}
-
-	private void setVentanaPrincipal(VentanaPrincipal ventanaPrincipal) {
-		this.ventanaPrincipal = ventanaPrincipal;
+	private void setfLista() {
+		this.fLista = new FachadaLista();
 	}
 
 	private void setUsuarioActual(Usuario usuarioActual) {
@@ -39,43 +34,52 @@ public class ControlLista {
 	public void crearLista(String nombre) {
 	    	try {
 	    		fLista.crearLista(nombre, usuarioActual);
+	    		VentanaPrincipal.actualizaListas();
 	    	} catch (ErrorAutenticacion | ErrorCreacionObjeto e) {
-	    		ventanaPrincipal.muestraError(e);
+	    		VentanaPrincipal.muestraError(e);
 	    	}
     }
 
     public void crearListaAuto(String nombre, Genero genero, int duracion) {
     		try {
     			fLista.crearListaAuto(nombre, genero, usuarioActual, duracion);
+    			VentanaPrincipal.actualizaListas();
 		} catch (ErrorAutenticacion | ErrorCreacionObjeto e) {
-			ventanaPrincipal.muestraError(e);
+			VentanaPrincipal.muestraError(e);
 		}
     }
 
 	public Lista consulta(String idLista) {
     		try {
-				return fLista.consulta(idLista);
-			} catch (ErrorConsulta e) {
-				ventanaPrincipal.muestraError(e);
-			}
+			return fLista.consulta(idLista);
+		} catch (ErrorConsulta e) {
+			VentanaPrincipal.muestraError(e);
+		}
     		return null;
 	}
 
 	public void borrar(Lista lista) {
-		fLista.borrar(lista, usuarioActual);
+		try {
+			fLista.borrar(lista, usuarioActual);
+			VentanaPrincipal.actualizaListas();
+		} catch (ErrorAutenticacion e) {
+			VentanaPrincipal.muestraError(e);
+		}
 	}
 
 	public void modificar(String nombre, Lista lista) {
 		try {
 			fLista.modificar(nombre, lista, usuarioActual);
+			VentanaPrincipal.actualizaListas();
 		} catch (ErrorAutenticacion e) {
-			ventanaPrincipal.muestraError(e);
+			VentanaPrincipal.muestraError(e);
 		}		
 	}
 
 	public void anadirCancion(Cancion cancion, Lista lista) {
 		try {
 			fLista.anadirCancion(cancion, lista, usuarioActual);
+			VentanaPrincipal.actualizaListas();
 		} catch (ErrorAutenticacion e) {
 			ventanaPrincipal.muestraError(e);
 		}
@@ -84,8 +88,9 @@ public class ControlLista {
 	public void eliminarCancion(Cancion cancion, Lista lista) {
 		try {
 			fLista.eliminarCancion(cancion, lista, usuarioActual);
+			VentanaPrincipal.actualizaListas();
 		} catch (ErrorAutenticacion e) {
-			ventanaPrincipal.muestraError(e);
+			VentanaPrincipal.muestraError(e);
 		}
 	}
 }
