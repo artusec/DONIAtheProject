@@ -12,6 +12,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.util.Scanner;
+
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -24,9 +26,13 @@ import javax.swing.JTextField;
 import javax.swing.border.Border;
 
 import com.sun.media.jfxmedia.events.NewFrameEvent;
+
+import Controlador.ControlUsuario;
 import Controlador.Controlador;
+import Excepciones.ErrorCreacionObjeto;
 import Model.Objetos.Cancion;
 import Model.Objetos.Lista;
+import Model.Objetos.Usuario;
 
 public class VentanaPrincipal extends JFrame {
 
@@ -42,19 +48,22 @@ public class VentanaPrincipal extends JFrame {
 	private PanelTabla<Cancion> panelCanciones;
 	private ToolBar toolBar;
 	private Controlador controlador;
+	private ControlUsuario ctrlU;
 	
 	private JDialog Login;
+	private JDialog SingUp;
 	
 
-	public VentanaPrincipal (Controlador controlador)
+	public VentanaPrincipal (Controlador controlador) throws ErrorCreacionObjeto
 	{
 		super("Donia");
 		this.controlador = controlador;
-		Login = new JDialog(new JFrame("Login"), true);
+		Login = new JDialog(new JFrame(),"Inciciar Sesion", true);
+		SingUp = new JDialog(new JFrame(), "Registrarse", true);
 		this.initGUI();
 	}
 	
-	private void initGUI()
+	private void initGUI() throws ErrorCreacionObjeto
 	{
 		this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		this.addWindowListener(new WindowListener() {
@@ -114,8 +123,9 @@ public class VentanaPrincipal extends JFrame {
 		createPanelLetras(panelCentral);
 		 
 		pack();
+		setVisible(false);
 		this.login();
-		setVisible(true);
+		this.singUp();
 		setExtendedState(java.awt.Frame.MAXIMIZED_BOTH);
 	}
 
@@ -154,48 +164,139 @@ public class VentanaPrincipal extends JFrame {
 		JPanel panelForTextFields = new JPanel();
 		panelForTextFields.setLayout(null);
 		panelForTextFields.setLocation(110, 40);
-		panelForTextFields.setSize(100, 70);
+		panelForTextFields.setSize(120, 70);
 		Login.add(panelForTextFields);
 
 		// Username Textfield
 		JTextField usernameField = new JTextField(8);
 		usernameField.setLocation(0, 0);
-		usernameField.setSize(100, 30);
+		usernameField.setSize(120, 30);
 		panelForTextFields.add(usernameField);
 
 		// Login Textfield
 		JPasswordField loginField = new JPasswordField(8);
 		loginField.setEchoChar('*');
 		loginField.setLocation(0, 40);
-		loginField.setSize(100, 30);
+		loginField.setSize(120, 30);
 		panelForTextFields.add(loginField);
 
-		// Creation of a Panel to contain the completion JLabels
-		JPanel completionPanel = new JPanel();
-		completionPanel.setLayout(null);
-		completionPanel.setLocation(240, 35);
-		completionPanel.setSize(70, 80);
-		Login.add(completionPanel);
 
 		// Button for Logging in
 		JButton loginButton = new JButton("Login");
-		loginButton.setLocation(130, 120);
+		loginButton.setLocation(180, 120);
 		loginButton.setSize(80, 30);
 		loginButton.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("oeoee");
+				//ctrlU.ingreso(usernameField.getText().trim(), String.valueOf(loginField.getPassword()));
+				setVisible(true);
 			}
 		});
 		Login.add(loginButton);
+		
+		JButton singup = new JButton("SingUp");
+		singup.setLocation(80, 120);
+		singup.setSize(80, 30);
+		singup.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Login.setVisible(false);
+				SingUp.setVisible(true);
+				
+			}
+		});
+		Login.add(singup);
 		Login.setSize(310, 200);
-		Login.setLocation((Toolkit.getDefaultToolkit().getScreenSize().width)/2 - getWidth()/2, (Toolkit.getDefaultToolkit().getScreenSize().height)/2 - getHeight()/2);
+		Login.setLocationRelativeTo(null);
 
 		Login.setVisible(true);
 
 		
 		
+	}
+
+	public void singUp() throws ErrorCreacionObjeto {
+		SingUp.setLayout(null);
+
+		JLabel titleLabel = new JLabel("Sing Up Screen");
+		titleLabel.setLocation(0, 0);
+		titleLabel.setSize(290, 30);
+		titleLabel.setHorizontalAlignment(0);
+		SingUp.add(titleLabel);
+
+		// Creation of a Panel to contain the JLabels
+		JPanel textPanel = new JPanel();
+		textPanel.setLayout(null);
+		textPanel.setLocation(10, 35);
+		textPanel.setSize(70, 160);
+		SingUp.add(textPanel);
+
+		// Username Label
+		JLabel idLabel = new JLabel("ID");
+		idLabel.setLocation(0, 0);
+		idLabel.setSize(70, 40);
+		idLabel.setHorizontalAlignment(4);
+		textPanel.add(idLabel);
+		
+		JLabel usernameLabel = new JLabel("Username");
+		usernameLabel.setLocation(0, 40);
+		usernameLabel.setSize(70, 40);
+		usernameLabel.setHorizontalAlignment(4);
+		textPanel.add(usernameLabel);
+
+		// Login Label
+		JLabel passwordLabel = new JLabel("Password");
+		passwordLabel.setLocation(0, 80);
+		passwordLabel.setSize(70, 40);
+		passwordLabel.setHorizontalAlignment(4);
+		textPanel.add(passwordLabel);
+
+		// TextFields Panel Container
+		JPanel panelForTextFields = new JPanel();
+		panelForTextFields.setLayout(null);
+		panelForTextFields.setLocation(110, 40);
+		panelForTextFields.setSize(160, 70);
+		SingUp.add(panelForTextFields);
+
+		// Username Textfield		
+		JTextField idField = new JTextField(8);
+		idField.setLocation(0, 0);
+		idField.setSize(120, 30);
+		panelForTextFields.add(idField);
+		
+		JTextField usernameField = new JTextField(8);
+		usernameField.setLocation(0, 40);
+		usernameField.setSize(120, 30);
+		panelForTextFields.add(usernameField);
+
+		// Login Textfield
+		JPasswordField loginField = new JPasswordField(8);
+		loginField.setEchoChar('*');
+		loginField.enableInputMethods(true);
+		loginField.setLocation(0, 80);
+		loginField.setSize(120, 30);
+		panelForTextFields.add(loginField);
+
+		// Button for Logging in
+		JButton singup = new JButton("SingUp");
+		singup.setLocation(110, 180);
+		singup.setSize(80, 30);
+		singup.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				//ctrlU.registro(idField.getText().trim(), usernameField.getText().trim(), String.valueOf(loginField.getPassword()));
+				SingUp.setVisible(false);
+				Login.setVisible(true);
+			}
+		});
+		SingUp.add(singup);
+
+		
+		SingUp.setSize(310, 280);
+		SingUp.setLocationRelativeTo(null);
 	}
 
 	private JPanel creaPanelSupremo() {
