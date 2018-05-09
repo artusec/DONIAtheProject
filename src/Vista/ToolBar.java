@@ -1,14 +1,24 @@
 package Vista;
 
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JPopupMenu;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
 import javax.swing.JToolBar;
-
-import Controlador.Controlador;
+import Excepciones.ErrorCreacionObjeto;
+import Model.Objetos.Usuario;
 
 public class ToolBar extends JToolBar implements ObservadorAplicacion {
 	
@@ -21,14 +31,63 @@ public class ToolBar extends JToolBar implements ObservadorAplicacion {
 		
 
 		JButton perfil = new JButton();
-		perfil.setToolTipText("Ver tu perfil");
-		perfil.setIcon(new ImageIcon("src\\Vista\\iconos\\perfil.png"));
+		perfil.setToolTipText("Account");
+		perfil.setIcon(new ImageIcon("src\\icons\\perfil.png"));
 		perfil.addActionListener(new ActionListener()
 		{
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				// TODO Auto-generated method stub
 				
+				// Usuario user = controlador.getUserData();
+				
+
+				Usuario user = null;
+				try {
+					user = new Usuario("idPrueba", "namePrueba", "passPrueba");
+				} catch (ErrorCreacionObjeto e) {
+					e.printStackTrace();
+				}
+				
+				JDialog diag = new JDialog(new JFrame(), false);
+				diag.setLayout(new GridLayout(2, 1));
+				
+				JPanel arriba = new JPanel(new BorderLayout());
+				JButton foto = new JButton();
+				foto.setBorderPainted(true);
+				foto.setFocusPainted(true);
+				foto.setIcon(new ImageIcon("src\\icons\\perfilLogo.png"));
+				foto.setMaximumSize(getMaximumSize());
+				arriba.add(foto);
+				
+				JPanel abajo = new JPanel();
+				abajo.setLayout(new GridLayout(3, 2));
+				
+				JLabel nombre = new JLabel();
+				nombre.setText('\b' + "NOMBRE");
+				
+				JLabel id = new JLabel();
+				id.setText('\b' + "ID");
+		
+				JLabel pass = new JLabel();
+				pass.setText('\b' + "PASS");
+				
+				JTextArea areaNombre = new JTextArea();
+
+				
+				
+				
+				
+				
+				diag.add(arriba);
+				diag.add(abajo);
+				
+				
+				diag.setTitle("YOUR ACCOUNT");
+				diag.setLocationRelativeTo(null);
+				diag.setPreferredSize(new Dimension(400, 300));
+				diag.pack();
+				diag.setVisible(true);
+
 			}
 		 });
 		
@@ -36,8 +95,8 @@ public class ToolBar extends JToolBar implements ObservadorAplicacion {
 		
 		
 		JButton verGustos = new JButton();
-		verGustos.setToolTipText("Ver gustos musicales");
-		verGustos.setIcon(new ImageIcon("src\\Vista\\iconos\\gustos.png"));
+		verGustos.setToolTipText("See genre");
+		verGustos.setIcon(new ImageIcon("src\\icons\\gustos.png"));
 		verGustos.addActionListener(new ActionListener()
 		{
 			@Override
@@ -53,8 +112,8 @@ public class ToolBar extends JToolBar implements ObservadorAplicacion {
 		
 		
 		JButton aniadirCancion = new JButton();
-		aniadirCancion.setToolTipText("Añadir nueva cancion");
-		aniadirCancion.setIcon(new ImageIcon("src\\Vista\\iconos\\addCancion.png"));
+		aniadirCancion.setToolTipText("Add new song");
+		aniadirCancion.setIcon(new ImageIcon("src\\icons\\addCancion.png"));
 		aniadirCancion.addActionListener(new ActionListener()
 		{
 			@Override
@@ -68,8 +127,8 @@ public class ToolBar extends JToolBar implements ObservadorAplicacion {
 		
 		
 		JButton eliminarCancion = new JButton();
-		eliminarCancion.setToolTipText("Eliminar cancion");
-		eliminarCancion.setIcon(new ImageIcon("src\\Vista\\iconos\\eliminarCancion.png"));
+		eliminarCancion.setToolTipText("Delete song");
+		eliminarCancion.setIcon(new ImageIcon("src\\icons\\eliminarCancion.png"));
 		eliminarCancion.addActionListener(new ActionListener()
 		{
 			@Override
@@ -83,8 +142,8 @@ public class ToolBar extends JToolBar implements ObservadorAplicacion {
 		
 		
 		JButton modifCancion = new JButton();
-		modifCancion.setToolTipText("Modificar cancion");
-		modifCancion.setIcon(new ImageIcon("src\\Vista\\iconos\\modificarCancion.png"));
+		modifCancion.setToolTipText("Modify song");
+		modifCancion.setIcon(new ImageIcon("src\\icons\\modificarCancion.png"));
 		modifCancion.addActionListener(new ActionListener()
 		{
 			@Override
@@ -98,13 +157,13 @@ public class ToolBar extends JToolBar implements ObservadorAplicacion {
 		
 		
 		JButton salir = new JButton();
-		salir.setToolTipText("Salir");
-		salir.setIcon(new ImageIcon("src\\Vista\\iconos\\exit.png"));
+		salir.setToolTipText("Exit");
+		salir.setIcon(new ImageIcon("src\\icons\\exit.png"));
 		salir.addActionListener(new ActionListener()
 		{
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				int a = JOptionPane.showOptionDialog(new JFrame(), "¿Seguro que quieres salir?", "SALIR",
+				int a = JOptionPane.showOptionDialog(new JFrame(), "Do you really want to exit?", "EXIT",
 						JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, null, null);
 				
 				if (a == 0)

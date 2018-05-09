@@ -9,8 +9,8 @@ public class FachadaUsuario implements InterfazFachadaUsuario {
     public InterfazSASUsuario interfazSASUsuario;
 
 	@Override
-	public void borrar(Usuario usuario) throws ErrorAutenticacion {
-		interfazSASUsuario.borrar(usuario);
+	public void eliminar(Usuario usuario) throws ErrorAutenticacion {
+		interfazSASUsuario.eliminar(usuario);
 	}
 
 	@Override
@@ -19,13 +19,13 @@ public class FachadaUsuario implements InterfazFachadaUsuario {
 	}
 
 	@Override
-	public void registro(String id, String nombre, String pass) throws ErrorCreacionObjeto, ErrorAutenticacion {
-		interfazSASUsuario.registro(id, nombre, pass);
+	public void registro(Usuario usuario) throws ErrorCreacionObjeto, ErrorAutenticacion {
+		interfazSASUsuario.registro(usuario);
 	}
 
 	@Override
-	public void modificar(Usuario usuario, String nombre, String pass) throws ErrorCreacionObjeto, ErrorAutenticacion {
-		interfazSASUsuario.modificar(usuario, nombre, pass);
+	public void modificar(Usuario nuevo) throws ErrorCreacionObjeto, ErrorAutenticacion {
+		interfazSASUsuario.modificar(nuevo);
 	}
 
 	@Override

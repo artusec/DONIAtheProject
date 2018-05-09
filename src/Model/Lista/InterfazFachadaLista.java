@@ -5,7 +5,7 @@ import Excepciones.ErrorConsulta;
 import Excepciones.ErrorCreacionObjeto;
 import Model.Objetos.*;
 
-public interface InterfazSASLista {
+public interface InterfazFachadaLista {
 	public Lista consulta(String idLista) throws ErrorConsulta;
 	public void eliminar(Lista lista, Usuario usuario);
 	public void modificar(Lista lista, Usuario usuario) throws ErrorAutenticacion;

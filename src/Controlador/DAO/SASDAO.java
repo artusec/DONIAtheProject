@@ -82,6 +82,7 @@ public class SASDAO implements InterfazSASDAO {
     		return this.DBconn != null && !this.DBconn.isClosed();
     }
     
+    // --------------- GET ---------------
     @Override
     public Cancion getCancionDB(String idCancion) {
     		try {
@@ -297,6 +298,31 @@ public class SASDAO implements InterfazSASDAO {
 		return null;   
 	}
 
+	@Override
+	public ArrayList<Cancion> getCancionesGeneroDB(String id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+    
+	@Override
+	public long getUltimoIdCancion() {
+		//TODO
+		return 0;
+	}
+
+	@Override
+	public long getUltimoIdLista() {
+		//TODO
+		return 0;
+	}
+
+	@Override
+	public long getUltimoIdGenero() {
+		//TODO
+		return 0;
+	}
+	
+    // --------------- SET ---------------
     @Override
     public void setCancion(Cancion cancion) {
 	    	try {
@@ -365,9 +391,9 @@ public class SASDAO implements InterfazSASDAO {
     }
 
     @Override
-    public void setGenero(Genero genero) {
+    public void setGenero(Genero genero, Usuario usuario) {
      	try {
-			if (this.conectado() && genero != null) {
+			if (this.conectado() && genero != null && usuario != null) {
 				//recabar datos
 				String id = genero.getId();
 				String nombre = genero.getNombre();
@@ -479,6 +505,32 @@ public class SASDAO implements InterfazSASDAO {
 		}
     }
     
+    // --------------- ELIMINAR ---------------
+	@Override
+	public void eliminarLista(Lista lista, Usuario usuarioActual) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void eliminarCancion(Cancion cancion) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void eliminarGenero(Genero genero, Usuario usuario) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void eliminarUsuario(Usuario usuario) {
+		// TODO Auto-generated method stub
+		
+	}
+    
+    // --------------- EXISTE ---------------
     private boolean existeCancion(String cancionId) {
     		return this.getCancionDB(cancionId) != null;
     }

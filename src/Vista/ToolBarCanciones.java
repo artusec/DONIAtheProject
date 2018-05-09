@@ -3,12 +3,9 @@ package Vista;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JToolBar;
-
-import Controlador.Controlador;
 
 public class ToolBarCanciones extends JToolBar implements ObservadorAplicacion {
 
@@ -22,7 +19,7 @@ public class ToolBarCanciones extends JToolBar implements ObservadorAplicacion {
 		setLayout(new GridLayout(1, 3));
 		
 		JButton aniadirCancion = new JButton();
-		aniadirCancion.setToolTipText("Añadir cancion");
+		aniadirCancion.setToolTipText("Add song");
 		aniadirCancion.setIcon(new ImageIcon("src\\icons\\add.png"));
 		aniadirCancion.addActionListener(new ActionListener() {
 			
@@ -35,7 +32,7 @@ public class ToolBarCanciones extends JToolBar implements ObservadorAplicacion {
 		this.add(aniadirCancion);
 		
 		JButton eliminarCancion = new JButton();
-		eliminarCancion.setToolTipText("Eliminar cancion de la lista");
+		eliminarCancion.setToolTipText("Delete song from the list");
 		eliminarCancion.setIcon(new ImageIcon("src\\icons\\delete.png"));
 		eliminarCancion.addActionListener(new ActionListener() {
 			
@@ -49,7 +46,7 @@ public class ToolBarCanciones extends JToolBar implements ObservadorAplicacion {
 		
 		
 		JButton meGusta = new JButton();
-		meGusta.setToolTipText("Me gusta esta cancion");
+		meGusta.setToolTipText("I like this song");
 		meGusta.setIcon(new ImageIcon(("src\\icons\\hand.png")));
 		meGusta.addActionListener(new ActionListener()
 		{
