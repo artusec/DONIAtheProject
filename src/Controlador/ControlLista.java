@@ -3,8 +3,8 @@ package Controlador;
 import Excepciones.ErrorAutenticacion;
 import Excepciones.ErrorConsulta;
 import Excepciones.ErrorCreacionObjeto;
-import Model.Lista.InterfazListaFachada;
-import Model.Lista.FachadaLista;
+import Model.Lista.InterfazFachadaLista;
+import Model.Lista.ListaFachada;
 import Model.Objetos.Cancion;
 import Model.Objetos.Genero;
 import Model.Objetos.Lista;
@@ -24,7 +24,7 @@ public class ControlLista {
 	}
 
 	private void setfLista() {
-		this.fLista = new FachadaLista();
+		this.fLista = new ListaFachada();
 	}
 
 	private void setUsuarioActual(Usuario usuarioActual) {
@@ -60,7 +60,7 @@ public class ControlLista {
 
 	public void borrar(Lista lista) {
 		try {
-			fLista.borrar(lista, usuarioActual);
+			fLista.eliminar(lista, usuarioActual);
 			VentanaPrincipal.actualizaListas();
 		} catch (ErrorAutenticacion e) {
 			VentanaPrincipal.muestraError(e);
@@ -69,7 +69,7 @@ public class ControlLista {
 
 	public void modificar(String nombre, Lista lista) {
 		try {
-			fLista.modificar(nombre, lista, usuarioActual);
+			fLista.modificar(lista, usuarioActual);
 			VentanaPrincipal.actualizaListas();
 		} catch (ErrorAutenticacion e) {
 			VentanaPrincipal.muestraError(e);
