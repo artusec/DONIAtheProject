@@ -1,19 +1,23 @@
 package Vista;
 
 import java.util.List;
-import javax.swing.table.DefaultTableModel;
 
-public abstract class ModeloTabla<T> extends DefaultTableModel implements ObservadorAplicacion {
+import javax.swing.JTable;
+
+import Model.Objetos.Cancion;
+
+public abstract class ModeloTabla<T> extends JTable {
 	
 	private static final long serialVersionUID = 1L;
 	
 	protected String[] columnIds;
 	protected List<T> lista;
 	
-	public ModeloTabla(String[] columnaCanciones, Controlador ctrl) {
+	public ModeloTabla(String[] columnaCanciones) {
+		super();
+		this.setCellSelectionEnabled(true);
 		this.lista = null;
 		this.columnIds = columnaCanciones;
-		ctrl.addObservador(this);
 	}
 	
 	@Override
@@ -35,5 +39,8 @@ public abstract class ModeloTabla<T> extends DefaultTableModel implements Observ
 	}
 	
 	public boolean isCellEditable (int row, int column) { return false; }
+	
+	 public Cancion cancionSel() {
+		 return (Cancion) lista.get(this.getSelectedRow());
+	 }
 }
-

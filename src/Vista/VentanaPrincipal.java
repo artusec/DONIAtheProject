@@ -19,7 +19,10 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.Border;
-import Controlador.Controlador;
+import Controlador.ControlCancion;
+import Controlador.ControlGenero;
+import Controlador.ControlLista;
+import Controlador.ControlUsuario;
 import Model.Objetos.Cancion;
 import Model.Objetos.Lista;
 
@@ -36,23 +39,33 @@ public class VentanaPrincipal extends JFrame {
 	private PanelTabla<Lista> panelListas;
 	private PanelTabla<Cancion> panelCanciones;
 	private ToolBar toolBar;
-	private Controlador controlador;
+
+	private ControlCancion controlCancion;
+	private ControlGenero controlGenero;
+	private ControlLista controlLista;
+	private ControlUsuario controlUsuario;
+	
 	
 	private JDialog Login;
 	
 
-	public VentanaPrincipal (Controlador controlador)
-	{
+	public VentanaPrincipal (ControlCancion controlCancion, ControlGenero controlGenero,
+							ControlLista controlLista, ControlUsuario controlUsuario) {
 		super("Donia");
-		this.controlador = controlador;
+		
+		this.controlCancion = controlCancion;
+		this.controlGenero = controlGenero;
+		this.controlLista = controlLista;
+		this.controlUsuario = controlUsuario;
+		
 		Login = new JDialog(new JFrame("Login"), true);
-		this.initGUI();
+		initGUI();
 	}
 	
 	private void initGUI()
 	{
-		this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-		this.addWindowListener(new WindowListener() {
+		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		addWindowListener(new WindowListener() {
 
 			@Override
 			public void windowActivated(WindowEvent e) {
@@ -97,7 +110,7 @@ public class VentanaPrincipal extends JFrame {
 		
 		
 		JPanel panelSupremo = creaPanelSupremo();
-		this.setContentPane(panelSupremo);
+		setContentPane(panelSupremo);
 		
 		addToolBar(panelSupremo);
 		
@@ -109,7 +122,7 @@ public class VentanaPrincipal extends JFrame {
 		createPanelLetras(panelCentral);
 		 
 		pack();
-		this.login();
+		login();
 		setVisible(true);
 		setExtendedState(java.awt.Frame.MAXIMIZED_BOTH);
 	}
@@ -198,7 +211,7 @@ public class VentanaPrincipal extends JFrame {
 	}
 
 	private void addToolBar(JPanel panelSupremo) {
-		toolBar = new ToolBar(this, controlador);
+		toolBar = new ToolBar(this, controlCancion, controlGenero, controlLista, controlUsuario);
 		toolBar.setFloatable(false);
 		toolBar.setLayout(new GridLayout(6, 1));
 		panelSupremo.add(toolBar, BorderLayout.EAST);
@@ -215,10 +228,10 @@ public class VentanaPrincipal extends JFrame {
 	private void creaPanelListas(JPanel panelCentral) {
 		JPanel izquierda = new JPanel();
 		izquierda.setLayout(new BorderLayout());
-		ToolBarListas barListas = new ToolBarListas(this, controlador);
+		ToolBarListas barListas = new ToolBarListas(this, controlLista);
 		barListas.setFloatable(false);
 		setFont(new Font("MyStyle", 1, 20));
-		panelListas = new PanelTabla<Lista>("Playlists", new ModeloTablaListas(columnLista, controlador));
+		panelListas = new PanelTabla<Lista>("Playlists", new ModeloTablaListas(columnLista, controlLista));
 		panelListas.setAutoscrolls(true);
 		izquierda.add(panelListas);
 		izquierda.add(barListas, BorderLayout.SOUTH);
@@ -228,27 +241,29 @@ public class VentanaPrincipal extends JFrame {
 	private void creaPanelCanciones(JPanel panelCentral) {
 		JPanel medio = new JPanel();
 		medio.setLayout(new BorderLayout());
-		panelCanciones = new PanelTabla<Cancion>("Songs", new ModeloTablaCanciones(columnCanciones, controlador));
+		panelCanciones = new PanelTabla<Cancion>("Songs", new ModeloTablaCanciones(columnCanciones, controlCancion, controlLista));
 		panelCanciones.setAutoscrolls(true);
 		medio.add(panelCanciones);
-		ToolBarCanciones barCanciones = new ToolBarCanciones(this, controlador);
+		ToolBarCanciones barCanciones = new ToolBarCanciones(this, controlCancion, controlLista);
 		barCanciones.setFloatable(false);
 		medio.add(barCanciones, BorderLayout.SOUTH);
 		panelCentral.add(medio);
 	}
 	
 	private void createPanelLetras(JPanel panelCentral) {
-		JPanel derecha = new JPanel();
-		PanelBarraEstado barra = new PanelBarraEstado("", controlador);
-		derecha.add(barra, BorderLayout.NORTH);
 		panelDeLetras = new PanelAreaTexto("Lists", false);
 		panelDeLetras.areatexto.setText("Choose a song to see its lyrics!");
 		panelCentral.add(panelDeLetras);
 	}
 	
-	public void muestraError(Exception e)
+	public static void muestraError(Exception e)
 	{
 		JOptionPane.showOptionDialog(new JFrame(), e.getMessage(), "ERROR", JOptionPane.PLAIN_MESSAGE, 
 				JOptionPane.ERROR_MESSAGE, null, null, null);
+	}
+	
+	public PanelTabla<Cancion> getPanelCanciones()
+	{
+		return panelCanciones;
 	}
 }

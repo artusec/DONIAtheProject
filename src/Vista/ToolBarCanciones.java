@@ -6,17 +6,18 @@ import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JToolBar;
+import Controlador.ControlCancion;
+import Controlador.ControlLista;
 
-public class ToolBarCanciones extends JToolBar implements ObservadorAplicacion {
+public class ToolBarCanciones extends JToolBar {
 
 	private static final long serialVersionUID = 1L;
 
-	public ToolBarCanciones(VentanaPrincipal mainWindow , Controlador controlador)
+	public ToolBarCanciones(VentanaPrincipal mainWindow , ControlCancion controlCancion, ControlLista controlLista)
 	{
 		super();
-		controlador.addObservador(this);
 		
-		setLayout(new GridLayout(1, 3));
+		setLayout(new GridLayout(1, 4));
 		
 		JButton aniadirCancion = new JButton();
 		aniadirCancion.setToolTipText("Add song");
@@ -56,7 +57,22 @@ public class ToolBarCanciones extends JToolBar implements ObservadorAplicacion {
 				
 			}
 		 });
-		
 		this.add(meGusta);
+
+		
+		JButton verLetra = new JButton();
+		verLetra.setToolTipText("See the lyrics");
+		verLetra.setIcon(new ImageIcon("src\\icons\\flecha.png"));
+		verLetra.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// Falta hacer cositas
+				mainWindow.getPanelCanciones().getModelo().cancionSel();
+				
+				
+			}
+		});		
+		this.add(verLetra);
 	}
 }
