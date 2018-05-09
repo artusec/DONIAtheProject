@@ -5,7 +5,7 @@ import Excepciones.ErrorConsulta;
 import Excepciones.ErrorCreacionObjeto;
 import Model.Objetos.*;
 
-public class ListaFachada implements InterfazListaFachada {
+public class ListaFachada implements InterfazFachadaLista {
 	
     public InterfazSASLista interfazSASLista;
 
@@ -15,8 +15,8 @@ public class ListaFachada implements InterfazListaFachada {
     }
 
     @Override
-    public void crearListaAuto(String nombre, Genero genero, Usuario usuario,int duracion) throws ErrorAutenticacion, ErrorCreacionObjeto {
-    		interfazSASLista.crearListaAuto(nombre, genero, usuario,duracion);
+    public void crearListaAuto(ListaAuto lista, Genero genero, Usuario usuario,int duracion) throws ErrorAutenticacion, ErrorCreacionObjeto {
+    		interfazSASLista.crearListaAuto(lista, genero, usuario,duracion);
     }
 
 	@Override
@@ -25,13 +25,13 @@ public class ListaFachada implements InterfazListaFachada {
 	}
 
 	@Override
-	public void borrar(Lista lista, Usuario usuario) {
-		interfazSASLista.borrar(lista, usuario);		
+	public void eliminar(Lista lista, Usuario usuario) {
+		interfazSASLista.eliminar(lista, usuario);		
 	}
 
 	@Override
-	public void modificar(String nombre, Lista lista, Usuario usuario) throws ErrorAutenticacion {
-		interfazSASLista.modificar(nombre, lista, usuario);		
+	public void modificar(Lista lista, Usuario usuario) throws ErrorAutenticacion {
+		interfazSASLista.modificar(lista, usuario);		
 	}
 
 	@Override

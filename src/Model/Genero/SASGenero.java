@@ -33,7 +33,7 @@ public class SASGenero implements InterfazSASGenero {
 	 * @param genero genero a anadir
 	 */
 	@Override
-    public void Anadir(Genero genero, Usuario usuario) { //Falta acabar setgenero
+    public void Anadir(Genero genero, Usuario usuario) { 
     		dao.setGenero(genero, usuario);
     }
 
@@ -42,7 +42,7 @@ public class SASGenero implements InterfazSASGenero {
 	 * @param genero genero a eliminar
 	 */
 	@Override
-    public void Eliminar(Genero genero, Usuario usuario) { //Falta acabar borrargeneroDB
+    public void Eliminar(Genero genero, Usuario usuario) { //Falta acabar borrargeneroDB y mirar luego el diagrama
     		dao.eliminarGenero(genero, usuario);
     	}
 

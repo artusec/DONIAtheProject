@@ -58,7 +58,7 @@ public class SASLista implements InterfazSASLista {
      * @param lista lista a borrar
      */
     @Override
-    public void borrar(Lista lista, Usuario usuario) {
+    public void eliminar(Lista lista, Usuario usuario) { //Falta hacer la funcion eliminarLista de BD y revisar diagramas despues
     	dao.eliminarLista(lista, usuario);
     }
     
@@ -68,8 +68,8 @@ public class SASLista implements InterfazSASLista {
      * @param lista lista a modificar
      */
     @Override
-    public void modificar(String nombre, Lista lista, Usuario usuario) throws ErrorAutenticacion{
-    		lista.setNombre(nombre);
+    public void modificar(Lista lista, Usuario usuario) throws ErrorAutenticacion{
+    		//lista.setNombre(nombre); Se debe hacer antes y aqui llega ya la lista con los datos completos
     		dao.setLista(lista, usuario);
     }
 
@@ -94,8 +94,8 @@ public class SASLista implements InterfazSASLista {
      * @throws ErrorCreacionObjeto 
      */
     @Override
-    public void crearListaAuto(String nombre, Genero genero, Usuario usuario, int duracionMax) throws ErrorAutenticacion, ErrorCreacionObjeto {
-    		ListaAuto lista = new ListaAuto("a"/*TODO*/, nombre, genero);
+    public void crearListaAuto(ListaAuto lista, Genero genero, Usuario usuario, int duracionMax) throws ErrorAutenticacion, ErrorCreacionObjeto {
+    		//ListaAuto lista = new ListaAuto("a"/*TODO*/, nombre, genero);
     		if (lista == null)
     			throw new ErrorCreacionObjeto("Error al crear lista auto");
     		else {
@@ -113,7 +113,7 @@ public class SASLista implements InterfazSASLista {
 	    		}
 	    		dao.setListaAuto(lista, genero, usuario);
 	    		if (i == canciones.size())
-	    			throw new ErrorCreacionObjeto("No hay suficiente canciones para llegar a la duraci�n deseada");
+	    			throw new ErrorCreacionObjeto("No hay suficiente canciones para llegar a la duracion deseada");
     		}
     }
 

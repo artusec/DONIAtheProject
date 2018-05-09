@@ -3,7 +3,7 @@ package Controlador;
 import Excepciones.ErrorAutenticacion;
 import Excepciones.ErrorConsulta;
 import Excepciones.ErrorCreacionObjeto;
-import Model.Lista.InterfazListaFachada;
+import Model.Lista.InterfazFachadaLista;
 import Model.Objetos.Cancion;
 import Model.Objetos.Genero;
 import Model.Objetos.Lista;
@@ -14,17 +14,17 @@ public class ControlLista {
 
 	//el controlador necesita el usuario actual para acceder a solo a sus listas
 	Usuario usuarioActual = null;
-	InterfazListaFachada fLista;
+	InterfazFachadaLista fLista;
 	VentanaPrincipal ventanaPrincipal;
 
-	public ControlLista(VentanaPrincipal ventanaPrincipal, InterfazListaFachada fLista,
+	public ControlLista(VentanaPrincipal ventanaPrincipal, InterfazFachadaLista fLista,
 			Usuario usuarioActual) {
 		this.setfLista(fLista);
 		this.setUsuarioActual(usuarioActual);
 		this.setVentanaPrincipal(ventanaPrincipal);
 	}
 
-	private void setfLista(InterfazListaFachada fLista) {
+	private void setfLista(InterfazFachadaLista fLista) {
 		this.fLista = fLista;
 	}
 

@@ -10,10 +10,16 @@ public class SASUsuario implements InterfazSASUsuario {
 	private InterfazDAOFachada dao;
 	//hay un objeto dao, solo que no se donde deberiamos ponerlo
 	
+	/**
+	 * @param dao interfazDAOFachada
+	 */
 	public SASUsuario(InterfazDAOFachada dao) {
 		this.setDao(dao);
 	}
 	
+	/**
+	 * @param dao interfazDAOFachada
+	 */
 	private void setDao(InterfazDAOFachada dao) {
 		this.dao = dao;
 	}
@@ -38,7 +44,7 @@ public class SASUsuario implements InterfazSASUsuario {
      * @param Usuario usuario a eliminar
      * @throws ErrorDeAutenticacion si se ha producido un error al validar los datos del usuario
      */
-    public void borrar(Usuario Usuario) throws ErrorAutenticacion {
+    public void eliminar(Usuario Usuario) throws ErrorAutenticacion {
     		dao.eliminarUsuario(Usuario);
     }
 
@@ -50,8 +56,8 @@ public class SASUsuario implements InterfazSASUsuario {
      * @throws ErrorCreacionObjeto si los nombre o pass intruducidos no son validos
      * @throws ErrorDeAutenticacion si se ha producido un error al validar los datos del usuario (la contrasena esta mal)
      */
-    public void modificar(Usuario usuario, String nombre, String pass) throws ErrorCreacionObjeto, ErrorAutenticacion {
-    		Usuario nuevo = new Usuario(usuario.getId(), nombre, pass, usuario.getGustos());
+    public void modificar(Usuario nuevo) throws ErrorCreacionObjeto, ErrorAutenticacion {
+    		//Usuario nuevo = new Usuario(usuario.getId(), nombre, pass, usuario.getGustos());
     		dao.setUsuario(nuevo);
     }
 
@@ -59,7 +65,7 @@ public class SASUsuario implements InterfazSASUsuario {
      * Finaliza la sesion del usuario actual y sale de la ventana principal
      * @param usuario
      */
-    public void salir(Usuario usuario) {
+    public void salir(Usuario usuario) { //¿Sobra esta funcion?
     		//llamada al controlador (el cual no se si existe o cada sas hace de controlador)
     		//	en la cual establece el usuario actual a nulo y nos lleva a la pantalla de inicio
     }
@@ -72,8 +78,7 @@ public class SASUsuario implements InterfazSASUsuario {
      * @throws ErrorCreacionObjeto 
      * @throws ErrorAutenticacion 
      */
-	public void registro(String id, String nombre, String pass) throws ErrorCreacionObjeto, ErrorAutenticacion {
-		Usuario usuario = new Usuario(id, nombre, pass);
+	public void registro(Usuario usuario) throws ErrorCreacionObjeto, ErrorAutenticacion {
 		dao.setUsuario(usuario);
 	}
 }
