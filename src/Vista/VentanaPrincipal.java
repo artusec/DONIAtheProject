@@ -190,6 +190,7 @@ public class VentanaPrincipal extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				//ctrlU.ingreso(usernameField.getText().trim(), String.valueOf(loginField.getPassword()));
+				Login.setVisible(false);
 				setVisible(true);
 			}
 		});
