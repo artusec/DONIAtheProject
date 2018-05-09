@@ -56,9 +56,10 @@ public class SASLista implements InterfazSASLista {
     /**
      * borra una lista existente (obvio)
      * @param lista lista a borrar
+     * @param usuario usuario que desea borrar la lista
      */
     @Override
-    public void borrar(Lista lista, Usuario usuario) {
+    public void eliminar(Lista lista, Usuario usuario) { //Falta hacer la funcion eliminarLista de BD y revisar diagramas despues
     	dao.eliminarLista(lista, usuario);
     }
     
@@ -68,14 +69,15 @@ public class SASLista implements InterfazSASLista {
      * @param lista lista a modificar
      */
     @Override
-    public void modificar(String nombre, Lista lista, Usuario usuario) throws ErrorAutenticacion{
-    		lista.setNombre(nombre);
+    public void modificar(Lista lista, Usuario usuario) throws ErrorAutenticacion{
+    		//lista.setNombre(nombre); Se debe hacer antes y aqui llega ya la lista con los datos completos
     		dao.setLista(lista, usuario);
     }
 
     /**
      * Crea una lista vacia (las canciones se anaden aparte) y la guarda en la DB
      * @param nombre nombre de la lista
+     * @param usuario usuario que desea crear la lista
      * @throws ErrorCreacionObjeto 
      */
     @Override
@@ -89,13 +91,15 @@ public class SASLista implements InterfazSASLista {
 
     /**
      * Crea una listaAuto con sus temas correspondientes y la guarda en la DB
-     * @param nombre nombre de la lista
+     * @param lista objeto que se quiere crear
      * @param genero el genero del cual seleccionar las canciones
+     * @param usuario usuario que quiere crear la lista
+     * @int duracionMax duracion maxima que se quiere para la lista
      * @throws ErrorCreacionObjeto 
      */
     @Override
-    public void crearListaAuto(String nombre, Genero genero, Usuario usuario, int duracionMax) throws ErrorAutenticacion, ErrorCreacionObjeto {
-    		ListaAuto lista = new ListaAuto("a"/*TODO*/, nombre, genero);
+    public void crearListaAuto(ListaAuto lista, Genero genero, Usuario usuario, int duracionMax) throws ErrorAutenticacion, ErrorCreacionObjeto {
+    		//ListaAuto lista = new ListaAuto("a"/*TODO*/, nombre, genero);
     		if (lista == null)
     			throw new ErrorCreacionObjeto("Error al crear lista auto");
     		else {
@@ -113,7 +117,7 @@ public class SASLista implements InterfazSASLista {
 	    		}
 	    		dao.setListaAuto(lista, genero, usuario);
 	    		if (i == canciones.size())
-	    			throw new ErrorCreacionObjeto("No hay suficiente canciones para llegar a la duraci�n deseada");
+	    			throw new ErrorCreacionObjeto("No hay suficiente canciones para llegar a la duracion deseada");
     		}
     }
 
@@ -122,6 +126,7 @@ public class SASLista implements InterfazSASLista {
      * la cancion en la lista
      * @param cancion cancion a anadir
      * @param lista lista objetivo
+     * @param usuario usuario que quiere anadir la cancion
      * @throws ErrorAutenticacion 
      */
     @Override
@@ -137,6 +142,7 @@ public class SASLista implements InterfazSASLista {
      * Elimina de la DB la pertenencia de una cancion a una lista
      * @param cancion cancion a eliminar
      * @param lista lista objetivo
+     * @param usuario usuario que quiere eliminar la cancion
      * @throws ErrorAutenticacion 
      */
     @Override

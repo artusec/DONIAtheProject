@@ -3,6 +3,7 @@ package Controlador;
 import Excepciones.ErrorAutenticacion;
 import Excepciones.ErrorConsulta;
 import Excepciones.ErrorCreacionObjeto;
+import Model.Cancion.FachadaCancion;
 import Model.Cancion.InterfazFachadaCancion;
 import Model.Objetos.Cancion;
 import Model.Objetos.Genero;
@@ -14,42 +15,35 @@ import Vista.VentanaPrincipal;
 public class ControlCancion {
 	
 	InterfazFachadaCancion fCancion;
-	VentanaPrincipal ventanaPrincipal;
 	//el controlador necesita el usuario actual para acceder a solo a sus listas
 	Usuario usuarioActual;
 
-	public ControlCancion(VentanaPrincipal ventanaPrincipal, InterfazFachadaCancion fCancion,
-							Usuario usuarioActual) {
+	public ControlCancion(Usuario usuarioActual) {
 		this.setfCancion(fCancion);
 		this.setUsuarioActual(usuarioActual);
-		this.setVentanaPrincipal(ventanaPrincipal);
 	}
 	
 	private void setfCancion(InterfazFachadaCancion fCancion) {
-		this.fCancion = fCancion;
-	}
-
-	private void setVentanaPrincipal(VentanaPrincipal ventanaPrincipal) {
-		this.ventanaPrincipal = ventanaPrincipal;
+		this.fCancion = new FachadaCancion();
 	}
 
 	private void setUsuarioActual(Usuario usuarioActual) {
 		this.usuarioActual = usuarioActual;
 	}
 	
-	public void creaCancion(String titulo, String autor, String album, int duracion,
-			Genero genero, Letra letra, Video video) {
+	public void creaCancion(Cancion cancion) {
 		if (this.usuarioActual.getId() == "u0") {
 			//si es administrador puede hacer esto
 			try {
-				fCancion.creaCancion(titulo, autor, album, duracion, genero, letra, video);
+				fCancion.creaCancion(cancion);
+				VentanaPrincipal.actualizaCanciones();
 			} catch (ErrorCreacionObjeto e) {
 				//notifica
-				ventanaPrincipal.muestraError(e);
+				VentanaPrincipal.muestraError(e);
 			}
 		} else {
 			//notifica
-			ventanaPrincipal.muestraError(new ErrorAutenticacion());
+			VentanaPrincipal.muestraError(new ErrorAutenticacion());
 		}
 	}
 	
@@ -58,49 +52,50 @@ public class ControlCancion {
 			//si es administrador puede hacer esto
 			try {
 				fCancion.eliminaCancion(cancion);
+				VentanaPrincipal.actualizaCanciones();
 			} catch (Exception e) {
 				//notifica
-				ventanaPrincipal.muestraError(e);
+				VentanaPrincipal.muestraError(e);
 			}
 		} else {
 			//notifica
-			ventanaPrincipal.muestraError(new ErrorAutenticacion());
+			VentanaPrincipal.muestraError(new ErrorAutenticacion());
 		}
 	}
 	
-	public void consultaVideo(String cancion) {
+	public Video consultaVideo(String cancion) {
 		try {
-			fCancion.consultaVideo(cancion);
+			return fCancion.consultaVideo(cancion);
 		} catch (ErrorConsulta e) {
 			//notifica
-			ventanaPrincipal.muestraError(e);
+			VentanaPrincipal.muestraError(e);
 		}
 	}
 	
-	public void consultaLetra(String cancion) {
+	public Letra consultaLetra(String cancion) {
 		try {
-			fCancion.consultaLetra(cancion);
+			return fCancion.consultaLetra(cancion);
 		} catch (ErrorConsulta e) {
 			//notifica
-			ventanaPrincipal.muestraError(e);
+			VentanaPrincipal.muestraError(e);
 		}
 	}
 	
-	public void consultaCancion(String cancion) {
+	public Cancion consultaCancion(String cancion) {
 		try {
-			fCancion.consultaCancion(cancion);
+			return fCancion.consultaCancion(cancion);
 		} catch (ErrorConsulta e) {
 			//notifica
-			ventanaPrincipal.muestraError(e);
+			VentanaPrincipal.muestraError(e);
 		}
 	}
 	
-	public void descargaVideo(String cancion) {
+	public String descargaVideo(String cancion) {
 		try {
-			fCancion.descargaVideo(cancion);
+			return fCancion.descargaVideo(cancion);
 		} catch (ErrorConsulta e) {
 			//notifica
-			ventanaPrincipal.muestraError(e);
+			VentanaPrincipal.muestraError(e);
 		}
 	}
 }
