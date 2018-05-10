@@ -10,6 +10,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
@@ -58,7 +59,11 @@ public class VentanaPrincipal extends JFrame {
 		this.controlLista = controlLista;
 		this.controlUsuario = controlUsuario;
 		
-		Login = new JDialog(new JFrame("Login"), true);
+		this.setIconImage(new ImageIcon("src\\icons\\LOGO_DONIA.png").getImage()); 
+		JFrame loginFrame = new JFrame("Login");
+		loginFrame.setIconImage(new ImageIcon("src\\icons\\LOGO_DONIA.png").getImage());
+		Login = new JDialog(loginFrame, true);
+
 		initGUI();
 	}
 	
@@ -125,6 +130,7 @@ public class VentanaPrincipal extends JFrame {
 		login();
 		setVisible(true);
 		setExtendedState(java.awt.Frame.MAXIMIZED_BOTH);
+
 	}
 
 	
