@@ -12,6 +12,9 @@ import javax.swing.JPasswordField;
 import javax.swing.JButton;
 import javax.swing.JSeparator;
 import javax.swing.SwingConstants;
+import java.awt.Toolkit;
+import java.awt.Color;
+import javax.swing.border.LineBorder;
 
 public class Account extends JFrame {
 
@@ -22,14 +25,21 @@ public class Account extends JFrame {
 	private JPasswordField passwordField;
 
 	public Account() {
+		setBackground(Color.MAGENTA);
+		setForeground(Color.MAGENTA);
+		setIconImage(Toolkit.getDefaultToolkit().getImage(Account.class.getResource("/image/LOGO_DONIA.png")));
+		setResizable(false);
+		setTitle("ACCOUNT");
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		
 		JPanel panel = new JPanel();
+		panel.setBorder(new LineBorder(Color.MAGENTA));
 		
 		JPanel panel_1 = new JPanel();
+		panel_1.setBorder(new LineBorder(Color.MAGENTA));
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
@@ -45,6 +55,8 @@ public class Account extends JFrame {
 		);
 		
 		JButton btnEditAccount = new JButton("EDIT ACCOUNT");
+		btnEditAccount.setBackground(Color.LIGHT_GRAY);
+		btnEditAccount.setForeground(Color.BLACK);
 		
 		JSeparator separator = new JSeparator();
 		separator.setOrientation(SwingConstants.VERTICAL);
@@ -52,19 +64,19 @@ public class Account extends JFrame {
 		gl_panel.setHorizontalGroup(
 			gl_panel.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_panel.createSequentialGroup()
-					.addContainerGap(218, Short.MAX_VALUE)
-					.addComponent(separator, GroupLayout.PREFERRED_SIZE, 17, GroupLayout.PREFERRED_SIZE)
-					.addGap(35)
+					.addContainerGap(238, Short.MAX_VALUE)
+					.addComponent(separator, GroupLayout.PREFERRED_SIZE, 14, GroupLayout.PREFERRED_SIZE)
+					.addGap(30)
 					.addComponent(btnEditAccount)
-					.addGap(47))
+					.addGap(35))
 		);
 		gl_panel.setVerticalGroup(
 			gl_panel.createParallelGroup(Alignment.LEADING)
+				.addComponent(separator, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE)
 				.addGroup(gl_panel.createSequentialGroup()
 					.addGap(49)
 					.addComponent(btnEditAccount)
 					.addContainerGap(50, Short.MAX_VALUE))
-				.addComponent(separator, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE)
 		);
 		panel.setLayout(gl_panel);
 		

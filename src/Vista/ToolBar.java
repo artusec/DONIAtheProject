@@ -33,6 +33,7 @@ public class ToolBar extends JToolBar {
 	{
 		super();	
 		Account account = new Account();
+		SongAdmin songAdmin = new SongAdmin();
 		
 		JButton perfil = new JButton();
 		perfil.setToolTipText("Account");
@@ -73,8 +74,8 @@ public class ToolBar extends JToolBar {
 		{
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				// TODO Auto-generated method stub
 				
+				songAdmin.setVisible(true);
 			}
 		 });
 		
