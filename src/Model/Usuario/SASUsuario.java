@@ -1,8 +1,11 @@
 package Model.Usuario;
 
+import Controlador.DAO.DAOFachada;
 import Controlador.DAO.InterfazDAOFachada;
 import Excepciones.ErrorAutenticacion;
 import Excepciones.ErrorCreacionObjeto;
+import Excepciones.ErrorEliminacion;
+import Excepciones.ErrorGuardado;
 import Model.Objetos.Usuario;
 
 public class SASUsuario implements InterfazSASUsuario {
@@ -13,15 +16,12 @@ public class SASUsuario implements InterfazSASUsuario {
 	/**
 	 * @param dao interfazDAOFachada
 	 */
-	public SASUsuario(InterfazDAOFachada dao) {
-		this.setDao(dao);
+	public SASUsuario() {
+		this.setDao();
 	}
 	
-	/**
-	 * @param dao interfazDAOFachada
-	 */
-	private void setDao(InterfazDAOFachada dao) {
-		this.dao = dao;
+	private void setDao() {
+		this.dao = new DAOFachada();
 	}
 	
 	/**
@@ -42,9 +42,10 @@ public class SASUsuario implements InterfazSASUsuario {
     /**
      * Elimina el usuario de la DB
      * @param Usuario usuario a eliminar
+     * @throws ErrorEliminacion 
      * @throws ErrorDeAutenticacion si se ha producido un error al validar los datos del usuario
      */
-    public void eliminar(Usuario Usuario) throws ErrorAutenticacion {
+    public void eliminar(Usuario Usuario) throws ErrorAutenticacion, ErrorEliminacion {
     		dao.eliminarUsuario(Usuario);
     }
 
@@ -52,20 +53,12 @@ public class SASUsuario implements InterfazSASUsuario {
      * Genera el usuario con las modificaciones y lo guarda si es posible en la DB
      * @param usuario usuario nuevo
      * @throws ErrorCreacionObjeto si los nombre o pass intruducidos no son validos
+     * @throws ErrorGuardado 
      * @throws ErrorDeAutenticacion si se ha producido un error al validar los datos del usuario (la contrasena esta mal)
      */
-    public void modificar(Usuario nuevo) throws ErrorCreacionObjeto, ErrorAutenticacion {
+    public void modificar(Usuario nuevo) throws ErrorCreacionObjeto, ErrorAutenticacion, ErrorGuardado {
     		//Usuario nuevo = new Usuario(usuario.getId(), nombre, pass, usuario.getGustos());
     		dao.setUsuario(nuevo);
-    }
-
-    /**
-     * Finaliza la sesion del usuario actual y sale de la ventana principal
-     * @param usuario
-     */
-    public void salir(Usuario usuario) { //¿Sobra esta funcion?
-    		//llamada al controlador (el cual no se si existe o cada sas hace de controlador)
-    		//	en la cual establece el usuario actual a nulo y nos lleva a la pantalla de inicio
     }
     
     /**
@@ -73,8 +66,9 @@ public class SASUsuario implements InterfazSASUsuario {
      * @param usuario usuario que se quiere registrar
      * @throws ErrorCreacionObjeto 
      * @throws ErrorAutenticacion 
+     * @throws ErrorGuardado 
      */
-	public void registro(Usuario usuario) throws ErrorCreacionObjeto, ErrorAutenticacion {
+	public void registro(Usuario usuario) throws ErrorCreacionObjeto, ErrorAutenticacion, ErrorGuardado {
 		dao.setUsuario(usuario);
 	}
 }

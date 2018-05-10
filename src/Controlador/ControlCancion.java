@@ -3,10 +3,10 @@ package Controlador;
 import Excepciones.ErrorAutenticacion;
 import Excepciones.ErrorConsulta;
 import Excepciones.ErrorCreacionObjeto;
+import Excepciones.ErrorGuardado;
 import Model.Cancion.FachadaCancion;
 import Model.Cancion.InterfazFachadaCancion;
 import Model.Objetos.Cancion;
-import Model.Objetos.Genero;
 import Model.Objetos.Letra;
 import Model.Objetos.Usuario;
 import Model.Objetos.Video;
@@ -37,7 +37,7 @@ public class ControlCancion {
 			try {
 				fCancion.creaCancion(cancion);
 				VentanaPrincipal.actualizaCanciones();
-			} catch (ErrorCreacionObjeto e) {
+			} catch (ErrorCreacionObjeto | ErrorGuardado e) {
 				//notifica
 				VentanaPrincipal.muestraError(e);
 			}
@@ -66,36 +66,40 @@ public class ControlCancion {
 	public Video consultaVideo(String cancion) {
 		try {
 			return fCancion.consultaVideo(cancion);
-		} catch (ErrorConsulta e) {
+		} catch (ErrorConsulta | ErrorCreacionObjeto e) {
 			//notifica
 			VentanaPrincipal.muestraError(e);
 		}
+		return null;
 	}
 	
 	public Letra consultaLetra(String cancion) {
 		try {
 			return fCancion.consultaLetra(cancion);
-		} catch (ErrorConsulta e) {
+		} catch (ErrorConsulta | ErrorCreacionObjeto e) {
 			//notifica
 			VentanaPrincipal.muestraError(e);
 		}
+		return null;
 	}
 	
 	public Cancion consultaCancion(String cancion) {
 		try {
 			return fCancion.consultaCancion(cancion);
-		} catch (ErrorConsulta e) {
+		} catch (ErrorConsulta | ErrorCreacionObjeto e) {
 			//notifica
 			VentanaPrincipal.muestraError(e);
 		}
+		return null;
 	}
 	
 	public String descargaVideo(String cancion) {
 		try {
 			return fCancion.descargaVideo(cancion);
-		} catch (ErrorConsulta e) {
+		} catch (ErrorConsulta | ErrorCreacionObjeto e) {
 			//notifica
 			VentanaPrincipal.muestraError(e);
 		}
+		return cancion;
 	}
 }

@@ -50,14 +50,13 @@ public class VentanaPrincipal extends JFrame {
 	private JDialog Login;
 	
 
-	public VentanaPrincipal (ControlCancion controlCancion, ControlGenero controlGenero,
-							ControlLista controlLista, ControlUsuario controlUsuario) {
+	public VentanaPrincipal () {
 		super("Donia");
 		
-		this.controlCancion = controlCancion;
-		this.controlGenero = controlGenero;
-		this.controlLista = controlLista;
-		this.controlUsuario = controlUsuario;
+		this.controlCancion = new ControlCancion(null);
+		this.controlGenero = new ControlGenero(null);
+		this.controlLista = new ControlLista(null);
+		this.controlUsuario = new ControlUsuario(null);
 		
 		this.setIconImage(new ImageIcon("src\\icons\\LOGO_DONIA.png").getImage()); 
 		JFrame loginFrame = new JFrame("Login");
@@ -262,14 +261,33 @@ public class VentanaPrincipal extends JFrame {
 		panelCentral.add(panelDeLetras);
 	}
 	
-	public static void muestraError(Exception e)
+	public PanelTabla<Cancion> getPanelCanciones()
 	{
+		return panelCanciones;
+	}
+
+	public static void muestraError(Exception e) {
 		JOptionPane.showOptionDialog(new JFrame(), e.getMessage(), "ERROR", JOptionPane.PLAIN_MESSAGE, 
 				JOptionPane.ERROR_MESSAGE, null, null, null);
 	}
 	
-	public PanelTabla<Cancion> getPanelCanciones()
-	{
-		return panelCanciones;
+	public static void actualizaCanciones() {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	public static void actualizaGeneros() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public static void actualizaListas() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public static void actualizaUsuario() {
+		// TODO Auto-generated method stub
+		
 	}
 }

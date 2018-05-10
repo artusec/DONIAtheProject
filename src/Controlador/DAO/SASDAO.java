@@ -7,7 +7,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import Excepciones.ErrorAutenticacion;
+import Excepciones.ErrorConsulta;
 import Excepciones.ErrorCreacionObjeto;
+import Excepciones.ErrorEliminacion;
+import Excepciones.ErrorGuardado;
 import Model.Objetos.*;
 
 public class SASDAO implements InterfazSASDAO {
@@ -82,9 +85,19 @@ public class SASDAO implements InterfazSASDAO {
     		return this.DBconn != null && !this.DBconn.isClosed();
     }
     
+	/** DEPRECATED
+	 * Genera un id adecuado para el nuevo objeto a crear, consultando la DB
+	 * @return nuevo id
+	 
+	private String GeneradorId(String tipo) {
+		long idCuenta =	this.getUltimoIdCancion();
+		return tipo + idCuenta;
+	}
+	 * @throws ErrorCreacionObjeto */
+    
     // --------------- GET ---------------
     @Override
-    public Cancion getCancionDB(String idCancion) {
+    public Cancion getCancionDB(String idCancion) throws ErrorCreacionObjeto, ErrorConsulta  {
     		try {
 			if (this.conectado() && idCancion != null) {
 				Cancion cancion = null;
@@ -118,14 +131,12 @@ public class SASDAO implements InterfazSASDAO {
 				return cancion;
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
-		} catch (ErrorCreacionObjeto e) {
-			e.printStackTrace();
+			throw new ErrorConsulta();
 		}
 		return null;
     }
 
-    private Video getVideoDB(String idVideo) {
+    private Video getVideoDB(String idVideo) throws ErrorConsulta, ErrorCreacionObjeto {
     		try {
 			if (this.conectado() && idVideo != null) {
 				Video video = null;
@@ -142,14 +153,12 @@ public class SASDAO implements InterfazSASDAO {
 				return video;
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
-		} catch (ErrorCreacionObjeto e) {
-			
+			throw new ErrorConsulta();
 		}
 		return null;
 	}
 
-	private Letra getLetraDB(String idLetra) {
+	private Letra getLetraDB(String idLetra) throws ErrorConsulta, ErrorCreacionObjeto {
 		try {
 			if (this.conectado() && idLetra != null) {
 				Letra letra = null;
@@ -165,15 +174,13 @@ public class SASDAO implements InterfazSASDAO {
 				return letra;
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
-		} catch (ErrorCreacionObjeto e) {
-			
+			throw new ErrorConsulta();
 		}
 		return null;
 	}
 
 	@Override
-	public Lista getListaDB(String idLista) {
+	public Lista getListaDB(String idLista) throws ErrorConsulta, ErrorCreacionObjeto {
 		try {
 			if (this.conectado() && idLista != null) {
 				Lista lista = null;
@@ -183,6 +190,14 @@ public class SASDAO implements InterfazSASDAO {
 					//si ha leido bien lo que queriamos obtenemos datos
 					String id = datosLista.getString("lista");
 					String titulo = datosLista.getString("nombre");
+					String idGenero = datosLista.getString("genero"); //podria ser null
+					Genero genero = null;
+					if (idGenero != null){
+						//esto es una listaauto
+						if (this.existeGenero(idGenero)) {
+							genero = this.getGeneroDB(idGenero);
+						}
+					}
 					//procedimiento para obtener lista de canciones
 					ArrayList<Cancion> canciones = new ArrayList<Cancion>();
 				    PreparedStatement stat2 = this.DBconn.prepareStatement("select * from rlistacancion where lista = " + idLista + ";");
@@ -192,19 +207,20 @@ public class SASDAO implements InterfazSASDAO {
 				    		Cancion cancion = this.getCancionDB(idCancion);
 				    		canciones.add(cancion);
 					}
-					
-					lista = new ListaNormal(id, titulo, canciones);
+					if (genero != null)
+						lista = new ListaAuto(id, titulo, genero, canciones);
+					else
+						lista = new ListaNormal(id, titulo, canciones);
 				}
 				return lista;
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
-		} catch (ErrorCreacionObjeto e) {
-			e.printStackTrace();
+			throw new ErrorConsulta();
 		}
 		return null;  
 	}
 
+	/*DEPRECATED
 	public Lista getListaAutoDB(String idLista) {
 		try {
 			if (this.conectado() && idLista != null) {
@@ -237,10 +253,10 @@ public class SASDAO implements InterfazSASDAO {
 			e.printStackTrace();
 		}
 		return null;  
-	}
+	}*/
 	
 	@Override
-    public Genero getGeneroDB(String idGenero) {
+    public Genero getGeneroDB(String idGenero) throws ErrorConsulta, ErrorCreacionObjeto {
     		try {
 			if (this.conectado() && idGenero != null) {
 				Genero genero = null;
@@ -256,15 +272,13 @@ public class SASDAO implements InterfazSASDAO {
 				return genero;
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
-		} catch (ErrorCreacionObjeto e) {
-			e.printStackTrace();
+			throw new ErrorConsulta();
 		}
 		return null;
     }
 
     @Override
-    public Usuario getUsuarioDB(String idUsuario, String clave) throws ErrorAutenticacion {
+    public Usuario getUsuarioDB(String idUsuario, String clave) throws ErrorAutenticacion, ErrorConsulta, ErrorCreacionObjeto {
     	try {
 			if (this.conectado() && idUsuario != null) {
 				Usuario usuario = null;
@@ -291,40 +305,55 @@ public class SASDAO implements InterfazSASDAO {
 				return usuario;
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
-		} catch (ErrorCreacionObjeto e) {
-			e.printStackTrace();
+			throw new ErrorConsulta();
 		}
 		return null;   
 	}
 
 	@Override
-	public ArrayList<Cancion> getCancionesGeneroDB(String id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-    
-	@Override
-	public long getUltimoIdCancion() {
-		//TODO
-		return 0;
-	}
-
-	@Override
-	public long getUltimoIdLista() {
-		//TODO
-		return 0;
-	}
-
-	@Override
-	public long getUltimoIdGenero() {
-		//TODO
-		return 0;
+	public ArrayList<Cancion> getCancionesGeneroDB(String id) throws ErrorConsulta, ErrorCreacionObjeto {
+		try {
+			if (this.conectado() && id != null) {
+				ArrayList<Cancion> canciones = new ArrayList<Cancion>();
+			    PreparedStatement stat = this.DBconn.prepareStatement("select * from rusuariogenero where genero = " + id + ";");
+			    ResultSet datosCancion = stat.executeQuery();
+				while(datosCancion.next()) {
+					//si ha leido bien lo que queriamos obtenemos datos
+					String idCancion = datosCancion.getString("cancion");
+					String titulo = datosCancion.getString("titulo");
+					String autor = datosCancion.getString("autor");
+					String album = datosCancion.getString("album");
+					int duracion = datosCancion.getInt("duracion");
+					String idLetra = datosCancion.getString("letra");
+					String idVideo = datosCancion.getString("video");
+					String idGenero = datosCancion.getString("genero");
+					
+					Letra letra = null;
+					if (idLetra != null)
+					letra = this.getLetraDB(idLetra);
+					
+					Video video = null;
+					if (idVideo != null)
+					video = this.getVideoDB(idVideo);
+					
+					Genero genero = null;
+					if (idGenero != null)
+					genero = this.getGeneroDB(idGenero);
+					
+					Cancion cancion = new Cancion(idCancion, titulo, autor, album, duracion, letra, video, genero);
+					canciones.add(cancion);
+				}
+				return canciones;
+			}
+		} catch (SQLException e) {
+			throw new ErrorConsulta();
+		}
+		return null; 
 	}
 	
     // --------------- SET ---------------
     @Override
-    public void setCancion(Cancion cancion) {
+    public void setCancion(Cancion cancion) throws ErrorGuardado, ErrorCreacionObjeto {
 	    	try {
 				if (this.conectado() && cancion != null) {
 					//recabar datos
@@ -356,12 +385,12 @@ public class SASDAO implements InterfazSASDAO {
 					ps.executeQuery();
 				}
 			} catch (SQLException e) {
-				e.printStackTrace();
+				throw new ErrorGuardado();
 			}
     }
 
     @Override
-    public void setUsuario(Usuario usuario) throws ErrorAutenticacion {
+    public void setUsuario(Usuario usuario) throws ErrorAutenticacion, ErrorGuardado {
      	try {
 			if (this.conectado() && usuario != null) {
 				//recabar datos
@@ -384,20 +413,26 @@ public class SASDAO implements InterfazSASDAO {
 				}
 				PreparedStatement ps = this.DBconn.prepareStatement(sentencia + ';');
 				ps.executeQuery();
+				//estais aqui estais aqui no puedo veros pero se que estais aqui
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			throw new ErrorGuardado();
 		}
     }
 
     @Override
-    public void setGenero(Genero genero, Usuario usuario) {
+    public void setGenero(Genero genero, Usuario usuario) throws ErrorAutenticacion, ErrorGuardado {
      	try {
 			if (this.conectado() && genero != null && usuario != null) {
 				//recabar datos
 				String id = genero.getId();
 				String nombre = genero.getNombre();
-				
+				//recabar datos usuario
+				String idUsuario = usuario.getId();
+				String clave = usuario.getClave();
+				//comprobar usuario
+				if (!this.existeUsuario(idUsuario, clave))
+					throw new ErrorGuardado();
 				String sentencia = "";
 				//comprobar genero
 				if (this.existeGenero(id)) {
@@ -406,17 +441,18 @@ public class SASDAO implements InterfazSASDAO {
 				} else {
 					//insertar datos
 					sentencia = DBstruct.insertGenero(id, nombre);
+					sentencia += " " + DBstruct.insertRgeneroUsuario(id, idUsuario);
 				}
 				PreparedStatement ps = this.DBconn.prepareStatement(sentencia + ';');
 				ps.executeQuery();
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			throw new ErrorGuardado();
 		}
     }
 
     @Override
-    public void setLista(Lista lista, Usuario usuario) throws ErrorAutenticacion {
+    public void setLista(Lista lista, Usuario usuario) throws ErrorAutenticacion, ErrorGuardado {
 	    	try {
 			if (this.conectado() && lista != null && usuario != null) {
 				//recabar datos lista
@@ -449,12 +485,12 @@ public class SASDAO implements InterfazSASDAO {
 				ps.executeQuery();
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			throw new ErrorGuardado();
 		}
     }
     
     @Override
-	public void setListaAuto(Lista lista, Genero genero, Usuario usuario) throws ErrorAutenticacion {
+	public void setListaAuto(Lista lista, Genero genero, Usuario usuario) throws ErrorAutenticacion, ErrorGuardado {
 		this.setLista(lista, usuario);
 		//recabar datos
 		String idLista = lista.getId();
@@ -467,12 +503,12 @@ public class SASDAO implements InterfazSASDAO {
 				ps = this.DBconn.prepareStatement(sentencia + ';');
 				ps.executeQuery(); 
 			} catch (SQLException e) {
-				e.printStackTrace();
+				throw new ErrorGuardado();
 			}
 		}
 	}
     
-    private void setGenerosUsuario(Usuario usuario, ArrayList<Genero> generos) throws ErrorAutenticacion {
+    private void setGenerosUsuario(Usuario usuario, ArrayList<Genero> generos) throws ErrorAutenticacion, ErrorGuardado {
 	    	try {
 			if (this.conectado() && usuario != null && generos != null) {
 				//recabar datos usuario
@@ -483,7 +519,7 @@ public class SASDAO implements InterfazSASDAO {
 					throw new ErrorAutenticacion();
 				//borrar generos del usuario
 				String sentencia = "";
-				sentencia += DBstruct.deleteRgeneroUsuario(idUsuario);
+				sentencia += DBstruct.deleteRgenerosUsuario(idUsuario);
 				PreparedStatement ps = this.DBconn.prepareStatement(sentencia + ';');
 				ps.executeQuery();
 				sentencia = "";
@@ -501,57 +537,137 @@ public class SASDAO implements InterfazSASDAO {
 				ps2.executeQuery();
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			throw new ErrorGuardado();
 		}
     }
     
     // --------------- ELIMINAR ---------------
 	@Override
-	public void eliminarLista(Lista lista, Usuario usuarioActual) {
-		// TODO Auto-generated method stub
-		
+	public void eliminarLista(Lista lista) throws ErrorEliminacion {
+		try {
+			if (this.conectado() && lista != null) {
+				//recabar datos lista
+				String idLista = lista.getId();
+				if (!this.existeLista(idLista))
+					throw new ErrorEliminacion();
+				//borrar lista
+				String sentencia = "";
+				//al borrar la lista deberia hacer cascade
+				sentencia += DBstruct.deleteLista(idLista);
+				PreparedStatement ps = this.DBconn.prepareStatement(sentencia + ';');
+				ps.executeQuery();
+			}
+		} catch (SQLException e) {
+			throw new ErrorEliminacion();
+		}
 	}
 
 	@Override
-	public void eliminarCancion(Cancion cancion) {
-		// TODO Auto-generated method stub
-		
+	public void eliminarCancion(Cancion cancion) throws ErrorEliminacion {
+		try {
+			if (this.conectado() && cancion != null) {
+				//recabar datos usuario
+				String idCancion = cancion.getId();
+				//borrar lista
+				String sentencia = "";
+				//al borrar la lista deberia hacer cascade
+				sentencia += DBstruct.deleteCancion(idCancion);
+				PreparedStatement ps = this.DBconn.prepareStatement(sentencia + ';');
+				ps.executeQuery();
+			}
+		} catch (SQLException e) {
+			throw new ErrorEliminacion();
+		}
 	}
 
 	@Override
-	public void eliminarGenero(Genero genero, Usuario usuario) {
-		// TODO Auto-generated method stub
-		
+	public void eliminarGenero(Genero genero, Usuario usuario) throws ErrorEliminacion, ErrorAutenticacion {
+		try {
+			if (this.conectado() && genero != null && usuario != null) {
+				//recabar datos
+				String idGenero = genero.getId();
+				String idUsuario = usuario.getId();
+				String clave = usuario.getClave();
+				if (!this.existeGenero(idGenero) || !this.existeUsuario(idUsuario, clave))
+					throw new ErrorEliminacion();
+				//borrar relacion
+				String sentencia = "";
+				sentencia += DBstruct.deleteRgeneroUsuario(idUsuario, idGenero);
+				PreparedStatement ps = this.DBconn.prepareStatement(sentencia + ';');
+				ps.executeQuery();
+			}
+		} catch (SQLException e) {
+			throw new ErrorEliminacion();
+		}
 	}
 
 	@Override
-	public void eliminarUsuario(Usuario usuario) {
-		// TODO Auto-generated method stub
-		
+	public void eliminarUsuario(Usuario usuario) throws ErrorEliminacion, ErrorAutenticacion  {
+		try {
+			if (this.conectado() && usuario != null) {
+				//recabar datos
+				String idUsuario = usuario.getId();
+				String clave = usuario.getClave();
+				if (!this.existeUsuario(idUsuario, clave))
+					throw new ErrorEliminacion();
+				//borrar usuario
+				String sentencia = "";
+				sentencia += DBstruct.deleteUsuario(idUsuario);
+				//te vas amigo pero se que volveras!
+				PreparedStatement ps = this.DBconn.prepareStatement(sentencia + ';');
+				ps.executeQuery();
+			}
+		} catch (SQLException e) {
+			throw new ErrorEliminacion();
+		}
 	}
     
     // --------------- EXISTE ---------------
     private boolean existeCancion(String cancionId) {
-    		return this.getCancionDB(cancionId) != null;
+    		try {
+				return this.getCancionDB(cancionId) != null;
+		} catch (ErrorCreacionObjeto | ErrorConsulta e) {
+			return false;
+		}
     }
     
     private boolean existeUsuario(String usuarioId, String clave) throws ErrorAutenticacion {
-		return this.getUsuarioDB(usuarioId, clave) != null;
+		try {
+			return this.getUsuarioDB(usuarioId, clave) != null;
+		} catch (ErrorCreacionObjeto | ErrorConsulta e) {
+			return false;
+		}
     }
     
     private boolean existeLista(String listaId) {
-		return this.getListaDB(listaId) != null;
+		try {
+			return this.getListaDB(listaId) != null;
+		} catch (ErrorCreacionObjeto | ErrorConsulta e) {
+			return false;
+		}
     }
     
     private boolean existeGenero(String generoId) {
-		return this.getGeneroDB(generoId) != null;
+		try {
+			return this.getGeneroDB(generoId) != null;
+		} catch (ErrorCreacionObjeto | ErrorConsulta e) {
+			return false;
+		}
     }
     
     private boolean existeVideo(String videoId) {
-		return this.getVideoDB(videoId) != null;
+		try {
+			return this.getVideoDB(videoId) != null;
+		} catch (ErrorCreacionObjeto | ErrorConsulta e) {
+			return false;
+		}
     }
     
     private boolean existeLetra(String letraId) {
-		return this.getLetraDB(letraId) != null;
+		try {
+			return this.getLetraDB(letraId) != null;
+		} catch (ErrorCreacionObjeto | ErrorConsulta e) {
+			return false;
+		}
     }
 }

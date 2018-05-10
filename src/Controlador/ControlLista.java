@@ -3,11 +3,14 @@ package Controlador;
 import Excepciones.ErrorAutenticacion;
 import Excepciones.ErrorConsulta;
 import Excepciones.ErrorCreacionObjeto;
-import Model.Lista.InterfazListaFachada;
-import Model.Lista.FachadaLista;
+import Excepciones.ErrorEliminacion;
+import Excepciones.ErrorGuardado;
+import Model.Lista.InterfazFachadaLista;
+import Model.Lista.ListaFachada;
 import Model.Objetos.Cancion;
 import Model.Objetos.Genero;
 import Model.Objetos.Lista;
+import Model.Objetos.ListaAuto;
 import Model.Objetos.Usuario;
 import Vista.VentanaPrincipal;
 
@@ -24,7 +27,7 @@ public class ControlLista {
 	}
 
 	private void setfLista() {
-		this.fLista = new FachadaLista();
+		this.fLista = new ListaFachada();
 	}
 
 	private void setUsuarioActual(Usuario usuarioActual) {
@@ -35,16 +38,16 @@ public class ControlLista {
 	    	try {
 	    		fLista.crearLista(nombre, usuarioActual);
 	    		VentanaPrincipal.actualizaListas();
-	    	} catch (ErrorAutenticacion | ErrorCreacionObjeto e) {
+	    	} catch (ErrorAutenticacion | ErrorCreacionObjeto | ErrorGuardado e) {
 	    		VentanaPrincipal.muestraError(e);
 	    	}
     }
 
-    public void crearListaAuto(String nombre, Genero genero, int duracion) {
+    public void crearListaAuto(ListaAuto listaAuto, Genero genero, int duracion) {
     		try {
-    			fLista.crearListaAuto(nombre, genero, usuarioActual, duracion);
+    			fLista.crearListaAuto(listaAuto, genero, usuarioActual, duracion);
     			VentanaPrincipal.actualizaListas();
-		} catch (ErrorAutenticacion | ErrorCreacionObjeto e) {
+		} catch (ErrorAutenticacion | ErrorCreacionObjeto | ErrorConsulta | ErrorGuardado e) {
 			VentanaPrincipal.muestraError(e);
 		}
     }
@@ -58,20 +61,20 @@ public class ControlLista {
     		return null;
 	}
 
-	public void borrar(Lista lista) {
+	public void eliminar(Lista lista) {
 		try {
-			fLista.borrar(lista, usuarioActual);
-			VentanaPrincipal.actualizaListas();
-		} catch (ErrorAutenticacion e) {
+			fLista.eliminar(lista, usuarioActual);
+		} catch (ErrorAutenticacion | ErrorEliminacion e) {
 			VentanaPrincipal.muestraError(e);
 		}
+		VentanaPrincipal.actualizaListas();
 	}
 
-	public void modificar(String nombre, Lista lista) {
+	public void modificar(Lista lista) {
 		try {
-			fLista.modificar(nombre, lista, usuarioActual);
+			fLista.modificar(lista, usuarioActual);
 			VentanaPrincipal.actualizaListas();
-		} catch (ErrorAutenticacion e) {
+		} catch (ErrorAutenticacion | ErrorGuardado e) {
 			VentanaPrincipal.muestraError(e);
 		}		
 	}
@@ -80,8 +83,8 @@ public class ControlLista {
 		try {
 			fLista.anadirCancion(cancion, lista, usuarioActual);
 			VentanaPrincipal.actualizaListas();
-		} catch (ErrorAutenticacion e) {
-			ventanaPrincipal.muestraError(e);
+		} catch (ErrorAutenticacion | ErrorCreacionObjeto | ErrorConsulta | ErrorGuardado e) {
+			VentanaPrincipal.muestraError(e);
 		}
 	}
 
@@ -89,7 +92,7 @@ public class ControlLista {
 		try {
 			fLista.eliminarCancion(cancion, lista, usuarioActual);
 			VentanaPrincipal.actualizaListas();
-		} catch (ErrorAutenticacion e) {
+		} catch (ErrorAutenticacion | ErrorCreacionObjeto | ErrorConsulta | ErrorGuardado e) {
 			VentanaPrincipal.muestraError(e);
 		}
 	}
