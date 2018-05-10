@@ -56,8 +56,8 @@ public class SASLista implements InterfazSASLista {
      * @throws ErrorAutenticacion 
      */
     @Override
-    public void eliminar(Lista lista, Usuario usuario) throws ErrorAutenticacion, ErrorEliminacion { //Falta hacer la funcion eliminarLista de BD y revisar diagramas despues
-    		dao.eliminarLista(lista, usuario);
+    public void eliminar(Lista lista, Usuario usuario) throws ErrorAutenticacion, ErrorEliminacion { 
+    	dao.eliminarLista(lista, usuario);
     }
     
     /**
