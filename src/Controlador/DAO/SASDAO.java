@@ -26,7 +26,6 @@ public class SASDAO implements InterfazSASDAO {
     private static final String PASS = "usr";
     
     public SASDAO() {
-    	System.out.println("hoal");
     		SASDAO.DBserver = "jdbc:" + SASDAO.DBsys + "://" + DBhost + "/" + SASDAO.DBnom;
     		try {
 			this.conectaDB();

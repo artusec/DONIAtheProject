@@ -138,7 +138,6 @@ public class Login extends JDialog {
 						try {
 							yo = new Usuario(textField.getText().trim(), textField_1.getText().trim(), String.valueOf(passwordField.getPassword()));
 							if (yo != null) {
-								System.out.println("hola");
 								ctrlU.registro(yo);
 							}					
 						} catch (ErrorCreacionObjeto e1) {
@@ -174,13 +173,13 @@ public class Login extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public Login(ControlUsuario ctrlU) {
+	public Login(ControlUsuario ctrlU, VentanaPrincipal ventanaPrincipal) {
 		correcto = false;
 		singUp = new SingUp(this, ctrlU);
-		initGui(ctrlU);
+		initGui(ctrlU, ventanaPrincipal);
 	}
 
-	private void initGui(ControlUsuario ctrlU) {
+	private void initGui(ControlUsuario ctrlU, VentanaPrincipal ventanaPrincipal) {
 		setBounds(100, 100, 450, 260);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -228,8 +227,9 @@ public class Login extends JDialog {
 				Usuario accesor = ctrlU.ingreso(textField.getText().trim(), String.valueOf(passwordField.getPassword()));
 				if (accesor != null) {
 					correcto = true;
-					//establecer el usuario actual con una llamada a la ventana principal
+					ventanaPrincipal.setUsuarioActual(accesor);
 					setVisible(false);
+					ventanaPrincipal.setVisible(true);
 				}
 			}
 		});

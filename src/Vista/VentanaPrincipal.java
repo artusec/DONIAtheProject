@@ -19,6 +19,7 @@ import Controlador.ControlLista;
 import Controlador.ControlUsuario;
 import Model.Objetos.Cancion;
 import Model.Objetos.Lista;
+import Model.Objetos.Usuario;
 
 public class VentanaPrincipal extends JFrame {
 
@@ -35,47 +36,26 @@ public class VentanaPrincipal extends JFrame {
 	private PanelTabla<Cancion> panelCanciones;
 	private ToolBar toolBar;
 
-	// CONTROLADORES
+	// CONTROLADORES (se crean cuando se utilizan porque es una arquitectura web)
 	private ControlCancion controlCancion;
 	private ControlGenero controlGenero;
 	private ControlLista controlLista;
 	private ControlUsuario controlUsuario;
+	// USUARIO
+	private Usuario usuarioActual;
 
 	private Login Login;
 
 	public VentanaPrincipal () {
-
 		super("Donia");
-		
-		this.controlCancion = new ControlCancion(null);
-		this.controlGenero = new ControlGenero(null);
-		this.controlLista = new ControlLista(null);
-		this.controlUsuario = new ControlUsuario(null);
-		
 		initGUI();
-
-		Login = new Login(controlUsuario);
-		
-
-		controlCancion = new ControlCancion(null);
-		controlGenero = new ControlGenero(null);
-		controlLista = new ControlLista(null);
-		controlUsuario = new ControlUsuario(null);
-		
-		this.setIconImage(new ImageIcon("src/icons/LOGO_DONIA.png").getImage()); 
-
-		
+		Login = new Login(new ControlUsuario(usuarioActual), this);
 		Login.setVisible(true);
-		while(!Login.getCorrecto()) {
-			setVisible(false);
-		}
-		if(Login.getCorrecto()) {
-			setVisible(true);
-		}
+		//LO QUE HABIA AQUI ME HA HECHO POTAR CABRONES NO NO NO NO NOOOOOOOOO NO SE HACE ESO ME CAGUEN LA OSTIA!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	}
 	
-	private void initGUI()
-	{
+	private void initGUI() {
+		this.setIconImage(new ImageIcon("src/icons/LOGO_DONIA.png").getImage()); 
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		addWindowListener(new WindowListener() {
 
@@ -217,5 +197,9 @@ public class VentanaPrincipal extends JFrame {
 
 	public void setLetra(String letra) {
 		panelDeLetras.setTexto(letra);
+	}
+
+	public void setUsuarioActual(Usuario accesor) {
+		this.usuarioActual = accesor;
 	}
 }
