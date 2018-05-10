@@ -1,14 +1,10 @@
 package Vista;
 
 import java.awt.BorderLayout;
-import java.awt.FlowLayout;
-
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JTextField;
@@ -20,6 +16,8 @@ import java.awt.event.ActionEvent;
 
 public class Login extends JDialog {
 
+	private static final long serialVersionUID = 1L;
+	
 	private final JPanel contentPanel = new JPanel();
 	private JTextField textField;
 	private JPasswordField passwordField;
@@ -28,6 +26,8 @@ public class Login extends JDialog {
 	private SingUp singUp;
 	public class SingUp extends JDialog {
 
+		private static final long serialVersionUID = 1L;
+		
 		private final JPanel contentPanel = new JPanel();
 		private JTextField textField;
 		private JTextField textField_1;

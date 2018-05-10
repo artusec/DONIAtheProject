@@ -13,6 +13,8 @@ import javax.swing.JButton;
 import javax.swing.JSeparator;
 import javax.swing.SwingConstants;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.Color;
 import javax.swing.border.LineBorder;
 
@@ -55,28 +57,52 @@ public class Account extends JFrame {
 		);
 		
 		JButton btnEditAccount = new JButton("EDIT ACCOUNT");
+		btnEditAccount.setToolTipText("First edit the data fields and then press");
 		btnEditAccount.setBackground(Color.LIGHT_GRAY);
-		btnEditAccount.setForeground(Color.BLACK);
+		btnEditAccount.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				// 
+				
+			}
+		});
 		
 		JSeparator separator = new JSeparator();
 		separator.setOrientation(SwingConstants.VERTICAL);
+		
+		JLabel lblFirstEditThe = new JLabel("First edit the data fields and");
+		
+		JLabel lblThenPressThe = new JLabel("then press the button below");
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(
 			gl_panel.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_panel.createSequentialGroup()
-					.addContainerGap(238, Short.MAX_VALUE)
-					.addComponent(separator, GroupLayout.PREFERRED_SIZE, 14, GroupLayout.PREFERRED_SIZE)
-					.addGap(30)
-					.addComponent(btnEditAccount)
-					.addGap(35))
+					.addContainerGap(236, Short.MAX_VALUE)
+					.addComponent(separator, GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+						.addGroup(Alignment.TRAILING, gl_panel.createSequentialGroup()
+							.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING)
+								.addComponent(lblThenPressThe)
+								.addComponent(lblFirstEditThe))
+							.addGap(29))
+						.addGroup(Alignment.TRAILING, gl_panel.createSequentialGroup()
+							.addComponent(btnEditAccount)
+							.addGap(45))))
 		);
 		gl_panel.setVerticalGroup(
-			gl_panel.createParallelGroup(Alignment.LEADING)
-				.addComponent(separator, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE)
-				.addGroup(gl_panel.createSequentialGroup()
-					.addGap(49)
+			gl_panel.createParallelGroup(Alignment.TRAILING)
+				.addGroup(Alignment.LEADING, gl_panel.createSequentialGroup()
+					.addGap(21)
+					.addComponent(lblFirstEditThe)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addComponent(lblThenPressThe)
+					.addGap(18)
 					.addComponent(btnEditAccount)
-					.addContainerGap(50, Short.MAX_VALUE))
+					.addContainerGap(19, Short.MAX_VALUE))
+				.addComponent(separator, GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
 		);
 		panel.setLayout(gl_panel);
 		
