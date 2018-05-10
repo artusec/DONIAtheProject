@@ -9,14 +9,13 @@ import Model.Objetos.Usuario;
 
 public class FachadaUsuario implements InterfazFachadaUsuario {
 	
-    public SASUsuario SASUsuario;
+    public InterfazSASUsuario SASUsuario;
 
     
     public FachadaUsuario() {
-		// TODO Auto-generated constructor stub
-    	SASUsuario = new SASUsuario();
-    	
+    		SASUsuario = new SASUsuario();
 	}
+    
 	@Override
 	public void eliminar(Usuario usuario) throws ErrorAutenticacion, ErrorEliminacion {
 		SASUsuario.eliminar(usuario);

@@ -22,7 +22,7 @@ public class ToolBarCanciones extends JToolBar {
 		
 		JButton aniadirCancion = new JButton();
 		aniadirCancion.setToolTipText("Add song");
-		aniadirCancion.setIcon(new ImageIcon("src\\icons\\add.png"));
+		aniadirCancion.setIcon(new ImageIcon("src/icons/add.png"));
 		aniadirCancion.addActionListener(new ActionListener() {
 			
 			@Override
@@ -34,7 +34,7 @@ public class ToolBarCanciones extends JToolBar {
 		
 		JButton eliminarCancion = new JButton();
 		eliminarCancion.setToolTipText("Delete song from the list");
-		eliminarCancion.setIcon(new ImageIcon("src\\icons\\delete.png"));
+		eliminarCancion.setIcon(new ImageIcon("src/icons/delete.png"));
 		eliminarCancion.addActionListener(new ActionListener() {
 			
 			@Override
@@ -48,7 +48,7 @@ public class ToolBarCanciones extends JToolBar {
 		
 		JButton meGusta = new JButton();
 		meGusta.setToolTipText("I like this song");
-		meGusta.setIcon(new ImageIcon(("src\\icons\\hand.png")));
+		meGusta.setIcon(new ImageIcon(("src/icons/hand.png")));
 		meGusta.addActionListener(new ActionListener()
 		{
 			@Override
@@ -62,7 +62,7 @@ public class ToolBarCanciones extends JToolBar {
 		
 		JButton verLetra = new JButton();
 		verLetra.setToolTipText("See the lyrics");
-		verLetra.setIcon(new ImageIcon("src\\icons\\flecha.png"));
+		verLetra.setIcon(new ImageIcon("src/icons/flecha.png"));
 		verLetra.addActionListener(new ActionListener() {
 			
 			@Override

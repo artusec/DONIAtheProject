@@ -13,7 +13,6 @@ import Model.Objetos.Usuario;
 public class SASGenero implements InterfazSASGenero {
 	
 	private InterfazDAOFachada dao;
-	//hay un objeto dao, solo que no se donde deberiamos ponerlo
 	
 	public SASGenero() {
 		this.setDao();

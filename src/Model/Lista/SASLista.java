@@ -38,9 +38,10 @@ public class SASLista implements InterfazSASLista {
 	 * @param id id de la lista a consultar
 	 * @return la lista buscada, null si no existe
 	 * @throws ErrorConsulta 
+	 * @throws ErrorCreacionObjeto 
 	 */
 	@Override
-    public Lista consulta(String id) throws ErrorConsulta {
+    public Lista consulta(String id) throws ErrorConsulta, ErrorCreacionObjeto {
 		Lista lista = dao.getListaDB(id);
 		if (lista == null)
 			throw new ErrorConsulta("Error al consultar lista");

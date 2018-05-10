@@ -11,7 +11,7 @@ import Model.Objetos.Usuario;
 
 public class SASUsuario implements InterfazSASUsuario {
 	
-	private DAOFachada dao;
+	private InterfazDAOFachada dao;
 	//hay un objeto dao, solo que no se donde deberiamos ponerlo
 	
 	/**

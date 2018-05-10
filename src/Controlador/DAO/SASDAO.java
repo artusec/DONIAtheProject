@@ -26,14 +26,14 @@ public class SASDAO implements InterfazSASDAO {
     private static final String PASS = "usr";
     
     public SASDAO() {
+    	System.out.println("hoal");
     		SASDAO.DBserver = "jdbc:" + SASDAO.DBsys + "://" + DBhost + "/" + SASDAO.DBnom;
     		try {
-				this.initDB();
-			} catch (ClassNotFoundException e) {
-				e.printStackTrace();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			this.conectaDB();
+		} catch (SQLException | ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+    		//this.initDB();
     }
     
     /**
@@ -101,7 +101,7 @@ public class SASDAO implements InterfazSASDAO {
     		try {
 			if (this.conectado() && idCancion != null) {
 				Cancion cancion = null;
-			    PreparedStatement stat = this.DBconn.prepareStatement("select * from cancion where cancion = " + idCancion + ";");
+			    PreparedStatement stat = this.DBconn.prepareStatement("select * from cancion where cancion = '" + idCancion + "';");
 			    ResultSet datosCancion = stat.executeQuery();
 				if(datosCancion.next()) {
 					//si ha leido bien lo que queriamos
@@ -140,7 +140,7 @@ public class SASDAO implements InterfazSASDAO {
     		try {
 			if (this.conectado() && idVideo != null) {
 				Video video = null;
-			    PreparedStatement stat = this.DBconn.prepareStatement("select * from video where video = " + idVideo + ";");
+			    PreparedStatement stat = this.DBconn.prepareStatement("select * from video where video = '" + idVideo + "';");
 			    ResultSet datosVideo = stat.executeQuery();
 				if(datosVideo.next()) {
 					//si ha leido bien lo que queriamos
@@ -162,7 +162,7 @@ public class SASDAO implements InterfazSASDAO {
 		try {
 			if (this.conectado() && idLetra != null) {
 				Letra letra = null;
-			    PreparedStatement stat = this.DBconn.prepareStatement("select * from letra where letra = " + idLetra + ";");
+			    PreparedStatement stat = this.DBconn.prepareStatement("select * from letra where letra = '" + idLetra + "';");
 			    ResultSet datosLetra = stat.executeQuery();
 				if(datosLetra.next()) {
 					//si ha leido bien lo que queriamos
@@ -184,7 +184,7 @@ public class SASDAO implements InterfazSASDAO {
 		try {
 			if (this.conectado() && idLista != null) {
 				Lista lista = null;
-			    PreparedStatement stat = this.DBconn.prepareStatement("select * from lista where lista = " + idLista + ";");
+			    PreparedStatement stat = this.DBconn.prepareStatement("select * from lista where lista = '" + idLista + "';");
 			    ResultSet datosLista = stat.executeQuery();
 				if(datosLista.next()) {
 					//si ha leido bien lo que queriamos obtenemos datos
@@ -200,7 +200,7 @@ public class SASDAO implements InterfazSASDAO {
 					}
 					//procedimiento para obtener lista de canciones
 					ArrayList<Cancion> canciones = new ArrayList<Cancion>();
-				    PreparedStatement stat2 = this.DBconn.prepareStatement("select * from rlistacancion where lista = " + idLista + ";");
+				    PreparedStatement stat2 = this.DBconn.prepareStatement("select * from rlistacancion where lista = '" + idLista + "';");
 				    ResultSet datosListaCanciones = stat2.executeQuery();
 				    while(datosListaCanciones.next()) {
 				    		String idCancion = datosListaCanciones.getString("cancion");
@@ -260,7 +260,7 @@ public class SASDAO implements InterfazSASDAO {
     		try {
 			if (this.conectado() && idGenero != null) {
 				Genero genero = null;
-			    PreparedStatement stat = this.DBconn.prepareStatement("select * from genero where genero = " + idGenero + ";");
+			    PreparedStatement stat = this.DBconn.prepareStatement("select * from genero where genero = '" + idGenero + "';");
 			    ResultSet datosGenero = stat.executeQuery();
 				if(datosGenero.next()) {
 					//si ha leido bien lo que queriamos
@@ -282,17 +282,17 @@ public class SASDAO implements InterfazSASDAO {
     	try {
 			if (this.conectado() && idUsuario != null) {
 				Usuario usuario = null;
-			    PreparedStatement stat = this.DBconn.prepareStatement("select * from usuario where usuario = " + idUsuario + ";");
+			    PreparedStatement stat = this.DBconn.prepareStatement("select * from usuario where usuario = '" + idUsuario + "';");
 			    ResultSet datosUsuario = stat.executeQuery();
 				if(datosUsuario.next()) {
 					//si ha leido bien lo que queriamos
 					String id = datosUsuario.getString("usuario");
 					String nombre = datosUsuario.getString("nombre");
 					String claveObtenida = datosUsuario.getString("clave");
-					if (claveObtenida != clave) throw new ErrorAutenticacion("Contraseña incorrecta para el usuario: " + nombre);
+					if (!claveObtenida.equals(clave)) throw new ErrorAutenticacion("Contraseña incorrecta para el usuario: " + nombre);
 					//procedimiento para obtener lista de generos
 					ArrayList<Genero> generos = new ArrayList<Genero>();
-					PreparedStatement stat2 = this.DBconn.prepareStatement("select * from rusuariogenero where usuario = " + idUsuario + ";");
+					PreparedStatement stat2 = this.DBconn.prepareStatement("select * from rusuariogenero where usuario = '" + idUsuario + "';");
 				    ResultSet datosListaGeneros = stat2.executeQuery();
 				    while(datosListaGeneros.next()) {
 				    		String idGenero = datosListaGeneros.getString("genero");
@@ -305,7 +305,7 @@ public class SASDAO implements InterfazSASDAO {
 				return usuario;
 			}
 		} catch (SQLException e) {
-			throw new ErrorConsulta();
+			throw new ErrorConsulta(e.getMessage());
 		}
 		return null;   
 	}
@@ -315,7 +315,7 @@ public class SASDAO implements InterfazSASDAO {
 		try {
 			if (this.conectado() && id != null) {
 				ArrayList<Cancion> canciones = new ArrayList<Cancion>();
-			    PreparedStatement stat = this.DBconn.prepareStatement("select * from rusuariogenero where genero = " + id + ";");
+			    PreparedStatement stat = this.DBconn.prepareStatement("select * from rusuariogenero where genero = '" + id + "';");
 			    ResultSet datosCancion = stat.executeQuery();
 				while(datosCancion.next()) {
 					//si ha leido bien lo que queriamos obtenemos datos
@@ -414,9 +414,11 @@ public class SASDAO implements InterfazSASDAO {
 				PreparedStatement ps = this.DBconn.prepareStatement(sentencia + ';');
 				ps.executeQuery();
 				//estais aqui estais aqui no puedo veros pero se que estais aqui
+			} else {
+				throw new ErrorGuardado();
 			}
 		} catch (SQLException e) {
-			throw new ErrorGuardado();
+			throw new ErrorGuardado(e.getMessage());
 		}
     }
 
@@ -445,6 +447,8 @@ public class SASDAO implements InterfazSASDAO {
 				}
 				PreparedStatement ps = this.DBconn.prepareStatement(sentencia + ';');
 				ps.executeQuery();
+			} else {
+				throw new ErrorGuardado();
 			}
 		} catch (SQLException e) {
 			throw new ErrorGuardado();
@@ -483,6 +487,8 @@ public class SASDAO implements InterfazSASDAO {
 				}
 				PreparedStatement ps = this.DBconn.prepareStatement(sentencia + ';');
 				ps.executeQuery();
+			} else {
+				throw new ErrorGuardado();
 			}
 		} catch (SQLException e) {
 			throw new ErrorGuardado();
@@ -535,6 +541,8 @@ public class SASDAO implements InterfazSASDAO {
 				}
 				PreparedStatement ps2 = this.DBconn.prepareStatement(sentencia + ';');
 				ps2.executeQuery();
+			} else {
+				throw new ErrorGuardado();
 			}
 		} catch (SQLException e) {
 			throw new ErrorGuardado();

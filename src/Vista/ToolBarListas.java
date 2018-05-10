@@ -21,7 +21,7 @@ public class ToolBarListas extends JToolBar {
 		
 		JButton nuevLista = new JButton();
 		nuevLista.setToolTipText("Create a new empty list");
-		nuevLista.setIcon(new ImageIcon(("src\\icons\\add.png")));
+		nuevLista.setIcon(new ImageIcon(("src/icons/add.png")));
 		nuevLista.addActionListener(new ActionListener()
 		{
 			@Override
@@ -36,7 +36,7 @@ public class ToolBarListas extends JToolBar {
 		
 		JButton eliminarLista = new JButton();
 		eliminarLista.setToolTipText("Delete a list");
-		eliminarLista.setIcon(new ImageIcon(("src\\icons\\delete.png")));
+		eliminarLista.setIcon(new ImageIcon(("src/icons/delete.png")));
 		eliminarLista.addActionListener(new ActionListener()
 		{
 			@Override
@@ -50,7 +50,7 @@ public class ToolBarListas extends JToolBar {
 		
 		JButton listaAuto = new JButton();
 		listaAuto.setToolTipText("Create a list automatically");
-		listaAuto.setIcon(new ImageIcon(("src\\icons\\auto.png")));
+		listaAuto.setIcon(new ImageIcon(("src/icons/auto.png")));
 		listaAuto.addActionListener(new ActionListener()
 		{
 			@Override

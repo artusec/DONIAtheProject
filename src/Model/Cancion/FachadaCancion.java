@@ -8,29 +8,33 @@ import Model.Objetos.*;
 
 public class FachadaCancion implements InterfazFachadaCancion {
     
-	public InterfazSASCancion interfazSASCancion;
+	public InterfazSASCancion sasCancion;
 
+	public FachadaCancion() {
+		sasCancion = new SASCancion();
+	}
+	
     public void creaCancion(Cancion cancion) throws ErrorCreacionObjeto, ErrorGuardado {
-    		interfazSASCancion.creaCancion(cancion);
+    		sasCancion.creaCancion(cancion);
 	}
 	
 	public void eliminaCancion(Cancion cancion) throws ErrorEliminacion {
-		interfazSASCancion.eliminaCancion(cancion);
+		sasCancion.eliminaCancion(cancion);
 	}
 	
     public Video consultaVideo(String cancion) throws ErrorConsulta, ErrorCreacionObjeto {
-    		return interfazSASCancion.consultaVideo(cancion);
+    		return sasCancion.consultaVideo(cancion);
     }
 
     public Letra consultaLetra(String cancion) throws ErrorConsulta, ErrorCreacionObjeto {
-    		return interfazSASCancion.consultaLetra(cancion);
+    		return sasCancion.consultaLetra(cancion);
     }
 
     public Cancion consultaCancion(String cancion) throws ErrorConsulta, ErrorCreacionObjeto {
-    		return interfazSASCancion.consultaCancion(cancion);
+    		return sasCancion.consultaCancion(cancion);
     }
 
     public String descargaVideo(String cancion) throws ErrorConsulta, ErrorCreacionObjeto {
-    		return interfazSASCancion.descargaVideo(cancion);
+    		return sasCancion.descargaVideo(cancion);
     }
 }

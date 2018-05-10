@@ -55,7 +55,7 @@ public class ControlLista {
 	public Lista consulta(String idLista) {
     		try {
 			return fLista.consulta(idLista);
-		} catch (ErrorConsulta e) {
+		} catch (ErrorCreacionObjeto | ErrorConsulta e) {
 			VentanaPrincipal.muestraError(e);
 		}
     		return null;

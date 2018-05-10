@@ -43,8 +43,7 @@ public class VentanaPrincipal extends JFrame {
 
 	private Login Login;
 
-	public VentanaPrincipal (ControlCancion controlCancion, ControlGenero controlGenero,
-							ControlLista controlLista, ControlUsuario controlUsuario) throws ErrorCreacionObjeto {
+	public VentanaPrincipal () {
 
 		super("Donia");
 		
@@ -63,7 +62,7 @@ public class VentanaPrincipal extends JFrame {
 		controlLista = new ControlLista(null);
 		controlUsuario = new ControlUsuario(null);
 		
-		this.setIconImage(new ImageIcon("src\\icons\\LOGO_DONIA.png").getImage()); 
+		this.setIconImage(new ImageIcon("src/icons/LOGO_DONIA.png").getImage()); 
 
 		
 		Login.setVisible(true);

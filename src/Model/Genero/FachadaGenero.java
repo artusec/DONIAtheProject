@@ -10,17 +10,22 @@ import Model.Objetos.Usuario;
 
 public class FachadaGenero implements InterfazFachadaGenero {
 	
-    public InterfazSASGenero interfazSASGenero;
+    public InterfazSASGenero sasGenero;
+    
+    public FachadaGenero() {
+    		sasGenero = new SASGenero();
+    }
+    
     @Override
     public void Anadir(Genero genero, Usuario usuario) throws ErrorAutenticacion, ErrorGuardado {
-    		interfazSASGenero.Anadir(genero, usuario);
+    		sasGenero.Anadir(genero, usuario);
     }
     @Override
     public void Eliminar(Genero genero, Usuario usuario) throws ErrorEliminacion, ErrorAutenticacion {
-    		interfazSASGenero.Eliminar(genero, usuario);
+    		sasGenero.Eliminar(genero, usuario);
     }
     @Override
     public Genero Consultar(String idGenero) throws ErrorConsulta, ErrorCreacionObjeto {
-    		return interfazSASGenero.Consultar(idGenero);
+    		return sasGenero.Consultar(idGenero);
     }
 }

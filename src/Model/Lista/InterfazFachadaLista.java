@@ -8,7 +8,7 @@ import Excepciones.ErrorGuardado;
 import Model.Objetos.*;
 
 public interface InterfazFachadaLista {
-	public Lista consulta(String idLista) throws ErrorConsulta;
+	public Lista consulta(String idLista) throws ErrorConsulta, ErrorCreacionObjeto;
 	public void eliminar(Lista lista, Usuario usuario) throws ErrorAutenticacion, ErrorEliminacion;
 	public void modificar(Lista lista, Usuario usuario) throws ErrorAutenticacion, ErrorGuardado;
 	public void crearLista(String nombre, Usuario usuario) throws ErrorAutenticacion, ErrorCreacionObjeto, ErrorGuardado;

@@ -14,7 +14,7 @@ public class ControlUsuario {
 	
 	//el controlador necesita el usuario actual para acceder a solo a sus listas
 	Usuario usuarioActual = null;
-	FachadaUsuario fUsuario;
+	InterfazFachadaUsuario fUsuario;
 	
 	public ControlUsuario(Usuario usuarioActual) {
 		this.setUsuarioActual(usuarioActual);
@@ -56,11 +56,11 @@ public class ControlUsuario {
 		}
 	}
 	
-	public Usuario ingreso(String id, String pass) throws ErrorConsulta, ErrorCreacionObjeto {
+	public Usuario ingreso(String id, String pass) {
 		try {
 			this.usuarioActual = fUsuario.ingreso(id, pass);
 			return usuarioActual;
-		} catch (ErrorAutenticacion e) {
+		} catch (ErrorAutenticacion | ErrorConsulta | ErrorCreacionObjeto e) {
 			VentanaPrincipal.muestraError(e);
 		}
 		return null;

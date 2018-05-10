@@ -30,7 +30,7 @@ public class ToolBar extends JToolBar {
 
 		JButton perfil = new JButton();
 		perfil.setToolTipText("Account");
-		perfil.setIcon(new ImageIcon("src\\icons\\perfil.png"));
+		perfil.setIcon(new ImageIcon("src/icons/perfil.png"));
 		perfil.addActionListener(new ActionListener()
 		{
 			@Override
@@ -45,7 +45,7 @@ public class ToolBar extends JToolBar {
 		
 		JButton verGustos = new JButton();
 		verGustos.setToolTipText("See genre");
-		verGustos.setIcon(new ImageIcon("src\\icons\\gustos.png"));
+		verGustos.setIcon(new ImageIcon("src/icons/gustos.png"));
 		verGustos.addActionListener(new ActionListener()
 		{
 			@Override
@@ -62,7 +62,7 @@ public class ToolBar extends JToolBar {
 		
 		JButton aniadirCancion = new JButton();
 		aniadirCancion.setToolTipText("Add new song");
-		aniadirCancion.setIcon(new ImageIcon("src\\icons\\addCancion.png"));
+		aniadirCancion.setIcon(new ImageIcon("src/icons/addCancion.png"));
 		aniadirCancion.addActionListener(new ActionListener()
 		{
 			@Override
@@ -77,7 +77,7 @@ public class ToolBar extends JToolBar {
 		
 		JButton eliminarCancion = new JButton();
 		eliminarCancion.setToolTipText("Delete song");
-		eliminarCancion.setIcon(new ImageIcon("src\\icons\\eliminarCancion.png"));
+		eliminarCancion.setIcon(new ImageIcon("src/icons/eliminarCancion.png"));
 		eliminarCancion.addActionListener(new ActionListener()
 		{
 			@Override
@@ -92,7 +92,7 @@ public class ToolBar extends JToolBar {
 		
 		JButton modifCancion = new JButton();
 		modifCancion.setToolTipText("Modify song");
-		modifCancion.setIcon(new ImageIcon("src\\icons\\modificarCancion.png"));
+		modifCancion.setIcon(new ImageIcon("src/icons/modificarCancion.png"));
 		modifCancion.addActionListener(new ActionListener()
 		{
 			@Override
@@ -107,7 +107,7 @@ public class ToolBar extends JToolBar {
 		
 		JButton salir = new JButton();
 		salir.setToolTipText("Exit");
-		salir.setIcon(new ImageIcon("src\\icons\\exit.png"));
+		salir.setIcon(new ImageIcon("src/icons/exit.png"));
 		salir.addActionListener(new ActionListener()
 		{
 			@Override

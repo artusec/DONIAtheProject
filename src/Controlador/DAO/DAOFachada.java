@@ -11,7 +11,7 @@ import Model.Objetos.*;
 
 public class DAOFachada implements InterfazDAOFachada {
 	
-    private SASDAO sasdao;
+    private InterfazSASDAO sasdao;
 
     public DAOFachada() {
     		this.sasdao = new SASDAO();

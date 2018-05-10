@@ -156,9 +156,9 @@ public abstract class DBstruct {
 	}
 	
 	public static String insertUsuario(String id, String nombre, String clave) {
-		return "INSERT INTO donia.usuario" +
-				"(usuario, nombre, clave)" +
-				"VALUES('" + usuario + "'," + "'" + nombre + "'," + "'" + clave + "')";
+		return "INSERT INTO donia.usuario\n" +
+				"(usuario, nombre, clave)\n" +
+				"VALUES('" + id + "', '" + nombre + "', '"  + clave + "')";
 	}
 	
 	public static String insertGenero(String id, String nombre) {

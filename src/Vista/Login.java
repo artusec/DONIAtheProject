@@ -135,19 +135,15 @@ public class Login extends JDialog {
 					public void actionPerformed(ActionEvent e) {
 						//Registrar usuario
 						Usuario yo = null;
-						
 						try {
 							yo = new Usuario(textField.getText().trim(), textField_1.getText().trim(), String.valueOf(passwordField.getPassword()));
 							if (yo != null) {
+								System.out.println("hola");
 								ctrlU.registro(yo);
-							}
-							
+							}					
 						} catch (ErrorCreacionObjeto e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
 							System.out.println("ERROR");
 						}
-						
 						setVisible(false);
 						login.setVisible(true);
 						
@@ -179,11 +175,9 @@ public class Login extends JDialog {
 	 * Create the dialog.
 	 */
 	public Login(ControlUsuario ctrlU) {
-		
 		correcto = false;
 		singUp = new SingUp(this, ctrlU);
 		initGui(ctrlU);
-		
 	}
 
 	private void initGui(ControlUsuario ctrlU) {
@@ -224,37 +218,28 @@ public class Login extends JDialog {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
 				singUp.setVisible(true);
-				
 			}
 		});
 		
 		JButton btnLogin = new JButton("Login");
 		btnLogin.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				
+			public void actionPerformed(ActionEvent arg0) {		
 				//si existe y es correcto
-				try {
-					ctrlU.ingreso(textField.getText().trim(), String.valueOf(passwordField.getPassword()));
-					
-				} catch (ErrorConsulta | ErrorCreacionObjeto e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+				Usuario accesor = ctrlU.ingreso(textField.getText().trim(), String.valueOf(passwordField.getPassword()));
+				if (accesor != null) {
+					correcto = true;
+					//establecer el usuario actual con una llamada a la ventana principal
+					setVisible(false);
 				}
-				
-				correcto = true;
-				setVisible(false);
 			}
 		});
 		btnLogin.setBounds(225, 164, 97, 25);
 		contentPanel.add(btnLogin);
 		
 		setLocationRelativeTo(null);
-		
 	}
 
 	public Boolean getCorrecto() {
 		return correcto;
 	}
-	
-	
 }
