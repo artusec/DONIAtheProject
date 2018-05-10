@@ -12,7 +12,7 @@ public class PanelAreaTexto extends JPanel {
 	protected JTextArea areatexto;
 	
 	 public PanelAreaTexto(String titulo, boolean editable) 
-	 {
+	 {		
 		this.setLayout(new GridLayout(1,1));
 		this.areatexto = new JTextArea(40, 30);
 		this.areatexto.setEditable(editable);

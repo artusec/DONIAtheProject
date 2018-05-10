@@ -5,6 +5,11 @@ import Controlador.ControlGenero;
 import Controlador.ControlLista;
 import Controlador.ControlUsuario;
 import Controlador.DAO.InterfazDAOFachada;
+import Excepciones.ErrorCreacionObjeto;
+import Model.Cancion.InterfazFachadaCancion;
+import Model.Genero.InterfazFachadaGenero;
+import Model.Lista.InterfazFachadaLista;
+import Model.Usuario.InterfazFachadaUsuario;
 import Vista.VentanaPrincipal;
 
 public class Main {
@@ -26,21 +31,29 @@ public class Main {
 	
 	
 	public static void main (String [] args) {
-		iniciarGUI();
+
 		iniciarControladores();
+		try {
+			iniciarGUI();
+		} catch (ErrorCreacionObjeto e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	private static void iniciarControladores() {
 		
-		/*controlCacion = new ControlCancion();
-		controlGenero = new ControlGenero();
-		controlLista = new ControlLista();
-		controlUsuario = new ControlUsuario();*/
+		controlCancion = new ControlCancion(null);
+		controlGenero = new ControlGenero(null);
+		controlLista = new ControlLista(null);
+		controlUsuario = new ControlUsuario(null);
 	}
 
-	private static void iniciarGUI()
+	private static void iniciarGUI() throws ErrorCreacionObjeto
 	{	 
-		vista = new VentanaPrincipal();	
+
+		 vista = new VentanaPrincipal(controlCancion,controlGenero,controlLista,controlUsuario);	
+
 	}
 
 }
