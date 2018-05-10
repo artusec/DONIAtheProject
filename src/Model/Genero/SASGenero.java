@@ -42,8 +42,8 @@ public class SASGenero implements InterfazSASGenero {
      * @throws ErrorEliminacion 
 	 */
 	@Override
-    public void Eliminar(Genero genero, Usuario usuario) throws ErrorEliminacion, ErrorAutenticacion { //Falta acabar borrargeneroDB y mirar luego el diagrama
-    		dao.eliminarGenero(genero, usuario);
+    public void Eliminar(Genero genero, Usuario usuario) throws ErrorEliminacion, ErrorAutenticacion { 
+			dao.eliminarGenero(genero, usuario);
     	}
 
     /**

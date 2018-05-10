@@ -47,7 +47,7 @@ public class SASCancion implements InterfazSASCancion {
 	 * @param cancion cancion a eliminar
 	 * @throws 
 	 */
-	public void eliminaCancion(Cancion cancion) throws ErrorEliminacion { //Revisar diagrama cuando este hecha la funcion del dao
+	public void eliminaCancion(Cancion cancion) throws ErrorEliminacion { 
 		dao.eliminarCancion(cancion);
 		//la cancion deberia eliminarse de la biblioteca en el dao
 	}
