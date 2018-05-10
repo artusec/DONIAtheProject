@@ -5,6 +5,7 @@ import java.util.List;
 import javax.swing.JTable;
 
 import Model.Objetos.Cancion;
+import Model.Objetos.Lista;
 
 public abstract class ModeloTabla<T> extends JTable {
 	
@@ -42,5 +43,9 @@ public abstract class ModeloTabla<T> extends JTable {
 	
 	 public Cancion cancionSel() {
 		 return (Cancion) lista.get(this.getSelectedRow());
+	 }
+	 
+	 public Lista listaSel() {
+		 return (Lista) lista.get(this.getSelectedRow());
 	 }
 }

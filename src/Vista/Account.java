@@ -128,5 +128,7 @@ public class Account extends JFrame {
 		);
 		panel_1.setLayout(gl_panel_1);
 		contentPane.setLayout(gl_contentPane);
+		
+		setLocationRelativeTo(null);
 	}
 }

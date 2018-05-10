@@ -15,6 +15,7 @@ public class ToolBarListas extends JToolBar {
 	public ToolBarListas(VentanaPrincipal mainWindow, ControlLista controlador)
 	{
 		super();
+		createLista nuevaLista = new createLista(controlador);
 		
 		setLayout(new GridLayout(1, 3));
 		
@@ -26,7 +27,7 @@ public class ToolBarListas extends JToolBar {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO Auto-generated method stub
-				
+				nuevaLista.setVisible(true);
 			}
 		 });
 		
