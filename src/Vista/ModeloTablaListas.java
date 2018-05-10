@@ -33,7 +33,7 @@ public class ModeloTablaListas extends ModeloTabla<Lista> {
 	
 	 public void actualizarDatos(String idLista) {
 		 lista.clear();
-		 lista.addAll(controlUsuario.getUsuario().getListas()); //�No habria que crear esa funcion?
+		 //lista.addAll(controlUsuario.getUsuario().getListas());
 	 }
 	 
 	 public Cancion cancionSel() {

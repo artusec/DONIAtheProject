@@ -12,7 +12,6 @@ public class ModeloTablaCanciones extends ModeloTabla<Cancion> {
 	private ControlCancion controlCancion;
 	private ControlLista controlLista;
 
-	
 	public ModeloTablaCanciones(String[] columnIdCanciones, ControlCancion controlCancion, ControlLista controlLista) {
 		
 		super(columnIdCanciones);
