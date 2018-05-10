@@ -3,6 +3,7 @@ package Model.Usuario;
 import Controlador.DAO.DAOFachada;
 import Controlador.DAO.InterfazDAOFachada;
 import Excepciones.ErrorAutenticacion;
+import Excepciones.ErrorConsulta;
 import Excepciones.ErrorCreacionObjeto;
 import Excepciones.ErrorEliminacion;
 import Excepciones.ErrorGuardado;
@@ -10,7 +11,7 @@ import Model.Objetos.Usuario;
 
 public class SASUsuario implements InterfazSASUsuario {
 	
-	private InterfazDAOFachada dao;
+	private DAOFachada dao;
 	//hay un objeto dao, solo que no se donde deberiamos ponerlo
 	
 	/**
@@ -18,6 +19,8 @@ public class SASUsuario implements InterfazSASUsuario {
 	 */
 	public SASUsuario() {
 		this.setDao();
+		dao = new DAOFachada();
+		
 	}
 	
 	private void setDao() {
@@ -29,9 +32,11 @@ public class SASUsuario implements InterfazSASUsuario {
 	 * @param id id de usuario
 	 * @param pass contrasena
 	 * @return usuario encontrado
+	 * @throws ErrorCreacionObjeto 
+	 * @throws ErrorConsulta 
 	 * @throws ErrorDeAutenticacion si se ha producido un error al validar los datos del usuario (la contrasena esta mal)
 	 */
-    public Usuario ingreso(String id, String pass) throws ErrorAutenticacion {
+    public Usuario ingreso(String id, String pass) throws ErrorAutenticacion, ErrorConsulta, ErrorCreacionObjeto {
     		Usuario buscado = dao.getUsuarioDB(id, pass);
     		if (buscado != null)
     			return buscado;

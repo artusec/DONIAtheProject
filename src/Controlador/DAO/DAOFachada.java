@@ -11,7 +11,7 @@ import Model.Objetos.*;
 
 public class DAOFachada implements InterfazDAOFachada {
 	
-    private InterfazSASDAO sasdao;
+    private SASDAO sasdao;
 
     public DAOFachada() {
     		this.sasdao = new SASDAO();
@@ -29,13 +29,13 @@ public class DAOFachada implements InterfazDAOFachada {
     }
 
     @Override
-    public Lista getListaDB(String idLista) {
-		return this.getListaDB(idLista);
+    public Lista getListaDB(String idLista) throws ErrorConsulta, ErrorCreacionObjeto {
+		return this.sasdao.getListaDB(idLista);
     }
 
     @Override
-    public Usuario getUsuarioDB(String idUsuario, String clave) throws ErrorAutenticacion {
-		return this.getUsuarioDB(idUsuario, clave);
+    public Usuario getUsuarioDB(String idUsuario, String clave) throws ErrorAutenticacion, ErrorConsulta, ErrorCreacionObjeto {
+		return this.sasdao.getUsuarioDB(idUsuario, clave);
     }
 	
     // ----------- SET -----------

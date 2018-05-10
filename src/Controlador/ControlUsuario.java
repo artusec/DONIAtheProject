@@ -1,10 +1,12 @@
 package Controlador;
 
 import Excepciones.ErrorAutenticacion;
+import Excepciones.ErrorConsulta;
 import Excepciones.ErrorCreacionObjeto;
 import Excepciones.ErrorEliminacion;
 import Excepciones.ErrorGuardado;
 import Model.Objetos.Usuario;
+import Model.Usuario.FachadaUsuario;
 import Model.Usuario.InterfazFachadaUsuario;
 import Vista.VentanaPrincipal;
 
@@ -12,10 +14,11 @@ public class ControlUsuario {
 	
 	//el controlador necesita el usuario actual para acceder a solo a sus listas
 	Usuario usuarioActual = null;
-	InterfazFachadaUsuario fUsuario;
+	FachadaUsuario fUsuario;
 	
 	public ControlUsuario(Usuario usuarioActual) {
 		this.setUsuarioActual(usuarioActual);
+		fUsuario = new FachadaUsuario();
 	}
 
 	private void setUsuarioActual(Usuario usuarioActual) {
@@ -53,7 +56,7 @@ public class ControlUsuario {
 		}
 	}
 	
-	public Usuario ingreso(String id, String pass) {
+	public Usuario ingreso(String id, String pass) throws ErrorConsulta, ErrorCreacionObjeto {
 		try {
 			this.usuarioActual = fUsuario.ingreso(id, pass);
 			return usuarioActual;

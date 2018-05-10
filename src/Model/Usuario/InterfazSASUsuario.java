@@ -1,6 +1,7 @@
 package Model.Usuario;
 
 import Excepciones.ErrorAutenticacion;
+import Excepciones.ErrorConsulta;
 import Excepciones.ErrorCreacionObjeto;
 import Excepciones.ErrorEliminacion;
 import Excepciones.ErrorGuardado;
@@ -10,5 +11,5 @@ public interface InterfazSASUsuario {
 	public void eliminar(Usuario usuario) throws ErrorAutenticacion, ErrorEliminacion;
 	public void registro(Usuario usuario) throws ErrorCreacionObjeto, ErrorAutenticacion, ErrorGuardado;
 	public void modificar(Usuario nuevo) throws ErrorCreacionObjeto, ErrorAutenticacion, ErrorGuardado;
-	public Usuario ingreso(String id, String pass) throws ErrorAutenticacion;
+	public Usuario ingreso(String id, String pass) throws ErrorAutenticacion, ErrorConsulta, ErrorCreacionObjeto;
 }

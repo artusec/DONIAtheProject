@@ -7,6 +7,12 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import Controlador.ControlUsuario;
+import Excepciones.ErrorConsulta;
+import Excepciones.ErrorCreacionObjeto;
+import Model.Objetos.Usuario;
+
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
@@ -26,6 +32,8 @@ public class Login extends JDialog {
 	private Boolean correcto;
 	
 	private SingUp singUp;
+	
+
 	public class SingUp extends JDialog {
 
 		private final JPanel contentPanel = new JPanel();
@@ -37,13 +45,14 @@ public class Login extends JDialog {
 		/**
 		 * Create the dialog.
 		 * @param login 
+		 * @param ctrlU 
 		 */
-		public SingUp(Login login) {
+		public SingUp(Login login, ControlUsuario ctrlU) {
 			this.login = login;
-			initGui();
+			initGui(ctrlU);
 			setVisible(false);
 		}
-		private void initGui() {
+		private void initGui(ControlUsuario ctrlU) {
 			
 			addWindowListener(new WindowListener() {
 				
@@ -127,6 +136,19 @@ public class Login extends JDialog {
 					@Override
 					public void actionPerformed(ActionEvent e) {
 						//Registrar usuario
+						Usuario yo = null;
+						
+						try {
+							yo = new Usuario(textField.getText().trim(), textField_1.getText().trim(), String.valueOf(passwordField.getPassword()));
+							if (yo != null) {
+								ctrlU.registro(yo);
+							}
+							
+						} catch (ErrorCreacionObjeto e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+							System.out.println("ERROR");
+						}
 						
 						setVisible(false);
 						login.setVisible(true);
@@ -152,22 +174,21 @@ public class Login extends JDialog {
 			setLocationRelativeTo(null);
 		}
 		
-		
-
+	
 	}
 
 	/**
 	 * Create the dialog.
 	 */
-	public Login() {
+	public Login(ControlUsuario ctrlU) {
 		
 		correcto = false;
-		singUp = new SingUp(this);
-		initGui();
+		singUp = new SingUp(this, ctrlU);
+		initGui(ctrlU);
 		
 	}
 
-	private void initGui() {
+	private void initGui(ControlUsuario ctrlU) {
 		setBounds(100, 100, 450, 260);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -214,10 +235,16 @@ public class Login extends JDialog {
 			public void actionPerformed(ActionEvent arg0) {
 				
 				//si existe y es correcto
+				try {
+					ctrlU.ingreso(textField.getText().trim(), String.valueOf(passwordField.getPassword()));
+					
+				} catch (ErrorConsulta | ErrorCreacionObjeto e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
 				correcto = true;
 				setVisible(false);
-				
-				//si no error
 			}
 		});
 		btnLogin.setBounds(225, 164, 97, 25);

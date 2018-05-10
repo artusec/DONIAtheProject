@@ -55,7 +55,7 @@ public class VentanaPrincipal extends JFrame {
 		
 		initGUI();
 
-		Login = new Login();
+		Login = new Login(controlUsuario);
 		
 
 		controlCancion = new ControlCancion(null);
