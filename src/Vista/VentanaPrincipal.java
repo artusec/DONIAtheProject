@@ -4,26 +4,21 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
-import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
-import java.util.Scanner;
+
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JDialog;
+
 import javax.swing.JFrame;
-import javax.swing.JLabel;
+
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JPasswordField;
-import javax.swing.JTextField;
+
 import javax.swing.border.Border;
 
-import com.sun.media.jfxmedia.events.NewFrameEvent;
 
 import Excepciones.ErrorCreacionObjeto;
 
@@ -56,8 +51,7 @@ public class VentanaPrincipal extends JFrame {
 	private ControlUsuario controlUsuario;
 	
 	
-	private JDialog Login;
-	private JDialog SingUp;
+	private Login Login;
 	
 
 	public VentanaPrincipal (ControlCancion controlCancion, ControlGenero controlGenero,
@@ -66,9 +60,9 @@ public class VentanaPrincipal extends JFrame {
 	//public VentanaPrincipal () {
 
 		super("Donia");
-
-		Login = new JDialog(new JFrame(),"Inciciar Sesion", true);
-		SingUp = new JDialog(new JFrame(), "Registrarse", true);
+		initGUI();
+		Login = new Login();
+		
 
 		
 		this.controlCancion = new ControlCancion(null);
@@ -78,11 +72,12 @@ public class VentanaPrincipal extends JFrame {
 		
 
 		this.setIconImage(new ImageIcon("src\\icons\\LOGO_DONIA.png").getImage()); 
-		JFrame loginFrame = new JFrame("Login");
-		loginFrame.setIconImage(new ImageIcon("src\\icons\\LOGO_DONIA.png").getImage());
-		Login = new JDialog(loginFrame, true);
 
-		initGUI();
+		
+		Login.setVisible(true);
+		if(Login.getCorrecto()) {
+			setVisible(true);
+		}
 
 	}
 	
@@ -148,159 +143,12 @@ public class VentanaPrincipal extends JFrame {
 		pack();
 
 		setVisible(false);
-		this.login();
-		this.singUp();
-
 		setExtendedState(java.awt.Frame.MAXIMIZED_BOTH);
 
 	}
 
+
 	
-	private void login() {
-		Login.setLayout(null);
-
-		JLabel titleLabel = new JLabel("Login Screen");
-		titleLabel.setLocation(0, 0);
-		titleLabel.setSize(290, 30);
-		titleLabel.setHorizontalAlignment(0);
-		Login.add(titleLabel);
-
-		// Creation of a Panel to contain the JLabels
-		JPanel textPanel = new JPanel();
-		textPanel.setLayout(null);
-		textPanel.setLocation(10, 35);
-		textPanel.setSize(70, 80);
-		Login.add(textPanel);
-
-		// Username Label
-		JLabel usernameLabel = new JLabel("Username");
-		usernameLabel.setLocation(0, 0);
-		usernameLabel.setSize(70, 40);
-		usernameLabel.setHorizontalAlignment(4);
-		textPanel.add(usernameLabel);
-
-		// Login Label
-		JLabel passwordLabel = new JLabel("Password");
-		passwordLabel.setLocation(0, 40);
-		passwordLabel.setSize(70, 40);
-		passwordLabel.setHorizontalAlignment(4);
-		textPanel.add(passwordLabel);
-
-		// TextFields Panel Container
-		JPanel panelForTextFields = new JPanel();
-		panelForTextFields.setLayout(null);
-		panelForTextFields.setLocation(110, 40);
-		panelForTextFields.setSize(120, 70);
-		Login.add(panelForTextFields);
-
-		// Username Textfield
-		JTextField usernameField = new JTextField(8);
-		usernameField.setLocation(0, 0);
-		usernameField.setSize(120, 30);
-		panelForTextFields.add(usernameField);
-
-		// Login Textfield
-		JPasswordField loginField = new JPasswordField(8);
-		loginField.setEchoChar('*');
-		loginField.setLocation(0, 40);
-		loginField.setSize(120, 30);
-		panelForTextFields.add(loginField);
-
-
-		// Button for Logging in
-		JButton loginButton = new JButton("Login");
-		loginButton.setLocation(180, 120);
-		loginButton.setSize(80, 30);
-		loginButton.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				//ctrlU.ingreso(usernameField.getText().trim(), String.valueOf(loginField.getPassword()));
-				Login.setVisible(false);
-				setVisible(true);
-			}
-		});
-		Login.add(loginButton);
-		
-		JButton singup = new JButton("SingUp");
-		singup.setLocation(80, 120);
-		singup.setSize(80, 30);
-		singup.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				Login.setVisible(false);
-				SingUp.setVisible(true);
-				
-			}
-		});
-		Login.add(singup);
-		Login.setSize(310, 200);
-		Login.setLocationRelativeTo(null);
-
-
-		Login.setVisible(true);
-	}
-
-	public void singUp() throws ErrorCreacionObjeto {
-		SingUp.setLayout(null);		
-		{
-			JLabel lblSingUpScreen = new JLabel("Sing Up Screen");
-			lblSingUpScreen.setFont(new Font("Tahoma", Font.PLAIN, 18));
-			lblSingUpScreen.setBounds(150, 13, 132, 22);
-			SingUp.add(lblSingUpScreen);
-		}
-		{
-			JButton btnSingUp = new JButton("Sing Up");
-			btnSingUp.setBounds(168, 215, 97, 25);
-			SingUp.add(btnSingUp);
-			btnSingUp.addActionListener(new ActionListener() {
-				
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					//ctrlU.registro(idField.getText().trim(), usernameField.getText().trim(), String.valueOf(loginField.getPassword()));
-					SingUp.setVisible(false);
-					Login.setVisible(true);
-				}
-			});
-		}
-		{
-			JTextField textField = new JTextField();
-			textField.setBounds(232, 67, 116, 22);
-			SingUp.add(textField);
-			textField.setColumns(10);
-		}
-		{
-			JTextField textField_1 = new JTextField();
-			textField_1.setBounds(232, 113, 116, 22);
-			SingUp.add(textField_1);
-			textField_1.setColumns(10);
-		}
-		{
-			JPasswordField passwordField = new JPasswordField();
-			passwordField.setBounds(232, 158, 116, 22);
-			SingUp.add(passwordField);
-		}
-		{
-			JLabel lblNewLabel = new JLabel("ID");
-			lblNewLabel.setBounds(59, 70, 56, 16);
-			SingUp.add(lblNewLabel);
-		}
-		{
-			JLabel lblNewLabel_1 = new JLabel("Name");
-			lblNewLabel_1.setBounds(59, 116, 56, 16);
-			SingUp.add(lblNewLabel_1);
-		}
-		{
-			JLabel lblNewLabel_2 = new JLabel("Password");
-			lblNewLabel_2.setBounds(59, 161, 72, 16);
-			SingUp.add(lblNewLabel_2);
-		}
-
-		
-		SingUp.setSize(450, 300);
-		SingUp.setLocationRelativeTo(null);
-	}
 
 	private JPanel creaPanelSupremo() {
 		JPanel principal = new JPanel();
