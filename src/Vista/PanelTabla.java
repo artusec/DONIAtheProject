@@ -16,7 +16,7 @@ public class PanelTabla<T> extends JPanel
 		 setLayout(new GridLayout(1,1));
 		 setBorder(BorderFactory.createTitledBorder(bordeId));
 		 this.modelo = modelo;
-		 JTable tabla = new JTable(this.modelo);
+		 JTable tabla = new JTable();
 		 add(new JScrollPane(tabla, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED));
 	 }
 	 

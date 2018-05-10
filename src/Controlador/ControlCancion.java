@@ -6,7 +6,6 @@ import Excepciones.ErrorCreacionObjeto;
 import Model.Cancion.FachadaCancion;
 import Model.Cancion.InterfazFachadaCancion;
 import Model.Objetos.Cancion;
-import Model.Objetos.Genero;
 import Model.Objetos.Letra;
 import Model.Objetos.Usuario;
 import Model.Objetos.Video;
@@ -70,6 +69,7 @@ public class ControlCancion {
 			//notifica
 			VentanaPrincipal.muestraError(e);
 		}
+		return null;
 	}
 	
 	public Letra consultaLetra(String cancion) {
@@ -79,6 +79,7 @@ public class ControlCancion {
 			//notifica
 			VentanaPrincipal.muestraError(e);
 		}
+		return null;
 	}
 	
 	public Cancion consultaCancion(String cancion) {
@@ -88,6 +89,7 @@ public class ControlCancion {
 			//notifica
 			VentanaPrincipal.muestraError(e);
 		}
+		return null;
 	}
 	
 	public String descargaVideo(String cancion) {
@@ -97,5 +99,6 @@ public class ControlCancion {
 			//notifica
 			VentanaPrincipal.muestraError(e);
 		}
+		return cancion;
 	}
 }

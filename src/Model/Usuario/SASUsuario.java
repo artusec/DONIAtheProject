@@ -28,7 +28,7 @@ public class SASUsuario implements InterfazSASUsuario {
 	 * Verifica los datos de inicio de sesion y genera el usuario seleccionado
 	 * @param id id de usuario
 	 * @param pass contrasena
-	 * @return 
+	 * @return usuario encontrado
 	 * @throws ErrorDeAutenticacion si se ha producido un error al validar los datos del usuario (la contrasena esta mal)
 	 */
     public Usuario ingreso(String id, String pass) throws ErrorAutenticacion {
@@ -50,9 +50,7 @@ public class SASUsuario implements InterfazSASUsuario {
 
     /**
      * Genera el usuario con las modificaciones y lo guarda si es posible en la DB
-     * @param usuario usuario a modificar
-     * @param nombre nuevo nombre
-     * @param pass nuevo pass
+     * @param usuario usuario nuevo
      * @throws ErrorCreacionObjeto si los nombre o pass intruducidos no son validos
      * @throws ErrorDeAutenticacion si se ha producido un error al validar los datos del usuario (la contrasena esta mal)
      */
@@ -72,9 +70,7 @@ public class SASUsuario implements InterfazSASUsuario {
     
     /**
      * Crea un usuario y lo guarda en la DB, siempre que no se repita la id elegida
-     * @param id el id de usuario
-     * @param nombre nombre del usuario
-     * @param pass contrasena
+     * @param usuario usuario que se quiere registrar
      * @throws ErrorCreacionObjeto 
      * @throws ErrorAutenticacion 
      */

@@ -26,7 +26,7 @@ public class ControlUsuario {
 	
 	public void borrar(Usuario usuario) {
 		try {
-			fUsuario.borrar(usuario);
+			fUsuario.eliminar(usuario);
 			VentanaPrincipal.actualizaUsuario();
 		} catch (ErrorAutenticacion e) {
 			VentanaPrincipal.muestraError(e);
@@ -39,19 +39,19 @@ public class ControlUsuario {
 		this.usuarioActual = null;
 	}*/
 	
-	public void registro(String id, String nombre, String pass) {
+	public void registro(Usuario usuario) {
 		try {
-			fUsuario.registro(id, nombre, pass);
-			VentanaPrincipal.actualizaUsuarios();
+			fUsuario.registro(usuario);
+			VentanaPrincipal.actualizaUsuario();
 		} catch (ErrorCreacionObjeto | ErrorAutenticacion e) {
 			VentanaPrincipal.muestraError(e);
 		}
 	}
 	
-	public void modificar(Usuario usuario, String nombre, String pass) {
+	public void modificar(Usuario usuario) {
 		try {
-			fUsuario.modificar(usuario, nombre, pass);
-			VentanaPrincipal.actualizaUsuarios();
+			fUsuario.modificar(usuario);
+			VentanaPrincipal.actualizaUsuario();
 		} catch (ErrorCreacionObjeto | ErrorAutenticacion e) {
 			VentanaPrincipal.muestraError(e);
 		}

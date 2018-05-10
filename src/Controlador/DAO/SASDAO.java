@@ -82,6 +82,15 @@ public class SASDAO implements InterfazSASDAO {
     		return this.DBconn != null && !this.DBconn.isClosed();
     }
     
+	/**
+	 * Genera un id adecuado para el nuevo objeto a crear, consultando la DB
+	 * @return nuevo id
+	 */
+	private String GeneradorId(String tipo) {
+		long idCuenta =	this.getUltimoIdCancion();
+		return tipo + idCuenta;
+	}
+    
     // --------------- GET ---------------
     @Override
     public Cancion getCancionDB(String idCancion) {
@@ -205,6 +214,7 @@ public class SASDAO implements InterfazSASDAO {
 		return null;  
 	}
 
+	//meter dentro de la lista normal
 	public Lista getListaAutoDB(String idLista) {
 		try {
 			if (this.conectado() && idLista != null) {

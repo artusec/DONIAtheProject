@@ -22,25 +22,10 @@ public class SASCancion implements InterfazSASCancion {
 		this.dao = dao;
 	}
 	
-	/**
-	 * Genera un id adecuado para el nuevo objeto a crear, consultando la DB
-	 * @return nuevo id
-	 */
-	private String GeneradorId() {
-		long idCuenta = dao.getUltimoIdCancion();
-		return "l" + idCuenta;
-	}
-	
 	@Override
 	/**
 	 * Anade una cancion a la base de datos
-	 * @param titulo titulo de la cancion
-	 * @param autor autor de la cancion
-	 * @param album album al que pertenece la cancion
-	 * @param duracion duracion de la cancion
-	 * @param letra letra de la cancion
-	 * @param video video de la cancion
-	 * @param genero genero de la cancion
+	 * @param cancion cancion que se quiere anadir a la base de datos
 	 * @throws ErrorCreacionObjeto
 	 */
 	public void creaCancion(Cancion cancion) throws ErrorCreacionObjeto {

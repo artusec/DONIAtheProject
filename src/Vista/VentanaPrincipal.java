@@ -24,8 +24,12 @@ import javax.swing.border.Border;
 
 import com.sun.media.jfxmedia.events.NewFrameEvent;
 
-import Controlador.ControlUsuario;
 import Excepciones.ErrorCreacionObjeto;
+
+import Controlador.ControlCancion;
+import Controlador.ControlGenero;
+import Controlador.ControlLista;
+import Controlador.ControlUsuario;
 import Model.Objetos.Cancion;
 import Model.Objetos.Lista;
 import Model.Objetos.Usuario;
@@ -43,25 +47,39 @@ public class VentanaPrincipal extends JFrame {
 	private PanelTabla<Lista> panelListas;
 	private PanelTabla<Cancion> panelCanciones;
 	private ToolBar toolBar;
-	private ControlUsuario ctrlU;
+
+
+	private ControlCancion controlCancion;
+	private ControlGenero controlGenero;
+	private ControlLista controlLista;
+	private ControlUsuario controlUsuario;
+	
 	
 	private JDialog Login;
 	private JDialog SingUp;
 	
 
-	public VentanaPrincipal (Controlador controlador) throws ErrorCreacionObjeto
-	{
+	public VentanaPrincipal (ControlCancion controlCancion, ControlGenero controlGenero,
+							ControlLista controlLista, ControlUsuario controlUsuario) throws ErrorCreacionObjeto {
 		super("Donia");
-		this.controlador = controlador;
+
 		Login = new JDialog(new JFrame(),"Inciciar Sesion", true);
 		SingUp = new JDialog(new JFrame(), "Registrarse", true);
+
+		
+		this.controlCancion = controlCancion;
+		this.controlGenero = controlGenero;
+		this.controlLista = controlLista;
+		this.controlUsuario = controlUsuario;
+		
+		Login = new JDialog(new JFrame("Login"), true);
 		this.initGUI();
 	}
 	
 	private void initGUI() throws ErrorCreacionObjeto
 	{
-		this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-		this.addWindowListener(new WindowListener() {
+		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		addWindowListener(new WindowListener() {
 
 			@Override
 			public void windowActivated(WindowEvent e) {
@@ -106,7 +124,7 @@ public class VentanaPrincipal extends JFrame {
 		
 		
 		JPanel panelSupremo = creaPanelSupremo();
-		this.setContentPane(panelSupremo);
+		setContentPane(panelSupremo);
 		
 		addToolBar(panelSupremo);
 		
@@ -118,9 +136,11 @@ public class VentanaPrincipal extends JFrame {
 		createPanelLetras(panelCentral);
 		 
 		pack();
+
 		setVisible(false);
 		this.login();
 		this.singUp();
+
 		setExtendedState(java.awt.Frame.MAXIMIZED_BOTH);
 	}
 
@@ -212,84 +232,62 @@ public class VentanaPrincipal extends JFrame {
 	}
 
 	public void singUp() throws ErrorCreacionObjeto {
-		SingUp.setLayout(null);
-
-		JLabel titleLabel = new JLabel("Sing Up Screen");
-		titleLabel.setLocation(0, 0);
-		titleLabel.setSize(290, 30);
-		titleLabel.setHorizontalAlignment(0);
-		SingUp.add(titleLabel);
-
-		// Creation of a Panel to contain the JLabels
-		JPanel textPanel = new JPanel();
-		textPanel.setLayout(null);
-		textPanel.setLocation(10, 35);
-		textPanel.setSize(70, 160);
-		SingUp.add(textPanel);
-
-		// Username Label
-		JLabel idLabel = new JLabel("ID");
-		idLabel.setLocation(0, 0);
-		idLabel.setSize(70, 40);
-		idLabel.setHorizontalAlignment(4);
-		textPanel.add(idLabel);
-		
-		JLabel usernameLabel = new JLabel("Username");
-		usernameLabel.setLocation(0, 40);
-		usernameLabel.setSize(70, 40);
-		usernameLabel.setHorizontalAlignment(4);
-		textPanel.add(usernameLabel);
-
-		// Login Label
-		JLabel passwordLabel = new JLabel("Password");
-		passwordLabel.setLocation(0, 80);
-		passwordLabel.setSize(70, 40);
-		passwordLabel.setHorizontalAlignment(4);
-		textPanel.add(passwordLabel);
-
-		// TextFields Panel Container
-		JPanel panelForTextFields = new JPanel();
-		panelForTextFields.setLayout(null);
-		panelForTextFields.setLocation(110, 40);
-		panelForTextFields.setSize(160, 70);
-		SingUp.add(panelForTextFields);
-
-		// Username Textfield		
-		JTextField idField = new JTextField(8);
-		idField.setLocation(0, 0);
-		idField.setSize(120, 30);
-		panelForTextFields.add(idField);
-		
-		JTextField usernameField = new JTextField(8);
-		usernameField.setLocation(0, 40);
-		usernameField.setSize(120, 30);
-		panelForTextFields.add(usernameField);
-
-		// Login Textfield
-		JPasswordField loginField = new JPasswordField(8);
-		loginField.setEchoChar('*');
-		loginField.enableInputMethods(true);
-		loginField.setLocation(0, 80);
-		loginField.setSize(120, 30);
-		panelForTextFields.add(loginField);
-
-		// Button for Logging in
-		JButton singup = new JButton("SingUp");
-		singup.setLocation(110, 180);
-		singup.setSize(80, 30);
-		singup.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				//ctrlU.registro(idField.getText().trim(), usernameField.getText().trim(), String.valueOf(loginField.getPassword()));
-				SingUp.setVisible(false);
-				Login.setVisible(true);
-			}
-		});
-		SingUp.add(singup);
+		SingUp.setLayout(null);		
+		{
+			JLabel lblSingUpScreen = new JLabel("Sing Up Screen");
+			lblSingUpScreen.setFont(new Font("Tahoma", Font.PLAIN, 18));
+			lblSingUpScreen.setBounds(150, 13, 132, 22);
+			SingUp.add(lblSingUpScreen);
+		}
+		{
+			JButton btnSingUp = new JButton("Sing Up");
+			btnSingUp.setBounds(168, 215, 97, 25);
+			SingUp.add(btnSingUp);
+			btnSingUp.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					//ctrlU.registro(idField.getText().trim(), usernameField.getText().trim(), String.valueOf(loginField.getPassword()));
+					SingUp.setVisible(false);
+					Login.setVisible(true);
+				}
+			});
+		}
+		{
+			JTextField textField = new JTextField();
+			textField.setBounds(232, 67, 116, 22);
+			SingUp.add(textField);
+			textField.setColumns(10);
+		}
+		{
+			JTextField textField_1 = new JTextField();
+			textField_1.setBounds(232, 113, 116, 22);
+			SingUp.add(textField_1);
+			textField_1.setColumns(10);
+		}
+		{
+			JPasswordField passwordField = new JPasswordField();
+			passwordField.setBounds(232, 158, 116, 22);
+			SingUp.add(passwordField);
+		}
+		{
+			JLabel lblNewLabel = new JLabel("ID");
+			lblNewLabel.setBounds(59, 70, 56, 16);
+			SingUp.add(lblNewLabel);
+		}
+		{
+			JLabel lblNewLabel_1 = new JLabel("Name");
+			lblNewLabel_1.setBounds(59, 116, 56, 16);
+			SingUp.add(lblNewLabel_1);
+		}
+		{
+			JLabel lblNewLabel_2 = new JLabel("Password");
+			lblNewLabel_2.setBounds(59, 161, 72, 16);
+			SingUp.add(lblNewLabel_2);
+		}
 
 		
-		SingUp.setSize(310, 280);
+		SingUp.setSize(450, 300);
 		SingUp.setLocationRelativeTo(null);
 	}
 
@@ -300,7 +298,7 @@ public class VentanaPrincipal extends JFrame {
 	}
 
 	private void addToolBar(JPanel panelSupremo) {
-		toolBar = new ToolBar(this, controlador);
+		toolBar = new ToolBar(this, controlCancion, controlGenero, controlLista, controlUsuario);
 		toolBar.setFloatable(false);
 		toolBar.setLayout(new GridLayout(6, 1));
 		panelSupremo.add(toolBar, BorderLayout.EAST);
@@ -317,10 +315,10 @@ public class VentanaPrincipal extends JFrame {
 	private void creaPanelListas(JPanel panelCentral) {
 		JPanel izquierda = new JPanel();
 		izquierda.setLayout(new BorderLayout());
-		ToolBarListas barListas = new ToolBarListas(this, controlador);
+		ToolBarListas barListas = new ToolBarListas(this, controlLista);
 		barListas.setFloatable(false);
 		setFont(new Font("MyStyle", 1, 20));
-		panelListas = new PanelTabla<Lista>("Playlists", new ModeloTablaListas(columnLista, controlador));
+		panelListas = new PanelTabla<Lista>("Playlists", new ModeloTablaListas(columnLista, controlLista));
 		panelListas.setAutoscrolls(true);
 		izquierda.add(panelListas);
 		izquierda.add(barListas, BorderLayout.SOUTH);
@@ -330,27 +328,48 @@ public class VentanaPrincipal extends JFrame {
 	private void creaPanelCanciones(JPanel panelCentral) {
 		JPanel medio = new JPanel();
 		medio.setLayout(new BorderLayout());
-		panelCanciones = new PanelTabla<Cancion>("Songs", new ModeloTablaCanciones(columnCanciones, controlador));
+		panelCanciones = new PanelTabla<Cancion>("Songs", new ModeloTablaCanciones(columnCanciones, controlCancion, controlLista));
 		panelCanciones.setAutoscrolls(true);
 		medio.add(panelCanciones);
-		ToolBarCanciones barCanciones = new ToolBarCanciones(this, controlador);
+		ToolBarCanciones barCanciones = new ToolBarCanciones(this, controlCancion, controlLista);
 		barCanciones.setFloatable(false);
 		medio.add(barCanciones, BorderLayout.SOUTH);
 		panelCentral.add(medio);
 	}
 	
 	private void createPanelLetras(JPanel panelCentral) {
-		JPanel derecha = new JPanel();
-		PanelBarraEstado barra = new PanelBarraEstado("", controlador);
-		derecha.add(barra, BorderLayout.NORTH);
 		panelDeLetras = new PanelAreaTexto("Lists", false);
 		panelDeLetras.areatexto.setText("Choose a song to see its lyrics!");
 		panelCentral.add(panelDeLetras);
 	}
 	
-	public void muestraError(Exception e)
+	public PanelTabla<Cancion> getPanelCanciones()
 	{
+		return panelCanciones;
+	}
+
+	public static void muestraError(Exception e) {
 		JOptionPane.showOptionDialog(new JFrame(), e.getMessage(), "ERROR", JOptionPane.PLAIN_MESSAGE, 
 				JOptionPane.ERROR_MESSAGE, null, null, null);
+	}
+	
+	public static void actualizaCanciones() {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	public static void actualizaGeneros() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public static void actualizaListas() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public static void actualizaUsuario() {
+		// TODO Auto-generated method stub
+		
 	}
 }

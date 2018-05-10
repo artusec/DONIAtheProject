@@ -6,16 +6,15 @@ import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JToolBar;
-import Controlador.Controlador;
+import Controlador.ControlLista;
 
-public class ToolBarListas extends JToolBar implements ObservadorAplicacion {
+public class ToolBarListas extends JToolBar {
 
 	private static final long serialVersionUID = 1L;
 
-	public ToolBarListas(VentanaPrincipal mainWindow, Controlador controlador)
+	public ToolBarListas(VentanaPrincipal mainWindow, ControlLista controlador)
 	{
 		super();
-		controlador.addObservador(this);
 		
 		setLayout(new GridLayout(1, 3));
 		
