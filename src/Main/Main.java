@@ -5,15 +5,11 @@ import Controlador.ControlGenero;
 import Controlador.ControlLista;
 import Controlador.ControlUsuario;
 import Controlador.DAO.InterfazDAOFachada;
-import Model.Cancion.InterfazFachadaCancion;
-import Model.Genero.InterfazFachadaGenero;
-import Model.Lista.InterfazListaFachada;
-import Model.Usuario.InterfazFachadaUsuario;
 import Vista.VentanaPrincipal;
 
 public class Main {
 	
-	// CONTROL
+	// CONTROL esto lo deberia vcrear la vista, se lo que hablamos arturo, pero me lo dijo pablo rabanal
 	private static ControlCancion controlCancion;
 	private static ControlGenero controlGenero;
 	private static ControlLista controlLista;
@@ -21,12 +17,7 @@ public class Main {
 	
 	// VISTA
 	private static VentanaPrincipal vista;
-	
-	// MODELO
-	// private static InterfazFachadaLista fLista;
-	private static InterfazFachadaCancion fCancion;
-	private static InterfazFachadaGenero fGenero;
-	private static InterfazFachadaUsuario fUsuario;
+
 	
 	// DAO
 	private static InterfazDAOFachada fDao;
@@ -35,7 +26,6 @@ public class Main {
 	
 	
 	public static void main (String [] args) {
-		
 		iniciarGUI();
 		iniciarControladores();
 	}
@@ -50,7 +40,7 @@ public class Main {
 
 	private static void iniciarGUI()
 	{	 
-		// vista = new VentanaPrincipal();	
+		vista = new VentanaPrincipal();	
 	}
 
 }
