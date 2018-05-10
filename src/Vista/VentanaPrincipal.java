@@ -9,10 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
-import java.util.Scanner;
-
 import javax.swing.BorderFactory;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
@@ -22,18 +19,12 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.Border;
-
-import com.sun.media.jfxmedia.events.NewFrameEvent;
-
-import Excepciones.ErrorCreacionObjeto;
-
 import Controlador.ControlCancion;
 import Controlador.ControlGenero;
 import Controlador.ControlLista;
 import Controlador.ControlUsuario;
 import Model.Objetos.Cancion;
 import Model.Objetos.Lista;
-import Model.Objetos.Usuario;
 
 public class VentanaPrincipal extends JFrame {
 
@@ -49,7 +40,6 @@ public class VentanaPrincipal extends JFrame {
 	private PanelTabla<Cancion> panelCanciones;
 	private ToolBar toolBar;
 
-
 	private ControlCancion controlCancion;
 	private ControlGenero controlGenero;
 	private ControlLista controlLista;
@@ -57,36 +47,21 @@ public class VentanaPrincipal extends JFrame {
 	
 	
 	private JDialog Login;
-	private JDialog SingUp;
 	
 
-	public VentanaPrincipal (ControlCancion controlCancion, ControlGenero controlGenero,
-							ControlLista controlLista, ControlUsuario controlUsuario) throws ErrorCreacionObjeto {
-
-	//public VentanaPrincipal () {
-
+	public VentanaPrincipal () {
 		super("Donia");
-
-		Login = new JDialog(new JFrame(),"Inciciar Sesion", true);
-		SingUp = new JDialog(new JFrame(), "Registrarse", true);
-
 		
 		this.controlCancion = new ControlCancion(null);
 		this.controlGenero = new ControlGenero(null);
 		this.controlLista = new ControlLista(null);
 		this.controlUsuario = new ControlUsuario(null);
 		
-
-		this.setIconImage(new ImageIcon("src\\icons\\LOGO_DONIA.png").getImage()); 
-		JFrame loginFrame = new JFrame("Login");
-		loginFrame.setIconImage(new ImageIcon("src\\icons\\LOGO_DONIA.png").getImage());
-		Login = new JDialog(loginFrame, true);
-
+		Login = new JDialog(new JFrame("Login"), true);
 		initGUI();
-
 	}
 	
-	private void initGUI() throws ErrorCreacionObjeto
+	private void initGUI()
 	{
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		addWindowListener(new WindowListener() {
@@ -146,13 +121,9 @@ public class VentanaPrincipal extends JFrame {
 		createPanelLetras(panelCentral);
 		 
 		pack();
-
-		setVisible(false);
-		this.login();
-		this.singUp();
-
+		login();
+		setVisible(true);
 		setExtendedState(java.awt.Frame.MAXIMIZED_BOTH);
-
 	}
 
 	
@@ -190,116 +161,46 @@ public class VentanaPrincipal extends JFrame {
 		JPanel panelForTextFields = new JPanel();
 		panelForTextFields.setLayout(null);
 		panelForTextFields.setLocation(110, 40);
-		panelForTextFields.setSize(120, 70);
+		panelForTextFields.setSize(100, 70);
 		Login.add(panelForTextFields);
 
 		// Username Textfield
 		JTextField usernameField = new JTextField(8);
 		usernameField.setLocation(0, 0);
-		usernameField.setSize(120, 30);
+		usernameField.setSize(100, 30);
 		panelForTextFields.add(usernameField);
 
 		// Login Textfield
 		JPasswordField loginField = new JPasswordField(8);
 		loginField.setEchoChar('*');
 		loginField.setLocation(0, 40);
-		loginField.setSize(120, 30);
+		loginField.setSize(100, 30);
 		panelForTextFields.add(loginField);
 
+		// Creation of a Panel to contain the completion JLabels
+		JPanel completionPanel = new JPanel();
+		completionPanel.setLayout(null);
+		completionPanel.setLocation(240, 35);
+		completionPanel.setSize(70, 80);
+		Login.add(completionPanel);
 
 		// Button for Logging in
 		JButton loginButton = new JButton("Login");
-		loginButton.setLocation(180, 120);
+		loginButton.setLocation(130, 120);
 		loginButton.setSize(80, 30);
 		loginButton.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//ctrlU.ingreso(usernameField.getText().trim(), String.valueOf(loginField.getPassword()));
-				Login.setVisible(false);
-				setVisible(true);
+				System.out.println("oeoee");
 			}
 		});
 		Login.add(loginButton);
-		
-		JButton singup = new JButton("SingUp");
-		singup.setLocation(80, 120);
-		singup.setSize(80, 30);
-		singup.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				Login.setVisible(false);
-				SingUp.setVisible(true);
-				
-			}
-		});
-		Login.add(singup);
 		Login.setSize(310, 200);
-		Login.setLocationRelativeTo(null);
-
+		Login.setLocation((Toolkit.getDefaultToolkit().getScreenSize().width)/2 - getWidth()/2,
+				(Toolkit.getDefaultToolkit().getScreenSize().height)/2 - getHeight()/2);
 
 		Login.setVisible(true);
-	}
-
-	public void singUp() throws ErrorCreacionObjeto {
-		SingUp.setLayout(null);		
-		{
-			JLabel lblSingUpScreen = new JLabel("Sing Up Screen");
-			lblSingUpScreen.setFont(new Font("Tahoma", Font.PLAIN, 18));
-			lblSingUpScreen.setBounds(150, 13, 132, 22);
-			SingUp.add(lblSingUpScreen);
-		}
-		{
-			JButton btnSingUp = new JButton("Sing Up");
-			btnSingUp.setBounds(168, 215, 97, 25);
-			SingUp.add(btnSingUp);
-			btnSingUp.addActionListener(new ActionListener() {
-				
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					//ctrlU.registro(idField.getText().trim(), usernameField.getText().trim(), String.valueOf(loginField.getPassword()));
-					SingUp.setVisible(false);
-					Login.setVisible(true);
-				}
-			});
-		}
-		{
-			JTextField textField = new JTextField();
-			textField.setBounds(232, 67, 116, 22);
-			SingUp.add(textField);
-			textField.setColumns(10);
-		}
-		{
-			JTextField textField_1 = new JTextField();
-			textField_1.setBounds(232, 113, 116, 22);
-			SingUp.add(textField_1);
-			textField_1.setColumns(10);
-		}
-		{
-			JPasswordField passwordField = new JPasswordField();
-			passwordField.setBounds(232, 158, 116, 22);
-			SingUp.add(passwordField);
-		}
-		{
-			JLabel lblNewLabel = new JLabel("ID");
-			lblNewLabel.setBounds(59, 70, 56, 16);
-			SingUp.add(lblNewLabel);
-		}
-		{
-			JLabel lblNewLabel_1 = new JLabel("Name");
-			lblNewLabel_1.setBounds(59, 116, 56, 16);
-			SingUp.add(lblNewLabel_1);
-		}
-		{
-			JLabel lblNewLabel_2 = new JLabel("Password");
-			lblNewLabel_2.setBounds(59, 161, 72, 16);
-			SingUp.add(lblNewLabel_2);
-		}
-
-		
-		SingUp.setSize(450, 300);
-		SingUp.setLocationRelativeTo(null);
 	}
 
 	private JPanel creaPanelSupremo() {
@@ -358,6 +259,11 @@ public class VentanaPrincipal extends JFrame {
 	{
 		return panelCanciones;
 	}
+	
+	public PanelTabla<Lista> getPanelListas()
+	{
+		return panelListas;
+	}
 
 	public static void muestraError(Exception e) {
 		JOptionPane.showOptionDialog(new JFrame(), e.getMessage(), "ERROR", JOptionPane.PLAIN_MESSAGE, 
@@ -382,5 +288,9 @@ public class VentanaPrincipal extends JFrame {
 	public static void actualizaUsuario() {
 		// TODO Auto-generated method stub
 		
+	}
+
+	public void setLetra(String letra) {
+		panelDeLetras.setTexto(letra);
 	}
 }

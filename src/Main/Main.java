@@ -52,7 +52,7 @@ public class Main {
 	private static void iniciarGUI() throws ErrorCreacionObjeto
 	{	 
 
-		 vista = new VentanaPrincipal(controlCancion,controlGenero,controlLista,controlUsuario);	
+		 vista = new VentanaPrincipal();	
 
 	}
 
