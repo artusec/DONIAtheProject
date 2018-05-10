@@ -79,7 +79,8 @@ public class SASLista implements InterfazSASLista {
      * @throws ErrorCreacionObjeto 
      * @throws ErrorGuardado 
      */
-    @Override
+    @SuppressWarnings("unused")
+	@Override
     public void crearLista(String nombre, Usuario usuario) throws ErrorAutenticacion, ErrorCreacionObjeto, ErrorGuardado {
     		ListaNormal lista = new ListaNormal(/*l aputa id*/"a", nombre);
     		if (lista == null)

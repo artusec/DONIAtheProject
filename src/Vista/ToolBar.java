@@ -1,12 +1,9 @@
 package Vista;
 
-import java.awt.BorderLayout;
-import java.awt.Dimension;
+
 import java.awt.Frame;
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.GroupLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -17,19 +14,13 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
-import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.JToolBar;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.border.EmptyBorder;
-
 import Controlador.ControlCancion;
 import Controlador.ControlGenero;
 import Controlador.ControlLista;
 import Controlador.ControlUsuario;
-import Excepciones.ErrorCreacionObjeto;
-import Model.Objetos.Usuario;
+
 
 public class ToolBar extends JToolBar {
 	
@@ -41,7 +32,8 @@ public class ToolBar extends JToolBar {
 			ControlLista controlLista, ControlUsuario controlUsuario)
 	{
 		super();	
-		dialogPerfil();
+		Account account = new Account();
+		
 		JButton perfil = new JButton();
 		perfil.setToolTipText("Account");
 		perfil.setIcon(new ImageIcon("src\\icons\\perfil.png"));
@@ -49,9 +41,8 @@ public class ToolBar extends JToolBar {
 		{
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				Perfil.setVisible(true);
-			
-
+				
+				account.setVisible(true);
 			}
 		 });
 		
@@ -138,85 +129,5 @@ public class ToolBar extends JToolBar {
 		this.add(salir);
 	}
 
-	private void dialogPerfil() {
-		Perfil = new JDialog(new Frame(),"Account", true);
-		JPanel fondo = new JPanel(new GroupLayout(Perfil));
-		JPanel panel = new JPanel();
-		JPanel panel_1 = new JPanel();
-		
-		/*((GroupLayout) fondo.getLayout()).setHorizontalGroup(
-				((GroupLayout) fondo.getLayout()).createParallelGroup(Alignment.LEADING)
-					.addComponent(panel_1, GroupLayout.DEFAULT_SIZE, 422, Short.MAX_VALUE)
-					.addComponent(panel, GroupLayout.DEFAULT_SIZE, 422, Short.MAX_VALUE)
-			);
-		((GroupLayout) fondo.getLayout()).setVerticalGroup(
-				((GroupLayout) fondo.getLayout()).createParallelGroup(Alignment.LEADING)
-					.addGroup(((GroupLayout) fondo.getLayout()).createSequentialGroup()
-						.addComponent(panel, GroupLayout.PREFERRED_SIZE, 215, GroupLayout.PREFERRED_SIZE)
-						.addPreferredGap(ComponentPlacement.RELATED)
-						.addComponent(panel_1, GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE))
-			);
-		*/
-		
-		fondo.add(panel);
-		fondo.add(panel_1);
-		panel_1.setLayout(null);
-		
-		JLabel lblId = new JLabel("ID");
-		lblId.setBounds(39, 47, 56, 16);
-		panel_1.add(lblId);
-		
-		JLabel lblNewLabel = new JLabel("Name");
-		lblNewLabel.setBounds(39, 100, 56, 16);
-		panel_1.add(lblNewLabel);
-		
-		JLabel lblNewLabel_1 = new JLabel("Password");
-		lblNewLabel_1.setBounds(39, 150, 75, 16);
-		panel_1.add(lblNewLabel_1);
-		
-		JTextField textField = new JTextField();
-		textField.setBounds(256, 44, 116, 22);
-		panel_1.add(textField);
-		textField.setColumns(10);
-		
-		JTextField textField_1 = new JTextField();
-		textField_1.setBounds(256, 97, 116, 22);
-		panel_1.add(textField_1);
-		textField_1.setColumns(10);
-		
-		JPasswordField passwordField = new JPasswordField("hola");
-		passwordField.setBounds(256, 147, 91, 22);
-		panel_1.add(passwordField);
-		passwordField.setEchoChar('*');
-		
-		JRadioButton radioButton = new JRadioButton();
-		radioButton.setToolTipText("Show Password");
-		radioButton.setBounds(355, 144, 25, 25);
-		panel_1.add(radioButton);
-		radioButton.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				passwordField.setEchoChar((char) 0);
-				
-			}
-		});
-		radioButton.setEnabled(true);
-		
-		JButton btnEditarNombre = new JButton("Edit Name");
-		btnEditarNombre.setBounds(78, 183, 126, 25);
-		panel_1.add(btnEditarNombre);
-		btnEditarNombre.setEnabled(true);
-		
-		
-		
-		JButton btnEtitarContrasenia = new JButton("Edit Password");
-		btnEtitarContrasenia.setBounds(216, 183, 116, 25);
-		panel_1.add(btnEtitarContrasenia);
-		btnEtitarContrasenia.setEnabled(true);
-		
-		
-		Perfil.setSize(450, 500);
-		Perfil.setLocationRelativeTo(null);
-	}
+	
 }
