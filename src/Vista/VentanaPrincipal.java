@@ -4,31 +4,21 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
-
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
-
-
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
-
 import javax.swing.JFrame;
-
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-
 import javax.swing.border.Border;
-
-
 import Excepciones.ErrorCreacionObjeto;
-
 import Controlador.ControlCancion;
 import Controlador.ControlGenero;
 import Controlador.ControlLista;
 import Controlador.ControlUsuario;
 import Model.Objetos.Cancion;
 import Model.Objetos.Lista;
-import Model.Objetos.Usuario;
 
 public class VentanaPrincipal extends JFrame {
 
@@ -39,46 +29,46 @@ public class VentanaPrincipal extends JFrame {
 	static private final String[] columnCanciones = {"#", "Title", "Artist", "Genre", "Duration"};
 	static private final String[] columnLista = {"#", "Name", "Duration", "Genre"};
 
+	// PANELES
 	private PanelAreaTexto panelDeLetras;
 	private PanelTabla<Lista> panelListas;
 	private PanelTabla<Cancion> panelCanciones;
 	private ToolBar toolBar;
 
-
+	// CONTROLADORES
 	private ControlCancion controlCancion;
 	private ControlGenero controlGenero;
 	private ControlLista controlLista;
 	private ControlUsuario controlUsuario;
 	
-	
+
 	private Login Login;
+
 	
 
 	public VentanaPrincipal (ControlCancion controlCancion, ControlGenero controlGenero,
 							ControlLista controlLista, ControlUsuario controlUsuario) throws ErrorCreacionObjeto {
-
-	//public VentanaPrincipal () {
 
 		super("Donia");
 		initGUI();
 		Login = new Login();
 		
 
+		controlCancion = new ControlCancion(null);
+		controlGenero = new ControlGenero(null);
+		controlLista = new ControlLista(null);
+		controlUsuario = new ControlUsuario(null);
 		
-		this.controlCancion = new ControlCancion(null);
-		this.controlGenero = new ControlGenero(null);
-		this.controlLista = new ControlLista(null);
-		this.controlUsuario = new ControlUsuario(null);
-		
-
 		this.setIconImage(new ImageIcon("src\\icons\\LOGO_DONIA.png").getImage()); 
 
 		
 		Login.setVisible(true);
+		while(!Login.getCorrecto()) {
+			setVisible(false);
+		}
 		if(Login.getCorrecto()) {
 			setVisible(true);
 		}
-
 	}
 	
 	private void initGUI() throws ErrorCreacionObjeto
@@ -87,14 +77,10 @@ public class VentanaPrincipal extends JFrame {
 		addWindowListener(new WindowListener() {
 
 			@Override
-			public void windowActivated(WindowEvent e) {
-				
-			}
+			public void windowActivated(WindowEvent e) {}
 
 			@Override
-			public void windowClosed(WindowEvent e) {
-				
-			}
+			public void windowClosed(WindowEvent e) {}
 
 			@Override
 			public void windowClosing(WindowEvent e) {
@@ -106,24 +92,16 @@ public class VentanaPrincipal extends JFrame {
 			}
 
 			@Override
-			public void windowDeactivated(WindowEvent e) {
-				
-			}
+			public void windowDeactivated(WindowEvent e) {}
 
 			@Override
-			public void windowDeiconified(WindowEvent e) {
-				
-			}
+			public void windowDeiconified(WindowEvent e) {}
 
 			@Override
-			public void windowIconified(WindowEvent e) {
-				
-			}
+			public void windowIconified(WindowEvent e) {}
 
 			@Override
-			public void windowOpened(WindowEvent e) {
-				
-			}
+			public void windowOpened(WindowEvent e) {}
 		
 		 });
 		
@@ -141,14 +119,11 @@ public class VentanaPrincipal extends JFrame {
 		createPanelLetras(panelCentral);
 		 
 		pack();
-
 		setVisible(false);
 		setExtendedState(java.awt.Frame.MAXIMIZED_BOTH);
 
 	}
 
-
-	
 
 	private JPanel creaPanelSupremo() {
 		JPanel principal = new JPanel();
@@ -213,7 +188,8 @@ public class VentanaPrincipal extends JFrame {
 	}
 	
 	public static void actualizaCanciones() {
-		// TODO Auto-generated method stub
+		
+
 		
 	}
 	

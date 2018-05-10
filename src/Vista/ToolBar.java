@@ -1,12 +1,9 @@
 package Vista;
 
-import java.awt.BorderLayout;
-import java.awt.Dimension;
+
 import java.awt.Frame;
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.GroupLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -17,19 +14,13 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
-import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.JToolBar;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.border.EmptyBorder;
-
 import Controlador.ControlCancion;
 import Controlador.ControlGenero;
 import Controlador.ControlLista;
 import Controlador.ControlUsuario;
-import Excepciones.ErrorCreacionObjeto;
-import Model.Objetos.Usuario;
+
 
 public class ToolBar extends JToolBar {
 	
@@ -41,6 +32,9 @@ public class ToolBar extends JToolBar {
 			ControlLista controlLista, ControlUsuario controlUsuario)
 	{
 		super();	
+
+		Account account = new Account();
+		
 		JButton perfil = new JButton();
 		perfil.setToolTipText("Account");
 		perfil.setIcon(new ImageIcon("src\\icons\\perfil.png"));
@@ -48,9 +42,8 @@ public class ToolBar extends JToolBar {
 		{
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				Perfil.setVisible(true);
-			
-
+				
+				account.setVisible(true);
 			}
 		 });
 		
