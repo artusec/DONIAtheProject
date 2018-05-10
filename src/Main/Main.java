@@ -14,7 +14,7 @@ import Vista.VentanaPrincipal;
 
 public class Main {
 	
-	// CONTROL esto lo deberia vcrear la vista, se lo que hablamos arturo, pero me lo dijo pablo rabanal
+	// CONTROL
 	private static ControlCancion controlCancion;
 	private static ControlGenero controlGenero;
 	private static ControlLista controlLista;
@@ -28,11 +28,10 @@ public class Main {
 	private static InterfazDAOFachada fDao;
 
 	
-	
-	
 	public static void main (String [] args) {
 
 		iniciarControladores();
+		
 		try {
 			iniciarGUI();
 		} catch (ErrorCreacionObjeto e) {
@@ -49,11 +48,8 @@ public class Main {
 		controlUsuario = new ControlUsuario(null);
 	}
 
-	private static void iniciarGUI() throws ErrorCreacionObjeto
-	{	 
-
-		 vista = new VentanaPrincipal();	
-
+	private static void iniciarGUI() throws ErrorCreacionObjeto {
+		
+		 vista = new VentanaPrincipal(controlCancion, controlGenero, controlLista, controlUsuario);	
 	}
-
 }

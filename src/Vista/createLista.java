@@ -72,5 +72,6 @@ public class createLista extends JFrame {
 					.addGap(21))
 		);
 		contentPane.setLayout(gl_contentPane);
+		setLocationRelativeTo(null);
 	}
 }

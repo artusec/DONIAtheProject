@@ -18,12 +18,11 @@ public class ModeloTablaCanciones extends ModeloTabla<Cancion> {
 		super(columnIdCanciones);
 		this.controlLista = controlLista;
 		this.controlCancion = controlCancion;
-		
-		
 	}
 	
 	 @Override
 	 public Object getValueAt(int indiceFil, int indiceCol) {
+		 
 		 Object s = null;
 		 switch (indiceCol) {
 		 case 0: s = indiceFil; break;
@@ -37,9 +36,8 @@ public class ModeloTablaCanciones extends ModeloTabla<Cancion> {
 	 }
 	 
 	 public void actualizarDatos(String idLista) {
+		 
 		 lista.clear();
 		 lista.addAll(controlLista.consulta(idLista).getCanciones());
 	 }
-	 
-
 }
