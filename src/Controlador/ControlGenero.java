@@ -1,6 +1,10 @@
 package Controlador;
 
+import Excepciones.ErrorAutenticacion;
 import Excepciones.ErrorConsulta;
+import Excepciones.ErrorCreacionObjeto;
+import Excepciones.ErrorEliminacion;
+import Excepciones.ErrorGuardado;
 import Model.Genero.FachadaGenero;
 import Model.Genero.InterfazFachadaGenero;
 import Model.Objetos.Genero;
@@ -26,19 +30,27 @@ public class ControlGenero {
 	}
 	
 	public void Anadir(Genero genero) {
-		fGenero.Anadir(genero, usuarioActual);
+		try {
+			fGenero.Anadir(genero, usuarioActual);
+		} catch (ErrorAutenticacion | ErrorGuardado e) {
+			VentanaPrincipal.muestraError(e);
+		}
 		VentanaPrincipal.actualizaGeneros();
 	}
 	
 	public void Eliminar(Genero genero) {
-		fGenero.Eliminar(genero, usuarioActual);
+		try {
+			fGenero.Eliminar(genero, usuarioActual);
+		} catch (ErrorEliminacion | ErrorAutenticacion e) {
+			VentanaPrincipal.muestraError(e);
+		}
 		VentanaPrincipal.actualizaGeneros();
 	}
 
 	public Genero Consultar(String idGenero) {
 		try {
 			return fGenero.Consultar(idGenero);
-		} catch (ErrorConsulta e) {
+		} catch (ErrorConsulta | ErrorCreacionObjeto e) {
 			VentanaPrincipal.muestraError(e);
 		}
 		return null;

@@ -1,10 +1,14 @@
 package Model.Lista;
 
 import java.util.ArrayList;
+
+import Controlador.DAO.DAOFachada;
 import Controlador.DAO.InterfazDAOFachada;
 import Excepciones.ErrorAutenticacion;
 import Excepciones.ErrorConsulta;
 import Excepciones.ErrorCreacionObjeto;
+import Excepciones.ErrorEliminacion;
+import Excepciones.ErrorGuardado;
 import Model.Lista.InterfazSASLista;
 import Model.Objetos.*;
 
@@ -18,23 +22,14 @@ public class SASLista implements InterfazSASLista {
 	//hay un objeto dao, solo que no se donde deberiamos ponerlo
 	//tambien necesitamos en algunas clases (como esta) saber cual es el usuario con el que estamos trabajando ahora
 	
-	public SASLista(InterfazDAOFachada dao) {
-		this.setDao(dao);
+	public SASLista() {
+		this.setDao();
 	}
 	
-	private void setDao(InterfazDAOFachada dao) {
-		this.dao = dao;
+	private void setDao() {
+		this.dao = new DAOFachada();
 	}
 
-	/**
-	 * Genera un id adecuado para el nuevo objeto a crear, consultando la DB
-	 * @return nuevo id
-	 */
-	private String GeneradorId() {
-		long idCuenta = dao.getUltimoIdLista();
-		return "l" + idCuenta;
-	}
-	
 	/**
 	 * Devuelve la lista solicitada
 	 * 
@@ -57,19 +52,22 @@ public class SASLista implements InterfazSASLista {
      * borra una lista existente (obvio)
      * @param lista lista a borrar
      * @param usuario usuario que desea borrar la lista
+     * @throws ErrorEliminacion
+     * @throws ErrorAutenticacion 
      */
     @Override
-    public void eliminar(Lista lista, Usuario usuario) { //Falta hacer la funcion eliminarLista de BD y revisar diagramas despues
-    	dao.eliminarLista(lista, usuario);
+    public void eliminar(Lista lista, Usuario usuario) throws ErrorAutenticacion, ErrorEliminacion { //Falta hacer la funcion eliminarLista de BD y revisar diagramas despues
+    		dao.eliminarLista(lista, usuario);
     }
     
     /**
      * modifica una lista existente
      * @param nombre el nuevo nombre
      * @param lista lista a modificar
+     * @throws ErrorGuardado 
      */
     @Override
-    public void modificar(Lista lista, Usuario usuario) throws ErrorAutenticacion{
+    public void modificar(Lista lista, Usuario usuario) throws ErrorAutenticacion, ErrorGuardado{
     		//lista.setNombre(nombre); Se debe hacer antes y aqui llega ya la lista con los datos completos
     		dao.setLista(lista, usuario);
     }
@@ -79,9 +77,10 @@ public class SASLista implements InterfazSASLista {
      * @param nombre nombre de la lista
      * @param usuario usuario que desea crear la lista
      * @throws ErrorCreacionObjeto 
+     * @throws ErrorGuardado 
      */
     @Override
-    public void crearLista(String nombre, Usuario usuario) throws ErrorAutenticacion, ErrorCreacionObjeto {
+    public void crearLista(String nombre, Usuario usuario) throws ErrorAutenticacion, ErrorCreacionObjeto, ErrorGuardado {
     		ListaNormal lista = new ListaNormal(/*l aputa id*/"a", nombre);
     		if (lista == null)
     			throw new ErrorCreacionObjeto("Error al crear la lista");
@@ -96,9 +95,11 @@ public class SASLista implements InterfazSASLista {
      * @param usuario usuario que quiere crear la lista
      * @int duracionMax duracion maxima que se quiere para la lista
      * @throws ErrorCreacionObjeto 
+     * @throws ErrorConsulta 
+     * @throws ErrorGuardado 
      */
     @Override
-    public void crearListaAuto(ListaAuto lista, Genero genero, Usuario usuario, int duracionMax) throws ErrorAutenticacion, ErrorCreacionObjeto {
+    public void crearListaAuto(ListaAuto lista, Genero genero, Usuario usuario, int duracionMax) throws ErrorAutenticacion, ErrorCreacionObjeto, ErrorConsulta, ErrorGuardado {
     		//ListaAuto lista = new ListaAuto("a"/*TODO*/, nombre, genero);
     		if (lista == null)
     			throw new ErrorCreacionObjeto("Error al crear lista auto");
@@ -128,9 +129,12 @@ public class SASLista implements InterfazSASLista {
      * @param lista lista objetivo
      * @param usuario usuario que quiere anadir la cancion
      * @throws ErrorAutenticacion 
+     * @throws ErrorGuardado 
+     * @throws ErrorConsulta 
+     * @throws ErrorCreacionObjeto 
      */
     @Override
-    public void anadirCancion(Cancion cancion, Lista lista, Usuario usuario) throws ErrorAutenticacion {
+    public void anadirCancion(Cancion cancion, Lista lista, Usuario usuario) throws ErrorAutenticacion, ErrorCreacionObjeto, ErrorConsulta, ErrorGuardado {
     		if (dao.getCancionDB(cancion.getId()).equals(cancion)) {
     			//comprueba que vamos a anadir una cancion valida
     			lista.anadirCancion(cancion);
@@ -144,9 +148,12 @@ public class SASLista implements InterfazSASLista {
      * @param lista lista objetivo
      * @param usuario usuario que quiere eliminar la cancion
      * @throws ErrorAutenticacion 
+     * @throws ErrorGuardado 
+     * @throws ErrorConsulta 
+     * @throws ErrorCreacionObjeto 
      */
     @Override
-    public void eliminarCancion(Cancion cancion, Lista lista, Usuario usuario) throws ErrorAutenticacion {
+    public void eliminarCancion(Cancion cancion, Lista lista, Usuario usuario) throws ErrorAutenticacion, ErrorCreacionObjeto, ErrorConsulta, ErrorGuardado {
     		if (dao.getCancionDB(cancion.getId()).equals(cancion)) {
     			lista.eliminarCancion(cancion);
     			dao.setLista(lista, usuario);

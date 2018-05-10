@@ -3,6 +3,8 @@ package Controlador;
 import Excepciones.ErrorAutenticacion;
 import Excepciones.ErrorConsulta;
 import Excepciones.ErrorCreacionObjeto;
+import Excepciones.ErrorEliminacion;
+import Excepciones.ErrorGuardado;
 import Model.Lista.InterfazFachadaLista;
 import Model.Lista.ListaFachada;
 import Model.Objetos.Cancion;
@@ -36,7 +38,7 @@ public class ControlLista {
 	    	try {
 	    		fLista.crearLista(nombre, usuarioActual);
 	    		VentanaPrincipal.actualizaListas();
-	    	} catch (ErrorAutenticacion | ErrorCreacionObjeto e) {
+	    	} catch (ErrorAutenticacion | ErrorCreacionObjeto | ErrorGuardado e) {
 	    		VentanaPrincipal.muestraError(e);
 	    	}
     }
@@ -45,7 +47,7 @@ public class ControlLista {
     		try {
     			fLista.crearListaAuto(listaAuto, genero, usuarioActual, duracion);
     			VentanaPrincipal.actualizaListas();
-		} catch (ErrorAutenticacion | ErrorCreacionObjeto e) {
+		} catch (ErrorAutenticacion | ErrorCreacionObjeto | ErrorConsulta | ErrorGuardado e) {
 			VentanaPrincipal.muestraError(e);
 		}
     }
@@ -62,17 +64,17 @@ public class ControlLista {
 	public void eliminar(Lista lista) {
 		try {
 			fLista.eliminar(lista, usuarioActual);
-			VentanaPrincipal.actualizaListas();
-		} catch (ErrorAutenticacion e) {
+		} catch (ErrorAutenticacion | ErrorEliminacion e) {
 			VentanaPrincipal.muestraError(e);
 		}
+		VentanaPrincipal.actualizaListas();
 	}
 
 	public void modificar(Lista lista) {
 		try {
 			fLista.modificar(lista, usuarioActual);
 			VentanaPrincipal.actualizaListas();
-		} catch (ErrorAutenticacion e) {
+		} catch (ErrorAutenticacion | ErrorGuardado e) {
 			VentanaPrincipal.muestraError(e);
 		}		
 	}
@@ -81,7 +83,7 @@ public class ControlLista {
 		try {
 			fLista.anadirCancion(cancion, lista, usuarioActual);
 			VentanaPrincipal.actualizaListas();
-		} catch (ErrorAutenticacion e) {
+		} catch (ErrorAutenticacion | ErrorCreacionObjeto | ErrorConsulta | ErrorGuardado e) {
 			VentanaPrincipal.muestraError(e);
 		}
 	}
@@ -90,7 +92,7 @@ public class ControlLista {
 		try {
 			fLista.eliminarCancion(cancion, lista, usuarioActual);
 			VentanaPrincipal.actualizaListas();
-		} catch (ErrorAutenticacion e) {
+		} catch (ErrorAutenticacion | ErrorCreacionObjeto | ErrorConsulta | ErrorGuardado e) {
 			VentanaPrincipal.muestraError(e);
 		}
 	}

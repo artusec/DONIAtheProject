@@ -12,6 +12,7 @@ import java.awt.event.WindowListener;
 import java.util.Scanner;
 
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
@@ -61,19 +62,28 @@ public class VentanaPrincipal extends JFrame {
 
 	public VentanaPrincipal (ControlCancion controlCancion, ControlGenero controlGenero,
 							ControlLista controlLista, ControlUsuario controlUsuario) throws ErrorCreacionObjeto {
+
+	//public VentanaPrincipal () {
+
 		super("Donia");
 
 		Login = new JDialog(new JFrame(),"Inciciar Sesion", true);
 		SingUp = new JDialog(new JFrame(), "Registrarse", true);
 
 		
-		this.controlCancion = controlCancion;
-		this.controlGenero = controlGenero;
-		this.controlLista = controlLista;
-		this.controlUsuario = controlUsuario;
+		this.controlCancion = new ControlCancion(null);
+		this.controlGenero = new ControlGenero(null);
+		this.controlLista = new ControlLista(null);
+		this.controlUsuario = new ControlUsuario(null);
 		
-		Login = new JDialog(new JFrame("Login"), true);
-		this.initGUI();
+
+		this.setIconImage(new ImageIcon("src\\icons\\LOGO_DONIA.png").getImage()); 
+		JFrame loginFrame = new JFrame("Login");
+		loginFrame.setIconImage(new ImageIcon("src\\icons\\LOGO_DONIA.png").getImage());
+		Login = new JDialog(loginFrame, true);
+
+		initGUI();
+
 	}
 	
 	private void initGUI() throws ErrorCreacionObjeto
@@ -142,6 +152,7 @@ public class VentanaPrincipal extends JFrame {
 		this.singUp();
 
 		setExtendedState(java.awt.Frame.MAXIMIZED_BOTH);
+
 	}
 
 	
