@@ -8,6 +8,8 @@ import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JToolBar;
+import javax.swing.SwingConstants;
+
 import Controlador.ControlCancion;
 import Controlador.ControlGenero;
 import Controlador.ControlLista;
@@ -29,8 +31,11 @@ public class ToolBar extends JToolBar {
 		SongAdmin songAdmin = new SongAdmin();
 
 		JButton perfil = new JButton();
-		perfil.setToolTipText("Account");
+		perfil.setToolTipText("Perfil");
 		perfil.setIcon(new ImageIcon("src/icons/perfil.png"));
+		perfil.setText("Perfil");
+		perfil.setHorizontalTextPosition( SwingConstants.CENTER );
+		perfil.setVerticalTextPosition( SwingConstants.BOTTOM );
 		perfil.addActionListener(new ActionListener()
 		{
 			@Override
@@ -44,8 +49,11 @@ public class ToolBar extends JToolBar {
 		
 		
 		JButton verGustos = new JButton();
-		verGustos.setToolTipText("See genre");
+		verGustos.setToolTipText("Gustos");
 		verGustos.setIcon(new ImageIcon("src/icons/gustos.png"));
+		verGustos.setText("Gustos");
+		verGustos.setHorizontalTextPosition( SwingConstants.CENTER );
+		verGustos.setVerticalTextPosition( SwingConstants.BOTTOM );
 		verGustos.addActionListener(new ActionListener()
 		{
 			@Override
@@ -61,8 +69,11 @@ public class ToolBar extends JToolBar {
 		
 		
 		JButton aniadirCancion = new JButton();
-		aniadirCancion.setToolTipText("Add new song");
+		aniadirCancion.setToolTipText("Añadir canción");
 		aniadirCancion.setIcon(new ImageIcon("src/icons/addCancion.png"));
+		aniadirCancion.setText("Añadir canción");
+		aniadirCancion.setHorizontalTextPosition( SwingConstants.CENTER );
+		aniadirCancion.setVerticalTextPosition( SwingConstants.BOTTOM );
 		aniadirCancion.addActionListener(new ActionListener()
 		{
 			@Override
@@ -76,8 +87,11 @@ public class ToolBar extends JToolBar {
 		
 		
 		JButton eliminarCancion = new JButton();
-		eliminarCancion.setToolTipText("Delete song");
+		eliminarCancion.setToolTipText("Borrar canción");
 		eliminarCancion.setIcon(new ImageIcon("src/icons/eliminarCancion.png"));
+		eliminarCancion.setText("Borrar canción");
+		eliminarCancion.setHorizontalTextPosition( SwingConstants.CENTER );
+		eliminarCancion.setVerticalTextPosition( SwingConstants.BOTTOM );
 		eliminarCancion.addActionListener(new ActionListener()
 		{
 			@Override
@@ -91,8 +105,11 @@ public class ToolBar extends JToolBar {
 		
 		
 		JButton modifCancion = new JButton();
-		modifCancion.setToolTipText("Modify song");
+		modifCancion.setToolTipText("Modificar canción");
 		modifCancion.setIcon(new ImageIcon("src/icons/modificarCancion.png"));
+		modifCancion.setText("Modificar canción");
+		modifCancion.setHorizontalTextPosition( SwingConstants.CENTER );
+		modifCancion.setVerticalTextPosition( SwingConstants.BOTTOM );
 		modifCancion.addActionListener(new ActionListener()
 		{
 			@Override
@@ -106,8 +123,11 @@ public class ToolBar extends JToolBar {
 		
 		
 		JButton salir = new JButton();
-		salir.setToolTipText("Exit");
+		salir.setToolTipText("Salir");
 		salir.setIcon(new ImageIcon("src/icons/exit.png"));
+		salir.setText("Salir");
+		salir.setHorizontalTextPosition( SwingConstants.CENTER );
+		salir.setVerticalTextPosition( SwingConstants.BOTTOM );
 		salir.addActionListener(new ActionListener()
 		{
 			@Override
