@@ -40,19 +40,27 @@ public class SASDAO implements InterfazSASDAO {
      * @throws SQLException 
      * @throws ClassNotFoundException 
      */
-    private void initDB() throws ClassNotFoundException, SQLException {
+    public void initDB() throws ClassNotFoundException, SQLException {
     		//de algun modo deberia crear una mariaDB en localhost que sa llame donia con user = usr pass = usr
     		
+    		// Para crear la tabla y usuario en mariaDB:
+    	
+    		// Arrancar mariaDB server en modo administrador y ejecutar las siguientes sentencias
+    		// "CREATE DATABASE donia;"
+    		// "CONNECT donia;"
+    		// "CREATE USER usr IDENTIFIED BY 'usr';"
+    		// ejecutar el script de inicializacion
+    	
     		//creacion de tablas
     		this.conectaDB();
     		if (this.conectado()) {
-    			String sentencia = DBstruct.getUsuario() + DBstruct.getUsuarioadmin() +
+    			/*String sentencia = DBstruct.getUsuario() + DBstruct.getUsuarioadmin() +
     					DBstruct.getGenero() + DBstruct.getRusuariogenero() +
     					DBstruct.getLista() + DBstruct.getBiblioteca() +
     					DBstruct.getListanormal() + DBstruct.getListaauto() +
     					DBstruct.getLetra() + DBstruct.getVideo() +
-    					DBstruct.getCancion() + DBstruct.getRlistacancion();
-		    PreparedStatement ps = this.DBconn.prepareStatement(sentencia + ";");
+    					DBstruct.getCancion() + DBstruct.getRlistacancion();*/
+		    PreparedStatement ps = this.DBconn.prepareStatement(DBstruct.getInitTodo());
 		    ps.executeQuery();
     		}
     }
@@ -68,7 +76,7 @@ public class SASDAO implements InterfazSASDAO {
         //conectame
         System.out.println("Conectando a MariaDB...");
         this.DBconn = DriverManager.getConnection(DBserver, USER, PASS);
-        System.out.println("Conectao!");
+        System.out.println("Conectao! " + this.USER + " " + this.DBserver);
     }
     
     public void cierraDB() throws SQLException {
@@ -83,16 +91,6 @@ public class SASDAO implements InterfazSASDAO {
     private boolean conectado() throws SQLException {
     		return this.DBconn != null && !this.DBconn.isClosed();
     }
-    
-	/** DEPRECATED
-	 * Genera un id adecuado para el nuevo objeto a crear, consultando la DB
-	 * @return nuevo id
-	 
-	private String GeneradorId(String tipo) {
-		long idCuenta =	this.getUltimoIdCancion();
-		return tipo + idCuenta;
-	}
-	 * @throws ErrorCreacionObjeto */
     
     // --------------- GET ---------------
     @Override
@@ -412,6 +410,7 @@ public class SASDAO implements InterfazSASDAO {
 				}
 				PreparedStatement ps = this.DBconn.prepareStatement(sentencia + ';');
 				ps.executeQuery();
+				System.out.println("usuario anadido ok");
 				//estais aqui estais aqui no puedo veros pero se que estais aqui
 			} else {
 				throw new ErrorGuardado();

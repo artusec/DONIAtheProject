@@ -1,5 +1,6 @@
 package Main;
 
+import Controlador.DAO.SASDAO;
 import Excepciones.ErrorCreacionObjeto;
 import Vista.VentanaPrincipal;
 
@@ -12,6 +13,7 @@ public class Main {
 		
 		try {
 			iniciarGUI();
+			
 		} catch (Exception e) {
 			System.out.println("imposible arrancar esto");
 			e.printStackTrace();
