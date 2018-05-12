@@ -191,7 +191,6 @@ public class SongAdmin_panel extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				if (ventanaPrincipal.entradaValida(titulo.getText()) &&
 					ventanaPrincipal.entradaValida(autor.getText()) &&
-					ventanaPrincipal.entradaValida(letra.getText()) &&
 					ventanaPrincipal.entradaValida(genero.getText()) &&
 					ventanaPrincipal.entradaValida(album.getText()) &&
 					Integer.parseInt(duracion.getText()) > 0) {
