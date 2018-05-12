@@ -6,6 +6,8 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.util.UUID;
+
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -16,6 +18,7 @@ import Controlador.ControlCancion;
 import Controlador.ControlGenero;
 import Controlador.ControlLista;
 import Controlador.ControlUsuario;
+import Excepciones.ErrorCreacionObjeto;
 import Model.Objetos.Cancion;
 import Model.Objetos.Lista;
 import Model.Objetos.Usuario;
@@ -51,6 +54,10 @@ public class VentanaPrincipal extends JFrame {
 
 	public VentanaPrincipal () {
 		super("Donia");
+		//forzamos admin para pruebas
+		try {
+			usuarioActual = new Usuario("u0", "admin", "");
+		} catch (ErrorCreacionObjeto e) {}
 		initGUI();
 		//Login = new Login(new ControlUsuario(usuarioActual), this);
 		//Login.setVisible(true);
@@ -190,7 +197,7 @@ public class VentanaPrincipal extends JFrame {
 		panelCambiante = new JPanel();
 		panelCambiante.setLayout(new BorderLayout());
 		this.panelCambiante.setOpaque(false);
-		SongAdmin_panel songAdmin = new SongAdmin_panel();
+		SongAdmin_panel songAdmin = new SongAdmin_panel(this);
 		songAdmin.setVisible(true);
 		songAdmin.setOpaque(false);
 		panelCambiante.add(songAdmin);
@@ -300,5 +307,28 @@ public class VentanaPrincipal extends JFrame {
 
 	public void setPanelCentral(JPanel panelCentral) {
 		this.panelCentral = panelCentral;
+	}
+
+	public Usuario getUsuarioActual() {
+		return this.usuarioActual;
+	}
+	
+	/**
+	 * Genera un id de forma aleatoria y presuntamente unica para
+	 * los objetos nuevos
+	 * @return id
+	 */
+	public String generaId() {
+		UUID uuid = UUID.randomUUID();
+		return uuid.toString();
+	}
+	
+	/**
+	 * Calcula si una entrada del usuario es valida o no
+	 * @param entrada texto a validar
+	 * @return si es valido
+	 */
+	public boolean entradaValida(String entrada) {
+		return entrada.matches("[a-zA-Z0-9]*");
 	}
 }

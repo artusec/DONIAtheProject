@@ -286,7 +286,7 @@ public class SASDAO implements InterfazSASDAO {
 					String id = datosUsuario.getString("usuario");
 					String nombre = datosUsuario.getString("nombre");
 					String claveObtenida = datosUsuario.getString("clave");
-					if (!claveObtenida.equals(clave)) throw new ErrorAutenticacion("Contraseña incorrecta para el usuario: " + nombre);
+					if (!claveObtenida.equals(clave)) throw new ErrorAutenticacion("Contraseï¿½a incorrecta para el usuario: " + nombre);
 					//procedimiento para obtener lista de generos
 					ArrayList<Genero> generos = new ArrayList<Genero>();
 					PreparedStatement stat2 = this.DBconn.prepareStatement("select * from rusuariogenero where usuario = '" + idUsuario + "';");
@@ -352,38 +352,53 @@ public class SASDAO implements InterfazSASDAO {
     @Override
     public void setCancion(Cancion cancion) throws ErrorGuardado, ErrorCreacionObjeto {
 	    	try {
-				if (this.conectado() && cancion != null) {
-					//recabar datos
-					String id = cancion.getId();
-					String titulo = cancion.getTitulo();
-					String autor = cancion.getAutor();
-					int duracion = cancion.getDuracion();
-					String album = cancion.getAlbum();
-					//las siguientes comprobaciones previenen errores en la DB
-					String genero = cancion.getGenero().getId();
+			if (this.conectado() && cancion != null) {
+				//recabar datos
+				System.out.println("Guardando cancion...");
+				String id = cancion.getId();
+				String titulo = cancion.getTitulo();
+				String autor = cancion.getAutor();
+				int duracion = cancion.getDuracion();
+				String album = cancion.getAlbum();
+				String genero = "g0";
+				String video = "v0";
+				String letra = "l0";
+				//las siguientes comprobaciones previenen errores en la DB
+				if (cancion.getGenero() != null) {
+					genero = cancion.getGenero().getId();
 					if (!this.existeGenero(genero)) genero = null;
-					String video = cancion.getVideo().getId();
-					if (!this.existeVideo(video)) genero = null;
-					String letra = cancion.getLetra().getId();
+				}
+				if (cancion.getVideo() != null) {
+					video = cancion.getVideo().getId();
+					if (!this.existeVideo(video)) video = null;
+				}
+				if (cancion.getLetra() != null) {
+					letra = cancion.getLetra().getId();
 					if (!this.existeLetra(letra)) letra = null;
-					
-					String sentencia = "";
-					//comprobar cancion
-					if (this.existeCancion(id)) {
-						//actualizar DB
-						sentencia = DBstruct.updateCancion(id, titulo, autor, duracion, album, genero, video, letra);
-					} else {
-						//insertar datos
-						sentencia = DBstruct.insertCancion(id, titulo, autor, duracion, album, genero, video, letra);
-						//anadir la cancion a la biblioteca
-						sentencia += '\n' + DBstruct.insertRlistaCancion(DBstruct.getIdBiblioteca(), id);
-					}
-					PreparedStatement ps = this.DBconn.prepareStatement(sentencia + ';');
+				}
+				String sentencia = "";
+				//comprobar cancion
+				if (this.existeCancion(id)) {
+					//actualizar DB
+					sentencia = DBstruct.updateCancion(id, titulo, autor, duracion, album, genero, video, letra);
+					PreparedStatement ps = this.DBconn.prepareStatement(sentencia);
+					ps.executeQuery();
+				} else {
+					//insertar datos
+					sentencia = DBstruct.insertCancion(id, titulo, autor, duracion, album, genero, video, letra);
+					PreparedStatement ps = this.DBconn.prepareStatement(sentencia);
+					ps.executeQuery();
+					//anadir la cancion a la biblioteca
+					sentencia = DBstruct.insertRlistaCancion(DBstruct.getIdBiblioteca(), id);
+					ps = this.DBconn.prepareStatement(sentencia);
 					ps.executeQuery();
 				}
-			} catch (SQLException e) {
-				throw new ErrorGuardado();
+
 			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new ErrorGuardado();
+		}
     }
 
     @Override
