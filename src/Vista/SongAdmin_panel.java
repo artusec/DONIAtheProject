@@ -11,6 +11,13 @@ import javax.swing.JTextArea;
 import javax.swing.JLabel;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JButton;
+import java.awt.GridLayout;
+import java.awt.GridBagLayout;
+import java.awt.GridBagConstraints;
+import java.awt.Insets;
+import javax.swing.JEditorPane;
+import net.miginfocom.swing.MigLayout;
+import javax.swing.JSeparator;
 
 public class SongAdmin_panel extends JPanel {
 	/**
@@ -33,114 +40,109 @@ public class SongAdmin_panel extends JPanel {
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBorder(new TitledBorder(null, "LETRA", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		GroupLayout groupLayout = new GroupLayout(this);
-		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addComponent(panel, GroupLayout.PREFERRED_SIZE, 257, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addComponent(panel_1, GroupLayout.DEFAULT_SIZE, 245, Short.MAX_VALUE))
-		);
-		groupLayout.setVerticalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
-					.addContainerGap(24, Short.MAX_VALUE)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
-						.addComponent(panel_1, Alignment.TRAILING, 0, 0, Short.MAX_VALUE)
-						.addComponent(panel, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 617, Short.MAX_VALUE)))
-		);
 		
-		JTextArea txtrEscribeAquLa = new JTextArea();
+		JEditorPane txtrEscribeAquLa = new JEditorPane();
 		txtrEscribeAquLa.setText("Escribe aquí la letra");
-		GroupLayout gl_panel_1 = new GroupLayout(panel_1);
-		gl_panel_1.setHorizontalGroup(
-			gl_panel_1.createParallelGroup(Alignment.LEADING)
-				.addComponent(txtrEscribeAquLa, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 245, Short.MAX_VALUE)
-		);
-		gl_panel_1.setVerticalGroup(
-			gl_panel_1.createParallelGroup(Alignment.LEADING)
-				.addGroup(Alignment.TRAILING, gl_panel_1.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(txtrEscribeAquLa, GroupLayout.DEFAULT_SIZE, 607, Short.MAX_VALUE))
-		);
-		panel_1.setLayout(gl_panel_1);
+		setLayout(new GridLayout(0, 2, 0, 0));
+		add(panel);
+		GridBagLayout gbl_panel = new GridBagLayout();
+		gbl_panel.columnWidths = new int[]{199, 0};
+		gbl_panel.rowHeights = new int[]{34, 16, 26, 16, 26, 16, 26, 26, 29, 0, 0, 0, 0};
+		gbl_panel.columnWeights = new double[]{1.0, Double.MIN_VALUE};
+		gbl_panel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		panel.setLayout(gbl_panel);
 		
 		JLabel lblNombreDeLa = new JLabel("NOMBRE DE LA CANCIÓN");
+		GridBagConstraints gbc_lblNombreDeLa = new GridBagConstraints();
+		gbc_lblNombreDeLa.anchor = GridBagConstraints.NORTH;
+		gbc_lblNombreDeLa.fill = GridBagConstraints.HORIZONTAL;
+		gbc_lblNombreDeLa.insets = new Insets(0, 0, 5, 0);
+		gbc_lblNombreDeLa.gridx = 0;
+		gbc_lblNombreDeLa.gridy = 1;
+		panel.add(lblNombreDeLa, gbc_lblNombreDeLa);
 		
 		textField = new JTextField();
 		textField.setColumns(10);
+		GridBagConstraints gbc_textField = new GridBagConstraints();
+		gbc_textField.anchor = GridBagConstraints.NORTH;
+		gbc_textField.fill = GridBagConstraints.HORIZONTAL;
+		gbc_textField.insets = new Insets(0, 0, 5, 0);
+		gbc_textField.gridx = 0;
+		gbc_textField.gridy = 2;
+		panel.add(textField, gbc_textField);
 		
 		JLabel lblNombreDelArtista = new JLabel("NOMBRE DEL ARTISTA");
+		GridBagConstraints gbc_lblNombreDelArtista = new GridBagConstraints();
+		gbc_lblNombreDelArtista.anchor = GridBagConstraints.NORTH;
+		gbc_lblNombreDelArtista.fill = GridBagConstraints.HORIZONTAL;
+		gbc_lblNombreDelArtista.insets = new Insets(0, 0, 5, 0);
+		gbc_lblNombreDelArtista.gridx = 0;
+		gbc_lblNombreDelArtista.gridy = 3;
+		panel.add(lblNombreDelArtista, gbc_lblNombreDelArtista);
 		
 		textField_1 = new JTextField();
 		textField_1.setColumns(10);
+		GridBagConstraints gbc_textField_1 = new GridBagConstraints();
+		gbc_textField_1.anchor = GridBagConstraints.NORTH;
+		gbc_textField_1.fill = GridBagConstraints.HORIZONTAL;
+		gbc_textField_1.insets = new Insets(0, 0, 5, 0);
+		gbc_textField_1.gridx = 0;
+		gbc_textField_1.gridy = 4;
+		panel.add(textField_1, gbc_textField_1);
 		
 		JLabel lblGnero = new JLabel("GÉNERO");
-		
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
-		
-		JLabel lblDuracin = new JLabel("DURACIÓN");
+		GridBagConstraints gbc_lblGnero = new GridBagConstraints();
+		gbc_lblGnero.anchor = GridBagConstraints.NORTH;
+		gbc_lblGnero.fill = GridBagConstraints.HORIZONTAL;
+		gbc_lblGnero.insets = new Insets(0, 0, 5, 0);
+		gbc_lblGnero.gridx = 0;
+		gbc_lblGnero.gridy = 5;
+		panel.add(lblGnero, gbc_lblGnero);
 		
 		textField_3 = new JTextField();
 		textField_3.setColumns(10);
+		GridBagConstraints gbc_textField_3 = new GridBagConstraints();
+		gbc_textField_3.insets = new Insets(0, 0, 5, 0);
+		gbc_textField_3.fill = GridBagConstraints.HORIZONTAL;
+		gbc_textField_3.gridx = 0;
+		gbc_textField_3.gridy = 6;
+		panel.add(textField_3, gbc_textField_3);
+		
+		JLabel lblDuracin = new JLabel("DURACIÓN");
+		GridBagConstraints gbc_lblDuracin = new GridBagConstraints();
+		gbc_lblDuracin.fill = GridBagConstraints.HORIZONTAL;
+		gbc_lblDuracin.insets = new Insets(0, 0, 5, 0);
+		gbc_lblDuracin.gridx = 0;
+		gbc_lblDuracin.gridy = 7;
+		panel.add(lblDuracin, gbc_lblDuracin);
+		
+		textField_2 = new JTextField();
+		textField_2.setColumns(10);
+		GridBagConstraints gbc_textField_2 = new GridBagConstraints();
+		gbc_textField_2.anchor = GridBagConstraints.NORTH;
+		gbc_textField_2.fill = GridBagConstraints.HORIZONTAL;
+		gbc_textField_2.insets = new Insets(0, 0, 5, 0);
+		gbc_textField_2.gridx = 0;
+		gbc_textField_2.gridy = 8;
+		panel.add(textField_2, gbc_textField_2);
+		
+		JSeparator separator = new JSeparator();
+		GridBagConstraints gbc_separator = new GridBagConstraints();
+		gbc_separator.insets = new Insets(0, 0, 5, 0);
+		gbc_separator.gridx = 0;
+		gbc_separator.gridy = 9;
+		panel.add(separator, gbc_separator);
 		
 		JButton btnHecho = new JButton("HECHO");
-		GroupLayout gl_panel = new GroupLayout(panel);
-		gl_panel.setHorizontalGroup(
-			gl_panel.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel.createSequentialGroup()
-					.addContainerGap()
-					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_panel.createSequentialGroup()
-							.addComponent(textField, GroupLayout.DEFAULT_SIZE, 229, Short.MAX_VALUE)
-							.addGap(18))
-						.addGroup(gl_panel.createSequentialGroup()
-							.addComponent(lblNombreDeLa)
-							.addContainerGap(124, Short.MAX_VALUE))
-						.addGroup(gl_panel.createSequentialGroup()
-							.addComponent(lblNombreDelArtista)
-							.addContainerGap(138, Short.MAX_VALUE))
-						.addGroup(gl_panel.createSequentialGroup()
-							.addComponent(lblGnero)
-							.addContainerGap(206, Short.MAX_VALUE))
-						.addGroup(Alignment.TRAILING, gl_panel.createSequentialGroup()
-							.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING)
-								.addComponent(textField_1, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 229, Short.MAX_VALUE)
-								.addComponent(textField_2)
-								.addGroup(gl_panel.createSequentialGroup()
-									.addComponent(lblDuracin)
-									.addPreferredGap(ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
-									.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-										.addComponent(btnHecho)
-										.addComponent(textField_3, GroupLayout.PREFERRED_SIZE, 140, GroupLayout.PREFERRED_SIZE))))
-							.addGap(18))))
-		);
-		gl_panel.setVerticalGroup(
-			gl_panel.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel.createSequentialGroup()
-					.addGap(54)
-					.addComponent(lblNombreDeLa)
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addGap(72)
-					.addComponent(lblNombreDelArtista)
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addGap(73)
-					.addComponent(lblGnero)
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addComponent(textField_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addGap(101)
-					.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING)
-						.addComponent(textField_3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblDuracin))
-					.addPreferredGap(ComponentPlacement.RELATED, 87, Short.MAX_VALUE)
-					.addComponent(btnHecho)
-					.addGap(29))
-		);
-		panel.setLayout(gl_panel);
-		setLayout(groupLayout);
+		GridBagConstraints gbc_btnHecho = new GridBagConstraints();
+		gbc_btnHecho.fill = GridBagConstraints.HORIZONTAL;
+		gbc_btnHecho.anchor = GridBagConstraints.NORTH;
+		gbc_btnHecho.gridx = 0;
+		gbc_btnHecho.gridy = 11;
+		panel.add(btnHecho, gbc_btnHecho);
+		add(panel_1);
+		panel_1.setLayout(new GridLayout(0, 1, 0, 0));
+		panel_1.add(txtrEscribeAquLa);
 
 	}
 }
