@@ -286,7 +286,7 @@ public class SASDAO implements InterfazSASDAO {
 					String id = datosUsuario.getString("usuario");
 					String nombre = datosUsuario.getString("nombre");
 					String claveObtenida = datosUsuario.getString("clave");
-					if (!claveObtenida.equals(clave)) throw new ErrorAutenticacion("ContraseÃ±a incorrecta para el usuario: " + nombre);
+					if (!claveObtenida.equals(clave)) throw new ErrorAutenticacion("Contraseña incorrecta para el usuario: " + nombre);
 					//procedimiento para obtener lista de generos
 					ArrayList<Genero> generos = new ArrayList<Genero>();
 					PreparedStatement stat2 = this.DBconn.prepareStatement("select * from rusuariogenero where usuario = '" + idUsuario + "';");
