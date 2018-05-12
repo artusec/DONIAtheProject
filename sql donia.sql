@@ -1,6 +1,8 @@
 // ESTO ES UN SCRIPT PARA INICIALIZAR LA DB DE DONIA
 // borjawer (en linux y mac funciona, en win deberia)
 
+//crear db donia, conectarse y crear usuario usr con clave usr
+
 DROP TABLE `rusuariogenero`;
 DROP TABLE `rlistacancion`;
 DROP TABLE `cancion`;
@@ -113,7 +115,7 @@ CREATE TABLE `rusuariogenero` (
 ) ;
 
 GRANT SELECT, INSERT, UPDATE, DELETE ON donia.* TO 'usr'@'localhost';
-GRANT ALL PRIVILEGES ON doniatest.* TO 'usr'@'%' WITH GRANT OPTION;
+GRANT ALL PRIVILEGES ON donia.* TO 'usr'@'%' WITH GRANT OPTION; //por si acaso
 
 INSERT INTO donia.lista
 (lista, nombre)
