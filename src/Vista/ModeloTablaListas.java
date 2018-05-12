@@ -33,7 +33,7 @@ public class ModeloTablaListas extends ModeloTabla<Lista> {
 	
 	 public void actualizarDatos(String idLista) {
 		 lista.clear();
-		 //lista.addAll(controlUsuario.getUsuario().getListas());
+		 //lista.addAll(controlLista.mostrar(ventanaPrincipal.getUsuarioActual()));
 	 }
 	 
 	 public Cancion cancionSel() {

@@ -44,6 +44,16 @@ public interface InterfazSASDAO {
 	 */
 	public Lista getListaDB(String idLista) throws ErrorConsulta, ErrorCreacionObjeto;
 	/**
+	 * Devuelve todas las listas del usuario
+	 * @param idUsuario
+	 * @param clave
+	 * @return
+	 * @throws ErrorCreacionObjeto 
+	 * @throws ErrorConsulta 
+	 * @throws ErrorAutenticacion 
+	 */
+	public ArrayList<Lista> getListasDB(String idUsuario, String clave) throws ErrorAutenticacion, ErrorConsulta, ErrorCreacionObjeto;
+	/**
 	 * Obtiene el usuario solicitado de la DB
 	 * @param idUsuario id de usuario
 	 * @param clave contraseña

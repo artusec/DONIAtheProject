@@ -37,7 +37,11 @@ public class DAOFachada implements InterfazDAOFachada {
     public Usuario getUsuarioDB(String idUsuario, String clave) throws ErrorAutenticacion, ErrorConsulta, ErrorCreacionObjeto {
 		return this.sasdao.getUsuarioDB(idUsuario, clave);
     }
-	
+
+	@Override
+	public ArrayList<Lista> getListasDB(String idUsuario, String clave) throws ErrorAutenticacion, ErrorConsulta, ErrorCreacionObjeto{
+		return this.sasdao.getListasDB(idUsuario, clave);
+	}
     // ----------- SET -----------
     @Override
     public void setCancion(Cancion cancion) throws ErrorGuardado, ErrorCreacionObjeto {

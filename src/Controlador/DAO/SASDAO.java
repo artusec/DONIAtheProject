@@ -217,40 +217,29 @@ public class SASDAO implements InterfazSASDAO {
 		return null;  
 	}
 
-	/*DEPRECATED
-	public Lista getListaAutoDB(String idLista) {
+	@Override
+	public ArrayList<Lista> getListasDB(String idUsuario, String clave) throws ErrorAutenticacion, ErrorConsulta, ErrorCreacionObjeto {
 		try {
-			if (this.conectado() && idLista != null) {
-				Lista lista = null;
-			    PreparedStatement stat = this.DBconn.prepareStatement("select * from listaauto where lista = " + idLista + ";");
-			    ResultSet datosLista = stat.executeQuery();
-				if(datosLista.next()) {
-					//si ha leido bien lo que queriamos obtenemos datos
-					String id = datosLista.getString("lista");
-					String titulo = datosLista.getString("nombre");
-					String idGenero = datosLista.getString("genero");
-					Genero genero = this.getGeneroDB(idGenero);
-					//procedimiento para obtener lista de canciones
-					ArrayList<Cancion> canciones = new ArrayList<Cancion>();
-				    PreparedStatement stat2 = this.DBconn.prepareStatement("select * from rlistacancion where lista = " + idLista + ";");
-				    ResultSet datosListaCanciones = stat2.executeQuery();
-				    while(datosListaCanciones.next()) {
-				    		String idCancion = datosListaCanciones.getString("cancion");
-				    		Cancion cancion = this.getCancionDB(idCancion);
-				    		canciones.add(cancion);
-					}
-					
-					lista = new ListaAuto(id, titulo, genero, canciones);
+			if (this.conectado() && idUsuario != null) {
+				if (this.existeUsuario(idUsuario, clave)) {
+					ArrayList<Lista> listas = new ArrayList<Lista>();
+					PreparedStatement stat = this.DBconn.prepareStatement("select * from listanormal where usuario = '" + idUsuario + "';");
+				    ResultSet datosLista = stat.executeQuery();
+				    while (datosLista.next()) {
+				    		//si ha leido bien lo que queriamos obtenemos datos
+						String id = datosLista.getString("lista");
+						listas.add(this.getListaDB(id));
+				    }
+				    return listas;
+				} else {
+					throw new ErrorAutenticacion();
 				}
-				return lista;
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
-		} catch (ErrorCreacionObjeto e) {
-			e.printStackTrace();
+			throw new ErrorConsulta();
 		}
-		return null;  
-	}*/
+		return null;
+	}
 	
 	@Override
     public Genero getGeneroDB(String idGenero) throws ErrorConsulta, ErrorCreacionObjeto {

@@ -49,6 +49,24 @@ public class SASLista implements InterfazSASLista {
 			return lista;
     }
 	
+	//TODO
+	/**
+	 * Devuelve todas las listas del usuario
+	 * @param usuarioActual
+	 * @return
+	 * @throws ErrorCreacionObjeto 
+	 * @throws ErrorConsulta 
+	 * @throws ErrorAutenticacion 
+	 */
+	@Override
+	public ArrayList<Lista> mostrar(Usuario usuarioActual) throws ErrorAutenticacion, ErrorConsulta, ErrorCreacionObjeto {
+		ArrayList<Lista> listas = dao.getListasDB(usuarioActual.getId(), usuarioActual.getClave());
+		if (listas == null)
+			throw new ErrorConsulta("Error al obtener listas");
+		else
+			return listas;
+    }
+	
     /**
      * borra una lista existente (obvio)
      * @param lista lista a borrar
