@@ -12,7 +12,6 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
-import Excepciones.ErrorCreacionObjeto;
 import Controlador.ControlCancion;
 import Controlador.ControlGenero;
 import Controlador.ControlLista;
@@ -35,12 +34,16 @@ public class VentanaPrincipal extends JFrame {
 	private PanelTabla<Lista> panelListas;
 	private PanelTabla<Cancion> panelCanciones;
 	private ToolBar toolBar;
+	private JPanel panelCambiante;
+	private JPanel panelCentral;
+
 
 	// CONTROLADORES (se crean cuando se utilizan porque es una arquitectura web)
 	private ControlCancion controlCancion;
 	private ControlGenero controlGenero;
 	private ControlLista controlLista;
 	private ControlUsuario controlUsuario;
+	
 	// USUARIO
 	private Usuario usuarioActual;
 
@@ -49,9 +52,8 @@ public class VentanaPrincipal extends JFrame {
 	public VentanaPrincipal () {
 		super("Donia");
 		initGUI();
-		Login = new Login(new ControlUsuario(usuarioActual), this);
-		Login.setVisible(true);
-		//LO QUE HABIA AQUI ME HA HECHO POTAR CABRONES NO NO NO NO NOOOOOOOOO NO SE HACE ESO ME CAGUEN LA OSTIA!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+		//Login = new Login(new ControlUsuario(usuarioActual), this);
+		//Login.setVisible(true);
 	}
 	
 	private void initGUI() {
@@ -94,15 +96,16 @@ public class VentanaPrincipal extends JFrame {
 		
 		addToolBar(panelSupremo);
 		
-		JPanel panelCentral = createPanelCentral();
+		panelCentral = createPanelCentral();
 		panelSupremo.add(panelCentral, BorderLayout.CENTER);
 
 		creaPanelListas(panelCentral);
 		creaPanelCanciones(panelCentral);
-		createPanelLetras(panelCentral);
+		createPanelCambiante();
+		verPerfil();
 		 
 		pack();
-		setVisible(false);
+		setVisible(true);
 		setExtendedState(java.awt.Frame.MAXIMIZED_BOTH);
 	}
 
@@ -134,7 +137,7 @@ public class VentanaPrincipal extends JFrame {
 		ToolBarListas barListas = new ToolBarListas(this, controlLista);
 		barListas.setFloatable(false);
 		setFont(new Font("MyStyle", 1, 20));
-		panelListas = new PanelTabla<Lista>("Playlists", new ModeloTablaListas(columnLista, controlLista, controlUsuario));
+		panelListas = new PanelTabla<Lista>("Listas de reproduccion", new ModeloTablaListas(columnLista, controlLista, controlUsuario));
 		panelListas.setAutoscrolls(true);
 		izquierda.add(panelListas);
 		izquierda.add(barListas, BorderLayout.SOUTH);
@@ -144,7 +147,7 @@ public class VentanaPrincipal extends JFrame {
 	private void creaPanelCanciones(JPanel panelCentral) {
 		JPanel medio = new JPanel();
 		medio.setLayout(new BorderLayout());
-		panelCanciones = new PanelTabla<Cancion>("Songs", new ModeloTablaCanciones(columnCanciones, controlCancion, controlLista));
+		panelCanciones = new PanelTabla<Cancion>("Canciones", new ModeloTablaCanciones(columnCanciones, controlCancion, controlLista));
 		panelCanciones.setAutoscrolls(true);
 		medio.add(panelCanciones);
 		ToolBarCanciones barCanciones = new ToolBarCanciones(this, controlCancion, controlLista, controlGenero);
@@ -153,11 +156,91 @@ public class VentanaPrincipal extends JFrame {
 		panelCentral.add(medio);
 	}
 	
-	private void createPanelLetras(JPanel panelCentral) {
-		panelDeLetras = new PanelAreaTexto("Lists", false);
-		panelDeLetras.areatexto.setText("Choose a song to see its lyrics!");
-		panelCentral.add(panelDeLetras);
+	private void createPanelCambiante() {
+		
+		panelCambiante = new JPanel();
+		panelCambiante.setLayout(new BorderLayout());
+		this.panelCambiante.setOpaque(false);
+		panelCentral.add(panelCambiante);
 	}
+	
+	private void resetearPanelCambiante() {
+		
+		panelCambiante.removeAll();
+		panelCambiante.setVisible(false);
+		panelCentral.remove(panelCambiante);
+	}
+	
+	public void verPerfil() {
+		
+		resetearPanelCambiante();
+		panelCambiante = new JPanel();
+		panelCambiante.setLayout(new BorderLayout());
+		this.panelCambiante.setOpaque(false);
+		Account_panel account = new Account_panel();
+		account.setVisible(true);
+		account.setOpaque(false);
+		panelCambiante.add(account);
+		panelCentral.add(panelCambiante);
+	}
+	
+	public void verAniadirCancion() {
+		
+		resetearPanelCambiante();
+		panelCambiante = new JPanel();
+		panelCambiante.setLayout(new BorderLayout());
+		this.panelCambiante.setOpaque(false);
+		SongAdmin_panel songAdmin = new SongAdmin_panel();
+		songAdmin.setVisible(true);
+		songAdmin.setOpaque(false);
+		panelCambiante.add(songAdmin);
+		panelCentral.add(panelCambiante);
+	}
+	
+	public void verPanelLetras() {
+		
+		resetearPanelCambiante();
+		panelCambiante = new JPanel();
+		panelCambiante.setLayout(new BorderLayout());
+		this.panelCambiante.setOpaque(false);
+		panelDeLetras = new PanelAreaTexto("Letra", false);
+		panelDeLetras.areatexto.setText("Elige una cancion para ver su letra!");
+		panelDeLetras.setVisible(true);
+		panelDeLetras.setOpaque(false);
+		panelCambiante.add(panelDeLetras);
+		panelCentral.add(panelCambiante);
+	}
+	
+	public void verModificarCancion() {
+		
+		resetearPanelCambiante();
+		panelCambiante = new JPanel();
+		panelCambiante.setLayout(new BorderLayout());
+		this.panelCambiante.setOpaque(false);
+		
+		
+		ModificarCancion_panel modificar = new ModificarCancion_panel();
+		modificar.setVisible(true);
+		modificar.setOpaque(false);
+		panelCambiante.add(modificar);
+		panelCentral.add(panelCambiante);
+		
+	}
+	
+	public void verEliminarCancion() {
+		
+		resetearPanelCambiante();
+		panelCambiante = new JPanel();
+		panelCambiante.setLayout(new BorderLayout());
+		this.panelCambiante.setOpaque(false);
+		
+		EliminarCancion_panel eliminar = new EliminarCancion_panel();
+		eliminar.setVisible(true);
+		eliminar.setOpaque(false);
+		panelCambiante.add(eliminar);
+		panelCentral.add(panelCambiante);
+	}
+	
 	
 	public PanelTabla<Cancion> getPanelCanciones()
 	{
@@ -176,7 +259,7 @@ public class VentanaPrincipal extends JFrame {
 	
 	public static void actualizaCanciones() {
 		
-
+		// TODO Auto-generated method stub
 		
 	}
 	
@@ -201,5 +284,21 @@ public class VentanaPrincipal extends JFrame {
 
 	public void setUsuarioActual(Usuario accesor) {
 		this.usuarioActual = accesor;
+	}
+
+	public JPanel getPanelCambiante() {
+		return panelCambiante;
+	}
+
+	public void setPanelCambiante(JPanel panelCambiante) {
+		this.panelCambiante = panelCambiante;
+	}
+
+	public JPanel getPanelCentral() {
+		return panelCentral;
+	}
+
+	public void setPanelCentral(JPanel panelCentral) {
+		this.panelCentral = panelCentral;
 	}
 }

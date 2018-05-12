@@ -1,6 +1,5 @@
 package Vista;
 
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import Controlador.ControlLista;
@@ -13,7 +12,7 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class createLista extends JFrame {
+public class CreateLista extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	
@@ -24,12 +23,10 @@ public class createLista extends JFrame {
 	 * Create the frame.
 	 * @param controlador 
 	 */
-	public createLista(ControlLista controlador) {
+	public CreateLista(ControlLista controlador) {
 		setBounds(100, 100, 268, 183);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
-		this.setTitle("Nueva Lista");
 		
 		JLabel lblNombreDeLa = new JLabel("Nombre:");
 		
@@ -69,6 +66,5 @@ public class createLista extends JFrame {
 					.addGap(21))
 		);
 		contentPane.setLayout(gl_contentPane);
-		setLocationRelativeTo(null);
 	}
 }

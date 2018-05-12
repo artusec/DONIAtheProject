@@ -21,7 +21,7 @@ public class ToolBarCanciones extends JToolBar {
 		setLayout(new GridLayout(1, 4));
 		
 		JButton aniadirCancion = new JButton();
-		aniadirCancion.setToolTipText("Add song");
+		aniadirCancion.setToolTipText("Añade una cancion");
 		aniadirCancion.setIcon(new ImageIcon("src/icons/add.png"));
 		aniadirCancion.addActionListener(new ActionListener() {
 			
@@ -33,7 +33,7 @@ public class ToolBarCanciones extends JToolBar {
 		this.add(aniadirCancion);
 		
 		JButton eliminarCancion = new JButton();
-		eliminarCancion.setToolTipText("Delete song from the list");
+		eliminarCancion.setToolTipText("Borra una cancion de la lista");
 		eliminarCancion.setIcon(new ImageIcon("src/icons/delete.png"));
 		eliminarCancion.addActionListener(new ActionListener() {
 			
@@ -47,7 +47,7 @@ public class ToolBarCanciones extends JToolBar {
 		
 		
 		JButton meGusta = new JButton();
-		meGusta.setToolTipText("I like this song");
+		meGusta.setToolTipText("Me gusta!");
 		meGusta.setIcon(new ImageIcon(("src/icons/hand.png")));
 		meGusta.addActionListener(new ActionListener()
 		{
@@ -61,13 +61,14 @@ public class ToolBarCanciones extends JToolBar {
 
 		
 		JButton verLetra = new JButton();
-		verLetra.setToolTipText("See the lyrics");
+		verLetra.setToolTipText("Ver l");
 		verLetra.setIcon(new ImageIcon("src/icons/flecha.png"));
 		verLetra.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				mainWindow.setLetra(mainWindow.getPanelCanciones().getModelo().cancionSel().toString());				
+				// mainWindow.setLetra(mainWindow.getPanelCanciones().getModelo().cancionSel().toString());	
+				mainWindow.verPanelLetras();
 			}
 		});		
 		this.add(verLetra);

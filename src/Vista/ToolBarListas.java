@@ -15,18 +15,18 @@ public class ToolBarListas extends JToolBar {
 	public ToolBarListas(VentanaPrincipal mainWindow, ControlLista controlador)
 	{
 		super();
-		createLista nuevaLista = new createLista(controlador);
+		CreateLista nuevaLista = new CreateLista(controlador);
 		
 		setLayout(new GridLayout(1, 3));
 		
 		JButton nuevLista = new JButton();
-		nuevLista.setToolTipText("Create a new empty list");
+		nuevLista.setToolTipText("Crea una nueva lista vacia");
 		nuevLista.setIcon(new ImageIcon(("src/icons/add.png")));
 		nuevLista.addActionListener(new ActionListener()
 		{
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				// TODO Auto-generated method stub
+				
 				nuevaLista.setVisible(true);
 			}
 		 });
@@ -35,7 +35,7 @@ public class ToolBarListas extends JToolBar {
 		
 		
 		JButton eliminarLista = new JButton();
-		eliminarLista.setToolTipText("Delete a list");
+		eliminarLista.setToolTipText("Borra una lista");
 		eliminarLista.setIcon(new ImageIcon(("src/icons/delete.png")));
 		eliminarLista.addActionListener(new ActionListener()
 		{
@@ -49,7 +49,7 @@ public class ToolBarListas extends JToolBar {
 		this.add(eliminarLista);
 		
 		JButton listaAuto = new JButton();
-		listaAuto.setToolTipText("Create a list automatically");
+		listaAuto.setToolTipText("Crea una lista de forma automatica");
 		listaAuto.setIcon(new ImageIcon(("src/icons/auto.png")));
 		listaAuto.addActionListener(new ActionListener()
 		{
