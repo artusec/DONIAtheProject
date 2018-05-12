@@ -49,8 +49,8 @@ public class VentanaPrincipal extends JFrame {
 	public VentanaPrincipal () {
 		super("Donia");
 		initGUI();
-		//Login = new Login(new ControlUsuario(usuarioActual), this);
-		//Login.setVisible(true);
+		Login = new Login(new ControlUsuario(usuarioActual), this);
+		Login.setVisible(true);
 		//LO QUE HABIA AQUI ME HA HECHO POTAR CABRONES NO NO NO NO NOOOOOOOOO NO SE HACE ESO ME CAGUEN LA OSTIA!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	}
 	
@@ -102,7 +102,7 @@ public class VentanaPrincipal extends JFrame {
 		createPanelLetras(panelCentral);
 		 
 		pack();
-		setVisible(true);
+		setVisible(false);
 		setExtendedState(java.awt.Frame.MAXIMIZED_BOTH);
 	}
 
