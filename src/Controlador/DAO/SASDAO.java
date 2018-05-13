@@ -384,7 +384,7 @@ public class SASDAO implements InterfazSASDAO {
 					//insertar datos
 					sentencia = DBstruct.insertCancion(id, titulo, autor, duracion, album, genero, video, letra);
 					PreparedStatement ps = this.DBconn.prepareStatement(sentencia);
-					ps.executeQuery();
+					ps.executeQuery(); //Me falla aqui al intentar insertar cancion 
 					//anadir la cancion a la biblioteca
 					sentencia = DBstruct.insertRlistaCancion(DBstruct.getIdBiblioteca(), id);
 					ps = this.DBconn.prepareStatement(sentencia);

@@ -211,7 +211,13 @@ public class VentanaPrincipal extends JFrame {
 		panelCambiante.setLayout(new BorderLayout());
 		this.panelCambiante.setOpaque(false);
 		panelDeLetras = new PanelAreaTexto("Letra", false);
-		panelDeLetras.areatexto.setText("Elige una cancion para ver su letra!");
+		Cancion seleccionada = this.getPanelCanciones().getModelo().cancionSel();
+		if (seleccionada != null) {			
+			String letra = seleccionada.getLetra().toString();
+			panelDeLetras.areatexto.setText(letra);
+			}
+		else
+			panelDeLetras.areatexto.setText("Debes seleccionar una canción primero.");
 		panelDeLetras.setVisible(true);
 		panelDeLetras.setOpaque(false);
 		panelCambiante.add(panelDeLetras);
@@ -245,6 +251,19 @@ public class VentanaPrincipal extends JFrame {
 		eliminar.setVisible(true);
 		eliminar.setOpaque(false);
 		panelCambiante.add(eliminar);
+		panelCentral.add(panelCambiante);
+	}
+	
+	public void verAniadirCancionALista() {
+		resetearPanelCambiante();
+		panelCambiante = new JPanel();
+		panelCambiante.setLayout(new BorderLayout());
+		this.panelCambiante.setOpaque(false);
+		AniadirCancionALista cancion = new AniadirCancionALista(this);
+		//SongAdmin_panel songAdmin = new SongAdmin_panel(this);
+		cancion.setVisible(true);
+		cancion.setOpaque(false);
+		panelCambiante.add(cancion);
 		panelCentral.add(panelCambiante);
 	}
 	

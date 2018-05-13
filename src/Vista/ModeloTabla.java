@@ -42,7 +42,9 @@ public abstract class ModeloTabla<T> extends JTable {
 	public boolean isCellEditable (int row, int column) { return false; }
 	
 	 public Cancion cancionSel() {
-		 return (Cancion) lista.get(this.getSelectedRow());
+		 if (isRowSelected(this.getSelectedRow()))
+			 return (Cancion) lista.get(this.getSelectedRow());
+		 else return null;
 	 }
 	 
 	 public Lista listaSel() {

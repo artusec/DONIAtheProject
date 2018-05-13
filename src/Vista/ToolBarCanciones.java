@@ -27,7 +27,7 @@ public class ToolBarCanciones extends JToolBar {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//controlLista.anadirCancion(/*cancion que metes*/, /*lista seleccionada*/ mainWindow.getPanelListas().getModelo().listaSel());
+				mainWindow.verAniadirCancionALista();
 			}
 		});
 		this.add(aniadirCancion);
@@ -39,7 +39,6 @@ public class ToolBarCanciones extends JToolBar {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				controlLista.eliminarCancion(mainWindow.getPanelCanciones().getModelo().cancionSel(), mainWindow.getPanelListas().getModelo().listaSel());
 			}
 		});		
@@ -53,7 +52,6 @@ public class ToolBarCanciones extends JToolBar {
 		{
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				// TODO Auto-generated method stub
 				controlGenero.Anadir(mainWindow.getPanelCanciones().getModelo().cancionSel().getGenero());
 			}
 		 });
@@ -67,7 +65,6 @@ public class ToolBarCanciones extends JToolBar {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// mainWindow.setLetra(mainWindow.getPanelCanciones().getModelo().cancionSel().toString());	
 				mainWindow.verPanelLetras();
 			}
 		});		
