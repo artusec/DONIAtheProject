@@ -241,7 +241,7 @@ public class VentanaPrincipal extends JFrame {
 		panelCambiante.setLayout(new BorderLayout());
 		this.panelCambiante.setOpaque(false);
 		
-		EliminarCancion_panel eliminar = new EliminarCancion_panel();
+		EliminarCancion_panel eliminar = new EliminarCancion_panel(this);
 		eliminar.setVisible(true);
 		eliminar.setOpaque(false);
 		panelCambiante.add(eliminar);
@@ -331,4 +331,6 @@ public class VentanaPrincipal extends JFrame {
 	public boolean entradaValida(String entrada) {
 		return entrada.matches("[a-zA-Z0-9]*");
 	}
+	
+	
 }

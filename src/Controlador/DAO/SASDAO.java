@@ -32,7 +32,15 @@ public class SASDAO implements InterfazSASDAO {
 		} catch (SQLException | ClassNotFoundException e) {
 			e.printStackTrace();
 		}
-    		//this.initDB();
+    		try {
+				this.initDB();
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
     }
     
     /**
