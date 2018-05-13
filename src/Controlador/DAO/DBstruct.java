@@ -270,16 +270,28 @@ public abstract class DBstruct {
 				"'" + album + "', " + "'" + genero + "', " + "'" + video + "', " + "'" + letra + "');\n";
 	}
 	
+	public static String insertaLetra(String id, String texto) {
+		return "INSERT INTO donia.letra\n" + 
+				"(texto, letra)\n" + 
+				"VALUES('"+ texto +"', '"+ id +"');\n";
+	}
+	
+	public static String insertaVideo(String id, String enlace, String descarga) {
+		return "INSERT INTO donia.video\n" + 
+				"(enlace, enlaceDescarga, video)\n" + 
+				"VALUES('"+ id +"', '"+ enlace +"', '"+ descarga +"');\n";
+	}
+	
 	public static String insertUsuario(String id, String nombre, String clave) {
 		return "INSERT INTO donia.usuario\n" +
 				"(usuario, nombre, clave)\n" +
 				"VALUES('" + id + "', '" + nombre + "', '"  + clave + "')";
 	}
 	
-	public static String insertGenero(String id, String nombre) {
-		return "INSERT INTO donia.genero" +
-				"(genero, nombre)" +
-				"VALUES('" + id + "'," + "'" + nombre + "')";
+	public static String insertGenero(String id) {
+		return "INSERT INTO donia.genero\n" +
+				"(genero)\n" +
+				"VALUES('" + id + "');\n";
 	}
 	
 	public static String insertLista(String id, String nombre) {
@@ -295,9 +307,9 @@ public abstract class DBstruct {
 	}
 	
 	public static String insertRgeneroUsuario(String genero, String usuario) {
-		return 	"INSERT INTO donia.rgenerousuario" +
-				"(genero, usuario)" +
-				"VALUES('" + genero + "'," + "'" + usuario + "')";
+		return 	"INSERT INTO donia.rgenerousuario\n" +
+				"(genero, usuario)\n" +
+				"VALUES('" + genero + "'," + "'" + usuario + "');\n";
 	}
 	
 	//SENTENCIAS DE ACTUALIZACION

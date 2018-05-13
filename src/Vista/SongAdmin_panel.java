@@ -196,16 +196,15 @@ public class SongAdmin_panel extends JPanel {
 					Integer.parseInt(duracion.getText()) > 0) {
 					System.out.println("Entrada datos cancion valida");
 					try {
-						//Esto del genero, video, letra deberiamos cambiarlo
 						//ControlGenero controlG = new ControlGenero(ventanaPrincipal.getUsuarioActual());
-						//Genero generoNuevo = new Genero(ventanaPrincipal.generaId(), genero.getText());
+						Genero generoNuevo = new Genero(genero.getText());
 						//controlG.Anadir(generoNuevo);
 						Video videoNuevo = new Video(ventanaPrincipal.generaId(), video.getText(), descarga.getText());
 						Letra letraNueva = new Letra(ventanaPrincipal.generaId(), letra.getText());
 						ControlCancion controlC = new ControlCancion(ventanaPrincipal.getUsuarioActual());
 						Cancion cancionNueva;
 						cancionNueva = new Cancion(ventanaPrincipal.generaId(), titulo.getText(), autor.getText(),
-								album.getText(), Integer.parseInt(duracion.getText()), null, null, null);
+								album.getText(), Integer.parseInt(duracion.getText()), letraNueva, videoNuevo, generoNuevo);
 						System.out.println("creacion cancion ok, guardando en db");
 						controlC.creaCancion(cancionNueva);
 					} catch (NumberFormatException | ErrorCreacionObjeto e1) {
