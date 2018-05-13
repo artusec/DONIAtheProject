@@ -61,7 +61,7 @@ public class ToolBarCanciones extends JToolBar {
 
 		
 		JButton verLetra = new JButton();
-		verLetra.setToolTipText("Ver l");
+		verLetra.setToolTipText("Ver letra");
 		verLetra.setIcon(new ImageIcon("src/icons/flecha.png"));
 		verLetra.addActionListener(new ActionListener() {
 			
