@@ -1,3 +1,4 @@
+// version 13-5-2018 13:05
 // ESTO ES UN SCRIPT PARA INICIALIZAR LA DB DE DONIA
 // borjawer (en linux y mac funciona, en win deberia)
 
@@ -46,9 +47,8 @@ CREATE TABLE `listanormal` (
 
 CREATE TABLE `genero` (
   `genero` varchar(100) NOT NULL,
-  `nombre` varchar(100) NOT NULL,
   PRIMARY KEY (`genero`)
-) ;
+)
 
 CREATE TABLE `listaauto` (
   `lista` varchar(100) NOT NULL,
