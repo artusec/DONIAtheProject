@@ -32,7 +32,6 @@ public class SASDAO implements InterfazSASDAO {
 		} catch (SQLException | ClassNotFoundException e) {
 			e.printStackTrace();
 		}
-    		//this.initDB();
     }
     
     /**
@@ -217,40 +216,29 @@ public class SASDAO implements InterfazSASDAO {
 		return null;  
 	}
 
-	/*DEPRECATED
-	public Lista getListaAutoDB(String idLista) {
+	@Override
+	public ArrayList<Lista> getListasDB(String idUsuario, String clave) throws ErrorAutenticacion, ErrorConsulta, ErrorCreacionObjeto {
 		try {
-			if (this.conectado() && idLista != null) {
-				Lista lista = null;
-			    PreparedStatement stat = this.DBconn.prepareStatement("select * from listaauto where lista = " + idLista + ";");
-			    ResultSet datosLista = stat.executeQuery();
-				if(datosLista.next()) {
-					//si ha leido bien lo que queriamos obtenemos datos
-					String id = datosLista.getString("lista");
-					String titulo = datosLista.getString("nombre");
-					String idGenero = datosLista.getString("genero");
-					Genero genero = this.getGeneroDB(idGenero);
-					//procedimiento para obtener lista de canciones
-					ArrayList<Cancion> canciones = new ArrayList<Cancion>();
-				    PreparedStatement stat2 = this.DBconn.prepareStatement("select * from rlistacancion where lista = " + idLista + ";");
-				    ResultSet datosListaCanciones = stat2.executeQuery();
-				    while(datosListaCanciones.next()) {
-				    		String idCancion = datosListaCanciones.getString("cancion");
-				    		Cancion cancion = this.getCancionDB(idCancion);
-				    		canciones.add(cancion);
-					}
-					
-					lista = new ListaAuto(id, titulo, genero, canciones);
+			if (this.conectado() && idUsuario != null) {
+				if (this.existeUsuario(idUsuario, clave)) {
+					ArrayList<Lista> listas = new ArrayList<Lista>();
+					PreparedStatement stat = this.DBconn.prepareStatement("select * from listanormal where usuario = '" + idUsuario + "';");
+				    ResultSet datosLista = stat.executeQuery();
+				    while (datosLista.next()) {
+				    		//si ha leido bien lo que queriamos obtenemos datos
+						String id = datosLista.getString("lista");
+						listas.add(this.getListaDB(id));
+				    }
+				    return listas;
+				} else {
+					throw new ErrorAutenticacion();
 				}
-				return lista;
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
-		} catch (ErrorCreacionObjeto e) {
-			e.printStackTrace();
+			throw new ErrorConsulta();
 		}
-		return null;  
-	}*/
+		return null;
+	}
 	
 	@Override
     public Genero getGeneroDB(String idGenero) throws ErrorConsulta, ErrorCreacionObjeto {
@@ -262,9 +250,7 @@ public class SASDAO implements InterfazSASDAO {
 				if(datosGenero.next()) {
 					//si ha leido bien lo que queriamos
 					String id = datosGenero.getString("genero");
-					String nombre = datosGenero.getString("nombre");
-					
-					genero = new Genero(id, nombre);
+					genero = new Genero(id);
 				}
 				return genero;
 			}
@@ -286,7 +272,7 @@ public class SASDAO implements InterfazSASDAO {
 					String id = datosUsuario.getString("usuario");
 					String nombre = datosUsuario.getString("nombre");
 					String claveObtenida = datosUsuario.getString("clave");
-					if (!claveObtenida.equals(clave)) throw new ErrorAutenticacion("Contraseña incorrecta para el usuario: " + nombre);
+					if (!claveObtenida.equals(clave)) throw new ErrorAutenticacion("Contraseï¿½a incorrecta para el usuario: " + nombre);
 					//procedimiento para obtener lista de generos
 					ArrayList<Genero> generos = new ArrayList<Genero>();
 					PreparedStatement stat2 = this.DBconn.prepareStatement("select * from rusuariogenero where usuario = '" + idUsuario + "';");
@@ -352,41 +338,108 @@ public class SASDAO implements InterfazSASDAO {
     @Override
     public void setCancion(Cancion cancion) throws ErrorGuardado, ErrorCreacionObjeto {
 	    	try {
-				if (this.conectado() && cancion != null) {
-					//recabar datos
-					String id = cancion.getId();
-					String titulo = cancion.getTitulo();
-					String autor = cancion.getAutor();
-					int duracion = cancion.getDuracion();
-					String album = cancion.getAlbum();
-					//las siguientes comprobaciones previenen errores en la DB
-					String genero = cancion.getGenero().getId();
-					if (!this.existeGenero(genero)) genero = null;
-					String video = cancion.getVideo().getId();
-					if (!this.existeVideo(video)) genero = null;
-					String letra = cancion.getLetra().getId();
-					if (!this.existeLetra(letra)) letra = null;
-					
-					String sentencia = "";
-					//comprobar cancion
-					if (this.existeCancion(id)) {
-						//actualizar DB
-						sentencia = DBstruct.updateCancion(id, titulo, autor, duracion, album, genero, video, letra);
-					} else {
-						//insertar datos
-						sentencia = DBstruct.insertCancion(id, titulo, autor, duracion, album, genero, video, letra);
-						//anadir la cancion a la biblioteca
-						sentencia += '\n' + DBstruct.insertRlistaCancion(DBstruct.getIdBiblioteca(), id);
+			if (this.conectado() && cancion != null) {
+				//recabar datos
+				System.out.println("Guardando cancion...");
+				String id = cancion.getId();
+				String titulo = cancion.getTitulo();
+				String autor = cancion.getAutor();
+				int duracion = cancion.getDuracion();
+				String album = cancion.getAlbum();
+				String genero = "g0";
+				String video = "v0";
+				String letra = "l0";
+				//las siguientes comprobaciones previenen errores en la DB
+				if (cancion.getGenero() != null) {
+					genero = cancion.getGenero().getId();
+					if (!this.existeGenero(genero)) {
+						//si el genero no existe lo anade
+						try {
+							this.setGenero(cancion.getGenero(), null);
+						} catch (ErrorAutenticacion e) {}
 					}
-					PreparedStatement ps = this.DBconn.prepareStatement(sentencia + ';');
+				}
+				if (cancion.getVideo() != null) {
+					video = cancion.getVideo().getId();
+					if (!this.existeVideo(video)) {
+						//si el video no existe lo anade
+						this.setVideo(cancion.getVideo());
+					}
+				}
+				if (cancion.getLetra() != null) {
+					letra = cancion.getLetra().getId();
+					if (!this.existeLetra(letra)) {
+						//si la letra no existe lo anade
+						this.setLetra(cancion.getLetra());
+					}
+				}
+				String sentencia = "";
+				//comprobar cancion
+				if (this.existeCancion(id)) {
+					//actualizar DB
+					sentencia = DBstruct.updateCancion(id, titulo, autor, duracion, album, genero, video, letra);
+					PreparedStatement ps = this.DBconn.prepareStatement(sentencia);
+					ps.executeQuery();
+				} else {
+					//insertar datos
+					sentencia = DBstruct.insertCancion(id, titulo, autor, duracion, album, genero, video, letra);
+					PreparedStatement ps = this.DBconn.prepareStatement(sentencia);
+					ps.executeQuery(); //Me falla aqui al intentar insertar cancion 
+					//anadir la cancion a la biblioteca
+					sentencia = DBstruct.insertRlistaCancion(DBstruct.getIdBiblioteca(), id);
+					ps = this.DBconn.prepareStatement(sentencia);
 					ps.executeQuery();
 				}
-			} catch (SQLException e) {
-				throw new ErrorGuardado();
-			}
-    }
 
-    @Override
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new ErrorGuardado();
+		}
+    }
+    
+	private void setLetra(Letra letra) throws ErrorGuardado {
+		try {
+			if (this.conectado() && letra != null) {
+				//recabar datos
+				System.out.println("Guardando letra...");
+				String id = letra.getId();
+				String texto = letra.getTexto();
+				if (!this.existeLetra(id)) {
+					String sentencia = DBstruct.insertaLetra(id, texto);
+					PreparedStatement ps = this.DBconn.prepareStatement(sentencia);
+					ps.executeQuery();
+				}
+			} else {
+				throw new ErrorGuardado("Error al guardar letra");
+			}
+		} catch (SQLException e) {
+			throw new ErrorGuardado(e.getMessage());
+		}
+    }
+	
+	private void setVideo(Video video) throws ErrorGuardado {
+		try {
+			if (this.conectado() && video != null) {
+				//recabar datos
+				System.out.println("Guardando video...");
+				String id = video.getId();
+				String enlace = video.getEnlace();
+				String descarga = video.getEnlaceDescarga();
+				if (!this.existeVideo(id)) {
+					String sentencia = DBstruct.insertaVideo(id, enlace, descarga);
+					PreparedStatement ps = this.DBconn.prepareStatement(sentencia);
+					ps.executeQuery();
+				}
+			} else {
+				throw new ErrorGuardado("Error al guardar video");
+			}
+		} catch (SQLException e) {
+			throw new ErrorGuardado(e.getMessage());
+		}
+	}
+
+	@Override
     public void setUsuario(Usuario usuario) throws ErrorAutenticacion, ErrorGuardado {
      	try {
 			if (this.conectado() && usuario != null) {
@@ -419,34 +472,34 @@ public class SASDAO implements InterfazSASDAO {
 			throw new ErrorGuardado(e.getMessage());
 		}
     }
-
-    @Override
+	
+	@Override
     public void setGenero(Genero genero, Usuario usuario) throws ErrorAutenticacion, ErrorGuardado {
      	try {
-			if (this.conectado() && genero != null && usuario != null) {
+			if (this.conectado() && genero != null) {
 				//recabar datos
 				String id = genero.getId();
-				String nombre = genero.getNombre();
-				//recabar datos usuario
-				String idUsuario = usuario.getId();
-				String clave = usuario.getClave();
-				//comprobar usuario
-				if (!this.existeUsuario(idUsuario, clave))
-					throw new ErrorGuardado();
-				String sentencia = "";
-				//comprobar genero
-				if (this.existeGenero(id)) {
-					//actualizar DB
-					sentencia = DBstruct.updateGenero(id, nombre);
+				if (!this.existeGenero(id)) {
+					//si el genero no existe, se guarda
+					String sentencia = DBstruct.insertGenero(id);
+					PreparedStatement ps = this.DBconn.prepareStatement(sentencia);
+					ps.executeQuery();
 				} else {
-					//insertar datos
-					sentencia = DBstruct.insertGenero(id, nombre);
-					sentencia += " " + DBstruct.insertRgeneroUsuario(id, idUsuario);
+					System.out.println("El genero ya existe");
 				}
-				PreparedStatement ps = this.DBconn.prepareStatement(sentencia + ';');
-				ps.executeQuery();
-			} else {
-				throw new ErrorGuardado();
+				if (usuario != null) {
+					//si ademas quieres asociar un usuario al genero
+					//recabar datos usuario
+					String idUsuario = usuario.getId();
+					String clave = usuario.getClave();
+					//comprobar usuario
+					if (!this.existeUsuario(idUsuario, clave))
+						throw new ErrorGuardado("El usuario " + idUsuario + " no existe");
+					//insertar datos
+					String sentencia = DBstruct.insertRgeneroUsuario(id, idUsuario);
+					PreparedStatement ps = this.DBconn.prepareStatement(sentencia);
+					ps.executeQuery();
+				}
 			}
 		} catch (SQLException e) {
 			throw new ErrorGuardado();

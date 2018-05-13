@@ -4,6 +4,7 @@ import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
 
 import java.awt.BorderLayout;
+import java.awt.Graphics;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -43,7 +44,10 @@ public class Account_panel extends JPanel {
 		
 		JPanel panel_1 = new JPanel();
 		
-		JPanel panel_2 = new JPanel();
+		PanelImagen panel_2 = new PanelImagen();
+		
+		
+	
 		
 		JPanel panel_3 = new JPanel();
 		GroupLayout gl_panel = new GroupLayout(panel);
@@ -69,20 +73,17 @@ public class Account_panel extends JPanel {
 					.addContainerGap())
 		);
 		
-		JLabel lblFoto = new JLabel("foto");
 		GroupLayout gl_panel_2 = new GroupLayout(panel_2);
 		gl_panel_2.setHorizontalGroup(
 			gl_panel_2.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel_2.createSequentialGroup()
 					.addGap(203)
-					.addComponent(lblFoto)
 					.addContainerGap(216, Short.MAX_VALUE))
 		);
 		gl_panel_2.setVerticalGroup(
 			gl_panel_2.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel_2.createSequentialGroup()
 					.addGap(62)
-					.addComponent(lblFoto)
 					.addContainerGap(76, Short.MAX_VALUE))
 		);
 		panel_2.setLayout(gl_panel_2);

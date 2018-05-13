@@ -1,5 +1,7 @@
 package Model.Lista;
 
+import java.util.ArrayList;
+
 import Excepciones.ErrorAutenticacion;
 import Excepciones.ErrorConsulta;
 import Excepciones.ErrorCreacionObjeto;
@@ -9,6 +11,7 @@ import Model.Objetos.*;
 
 public interface InterfazFachadaLista {
 	public Lista consulta(String idLista) throws ErrorConsulta, ErrorCreacionObjeto;
+	public ArrayList<Lista> mostrar(Usuario usuarioActual) throws ErrorAutenticacion, ErrorConsulta, ErrorCreacionObjeto;
 	public void eliminar(Lista lista, Usuario usuario) throws ErrorAutenticacion, ErrorEliminacion;
 	public void modificar(Lista lista, Usuario usuario) throws ErrorAutenticacion, ErrorGuardado;
 	public void crearLista(String nombre, Usuario usuario) throws ErrorAutenticacion, ErrorCreacionObjeto, ErrorGuardado;

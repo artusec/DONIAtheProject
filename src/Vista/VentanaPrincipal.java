@@ -6,6 +6,8 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.util.UUID;
+
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -16,6 +18,7 @@ import Controlador.ControlCancion;
 import Controlador.ControlGenero;
 import Controlador.ControlLista;
 import Controlador.ControlUsuario;
+import Excepciones.ErrorCreacionObjeto;
 import Model.Objetos.Cancion;
 import Model.Objetos.Lista;
 import Model.Objetos.Usuario;
@@ -51,6 +54,10 @@ public class VentanaPrincipal extends JFrame {
 
 	public VentanaPrincipal () {
 		super("Donia");
+		//forzamos admin para pruebas
+		try {
+			usuarioActual = new Usuario("u0", "admin", "");
+		} catch (ErrorCreacionObjeto e) {}
 		initGUI();
 		//Login = new Login(new ControlUsuario(usuarioActual), this);
 		//Login.setVisible(true);
@@ -190,7 +197,7 @@ public class VentanaPrincipal extends JFrame {
 		panelCambiante = new JPanel();
 		panelCambiante.setLayout(new BorderLayout());
 		this.panelCambiante.setOpaque(false);
-		SongAdmin_panel songAdmin = new SongAdmin_panel();
+		SongAdmin_panel songAdmin = new SongAdmin_panel(this);
 		songAdmin.setVisible(true);
 		songAdmin.setOpaque(false);
 		panelCambiante.add(songAdmin);
@@ -204,7 +211,13 @@ public class VentanaPrincipal extends JFrame {
 		panelCambiante.setLayout(new BorderLayout());
 		this.panelCambiante.setOpaque(false);
 		panelDeLetras = new PanelAreaTexto("Letra", false);
-		panelDeLetras.areatexto.setText("Elige una cancion para ver su letra!");
+		Cancion seleccionada = this.getPanelCanciones().getModelo().cancionSel();
+		if (seleccionada != null) {			
+			String letra = seleccionada.getLetra().toString();
+			panelDeLetras.areatexto.setText(letra);
+			}
+		else
+			panelDeLetras.areatexto.setText("Debes seleccionar una canción primero.");
 		panelDeLetras.setVisible(true);
 		panelDeLetras.setOpaque(false);
 		panelCambiante.add(panelDeLetras);
@@ -234,13 +247,49 @@ public class VentanaPrincipal extends JFrame {
 		panelCambiante.setLayout(new BorderLayout());
 		this.panelCambiante.setOpaque(false);
 		
-		EliminarCancion_panel eliminar = new EliminarCancion_panel();
+		EliminarCancion_panel eliminar = new EliminarCancion_panel(this);
 		eliminar.setVisible(true);
 		eliminar.setOpaque(false);
 		panelCambiante.add(eliminar);
 		panelCentral.add(panelCambiante);
 	}
 	
+	public void verAniadirCancionALista() {
+		resetearPanelCambiante();
+		panelCambiante = new JPanel();
+		panelCambiante.setLayout(new BorderLayout());
+		this.panelCambiante.setOpaque(false);
+		AniadirCancionALista cancion = new AniadirCancionALista(this);
+		//SongAdmin_panel songAdmin = new SongAdmin_panel(this);
+		cancion.setVisible(true);
+		cancion.setOpaque(false);
+		panelCambiante.add(cancion);
+		panelCentral.add(panelCambiante);
+	}
+	
+	public void verCrearLista() {
+		resetearPanelCambiante();
+		panelCambiante = new JPanel();
+		panelCambiante.setLayout(new BorderLayout());
+		this.panelCambiante.setOpaque(false);
+		CrearLista crear = new CrearLista(this);
+		crear.setVisible(true);
+		crear.setOpaque(false);
+		panelCambiante.add(crear);
+		panelCentral.add(panelCambiante);
+	}
+	
+	public void verCrearListaAuto() {
+		resetearPanelCambiante();
+		panelCambiante = new JPanel();
+		panelCambiante.setLayout(new BorderLayout());
+		this.panelCambiante.setOpaque(false);
+		CrearListaAuto crear = new CrearListaAuto(this);
+		crear.setVisible(true);
+		crear.setOpaque(false);
+		panelCambiante.add(crear);
+		panelCentral.add(panelCambiante);		
+	}
 	
 	public PanelTabla<Cancion> getPanelCanciones()
 	{
@@ -301,4 +350,28 @@ public class VentanaPrincipal extends JFrame {
 	public void setPanelCentral(JPanel panelCentral) {
 		this.panelCentral = panelCentral;
 	}
+
+	public Usuario getUsuarioActual() {
+		return this.usuarioActual;
+	}
+	
+	/**
+	 * Genera un id de forma aleatoria y presuntamente unica para
+	 * los objetos nuevos
+	 * @return id
+	 */
+	public String generaId() {
+		UUID uuid = UUID.randomUUID();
+		return uuid.toString();
+	}
+	
+	/**
+	 * Calcula si una entrada del usuario es valida o no
+	 * @param entrada texto a validar
+	 * @return si es valido
+	 */
+	public boolean entradaValida(String entrada) {
+		return entrada.matches("[a-zA-Z0-9]*");
+	}
+	
 }

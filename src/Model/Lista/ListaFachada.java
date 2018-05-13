@@ -1,5 +1,7 @@
 package Model.Lista;
 
+import java.util.ArrayList;
+
 import Excepciones.ErrorAutenticacion;
 import Excepciones.ErrorConsulta;
 import Excepciones.ErrorCreacionObjeto;
@@ -30,6 +32,11 @@ public class ListaFachada implements InterfazFachadaLista {
     		return sasLista.consulta(idLista);		
 	}
 
+	@Override
+	public ArrayList<Lista> mostrar(Usuario usuarioActual) throws ErrorAutenticacion, ErrorConsulta, ErrorCreacionObjeto {
+		return sasLista.mostrar(usuarioActual);
+	}
+	
 	@Override
 	public void eliminar(Lista lista, Usuario usuario) throws ErrorAutenticacion, ErrorEliminacion {
 		sasLista.eliminar(lista, usuario);		

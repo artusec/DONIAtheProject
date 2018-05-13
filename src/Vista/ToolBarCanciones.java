@@ -9,6 +9,7 @@ import javax.swing.JToolBar;
 import Controlador.ControlCancion;
 import Controlador.ControlGenero;
 import Controlador.ControlLista;
+import Model.Objetos.Cancion;
 
 public class ToolBarCanciones extends JToolBar {
 
@@ -27,7 +28,7 @@ public class ToolBarCanciones extends JToolBar {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//controlLista.anadirCancion(/*cancion que metes*/, /*lista seleccionada*/ mainWindow.getPanelListas().getModelo().listaSel());
+				mainWindow.verAniadirCancionALista();
 			}
 		});
 		this.add(aniadirCancion);
@@ -39,8 +40,10 @@ public class ToolBarCanciones extends JToolBar {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				controlLista.eliminarCancion(mainWindow.getPanelCanciones().getModelo().cancionSel(), mainWindow.getPanelListas().getModelo().listaSel());
+				Cancion seleccionada = mainWindow.getPanelCanciones().getModelo().cancionSel();
+				if (seleccionada != null) {			
+					controlLista.eliminarCancion(seleccionada, mainWindow.getPanelListas().getModelo().listaSel());
+				}
 			}
 		});		
 		this.add(eliminarCancion);
@@ -53,21 +56,22 @@ public class ToolBarCanciones extends JToolBar {
 		{
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				// TODO Auto-generated method stub
-				controlGenero.Anadir(mainWindow.getPanelCanciones().getModelo().cancionSel().getGenero());
+				Cancion seleccionada = mainWindow.getPanelCanciones().getModelo().cancionSel();
+				if (seleccionada != null) {	
+					controlGenero.Anadir(seleccionada.getGenero());
+				}
 			}
 		 });
 		this.add(meGusta);
 
 		
 		JButton verLetra = new JButton();
-		verLetra.setToolTipText("Ver l");
+		verLetra.setToolTipText("Ver letra");
 		verLetra.setIcon(new ImageIcon("src/icons/flecha.png"));
 		verLetra.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// mainWindow.setLetra(mainWindow.getPanelCanciones().getModelo().cancionSel().toString());	
 				mainWindow.verPanelLetras();
 			}
 		});		

@@ -264,10 +264,22 @@ public abstract class DBstruct {
 	//SENTENCIAS DE INSERCION
 	public static String insertCancion(String id, String titulo, String autor, int duracion, String album,
 			String genero, String video, String letra) {
-		return 	"INSERT INTO donia.cancion" +
-				"(cancion, titulo, autor, duracion, album, genero, video, letra)" +
-				"VALUES('" + id + "'," + "'" + titulo + "'," + "'" + autor + "'," + "'" + duracion + "'," +
-				"'" + album + "'," + "'" + genero + "'," + "'" + video + "'," + "'" + letra + "')";
+		return 	"INSERT INTO donia.cancion\n" +
+				"(cancion, titulo, autor, duracion, album, genero, video, letra)\n" +
+				"VALUES('" + id + "', " + "'" + titulo + "', " + "'" + autor + "', " + "'" + duracion + "', " +
+				"'" + album + "', " + "'" + genero + "', " + "'" + video + "', " + "'" + letra + "');\n";
+	}
+	
+	public static String insertaLetra(String id, String texto) {
+		return "INSERT INTO donia.letra\n" + 
+				"(texto, letra)\n" + 
+				"VALUES('"+ texto +"', '"+ id +"');\n";
+	}
+	
+	public static String insertaVideo(String id, String enlace, String descarga) {
+		return "INSERT INTO donia.video\n" + 
+				"(enlace, enlaceDescarga, video)\n" + 
+				"VALUES('"+ id +"', '"+ enlace +"', '"+ descarga +"');\n";
 	}
 	
 	public static String insertUsuario(String id, String nombre, String clave) {
@@ -276,10 +288,10 @@ public abstract class DBstruct {
 				"VALUES('" + id + "', '" + nombre + "', '"  + clave + "')";
 	}
 	
-	public static String insertGenero(String id, String nombre) {
-		return "INSERT INTO donia.genero" +
-				"(genero, nombre)" +
-				"VALUES('" + id + "'," + "'" + nombre + "')";
+	public static String insertGenero(String id) {
+		return "INSERT INTO donia.genero\n" +
+				"(genero)\n" +
+				"VALUES('" + id + "');\n";
 	}
 	
 	public static String insertLista(String id, String nombre) {
@@ -289,15 +301,15 @@ public abstract class DBstruct {
 	}
 	
 	public static String insertRlistaCancion(String lista, String cancion) {
-		return 	"INSERT INTO donia.rlistacancion" +
-				"(lista, cancion)" +
-				"VALUES('" + lista + "'," + "'" + cancion + "')";
+		return 	"INSERT INTO donia.rlistacancion\n" +
+				"(lista, cancion) \n" +
+				"VALUES('" + lista + "', " + "'" + cancion + "');\n";
 	}
 	
 	public static String insertRgeneroUsuario(String genero, String usuario) {
-		return 	"INSERT INTO donia.rgenerousuario" +
-				"(genero, usuario)" +
-				"VALUES('" + genero + "'," + "'" + usuario + "')";
+		return 	"INSERT INTO donia.rgenerousuario\n" +
+				"(genero, usuario)\n" +
+				"VALUES('" + genero + "'," + "'" + usuario + "');\n";
 	}
 	
 	//SENTENCIAS DE ACTUALIZACION

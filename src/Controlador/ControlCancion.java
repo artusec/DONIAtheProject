@@ -32,7 +32,7 @@ public class ControlCancion {
 	}
 	
 	public void creaCancion(Cancion cancion) {
-		if (this.usuarioActual.getId() == "u0") {
+		if (this.usuarioActual != null && this.usuarioActual.getId() == "u0") {
 			//si es administrador puede hacer esto
 			try {
 				fCancion.creaCancion(cancion);
@@ -43,7 +43,7 @@ public class ControlCancion {
 			}
 		} else {
 			//notifica
-			VentanaPrincipal.muestraError(new ErrorAutenticacion());
+			VentanaPrincipal.muestraError(new ErrorAutenticacion("Debes iniciar sesion como administrador"));
 		}
 	}
 	
