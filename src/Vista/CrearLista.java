@@ -9,6 +9,8 @@ import javax.swing.JButton;
 import javax.swing.border.TitledBorder;
 
 import Controlador.ControlLista;
+import Excepciones.ErrorCreacionObjeto;
+import Model.Objetos.ListaNormal;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -33,15 +35,20 @@ public class CrearLista extends JPanel {
 		textField.setColumns(10);
 		textField.setText("");
 		
-		ControlLista ctrl = new ControlLista(ventanaPrincipal.getUsuarioActual());
-		
 		JButton btnCrear = new JButton("Crear");
 		btnCrear.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (textField.getText() != "")
-					ctrl.crearLista(textField.getText());
-				else
-					ctrl.crearLista("Lista de reproducci�n");
+				try {
+					ListaNormal lista;
+					String nombre = "Nueva lista";
+					if (textField.getText() != null && textField.getText().equals(""))
+						nombre = textField.getText();
+					lista = new ListaNormal(ventanaPrincipal.generaId(), nombre);
+					ControlLista controlador = new ControlLista(ventanaPrincipal.getUsuarioActual());
+					controlador.crearLista(lista);
+				} catch (ErrorCreacionObjeto e1) {
+					VentanaPrincipal.muestraError(e1);
+				}
 			}
 		});
 		GroupLayout groupLayout = new GroupLayout(this);
