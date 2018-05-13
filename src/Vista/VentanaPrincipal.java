@@ -273,7 +273,7 @@ public class VentanaPrincipal extends JFrame {
 		panelCambiante = new JPanel();
 		panelCambiante.setLayout(new BorderLayout());
 		this.panelCambiante.setOpaque(false);
-		CrearLista crear = new CrearLista(this);
+		CreateLista crear = new CreateLista(this);
 		crear.setVisible(true);
 		crear.setOpaque(false);
 		panelCambiante.add(crear);

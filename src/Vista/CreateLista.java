@@ -3,6 +3,10 @@ package Vista;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import Controlador.ControlLista;
+import Excepciones.ErrorCreacionObjeto;
+import Model.Objetos.Lista;
+import Model.Objetos.ListaNormal;
+
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
@@ -23,7 +27,7 @@ public class CreateLista extends JPanel {
 	 * Create the frame.
 	 * @param controlador 
 	 */
-	public CreateLista(ControlLista controlador) {
+	public CreateLista(VentanaPrincipal ventanaPrincipal) {
 		setBounds(100, 100, 268, 183);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -36,7 +40,14 @@ public class CreateLista extends JPanel {
 		JButton btnCrearLista = new JButton("Crear lista");
 		btnCrearLista.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				controlador.crearLista(textField.getText());
+				try {
+					ListaNormal lista;
+					lista = new ListaNormal(ventanaPrincipal.generaId(), textField.getText());
+					ControlLista controlador = new ControlLista(ventanaPrincipal.getUsuarioActual());
+					controlador.crearLista(lista);
+				} catch (ErrorCreacionObjeto e) {
+					VentanaPrincipal.muestraError(e);
+				}
 			}
 		});
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);

@@ -100,12 +100,8 @@ public class SASLista implements InterfazSASLista {
      */
     @SuppressWarnings("unused")
 	@Override
-    public void crearLista(String nombre, Usuario usuario) throws ErrorAutenticacion, ErrorCreacionObjeto, ErrorGuardado {
-    		ListaNormal lista = new ListaNormal(/*l aputa id*/"a", nombre);
-    		if (lista == null)
-    			throw new ErrorCreacionObjeto("Error al crear la lista");
-    		else
-    			dao.setLista(lista, usuario);
+    public void crearLista(Lista lista, Usuario usuario) throws ErrorAutenticacion, ErrorCreacionObjeto, ErrorGuardado {
+    		dao.setLista(lista, usuario);
     }
 
     /**

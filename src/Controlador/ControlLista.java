@@ -34,9 +34,9 @@ public class ControlLista {
 		this.usuarioActual = usuarioActual;
 	}
 	
-	public void crearLista(String nombre) {
+	public void crearLista(Lista lista) {
 	    	try {
-	    		fLista.crearLista(nombre, usuarioActual);
+	    		fLista.crearLista(lista, usuarioActual);
 	    		VentanaPrincipal.actualizaListas();
 	    	} catch (ErrorAutenticacion | ErrorCreacionObjeto | ErrorGuardado e) {
 	    		VentanaPrincipal.muestraError(e);

@@ -18,8 +18,8 @@ public class ListaFachada implements InterfazFachadaLista {
     }
     
     @Override
-    public void crearLista(String nombre, Usuario usuario) throws ErrorAutenticacion, ErrorCreacionObjeto, ErrorGuardado {
-    		sasLista.crearLista(nombre, usuario);
+    public void crearLista(Lista lista, Usuario usuario) throws ErrorAutenticacion, ErrorCreacionObjeto, ErrorGuardado {
+    		sasLista.crearLista(lista, usuario);
     }
 
     @Override
