@@ -9,6 +9,7 @@ import javax.swing.JToolBar;
 import Controlador.ControlCancion;
 import Controlador.ControlGenero;
 import Controlador.ControlLista;
+import Model.Objetos.Cancion;
 
 public class ToolBarCanciones extends JToolBar {
 
@@ -39,7 +40,10 @@ public class ToolBarCanciones extends JToolBar {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				controlLista.eliminarCancion(mainWindow.getPanelCanciones().getModelo().cancionSel(), mainWindow.getPanelListas().getModelo().listaSel());
+				Cancion seleccionada = mainWindow.getPanelCanciones().getModelo().cancionSel();
+				if (seleccionada != null) {			
+					controlLista.eliminarCancion(seleccionada, mainWindow.getPanelListas().getModelo().listaSel());
+				}
 			}
 		});		
 		this.add(eliminarCancion);
@@ -52,7 +56,10 @@ public class ToolBarCanciones extends JToolBar {
 		{
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				controlGenero.Anadir(mainWindow.getPanelCanciones().getModelo().cancionSel().getGenero());
+				Cancion seleccionada = mainWindow.getPanelCanciones().getModelo().cancionSel();
+				if (seleccionada != null) {	
+					controlGenero.Anadir(seleccionada.getGenero());
+				}
 			}
 		 });
 		this.add(meGusta);
