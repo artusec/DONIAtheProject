@@ -35,20 +35,21 @@ public class CrearLista extends JPanel {
 		textField.setColumns(10);
 		textField.setText("");
 		
+		ControlLista ctrl = new ControlLista(ventanaPrincipal.getUsuarioActual());
+		
 		JButton btnCrear = new JButton("Crear");
 		btnCrear.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				ListaNormal lista;
 				try {
-					ListaNormal lista;
-					String nombre = "Nueva lista";
-					if (textField.getText() != null && textField.getText().equals(""))
-						nombre = textField.getText();
-					lista = new ListaNormal(ventanaPrincipal.generaId(), nombre);
+					lista = new ListaNormal(ventanaPrincipal.generaId(), textField.getText());
 					ControlLista controlador = new ControlLista(ventanaPrincipal.getUsuarioActual());
 					controlador.crearLista(lista);
 				} catch (ErrorCreacionObjeto e1) {
-					VentanaPrincipal.muestraError(e1);
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
 				}
+
 			}
 		});
 		GroupLayout groupLayout = new GroupLayout(this);
