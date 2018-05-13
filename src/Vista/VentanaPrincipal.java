@@ -267,6 +267,29 @@ public class VentanaPrincipal extends JFrame {
 		panelCentral.add(panelCambiante);
 	}
 	
+	public void verCrearLista() {
+		resetearPanelCambiante();
+		panelCambiante = new JPanel();
+		panelCambiante.setLayout(new BorderLayout());
+		this.panelCambiante.setOpaque(false);
+		CrearLista crear = new CrearLista(this);
+		crear.setVisible(true);
+		crear.setOpaque(false);
+		panelCambiante.add(crear);
+		panelCentral.add(panelCambiante);
+	}
+	
+	public void verCrearListaAuto() {
+		resetearPanelCambiante();
+		panelCambiante = new JPanel();
+		panelCambiante.setLayout(new BorderLayout());
+		this.panelCambiante.setOpaque(false);
+		CrearListaAuto crear = new CrearListaAuto(this);
+		crear.setVisible(true);
+		crear.setOpaque(false);
+		panelCambiante.add(crear);
+		panelCentral.add(panelCambiante);		
+	}
 	
 	public PanelTabla<Cancion> getPanelCanciones()
 	{
@@ -350,6 +373,5 @@ public class VentanaPrincipal extends JFrame {
 	public boolean entradaValida(String entrada) {
 		return entrada.matches("[a-zA-Z0-9]*");
 	}
-	
 	
 }

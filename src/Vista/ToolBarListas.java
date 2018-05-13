@@ -7,6 +7,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JToolBar;
 import Controlador.ControlLista;
+import Model.Objetos.Cancion;
+import Model.Objetos.Lista;
 
 public class ToolBarListas extends JToolBar {
 
@@ -15,7 +17,6 @@ public class ToolBarListas extends JToolBar {
 	public ToolBarListas(VentanaPrincipal mainWindow, ControlLista controlador)
 	{
 		super();
-		CreateLista nuevaLista = new CreateLista(controlador);
 		
 		setLayout(new GridLayout(1, 3));
 		
@@ -26,8 +27,7 @@ public class ToolBarListas extends JToolBar {
 		{
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				
-				nuevaLista.setVisible(true);
+				mainWindow.verCrearLista();
 			}
 		 });
 		
@@ -41,8 +41,10 @@ public class ToolBarListas extends JToolBar {
 		{
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				// TODO Auto-generated method stub
-				
+				Lista selec = mainWindow.getPanelListas().getModelo().listaSel();
+				if (selec != null) {
+					controlador.eliminar(selec);
+				}
 			}
 		 });
 		
@@ -55,8 +57,7 @@ public class ToolBarListas extends JToolBar {
 		{
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				// TODO Auto-generated method stub
-				
+				mainWindow.verCrearListaAuto();
 			}
 		 });
 		
