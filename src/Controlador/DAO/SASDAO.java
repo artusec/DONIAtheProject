@@ -32,15 +32,6 @@ public class SASDAO implements InterfazSASDAO {
 		} catch (SQLException | ClassNotFoundException e) {
 			e.printStackTrace();
 		}
-    		try {
-				this.initDB();
-			} catch (ClassNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
     }
     
     /**
@@ -259,9 +250,7 @@ public class SASDAO implements InterfazSASDAO {
 				if(datosGenero.next()) {
 					//si ha leido bien lo que queriamos
 					String id = datosGenero.getString("genero");
-					String nombre = datosGenero.getString("nombre");
-					
-					genero = new Genero(id, nombre);
+					genero = new Genero(id);
 				}
 				return genero;
 			}
@@ -363,15 +352,26 @@ public class SASDAO implements InterfazSASDAO {
 				//las siguientes comprobaciones previenen errores en la DB
 				if (cancion.getGenero() != null) {
 					genero = cancion.getGenero().getId();
-					if (!this.existeGenero(genero)) genero = null;
+					if (!this.existeGenero(genero)) {
+						//si el genero no existe lo anade
+						try {
+							this.setGenero(cancion.getGenero(), null);
+						} catch (ErrorAutenticacion e) {}
+					}
 				}
 				if (cancion.getVideo() != null) {
 					video = cancion.getVideo().getId();
-					if (!this.existeVideo(video)) video = null;
+					if (!this.existeVideo(video)) {
+						//si el video no existe lo anade
+						this.setVideo(cancion.getVideo());
+					}
 				}
 				if (cancion.getLetra() != null) {
 					letra = cancion.getLetra().getId();
-					if (!this.existeLetra(letra)) letra = null;
+					if (!this.existeLetra(letra)) {
+						//si la letra no existe lo anade
+						this.setLetra(cancion.getLetra());
+					}
 				}
 				String sentencia = "";
 				//comprobar cancion
@@ -397,8 +397,49 @@ public class SASDAO implements InterfazSASDAO {
 			throw new ErrorGuardado();
 		}
     }
+    
+	private void setLetra(Letra letra) throws ErrorGuardado {
+		try {
+			if (this.conectado() && letra != null) {
+				//recabar datos
+				System.out.println("Guardando letra...");
+				String id = letra.getId();
+				String texto = letra.getTexto();
+				if (!this.existeLetra(id)) {
+					String sentencia = DBstruct.insertaLetra(id, texto);
+					PreparedStatement ps = this.DBconn.prepareStatement(sentencia);
+					ps.executeQuery();
+				}
+			} else {
+				throw new ErrorGuardado("Error al guardar letra");
+			}
+		} catch (SQLException e) {
+			throw new ErrorGuardado(e.getMessage());
+		}
+    }
+	
+	private void setVideo(Video video) throws ErrorGuardado {
+		try {
+			if (this.conectado() && video != null) {
+				//recabar datos
+				System.out.println("Guardando video...");
+				String id = video.getId();
+				String enlace = video.getEnlace();
+				String descarga = video.getEnlaceDescarga();
+				if (!this.existeVideo(id)) {
+					String sentencia = DBstruct.insertaVideo(id, enlace, descarga);
+					PreparedStatement ps = this.DBconn.prepareStatement(sentencia);
+					ps.executeQuery();
+				}
+			} else {
+				throw new ErrorGuardado("Error al guardar video");
+			}
+		} catch (SQLException e) {
+			throw new ErrorGuardado(e.getMessage());
+		}
+	}
 
-    @Override
+	@Override
     public void setUsuario(Usuario usuario) throws ErrorAutenticacion, ErrorGuardado {
      	try {
 			if (this.conectado() && usuario != null) {
@@ -431,34 +472,34 @@ public class SASDAO implements InterfazSASDAO {
 			throw new ErrorGuardado(e.getMessage());
 		}
     }
-
-    @Override
+	
+	@Override
     public void setGenero(Genero genero, Usuario usuario) throws ErrorAutenticacion, ErrorGuardado {
      	try {
-			if (this.conectado() && genero != null && usuario != null) {
+			if (this.conectado() && genero != null) {
 				//recabar datos
 				String id = genero.getId();
-				String nombre = genero.getNombre();
-				//recabar datos usuario
-				String idUsuario = usuario.getId();
-				String clave = usuario.getClave();
-				//comprobar usuario
-				if (!this.existeUsuario(idUsuario, clave))
-					throw new ErrorGuardado();
-				String sentencia = "";
-				//comprobar genero
-				if (this.existeGenero(id)) {
-					//actualizar DB
-					sentencia = DBstruct.updateGenero(id, nombre);
+				if (!this.existeGenero(id)) {
+					//si el genero no existe, se guarda
+					String sentencia = DBstruct.insertGenero(id);
+					PreparedStatement ps = this.DBconn.prepareStatement(sentencia);
+					ps.executeQuery();
 				} else {
-					//insertar datos
-					sentencia = DBstruct.insertGenero(id, nombre);
-					sentencia += " " + DBstruct.insertRgeneroUsuario(id, idUsuario);
+					System.out.println("El genero ya existe");
 				}
-				PreparedStatement ps = this.DBconn.prepareStatement(sentencia + ';');
-				ps.executeQuery();
-			} else {
-				throw new ErrorGuardado();
+				if (usuario != null) {
+					//si ademas quieres asociar un usuario al genero
+					//recabar datos usuario
+					String idUsuario = usuario.getId();
+					String clave = usuario.getClave();
+					//comprobar usuario
+					if (!this.existeUsuario(idUsuario, clave))
+						throw new ErrorGuardado("El usuario " + idUsuario + " no existe");
+					//insertar datos
+					String sentencia = DBstruct.insertRgeneroUsuario(id, idUsuario);
+					PreparedStatement ps = this.DBconn.prepareStatement(sentencia);
+					ps.executeQuery();
+				}
 			}
 		} catch (SQLException e) {
 			throw new ErrorGuardado();
