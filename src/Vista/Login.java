@@ -1,12 +1,13 @@
 package Vista;
 
 import java.awt.BorderLayout;
+
+import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import Controlador.ControlUsuario;
-import Excepciones.ErrorConsulta;
 import Excepciones.ErrorCreacionObjeto;
 import Model.Objetos.Usuario;
 import javax.swing.JLabel;
@@ -52,50 +53,33 @@ public class Login extends JDialog {
 		}
 		private void initGui(ControlUsuario ctrlU) {
 			
-			addWindowListener(new WindowListener() {
+		addWindowListener(new WindowListener() {
+			
+			@Override
+			public void windowOpened(WindowEvent e) {}
+			
+			@Override
+			public void windowIconified(WindowEvent e) {}
+			
+			@Override
+			public void windowDeiconified(WindowEvent e) {}
+			
+			@Override
+			public void windowDeactivated(WindowEvent e) {}
+			
+			@Override
+			public void windowClosing(WindowEvent e) {
+				setVisible(false);
+				login.setVisible(true);	
 				
-				@Override
-				public void windowOpened(WindowEvent e) {
-					// TODO Auto-generated method stub
-					
-				}
-				
-				@Override
-				public void windowIconified(WindowEvent e) {
-					// TODO Auto-generated method stub
-					
-				}
-				
-				@Override
-				public void windowDeiconified(WindowEvent e) {
-					// TODO Auto-generated method stub
-					
-				}
-				
-				@Override
-				public void windowDeactivated(WindowEvent e) {
-					// TODO Auto-generated method stub
-					
-				}
-				
-				@Override
-				public void windowClosing(WindowEvent e) {
-					setVisible(false);
-					login.setVisible(true);	
-					
-				}
-				
-				@Override
-				public void windowClosed(WindowEvent e) {
-									
-				}
-				
-				@Override
-				public void windowActivated(WindowEvent e) {
-					// TODO Auto-generated method stub
-					
-				}
-			});
+			}
+			
+			@Override
+			public void windowClosed(WindowEvent e) {}
+			
+			@Override
+			public void windowActivated(WindowEvent e) {}
+		});
 			
 			setBounds(100, 100, 450, 300);
 			getContentPane().setLayout(new BorderLayout());
@@ -180,7 +164,7 @@ public class Login extends JDialog {
 	}
 
 	private void initGui(ControlUsuario ctrlU, VentanaPrincipal ventanaPrincipal) {
-		setBounds(100, 100, 450, 260);
+		setBounds(100, 100, 501, 616);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
@@ -188,28 +172,28 @@ public class Login extends JDialog {
 		
 		JLabel lblNewLabel = new JLabel("Login Screen");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblNewLabel.setBounds(161, 13, 107, 28);
+		lblNewLabel.setBounds(197, 360, 107, 28);
 		contentPanel.add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("Name");
-		lblNewLabel_1.setBounds(74, 70, 56, 16);
+		lblNewLabel_1.setBounds(135, 419, 56, 16);
 		contentPanel.add(lblNewLabel_1);
 		
 		JLabel lblNewLabel_2 = new JLabel("Password");
-		lblNewLabel_2.setBounds(74, 113, 67, 16);
+		lblNewLabel_2.setBounds(135, 462, 67, 16);
 		contentPanel.add(lblNewLabel_2);
 		
 		textField = new JTextField();
-		textField.setBounds(236, 67, 116, 22);
+		textField.setBounds(258, 416, 130, 22);
 		contentPanel.add(textField);
 		textField.setColumns(10);
 		
 		passwordField = new JPasswordField();
-		passwordField.setBounds(236, 110, 116, 22);
+		passwordField.setBounds(258, 459, 130, 22);
 		contentPanel.add(passwordField);
 		
 		JButton btnSingUp = new JButton("Sing Up");
-		btnSingUp.setBounds(104, 164, 97, 25);
+		btnSingUp.setBounds(126, 516, 97, 25);
 		contentPanel.add(btnSingUp);
 		btnSingUp.addActionListener(new ActionListener() {
 			
@@ -233,10 +217,16 @@ public class Login extends JDialog {
 				}
 			}
 		});
-		btnLogin.setBounds(225, 164, 97, 25);
+		btnLogin.setBounds(258, 516, 97, 25);
 		contentPanel.add(btnLogin);
 		
+		PanelImagen panel = new PanelImagen(false);
+		panel.setBounds(10, 11, 475, 318);
+		panel.setOpaque(false);
+		contentPanel.add(panel, Alignment.CENTER);
 		setLocationRelativeTo(null);
+		setResizable(false);
+		setTitle("Donia");
 	}
 
 	public Boolean getCorrecto() {

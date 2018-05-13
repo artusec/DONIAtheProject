@@ -7,7 +7,6 @@ import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.JButton;
 import javax.swing.JEditorPane;
 import javax.swing.JLabel;
@@ -16,9 +15,7 @@ import javax.swing.JSeparator;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
-
 import Controlador.ControlCancion;
-import Controlador.ControlGenero;
 import Excepciones.ErrorCreacionObjeto;
 import Excepciones.ErrorGuardado;
 import Model.Objetos.Cancion;

@@ -59,8 +59,8 @@ public class VentanaPrincipal extends JFrame {
 			usuarioActual = new Usuario("u0", "admin", "");
 		} catch (ErrorCreacionObjeto e) {}
 		initGUI();
-		//Login = new Login(new ControlUsuario(usuarioActual), this);
-		//Login.setVisible(true);
+		Login = new Login(new ControlUsuario(usuarioActual), this);
+		Login.setVisible(true);
 	}
 	
 	private void initGUI() {
@@ -217,7 +217,8 @@ public class VentanaPrincipal extends JFrame {
 			panelDeLetras.areatexto.setText(letra);
 			}
 		else
-			panelDeLetras.areatexto.setText("Debes seleccionar una canción primero.");
+			panelDeLetras.areatexto.setText("Debes seleccionar una cancion primero.");
+		
 		panelDeLetras.setVisible(true);
 		panelDeLetras.setOpaque(false);
 		panelCambiante.add(panelDeLetras);
@@ -230,7 +231,6 @@ public class VentanaPrincipal extends JFrame {
 		panelCambiante = new JPanel();
 		panelCambiante.setLayout(new BorderLayout());
 		this.panelCambiante.setOpaque(false);
-		
 		
 		ModificarCancion_panel modificar = new ModificarCancion_panel();
 		modificar.setVisible(true);
@@ -255,12 +255,12 @@ public class VentanaPrincipal extends JFrame {
 	}
 	
 	public void verAniadirCancionALista() {
+		
 		resetearPanelCambiante();
 		panelCambiante = new JPanel();
 		panelCambiante.setLayout(new BorderLayout());
 		this.panelCambiante.setOpaque(false);
 		AniadirCancionALista cancion = new AniadirCancionALista(this);
-		//SongAdmin_panel songAdmin = new SongAdmin_panel(this);
 		cancion.setVisible(true);
 		cancion.setOpaque(false);
 		panelCambiante.add(cancion);
@@ -268,6 +268,7 @@ public class VentanaPrincipal extends JFrame {
 	}
 	
 	public void verCrearLista() {
+		
 		resetearPanelCambiante();
 		panelCambiante = new JPanel();
 		panelCambiante.setLayout(new BorderLayout());
@@ -280,6 +281,7 @@ public class VentanaPrincipal extends JFrame {
 	}
 	
 	public void verCrearListaAuto() {
+		
 		resetearPanelCambiante();
 		panelCambiante = new JPanel();
 		panelCambiante.setLayout(new BorderLayout());

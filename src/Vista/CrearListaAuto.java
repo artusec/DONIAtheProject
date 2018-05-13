@@ -7,12 +7,10 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.border.TitledBorder;
-
 import Controlador.ControlGenero;
 import Controlador.ControlLista;
 import Excepciones.ErrorCreacionObjeto;
 import Model.Objetos.Genero;
-import Model.Objetos.Lista;
 import Model.Objetos.ListaAuto;
 
 import java.awt.event.ActionListener;
@@ -20,6 +18,10 @@ import java.awt.event.ActionEvent;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
 public class CrearListaAuto extends JPanel {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JTextField textField; //NOmbre
 	private JTextField textField_1; //Genero
 	private JTextField textField_2; //Duracion

@@ -14,6 +14,10 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class CrearLista extends JPanel {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JTextField textField;
 
 	/**
@@ -37,7 +41,7 @@ public class CrearLista extends JPanel {
 				if (textField.getText() != "")
 					ctrl.crearLista(textField.getText());
 				else
-					ctrl.crearLista("Lista de reproducción");
+					ctrl.crearLista("Lista de reproducciï¿½n");
 			}
 		});
 		GroupLayout groupLayout = new GroupLayout(this);

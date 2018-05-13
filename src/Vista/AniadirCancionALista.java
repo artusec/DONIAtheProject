@@ -3,27 +3,25 @@ package Vista;
 import javax.swing.JPanel;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.border.MatteBorder;
-import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import org.eclipse.wb.swing.FocusTraversalOnArray;
-
 import Controlador.ControlCancion;
 import Controlador.ControlLista;
 import Model.Objetos.Cancion;
-
 import java.awt.Component;
 import javax.swing.border.TitledBorder;
 import javax.swing.UIManager;
-import javax.swing.border.LineBorder;
-import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.SwingConstants;
 
 public class AniadirCancionALista extends JPanel {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JTextField textField;
 	private ControlCancion ctrlCancion;
 	private ControlLista ctrlLista;
@@ -70,7 +68,7 @@ public class AniadirCancionALista extends JPanel {
 				if (aAniadir != null)
 					ctrlLista.anadirCancion(aAniadir, ventanaPrincipal.getPanelListas().getModelo().listaSel());
 				else
-					lblNewLabel.setText("Canción no encontrada");
+					lblNewLabel.setText("Canciï¿½n no encontrada");
 			}
 		});
 		

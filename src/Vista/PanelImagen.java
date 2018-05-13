@@ -4,28 +4,35 @@ import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 public class PanelImagen extends JPanel{
 
+
+	private static final long serialVersionUID = 1L;
 	
-	 private BufferedImage image;
+	private BufferedImage image;
 
-	    public PanelImagen() {
-	       try {                
-	          image = ImageIO.read(new File("src\\icons\\perfillogo.png"));
-	       } catch (IOException ex) {
-	            // handle exception...
-	       }
-	    }
+    public PanelImagen(boolean cual) {
+    
+    	super();
+    	try {  
+    		
+    		if(cual)
+    		   image = ImageIO.read(new File("src\\icons\\perfillogo.png"));
+    		else
+    		   image = ImageIO.read(new File("src\\icons\\LOGO_DONIA - copia.png"));
+    	}
+    	catch (IOException ex) {
+    		
+    	}
+    }
 
-	    @Override
-	    protected void paintComponent(Graphics g) {
-	        super.paintComponent(g);
-	        g.drawImage(image, 165 ,5, this); // see javadoc for more info on the parameters            
-	    }
-
+    @Override
+    protected void paintComponent(Graphics g) {
+    	
+        super.paintComponent(g);
+        g.drawImage(image, 0 , 0, this); // 165
+    }
 }
-
