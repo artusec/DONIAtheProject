@@ -524,25 +524,35 @@ public class SASDAO implements InterfazSASDAO {
 				if (this.existeLista(idLista)) {
 					//actualizar DB
 					sentencia = DBstruct.updateLista(idLista, nombreLista);
+					PreparedStatement ps = this.DBconn.prepareStatement(sentencia);
+					ps.executeQuery();
 					//limpiar antigua lista de canciones
-					sentencia += DBstruct.deleteRlistaCancion(idLista);
+					sentencia = DBstruct.deleteRlistaCancion(idLista);
+					ps = this.DBconn.prepareStatement(sentencia);
+					ps.executeQuery();
 				} else {
 					//insertar lista
+					System.out.println("insertando nueva lista");
 					sentencia = DBstruct.insertLista(idLista, nombreLista);
+					PreparedStatement ps = this.DBconn.prepareStatement(sentencia);
+					ps.executeQuery();
+					sentencia = DBstruct.insertListaNormal(idLista, idUsuario);
+					ps = this.DBconn.prepareStatement(sentencia);
+					ps.executeQuery();
 				}
 				//insertar canciones en la lista
 				if (lista.getCanciones() != null) {
 					for(Cancion cancion : lista.getCanciones()) {
-						sentencia += DBstruct.insertRlistaCancion(idLista, cancion.getId()) + '\n';
+						sentencia = DBstruct.insertRlistaCancion(idLista, cancion.getId());
+						PreparedStatement ps = this.DBconn.prepareStatement(sentencia);
+						ps.executeQuery();
 					}
 				}
-				PreparedStatement ps = this.DBconn.prepareStatement(sentencia + ';');
-				ps.executeQuery();
 			} else {
 				throw new ErrorGuardado();
 			}
 		} catch (SQLException e) {
-			throw new ErrorGuardado();
+			throw new ErrorGuardado("Fallo en DB");
 		}
     }
     

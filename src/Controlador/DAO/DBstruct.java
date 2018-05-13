@@ -295,11 +295,15 @@ public abstract class DBstruct {
 	}
 	
 	public static String insertLista(String id, String nombre) {
-		return "INSERT INTO donia.lista" +
-				"(lista, nombre)" +
-				"VALUES('" + lista + "'," + "'" + nombre + "')";
+		return "INSERT INTO donia.lista\n" +
+				"(lista, nombre)\n" +
+				"VALUES('" + id + "', " + "'" + nombre + "');\n";
 	}
-	
+	public static String insertListaNormal(String lista, String usuario) {
+		return "INSERT INTO donia.listanormal\n" +
+		"(lista, usuario)\n" +
+		"VALUES('" + lista + "', " + "'" + usuario + "');\n";
+	}
 	public static String insertRlistaCancion(String lista, String cancion) {
 		return 	"INSERT INTO donia.rlistacancion\n" +
 				"(lista, cancion) \n" +

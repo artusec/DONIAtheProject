@@ -20,7 +20,7 @@ public class CrearLista extends JPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private JTextField textField;
+	private JTextField entradaNombre;
 
 	/**
 	 * Create the panel.
@@ -31,9 +31,9 @@ public class CrearLista extends JPanel {
 		
 		JLabel lblNewLabel = new JLabel("Nombre:");
 		
-		textField = new JTextField();
-		textField.setColumns(10);
-		textField.setText("");
+		entradaNombre = new JTextField();
+		entradaNombre.setColumns(10);
+		entradaNombre.setText("");
 		
 		JButton btnCrear = new JButton("Crear");
 		btnCrear.addActionListener(new ActionListener() {
@@ -41,8 +41,8 @@ public class CrearLista extends JPanel {
 				try {
 					ListaNormal lista;
 					String nombre = "Nueva lista";
-					if (textField.getText() != null && textField.getText().equals(""))
-						nombre = textField.getText();
+					if (entradaNombre.getText() != null && !entradaNombre.getText().equals(""))
+						nombre = entradaNombre.getText();
 					lista = new ListaNormal(ventanaPrincipal.generaId(), nombre);
 					ControlLista controlador = new ControlLista(ventanaPrincipal.getUsuarioActual());
 					controlador.crearLista(lista);
@@ -60,7 +60,7 @@ public class CrearLista extends JPanel {
 							.addGap(121)
 							.addComponent(lblNewLabel)
 							.addGap(18)
-							.addComponent(textField, GroupLayout.PREFERRED_SIZE, 159, GroupLayout.PREFERRED_SIZE))
+							.addComponent(entradaNombre, GroupLayout.PREFERRED_SIZE, 159, GroupLayout.PREFERRED_SIZE))
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGap(196)
 							.addComponent(btnCrear)))
@@ -72,7 +72,7 @@ public class CrearLista extends JPanel {
 					.addGap(92)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblNewLabel)
-						.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(entradaNombre, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addGap(77)
 					.addComponent(btnCrear)
 					.addContainerGap(88, Short.MAX_VALUE))
