@@ -64,7 +64,6 @@ public class ToolBar extends JToolBar {
 		{
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				
 				mainWindow.verAniadirCancion();
 			}
 		 });
@@ -82,9 +81,7 @@ public class ToolBar extends JToolBar {
 		{
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				
-				mainWindow.verEliminarCancion();
-				
+				mainWindow.eliminarCancion();
 			}
 		 });
 		

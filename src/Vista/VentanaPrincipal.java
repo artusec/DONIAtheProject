@@ -16,6 +16,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
 
+import Controlador.ControlCancion;
 import Controlador.ControlLista;
 import Excepciones.ErrorCreacionObjeto;
 import Model.Objetos.Cancion;
@@ -226,20 +227,6 @@ public class VentanaPrincipal extends JFrame {
 		
 	}
 	
-	public void verEliminarCancion() {
-		
-		resetearPanelCambiante();
-		panelCambiante = new JPanel();
-		panelCambiante.setLayout(new BorderLayout());
-		this.panelCambiante.setOpaque(false);
-		
-		EliminarCancion_panel eliminar = new EliminarCancion_panel(this);
-		eliminar.setVisible(true);
-		eliminar.setOpaque(false);
-		panelCambiante.add(eliminar);
-		panelCentral.add(panelCambiante);
-	}
-	
 	public void verAniadirCancionALista() {
 		
 		resetearPanelCambiante();
@@ -359,7 +346,15 @@ public class VentanaPrincipal extends JFrame {
 		return entrada.matches("[a-zA-Z0-9]*");
 	}
 	
-	public List<Cancion> getCancionSelecccionada() {
+	public ArrayList<Cancion> getCancionSelecccionada() {
 		return VentanaPrincipal.panelCanciones.getSelectedItems();
+	}
+
+	public void eliminarCancion() {
+		ArrayList<Cancion> cancionesBorrar = this.getCancionSelecccionada();
+		for (Cancion c : cancionesBorrar) {
+			ControlCancion control = new ControlCancion(this.getUsuarioActual());
+			control.eliminaCancion(c);
+		}
 	}
 }
