@@ -223,7 +223,7 @@ public class Login extends JDialog {
 					ArrayList<Lista> listas = ctrlLista.getListasUsuario(ventanaPrincipal.getUsuarioActual());
 					if (listas != null)
 						ventanaPrincipal.getPanelListas().getModelo().lista.addAll(listas);
-
+					
 					setVisible(false);
 					ventanaPrincipal.setVisible(true);
 				}

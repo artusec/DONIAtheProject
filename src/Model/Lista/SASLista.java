@@ -115,15 +115,14 @@ public class SASLista implements InterfazSASLista {
      * @throws ErrorGuardado 
      */
     @Override
-    public void crearListaAuto(ListaAuto lista, Genero genero, Usuario usuario, int duracionMax) throws ErrorAutenticacion, ErrorCreacionObjeto, ErrorConsulta, ErrorGuardado {
-    		//ListaAuto lista = new ListaAuto("a"/*TODO*/, nombre, genero);
+    public void crearListaAuto(ListaAuto lista, Usuario usuario, int duracionMax) throws ErrorAutenticacion, ErrorCreacionObjeto, ErrorConsulta, ErrorGuardado {
     		if (lista == null)
     			throw new ErrorCreacionObjeto("Error al crear lista auto");
     		else {
 	    		//obtener lista de canciones con el genero que nos interesa
     			int duracion = 0;
 	    		int i = 0;
-    			ArrayList<Cancion> canciones = dao.getCancionesGeneroDB(genero.getId());
+    			ArrayList<Cancion> canciones = dao.getCancionesGeneroDB(lista.getGenero().getId());
 	    		Cancion cancion = canciones.get(i);
 	    		duracion += cancion.getDuracion();
 	    		while (duracion < duracionMax && i < canciones.size()) {
@@ -132,7 +131,7 @@ public class SASLista implements InterfazSASLista {
 		    		duracion += cancion.getDuracion();
 		    		i++;
 	    		}
-	    		dao.setListaAuto(lista, genero, usuario);
+	    		dao.setListaAuto(lista, usuario);
 	    		if (i == canciones.size())
 	    			throw new ErrorCreacionObjeto("No hay suficiente canciones para llegar a la duracion deseada");
     		}

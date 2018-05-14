@@ -22,7 +22,7 @@ public interface InterfazDAOFachada {
 	public void setGenero(Genero genero, Usuario usuario) throws ErrorAutenticacion, ErrorGuardado;
 	public void setUsuario(Usuario usuario) throws ErrorAutenticacion, ErrorGuardado;
 	public void setLista(Lista lista, Usuario usuario) throws ErrorAutenticacion, ErrorGuardado;
-	public void setListaAuto(Lista lista, Genero genero, Usuario usuario) throws ErrorAutenticacion, ErrorGuardado;
+	public void setListaAuto(ListaAuto lista, Usuario usuario) throws ErrorAutenticacion, ErrorGuardado;
 	// ELIMINAR
 	public void eliminarLista(Lista lista, Usuario usuarioActual) throws ErrorAutenticacion, ErrorEliminacion;
 	public void eliminarCancion(Cancion cancion) throws ErrorEliminacion;

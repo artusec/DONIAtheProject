@@ -115,7 +115,7 @@ CREATE TABLE `rusuariogenero` (
 );
 
 GRANT SELECT, INSERT, UPDATE, DELETE ON donia.* TO 'usr'@'localhost';
-GRANT ALL PRIVILEGES ON donia.* TO 'usr'@'%' WITH GRANT OPTION; //por si acaso
+GRANT ALL PRIVILEGES ON donia.* TO 'usr'@'%' WITH GRANT OPTION;
 
 INSERT INTO donia.lista
 (lista, nombre)
@@ -127,7 +127,7 @@ VALUES('l0');
 
 INSERT INTO donia.usuario
 (usuario, nombre, clave)
-VALUES('u0', 'admin', '');
+VALUES('u0', 'admin', 'u0');
 
 INSERT INTO donia.usuarioadmin
 (usuario)

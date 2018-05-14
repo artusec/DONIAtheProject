@@ -64,8 +64,8 @@ public class DAOFachada implements InterfazDAOFachada {
     }
     
     @Override
-    public void setListaAuto(Lista lista, Genero genero, Usuario usuario) throws ErrorAutenticacion, ErrorGuardado{
-    		this.sasdao.setListaAuto(lista, genero, usuario);
+    public void setListaAuto(ListaAuto lista, Usuario usuario) throws ErrorAutenticacion, ErrorGuardado{
+    		this.sasdao.setListaAuto(lista, usuario);
     }
 
     // ----------- ELIMINAR -----------

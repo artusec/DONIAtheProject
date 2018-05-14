@@ -104,7 +104,7 @@ public interface InterfazSASDAO {
 	 * @throws ErrorAutenticacion si la clave no coincide con la almacenada
 	 * @throws ErrorGuardado 
 	 */
-	public void setListaAuto(Lista lista, Genero genero, Usuario usuario) throws ErrorAutenticacion, ErrorGuardado;
+	public void setListaAuto(ListaAuto lista, Usuario usuario) throws ErrorAutenticacion, ErrorGuardado;
 	
 	// ELIMINAR
 	/**

@@ -184,16 +184,24 @@ public class SASDAO implements InterfazSASDAO {
 			    ResultSet datosLista = stat.executeQuery();
 				if(datosLista.next()) {
 					//si ha leido bien lo que queriamos obtenemos datos
+					//id
 					String id = datosLista.getString("lista");
+					
+					//titulo
 					String titulo = datosLista.getString("nombre");
-					String idGenero = datosLista.getString("genero"); //podria ser null
+					
+					//genero (si existe)
 					Genero genero = null;
-					if (idGenero != null){
-						//esto es una listaauto
+					if (this.existeListaAuto(id)) {
+						//si es una listaauto, cargar el genero
+						stat = this.DBconn.prepareStatement("select * from listaAuto where lista = '" + idLista + "';");
+					    datosLista = stat.executeQuery();
+						String idGenero = datosLista.getString("genero");
 						if (this.existeGenero(idGenero)) {
 							genero = this.getGeneroDB(idGenero);
 						}
 					}
+					
 					//procedimiento para obtener lista de canciones
 					ArrayList<Cancion> canciones = new ArrayList<Cancion>();
 				    PreparedStatement stat2 = this.DBconn.prepareStatement("select * from rlistacancion where lista = '" + idLista + "';");
@@ -203,6 +211,8 @@ public class SASDAO implements InterfazSASDAO {
 				    		Cancion cancion = this.getCancionDB(idCancion);
 				    		canciones.add(cancion);
 					}
+				    
+				    //creacion objeto
 					if (genero != null)
 						lista = new ListaAuto(id, titulo, genero, canciones);
 					else
@@ -214,6 +224,11 @@ public class SASDAO implements InterfazSASDAO {
 			throw new ErrorConsulta();
 		}
 		return null;  
+	}
+
+	private boolean existeListaAuto(String id) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 	@Override
@@ -272,7 +287,7 @@ public class SASDAO implements InterfazSASDAO {
 					String id = datosUsuario.getString("usuario");
 					String nombre = datosUsuario.getString("nombre");
 					String claveObtenida = datosUsuario.getString("clave");
-					if (!claveObtenida.equals(clave)) throw new ErrorAutenticacion("Contrase�a incorrecta para el usuario: " + nombre);
+					if (!claveObtenida.equals(clave)) throw new ErrorAutenticacion("Contraseña incorrecta para el usuario: " + nombre);
 					//procedimiento para obtener lista de generos
 					ArrayList<Genero> generos = new ArrayList<Genero>();
 					PreparedStatement stat2 = this.DBconn.prepareStatement("select * from rusuariogenero where usuario = '" + idUsuario + "';");
@@ -335,7 +350,7 @@ public class SASDAO implements InterfazSASDAO {
 	}
 	
     // --------------- SET ---------------
-    @Override
+    @Override//TODO
     public void setCancion(Cancion cancion) throws ErrorGuardado, ErrorCreacionObjeto {
 	    	try {
 			if (this.conectado() && cancion != null) {
@@ -384,7 +399,7 @@ public class SASDAO implements InterfazSASDAO {
 					//insertar datos
 					sentencia = DBstruct.insertCancion(id, titulo, autor, duracion, album, genero, video, letra);
 					PreparedStatement ps = this.DBconn.prepareStatement(sentencia);
-					ps.executeQuery(); //Me falla aqui al intentar insertar cancion 
+					ps.executeQuery();
 					//anadir la cancion a la biblioteca
 					sentencia = DBstruct.insertRlistaCancion(DBstruct.getIdBiblioteca(), id);
 					ps = this.DBconn.prepareStatement(sentencia);
@@ -557,11 +572,11 @@ public class SASDAO implements InterfazSASDAO {
     }
     
     @Override
-	public void setListaAuto(Lista lista, Genero genero, Usuario usuario) throws ErrorAutenticacion, ErrorGuardado {
+	public void setListaAuto(ListaAuto lista, Usuario usuario) throws ErrorAutenticacion, ErrorGuardado {
 		this.setLista(lista, usuario);
 		//recabar datos
 		String idLista = lista.getId();
-		String idGenero = genero.getId();
+		String idGenero = lista.getGenero().getId();
 		//comprobar genero
 		if (this.existeGenero(idGenero)) {
 			String sentencia = DBstruct.updateGeneroLista(idLista, idGenero);
