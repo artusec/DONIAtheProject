@@ -1,0 +1,11 @@
+insert into lista values('1', 'Esta es la lista 1');
+insert into lista values('2', 'Esta es la lista 2');
+insert into lista values('3', 'Esta es la lista 3');
+insert into lista values('4', 'Esta es la lista 4');
+insert into lista values('5', 'Esta es la lista 5');
+insert into usuario values('id1', 'usuario1', 'clave 1');
+insert into listanormal values ('1', 'id1');
+insert into listanormal values ('2', 'id1');
+insert into listanormal values ('3', 'id1');
+insert into listanormal values ('4', 'id1');
+insert into listanormal values ('5', 'id1');

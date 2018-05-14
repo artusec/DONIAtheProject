@@ -3,6 +3,8 @@ package Vista;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JToolBar;
@@ -40,7 +42,8 @@ public class ToolBarListas extends JToolBar {
 		{
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				Lista selec = mainWindow.getPanelListas().getModelo().listaSel();
+				ArrayList<Lista> aux =  mainWindow.getPanelListas().getSelectedItems();
+				Lista selec = aux.get(0);
 				if (selec != null) {
 					controlador.eliminar(selec);
 				}

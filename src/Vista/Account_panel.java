@@ -2,6 +2,9 @@ package Vista;
 
 import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
+
+import Model.Objetos.Usuario;
+
 import java.awt.BorderLayout;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -191,4 +194,12 @@ public class Account_panel extends JPanel {
 		setLayout(groupLayout);
 
 	}
+	
+	public void setDatosUsuario(Usuario user) {
+		
+		this.passwordField.setText(user.getClave());
+		this.textField.setText(user.getId());
+		this.textField_1.setText(user.getNombre());
+	}
+	
 }

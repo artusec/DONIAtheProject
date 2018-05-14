@@ -31,13 +31,13 @@ public class CrearListaAuto extends JPanel {
 	 * @param ventanaPrincipal 
 	 */
 	public CrearListaAuto(VentanaPrincipal ventanaPrincipal) {
-		setBorder(new TitledBorder(null, "Crear lista autom\u00E1tica", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		setBorder(new TitledBorder(null, "Crear lista automatica", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		
 		JLabel lblNombre = new JLabel("Nombre:");
 		
-		JLabel lblGenero = new JLabel("G\u00E9nero:");
+		JLabel lblGenero = new JLabel("Genero:");
 		
-		JLabel lblDuracinMaxima = new JLabel("Duraci\u00F3n maxima:");
+		JLabel lblDuracinMaxima = new JLabel("Duracion maxima:");
 		
 		textField = new JTextField();
 		textField.setColumns(10);

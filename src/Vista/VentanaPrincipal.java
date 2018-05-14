@@ -6,8 +6,9 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
-
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -34,8 +35,8 @@ public class VentanaPrincipal extends JFrame {
 
 	// PANELES
 	private PanelAreaTexto panelDeLetras;
-	private PanelTabla<Lista> panelListas;
-	private PanelTabla<Cancion> panelCanciones;
+	private PanelDePaneles<Lista> panelListas;
+	private PanelDePaneles<Cancion> panelCanciones;
 	private ToolBar toolBar;
 	private JPanel panelCambiante;
 	private JPanel panelCentral;
@@ -53,11 +54,11 @@ public class VentanaPrincipal extends JFrame {
 	private Login Login;
 
 	public VentanaPrincipal () {
+		
 		super("Donia");
-		//forzamos admin para pruebas
-//		try {
-//			usuarioActual = new Usuario("u0", "admin", "");
-//		} catch (ErrorCreacionObjeto e) {}
+		try {
+			usuarioActual = new Usuario("u0", "admin", "");
+		} catch (ErrorCreacionObjeto e) {}
 		initGUI();
 		Login = new Login(new ControlUsuario(usuarioActual), this);
 		Login.setVisible(true);
@@ -110,7 +111,6 @@ public class VentanaPrincipal extends JFrame {
 		creaPanelCanciones(panelCentral);
 		createPanelCambiante();
 		verPerfil();
-		 
 		pack();
 		setVisible(false);
 		setExtendedState(java.awt.Frame.MAXIMIZED_BOTH);
@@ -144,7 +144,7 @@ public class VentanaPrincipal extends JFrame {
 		ToolBarListas barListas = new ToolBarListas(this, controlLista);
 		barListas.setFloatable(false);
 		setFont(new Font("MyStyle", 1, 20));
-		panelListas = new PanelTabla<Lista>("Listas de reproduccion", new ModeloTablaListas(columnLista, controlLista, controlUsuario));
+		panelListas = new PanelDePaneles<Lista>("Listas de reproduccion");
 		panelListas.setAutoscrolls(true);
 		izquierda.add(panelListas);
 		izquierda.add(barListas, BorderLayout.SOUTH);
@@ -154,7 +154,7 @@ public class VentanaPrincipal extends JFrame {
 	private void creaPanelCanciones(JPanel panelCentral) {
 		JPanel medio = new JPanel();
 		medio.setLayout(new BorderLayout());
-		panelCanciones = new PanelTabla<Cancion>("Canciones", new ModeloTablaCanciones(columnCanciones, controlCancion, controlLista));
+		panelCanciones = new PanelDePaneles<Cancion>("Canciones");
 		panelCanciones.setAutoscrolls(true);
 		medio.add(panelCanciones);
 		ToolBarCanciones barCanciones = new ToolBarCanciones(this, controlCancion, controlLista, controlGenero);
@@ -187,6 +187,7 @@ public class VentanaPrincipal extends JFrame {
 		Account_panel account = new Account_panel();
 		account.setVisible(true);
 		account.setOpaque(false);
+		account.setDatosUsuario(usuarioActual);
 		panelCambiante.add(account);
 		panelCentral.add(panelCambiante);
 	}
@@ -293,13 +294,11 @@ public class VentanaPrincipal extends JFrame {
 		panelCentral.add(panelCambiante);		
 	}
 	
-	public PanelTabla<Cancion> getPanelCanciones()
-	{
+	public PanelDePaneles<Cancion> getPanelCanciones(){
 		return panelCanciones;
 	}
 	
-	public PanelTabla<Lista> getPanelListas()
-	{
+	public PanelDePaneles<Lista> getPanelListas(){
 		return panelListas;
 	}
 
@@ -311,7 +310,6 @@ public class VentanaPrincipal extends JFrame {
 	public static void actualizaCanciones() {
 		
 		// TODO Auto-generated method stub
-		
 	}
 	
 	public static void actualizaGeneros() {
@@ -376,4 +374,25 @@ public class VentanaPrincipal extends JFrame {
 		return entrada.matches("[a-zA-Z0-9]*");
 	}
 	
+	public List<Cancion> getCancionSelecccionada() {
+		
+		return this.panelCanciones.getSelectedItems();
+	}
+	
+	public List<Lista> getCarreterasSeleccionadas() {
+		
+		return this.panelListas.getSelectedItems();
+	}
+
+	// Esto aun no funciona muy bien
+	public void setPanelListas() {
+		
+		this.panelListas.setList(controlLista.getListasUsuario(usuarioActual));
+
+	}
+
+	public void setPanelListas(ArrayList<Lista> listas) {
+		
+		this.panelListas.setList(listas);
+	}
 }

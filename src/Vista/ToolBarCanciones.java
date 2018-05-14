@@ -42,7 +42,7 @@ public class ToolBarCanciones extends JToolBar {
 			public void actionPerformed(ActionEvent e) {
 				Cancion seleccionada = mainWindow.getPanelCanciones().getModelo().cancionSel();
 				if (seleccionada != null) {			
-					controlLista.eliminarCancion(seleccionada, mainWindow.getPanelListas().getModelo().listaSel());
+					// controlLista.eliminarCancion(seleccionada, mainWindow.getPanelListas().getSelectedItems();
 				}
 			}
 		});		

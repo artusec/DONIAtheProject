@@ -186,10 +186,11 @@ public class SASDAO implements InterfazSASDAO {
 					//si ha leido bien lo que queriamos obtenemos datos
 					String id = datosLista.getString("lista");
 					String titulo = datosLista.getString("nombre");
-					String idGenero = datosLista.getString("genero"); //podria ser null
+					String idGenero = null;
+					// idGenero = datosLista.getString("genero"); //podria ser null
 					Genero genero = null;
 					if (idGenero != null){
-						//esto es una listaauto
+						//esto es una listaaut
 						if (this.existeGenero(idGenero)) {
 							genero = this.getGeneroDB(idGenero);
 						}
@@ -265,14 +266,14 @@ public class SASDAO implements InterfazSASDAO {
     	try {
 			if (this.conectado() && idUsuario != null) {
 				Usuario usuario = null;
-			    PreparedStatement stat = this.DBconn.prepareStatement("select * from usuario where usuario = '" + idUsuario + "';");
+			    PreparedStatement stat = this.DBconn.prepareStatement("select * from usuario where usuario = '" + idUsuario + "';"); 
 			    ResultSet datosUsuario = stat.executeQuery();
 				if(datosUsuario.next()) {
 					//si ha leido bien lo que queriamos
 					String id = datosUsuario.getString("usuario");
 					String nombre = datosUsuario.getString("nombre");
 					String claveObtenida = datosUsuario.getString("clave");
-					if (!claveObtenida.equals(clave)) throw new ErrorAutenticacion("Contrase�a incorrecta para el usuario: " + nombre);
+					if (!claveObtenida.equals(clave)) throw new ErrorAutenticacion("Pass incorrecta para el usuario: " + nombre);
 					//procedimiento para obtener lista de generos
 					ArrayList<Genero> generos = new ArrayList<Genero>();
 					PreparedStatement stat2 = this.DBconn.prepareStatement("select * from rusuariogenero where usuario = '" + idUsuario + "';");

@@ -1,13 +1,11 @@
 package Vista;
 
 import java.awt.BorderLayout;
-
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
 import Controlador.ControlLista;
 import Controlador.ControlUsuario;
 import Excepciones.ErrorCreacionObjeto;
@@ -124,7 +122,8 @@ public class Login extends JDialog {
 						//Registrar usuario
 						Usuario yo = null;
 						try {
-							yo = new Usuario(textField.getText().trim(), textField_1.getText().trim(), String.valueOf(passwordField.getPassword()));
+							yo = new Usuario(textField.getText().trim(), textField_1.getText().trim(),
+									String.valueOf(passwordField.getPassword()));
 							if (yo != null) {
 								ctrlU.registro(yo);
 							}					
@@ -220,9 +219,9 @@ public class Login extends JDialog {
 					ventanaPrincipal.setUsuarioActual(accesor);
 					
 					//Habria que cargar todas las listas del usuario
-					ArrayList<Lista> listas = ctrlLista.getListasUsuario(ventanaPrincipal.getUsuarioActual());
+					ArrayList<Lista> listas = ctrlLista.getListasUsuario(ventanaPrincipal.getUsuarioActual()); // accesor
 					if (listas != null)
-						ventanaPrincipal.getPanelListas().getModelo().lista.addAll(listas);
+						ventanaPrincipal.setPanelListas(listas);
 
 					setVisible(false);
 					ventanaPrincipal.setVisible(true);

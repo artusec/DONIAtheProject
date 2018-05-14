@@ -97,4 +97,11 @@ public abstract class Lista {
 			total += cancion.getDuracion();
 		return total;
 	}
+	
+	// Importante para que se vea algo legible en la tabla
+	@Override
+	public String toString() {
+		
+		return nombre;
+	}
 }
