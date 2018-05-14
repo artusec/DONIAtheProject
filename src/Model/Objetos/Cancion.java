@@ -21,6 +21,7 @@ public class Cancion {
     		this.setAlbum(album);
     		this.setDuracion(duracion);
     		this.setLetra(letra);
+    		this.setVideo(video);
     		this.setTitulo(titulo);
     		this.setGenero(genero);
     }

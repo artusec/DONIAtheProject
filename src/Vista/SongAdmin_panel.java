@@ -206,7 +206,7 @@ public class SongAdmin_panel extends JPanel {
 						VentanaPrincipal.muestraError(e1);
 					}
 				} else {
-					VentanaPrincipal.muestraError(new ErrorGuardado("Imposible guardar cancion"));
+					VentanaPrincipal.muestraError(new ErrorGuardado("Imposible guardar cancion porque has metido mal los datos!"));
 				}
 			}
 		});
