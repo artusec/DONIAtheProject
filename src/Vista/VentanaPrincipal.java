@@ -312,7 +312,6 @@ public class VentanaPrincipal extends JFrame {
 
 	public static void actualizaListas() {
 		// TODO Auto-generated method stub
-		
 	}
 
 	public static void actualizaUsuario() {
@@ -377,14 +376,15 @@ public class VentanaPrincipal extends JFrame {
 		return this.panelListas.getSelectedItems();
 	}
 
-	// Esto aun no funciona muy bien
-	public void setPanelListas() {
-		
-		// this.panelListas.setList(controlLista.getListasUsuario(usuarioActual));
-	}
-
 	public void setPanelListas(ArrayList<Lista> listas) {
 		
 		this.panelListas.setList(listas);
+	}
+
+	public void cargaListas() {
+		ControlLista ctrlLista = new ControlLista(getUsuarioActual());
+		ArrayList<Lista> listas = ctrlLista.getListasUsuario(getUsuarioActual());
+		if (listas != null)
+			panelListas.setList(listas);
 	}
 }

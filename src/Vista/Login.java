@@ -220,11 +220,7 @@ public class Login extends JDialog {
 					correcto = true;
 					ventanaPrincipal.setUsuarioActual(accesor);
 					
-					//Cargar todas las listas del usuario (mejor en ventanaprincipal creo...)
-					ControlLista ctrlLista = new ControlLista(ventanaPrincipal.getUsuarioActual());
-					ArrayList<Lista> listas = ctrlLista.getListasUsuario(ventanaPrincipal.getUsuarioActual());
-					if (listas != null)
-						ventanaPrincipal.setPanelListas(listas);
+					ventanaPrincipal.cargaListas();
 					
 					setVisible(false);
 					ventanaPrincipal.verPerfil();
