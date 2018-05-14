@@ -44,15 +44,11 @@ public class ToolBar extends JToolBar {
 		{
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				// TODO Auto-generated method stub
-				
+				mainWindow.verFavoritos();
 			}
 		 });
 		
 		this.add(verGustos);
-		
-
-		
 		
 		JButton aniadirCancion = new JButton();
 		aniadirCancion.setToolTipText("Añadir cancion");
@@ -64,7 +60,6 @@ public class ToolBar extends JToolBar {
 		{
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				
 				mainWindow.verAniadirCancion();
 			}
 		 });
@@ -82,9 +77,7 @@ public class ToolBar extends JToolBar {
 		{
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				
-				mainWindow.verEliminarCancion();
-				
+				mainWindow.eliminarCancion();
 			}
 		 });
 		
