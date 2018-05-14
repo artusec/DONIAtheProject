@@ -83,7 +83,7 @@ public abstract class Lista {
     		this.nombre = nombre;
     }
     
-	public List<Cancion> getCanciones(){
+	public ArrayList<Cancion> getCanciones(){
 		return this.canciones;
 	}
 	

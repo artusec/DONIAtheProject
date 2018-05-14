@@ -279,13 +279,13 @@ public abstract class DBstruct {
 	public static String insertaVideo(String id, String enlace, String descarga) {
 		return "INSERT INTO donia.video\n" + 
 				"(enlace, enlaceDescarga, video)\n" + 
-				"VALUES('"+ id +"', '"+ enlace +"', '"+ descarga +"');\n";
+				"VALUES('"+ enlace +"', '"+ descarga +"', '"+ id +"');\n";
 	}
 	
 	public static String insertUsuario(String id, String nombre, String clave) {
 		return "INSERT INTO donia.usuario\n" +
 				"(usuario, nombre, clave)\n" +
-				"VALUES('" + id + "', '" + nombre + "', '"  + clave + "')";
+				"VALUES('" + id + "', '" + nombre + "', '"  + clave + "')\n";
 	}
 	
 	public static String insertGenero(String id) {
@@ -333,9 +333,9 @@ public abstract class DBstruct {
 				"WHERE cancion='" + id + "'";
 	}
 	public static String updateUsuario(String id, String nombre, String clave) {
-		return 	"UPDATE donia.usuario \n" +
+		return 	"UPDATE donia.usuario\n" +
 		"SET nombre='" + nombre + "', clave=" + clave + "' \n" +
-		"WHERE usuario='" + id + "'";
+		"WHERE usuario='" + id + "';\n";
 	}
 	
 	public static String updateGenero(String id, String nombre) {

@@ -25,7 +25,6 @@ public class PanelDePaneles<T> extends JPanel {
 				JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED), BorderLayout.CENTER);
 	}
 	
-
 	public ArrayList<T> getSelectedItems() {
 		
 		ArrayList<T> l = new ArrayList<>();
@@ -37,13 +36,10 @@ public class PanelDePaneles<T> extends JPanel {
 	}
 	
 	public void setList(ArrayList<T> lista) {
-		
 		this.listModel.setList(lista);
 	}
 
-
 	public ListModel<T> getModelo() {
-		
 		return listModel;
 	}
 }

@@ -91,4 +91,8 @@ public class Cancion {
 	public void setGenero(Genero genero) {
 		this.genero = genero;
 	}
+	
+	public String toString() {
+		return this.titulo;
+	}
 }

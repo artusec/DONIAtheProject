@@ -15,8 +15,7 @@ public class ToolBarListas extends JToolBar {
 
 	private static final long serialVersionUID = 1L;
 
-	public ToolBarListas(VentanaPrincipal ventanaPrincipal)
-	{
+	public ToolBarListas(VentanaPrincipal ventanaPrincipal){
 		super();
 		
 		setLayout(new GridLayout(1, 3));
@@ -49,7 +48,6 @@ public class ToolBarListas extends JToolBar {
 				if (selec != null) {
 					ControlLista controlador = new ControlLista(ventanaPrincipal.getUsuarioActual());
 					controlador.eliminar(selec);
-					ventanaPrincipal.cargaListas();
 				}
 			}
 		 });
