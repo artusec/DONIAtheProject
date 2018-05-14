@@ -319,9 +319,9 @@ public abstract class DBstruct {
 	}
 	
 	public static String insertRgeneroUsuario(String genero, String usuario) {
-		return 	"INSERT INTO donia.rgenerousuario\n" +
+		return 	"INSERT INTO donia.rusuariogenero\n" +
 				"(genero, usuario)\n" +
-				"VALUES('" + genero + "'," + "'" + usuario + "');\n";
+				"VALUES('" + genero + "', " + "'" + usuario + "');\n";
 	}
 	
 	//SENTENCIAS DE ACTUALIZACION

@@ -306,9 +306,11 @@ public class VentanaPrincipal extends JFrame {
 	
 	public static void actualizaGeneros() {
 		ControlUsuario control = new ControlUsuario(usuarioActual);
-		panelFavoritos.setList(control.getUsuario().getGustos());
+		ArrayList<Genero> generos = control.ingreso(usuarioActual.getId(), usuarioActual.getClave()).getGustos();
+		if (generos != null)
+			panelFavoritos.setList(generos);
 	}
-
+;
 	public static void actualizaListas() {
 		ControlLista control = new ControlLista(usuarioActual);
 		panelListas.setList(control.getListasUsuario());
@@ -362,7 +364,7 @@ public class VentanaPrincipal extends JFrame {
 	 * @return si es valido
 	 */
 	public boolean entradaValida(String entrada) {
-		return entrada.matches("[a-zA-Z0-9]*");
+		return entrada.matches("[a-zA-Z0-9 ]*");
 	}
 	
 	public ArrayList<Cancion> getCancionSelecccionada() {

@@ -510,6 +510,7 @@ public class SASDAO implements InterfazSASDAO {
 					System.out.println("El genero ya existe");
 				}
 				if (usuario != null) {
+					System.out.println("Asociando genero al usuario");
 					//si ademas quieres asociar un usuario al genero
 					//recabar datos usuario
 					String idUsuario = usuario.getId();
@@ -517,10 +518,18 @@ public class SASDAO implements InterfazSASDAO {
 					//comprobar usuario
 					if (!this.existeUsuario(idUsuario, clave))
 						throw new ErrorGuardado("El usuario " + idUsuario + " no existe");
+					System.out.println("usuario valido");
 					//insertar datos
-					String sentencia = DBstruct.insertRgeneroUsuario(id, idUsuario);
+					String sentencia = "select * from rusuariogenero where usuario = '" + 
+										idUsuario + "' and genero = '" + id + "';";
 					PreparedStatement ps = this.DBconn.prepareStatement(sentencia);
+					ResultSet leido = ps.executeQuery();
+					if (leido.next())
+						throw new ErrorGuardado("Ya sabemos que te gustaba el " + id);
+					sentencia = DBstruct.insertRgeneroUsuario(id, idUsuario);
+					ps = this.DBconn.prepareStatement(sentencia);
 					ps.executeQuery();
+					System.out.println("genero añadido ok");
 				}
 			}
 		} catch (SQLException e) {
