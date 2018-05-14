@@ -65,8 +65,10 @@ public class AniadirCancionALista extends JPanel {
 		btnAadir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				Cancion aAniadir = ctrlCancion.consultaCancion(textField.getText());
-				if (aAniadir != null)
+				if (aAniadir != null) {
 					ctrlLista.anadirCancion(aAniadir, ventanaPrincipal.getPanelListas().getModelo().listaSel());
+					ventanaPrincipal.getPanelCanciones().getModelo().lista.add(aAniadir);
+				}
 				else
 					lblNewLabel.setText("Canci�n no encontrada");
 			}

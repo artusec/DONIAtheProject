@@ -101,7 +101,7 @@ public class ToolBar extends JToolBar {
 		
 		this.add(eliminarCancion);
 		
-		
+		/* Los shiavales dicen que lo quitamos
 		JButton modifCancion = new JButton();
 		modifCancion.setToolTipText("Modificar cancion");
 		modifCancion.setIcon(new ImageIcon("src/icons/modificarCancion.png"));
@@ -118,7 +118,7 @@ public class ToolBar extends JToolBar {
 		 });
 		
 		this.add(modifCancion);
-		
+		*/
 		
 		JButton salir = new JButton();
 		salir.setToolTipText("Salir");

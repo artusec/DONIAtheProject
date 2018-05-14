@@ -46,6 +46,7 @@ public class CrearLista extends JPanel {
 					lista = new ListaNormal(ventanaPrincipal.generaId(), nombre);
 					ControlLista controlador = new ControlLista(ventanaPrincipal.getUsuarioActual());
 					controlador.crearLista(lista);
+					ventanaPrincipal.getPanelListas().getModelo().lista.add(lista);
 				} catch (ErrorCreacionObjeto e1) {
 					VentanaPrincipal.muestraError(e1);
 				}

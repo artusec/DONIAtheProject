@@ -1,5 +1,6 @@
 package Vista;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JTable;
@@ -17,7 +18,7 @@ public abstract class ModeloTabla<T> extends JTable {
 	public ModeloTabla(String[] columnaCanciones) {
 		super();
 		this.setCellSelectionEnabled(true);
-		this.lista = null;
+		this.lista = new ArrayList();
 		this.columnIds = columnaCanciones;
 	}
 	

@@ -232,7 +232,7 @@ public class VentanaPrincipal extends JFrame {
 		panelCambiante.setLayout(new BorderLayout());
 		this.panelCambiante.setOpaque(false);
 		
-		ModificarCancion_panel modificar = new ModificarCancion_panel();
+		ModificarCancion_panel modificar = new ModificarCancion_panel(this);
 		modificar.setVisible(true);
 		modificar.setOpaque(false);
 		panelCambiante.add(modificar);
