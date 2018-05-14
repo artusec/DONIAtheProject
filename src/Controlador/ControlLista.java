@@ -1,5 +1,7 @@
 package Controlador;
 
+import java.util.ArrayList;
+
 import Excepciones.ErrorAutenticacion;
 import Excepciones.ErrorConsulta;
 import Excepciones.ErrorCreacionObjeto;
@@ -95,5 +97,14 @@ public class ControlLista {
 		} catch (ErrorAutenticacion | ErrorCreacionObjeto | ErrorConsulta | ErrorGuardado e) {
 			VentanaPrincipal.muestraError(e);
 		}
+	}
+	
+	public ArrayList<Lista> getListasUsuario(Usuario usuario) {
+		try {
+			return fLista.mostrar(usuario);
+		} catch (ErrorAutenticacion | ErrorConsulta | ErrorCreacionObjeto e) {
+			VentanaPrincipal.muestraError(e);
+		}
+		return null;
 	}
 }

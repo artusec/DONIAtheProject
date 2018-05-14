@@ -55,9 +55,9 @@ public class VentanaPrincipal extends JFrame {
 	public VentanaPrincipal () {
 		super("Donia");
 		//forzamos admin para pruebas
-		try {
-			usuarioActual = new Usuario("u0", "admin", "");
-		} catch (ErrorCreacionObjeto e) {}
+//		try {
+//			usuarioActual = new Usuario("u0", "admin", "");
+//		} catch (ErrorCreacionObjeto e) {}
 		initGUI();
 		Login = new Login(new ControlUsuario(usuarioActual), this);
 		Login.setVisible(true);
@@ -112,7 +112,7 @@ public class VentanaPrincipal extends JFrame {
 		verPerfil();
 		 
 		pack();
-		setVisible(true);
+		setVisible(false);
 		setExtendedState(java.awt.Frame.MAXIMIZED_BOTH);
 	}
 

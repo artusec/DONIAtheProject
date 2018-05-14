@@ -7,8 +7,11 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import Controlador.ControlLista;
 import Controlador.ControlUsuario;
 import Excepciones.ErrorCreacionObjeto;
+import Model.Objetos.Lista;
 import Model.Objetos.Usuario;
 import javax.swing.JLabel;
 import java.awt.Font;
@@ -17,6 +20,7 @@ import javax.swing.JPasswordField;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 
 public class Login extends JDialog {
@@ -204,6 +208,8 @@ public class Login extends JDialog {
 			}
 		});
 		
+		ControlLista ctrlLista = new ControlLista(ventanaPrincipal.getUsuarioActual());
+		
 		JButton btnLogin = new JButton("Login");
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {		
@@ -212,6 +218,12 @@ public class Login extends JDialog {
 				if (accesor != null) {
 					correcto = true;
 					ventanaPrincipal.setUsuarioActual(accesor);
+					
+					//Habria que cargar todas las listas del usuario
+					ArrayList<Lista> listas = ctrlLista.getListasUsuario(ventanaPrincipal.getUsuarioActual());
+					if (listas != null)
+						ventanaPrincipal.getPanelListas().getModelo().lista.addAll(listas);
+
 					setVisible(false);
 					ventanaPrincipal.setVisible(true);
 				}
