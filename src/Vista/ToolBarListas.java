@@ -48,7 +48,6 @@ public class ToolBarListas extends JToolBar {
 				if (selec != null) {
 					ControlLista controlador = new ControlLista(ventanaPrincipal.getUsuarioActual());
 					controlador.eliminar(selec);
-					ventanaPrincipal.cargaListas();
 				}
 			}
 		 });

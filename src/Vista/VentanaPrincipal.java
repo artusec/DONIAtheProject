@@ -362,8 +362,4 @@ public class VentanaPrincipal extends JFrame {
 	public List<Cancion> getCancionSelecccionada() {
 		return VentanaPrincipal.panelCanciones.getSelectedItems();
 	}
-	
-	public List<Lista> getCarreterasSeleccionadas() {	
-		return VentanaPrincipal.panelListas.getSelectedItems();
-	}
 }
