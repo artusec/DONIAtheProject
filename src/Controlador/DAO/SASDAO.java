@@ -411,7 +411,6 @@ public class SASDAO implements InterfazSASDAO {
 					ps = this.DBconn.prepareStatement(sentencia);
 					ps.executeQuery();
 				}
-
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -475,15 +474,17 @@ public class SASDAO implements InterfazSASDAO {
 				if (this.existeUsuario(id, clave)) {
 					//actualizar DB
 					sentencia = DBstruct.updateUsuario(id, nombre, clave);
+					PreparedStatement ps = this.DBconn.prepareStatement(sentencia);
+					ps.executeQuery();
 				} else {
 					//insertar datos
 					sentencia = DBstruct.insertUsuario(id, nombre, clave);
+					PreparedStatement ps = this.DBconn.prepareStatement(sentencia);
+					ps.executeQuery();
 				}
 				if (generos != null) {
 					this.setGenerosUsuario(usuario, generos);
 				}
-				PreparedStatement ps = this.DBconn.prepareStatement(sentencia + ';');
-				ps.executeQuery();
 				System.out.println("usuario anadido ok");
 				//estais aqui estais aqui no puedo veros pero se que estais aqui
 			} else {

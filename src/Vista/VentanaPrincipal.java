@@ -15,10 +15,8 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
-import Controlador.ControlCancion;
-import Controlador.ControlGenero;
+
 import Controlador.ControlLista;
-import Controlador.ControlUsuario;
 import Excepciones.ErrorCreacionObjeto;
 import Model.Objetos.Cancion;
 import Model.Objetos.Lista;
@@ -35,24 +33,19 @@ public class VentanaPrincipal extends JFrame {
 
 	// PANELES
 	private PanelAreaTexto panelDeLetras;
-	private PanelDePaneles<Lista> panelListas;
-	private PanelDePaneles<Cancion> panelCanciones;
+	private static PanelDePaneles<Lista> panelListas;
+	private static PanelDePaneles<Cancion> panelCanciones;
 	private ToolBar toolBar;
 	private JPanel panelCambiante;
 	private JPanel panelCentral;
 	
 	// USUARIO
-	private Usuario usuarioActual;
+	private static Usuario usuarioActual;
 
 	private Login Login;
 
-	public VentanaPrincipal () {
-		
+	public VentanaPrincipal () {	
 		super("Donia");
-		try {
-			usuarioActual = new Usuario("u0", "admin", "");
-		} catch (ErrorCreacionObjeto e) {}
-
 		initGUI();
 		Login = new Login(this);
 		Login.setVisible(true);
@@ -130,7 +123,6 @@ public class VentanaPrincipal extends JFrame {
 		return panelCentral;
 	}
 	
-
 	private void creaPanelListas(JPanel panelCentral) {
 		JPanel izquierda = new JPanel();
 		izquierda.setLayout(new BorderLayout());
@@ -300,24 +292,24 @@ public class VentanaPrincipal extends JFrame {
 				JOptionPane.ERROR_MESSAGE, null, null, null);
 	}
 	
-	public static void actualizaCanciones() {
-		
-		// TODO Auto-generated method stub
+	// --- ACTUALIZACION DE VISTA ----
+	
+	public static void actualizaCanciones(String idLista) {
+		ControlLista control = new ControlLista(usuarioActual);
+		panelCanciones.setList(control.consulta(idLista).getCanciones());
 	}
 	
 	public static void actualizaGeneros() {
 		// TODO Auto-generated method stub
-		
 	}
 
 	public static void actualizaListas() {
-		// TODO Auto-generated method stub
-		
+		ControlLista control = new ControlLista(usuarioActual);
+		panelListas.setList(control.getListasUsuario());
 	}
 
 	public static void actualizaUsuario() {
 		// TODO Auto-generated method stub
-		
 	}
 
 	public void setLetra(String letra) {
@@ -325,7 +317,7 @@ public class VentanaPrincipal extends JFrame {
 	}
 
 	public void setUsuarioActual(Usuario accesor) {
-		this.usuarioActual = accesor;
+		VentanaPrincipal.usuarioActual = accesor;
 	}
 
 	public JPanel getPanelCambiante() {
@@ -345,7 +337,7 @@ public class VentanaPrincipal extends JFrame {
 	}
 
 	public Usuario getUsuarioActual() {
-		return this.usuarioActual;
+		return VentanaPrincipal.usuarioActual;
 	}
 	
 	/**
@@ -368,23 +360,10 @@ public class VentanaPrincipal extends JFrame {
 	}
 	
 	public List<Cancion> getCancionSelecccionada() {
-		
-		return this.panelCanciones.getSelectedItems();
+		return VentanaPrincipal.panelCanciones.getSelectedItems();
 	}
 	
-	public List<Lista> getCarreterasSeleccionadas() {
-		
-		return this.panelListas.getSelectedItems();
-	}
-
-	// Esto aun no funciona muy bien
-	public void setPanelListas() {
-		
-		// this.panelListas.setList(controlLista.getListasUsuario(usuarioActual));
-	}
-
-	public void setPanelListas(ArrayList<Lista> listas) {
-		
-		this.panelListas.setList(listas);
+	public List<Lista> getCarreterasSeleccionadas() {	
+		return VentanaPrincipal.panelListas.getSelectedItems();
 	}
 }

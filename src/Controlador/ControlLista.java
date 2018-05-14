@@ -99,9 +99,9 @@ public class ControlLista {
 		}
 	}
 	
-	public ArrayList<Lista> getListasUsuario(Usuario usuario) {
+	public ArrayList<Lista> getListasUsuario() {
 		try {
-			return fLista.mostrar(usuario);
+			return fLista.mostrar(usuarioActual);
 		} catch (ErrorAutenticacion | ErrorConsulta | ErrorCreacionObjeto e) {
 			VentanaPrincipal.muestraError(e);
 		}
