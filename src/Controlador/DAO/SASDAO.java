@@ -196,9 +196,11 @@ public class SASDAO implements InterfazSASDAO {
 						//si es una listaauto, cargar el genero
 						stat = this.DBconn.prepareStatement("select * from listaAuto where lista = '" + idLista + "';");
 					    datosLista = stat.executeQuery();
-						String idGenero = datosLista.getString("genero");
-						if (this.existeGenero(idGenero)) {
-							genero = this.getGeneroDB(idGenero);
+					    if (datosLista.next()) {
+							String idGenero = datosLista.getString("genero");
+							if (this.existeGenero(idGenero)) {
+								genero = this.getGeneroDB(idGenero);
+							}
 						}
 					}
 					
@@ -351,7 +353,7 @@ public class SASDAO implements InterfazSASDAO {
 	}
 	
     // --------------- SET ---------------
-    @Override//TODO
+    @Override
     public void setCancion(Cancion cancion) throws ErrorGuardado, ErrorCreacionObjeto {
 	    	try {
 			if (this.conectado() && cancion != null) {
@@ -362,7 +364,7 @@ public class SASDAO implements InterfazSASDAO {
 				String autor = cancion.getAutor();
 				int duracion = cancion.getDuracion();
 				String album = cancion.getAlbum();
-				String genero = "g0";
+				String genero = "g0"; //ids por defecto
 				String video = "v0";
 				String letra = "l0";
 				//las siguientes comprobaciones previenen errores en la DB

@@ -20,7 +20,7 @@ public class PanelImagen extends JPanel{
 	    		if(cual)
 	    		   image = ImageIO.read(new File("src/icons/perfillogo.png"));
 	    		else
-	    		   image = ImageIO.read(new File("src/icons/LOGO_DONIA.png"));
+	    		   image = ImageIO.read(new File("src/icons/LOGO_DONIA_pequeno.png"));
 	    	} catch (IOException ex) {}
     }
 
