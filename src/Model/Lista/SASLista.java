@@ -49,7 +49,6 @@ public class SASLista implements InterfazSASLista {
 			return lista;
     }
 	
-	//TODO
 	/**
 	 * Devuelve todas las listas del usuario
 	 * @param usuarioActual
@@ -76,7 +75,7 @@ public class SASLista implements InterfazSASLista {
      */
     @Override
     public void eliminar(Lista lista, Usuario usuario) throws ErrorAutenticacion, ErrorEliminacion { 
-    	dao.eliminarLista(lista, usuario);
+    		dao.eliminarLista(lista, usuario);
     }
     
     /**
@@ -98,7 +97,6 @@ public class SASLista implements InterfazSASLista {
      * @throws ErrorCreacionObjeto 
      * @throws ErrorGuardado 
      */
-    @SuppressWarnings("unused")
 	@Override
     public void crearLista(Lista lista, Usuario usuario) throws ErrorAutenticacion, ErrorCreacionObjeto, ErrorGuardado {
     		dao.setLista(lista, usuario);
@@ -115,27 +113,30 @@ public class SASLista implements InterfazSASLista {
      * @throws ErrorGuardado 
      */
     @Override
-    public void crearListaAuto(ListaAuto lista, Genero genero, Usuario usuario, int duracionMax) throws ErrorAutenticacion, ErrorCreacionObjeto, ErrorConsulta, ErrorGuardado {
-    		//ListaAuto lista = new ListaAuto("a"/*TODO*/, nombre, genero);
+    public void crearListaAuto(ListaAuto lista, Usuario usuario, int duracionMax) throws ErrorAutenticacion, ErrorCreacionObjeto, ErrorConsulta, ErrorGuardado {
     		if (lista == null)
     			throw new ErrorCreacionObjeto("Error al crear lista auto");
     		else {
 	    		//obtener lista de canciones con el genero que nos interesa
-    			int duracion = 0;
-	    		int i = 0;
-    			ArrayList<Cancion> canciones = dao.getCancionesGeneroDB(genero.getId());
-	    		Cancion cancion = canciones.get(i);
-	    		duracion += cancion.getDuracion();
-	    		while (duracion < duracionMax && i < canciones.size()) {
-	    			this.anadirCancion(cancion, lista, usuario);
-		    		cancion = canciones.get(i);
+    			ArrayList<Cancion> canciones = dao.getCancionesGeneroDB(lista.getGenero().getId());
+    			if (canciones != null) {
+        			int duracion = 0;
+	    	    		int i = 0;
+		    		Cancion cancion = canciones.get(i);
 		    		duracion += cancion.getDuracion();
-		    		i++;
+		    		while (duracion < duracionMax && i < canciones.size()) {
+		    			this.anadirCancion(cancion, lista, usuario);
+			    		cancion = canciones.get(i);
+			    		duracion += cancion.getDuracion();
+			    		i++;
+		    		}
+		    		dao.setListaAuto(lista, usuario);
+		    		if (i == canciones.size())
+		    			throw new ErrorCreacionObjeto("Lista creada\n Aviso: No hay suficiente canciones para llegar a la duracion solicitada");
+	    		} else {
+	    			throw new ErrorCreacionObjeto("No hay canciones de " + lista.getGenero());
 	    		}
-	    		dao.setListaAuto(lista, genero, usuario);
-	    		if (i == canciones.size())
-	    			throw new ErrorCreacionObjeto("No hay suficiente canciones para llegar a la duracion deseada");
-    		}
+    		}	
     }
 
     /**

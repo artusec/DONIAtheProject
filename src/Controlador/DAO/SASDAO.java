@@ -75,7 +75,7 @@ public class SASDAO implements InterfazSASDAO {
         //conectame
         System.out.println("Conectando a MariaDB...");
         this.DBconn = DriverManager.getConnection(DBserver, USER, PASS);
-        System.out.println("Conectao! " + this.USER + " " + this.DBserver);
+        System.out.println("Conectao! " + SASDAO.USER + " " + SASDAO.DBserver);
     }
     
     public void cierraDB() throws SQLException {
@@ -93,15 +93,15 @@ public class SASDAO implements InterfazSASDAO {
     
     // --------------- GET ---------------
     @Override
-    public Cancion getCancionDB(String idCancion) throws ErrorCreacionObjeto, ErrorConsulta  {
+    public Cancion getCancionDB(String id) throws ErrorCreacionObjeto, ErrorConsulta  {
     		try {
-			if (this.conectado() && idCancion != null) {
+			if (this.conectado() && id != null) {
 				Cancion cancion = null;
-			    PreparedStatement stat = this.DBconn.prepareStatement("select * from cancion where cancion = '" + idCancion + "';");
+			    PreparedStatement stat = this.DBconn.prepareStatement("select * from cancion where cancion = '" + id + "';");
 			    ResultSet datosCancion = stat.executeQuery();
 				if(datosCancion.next()) {
 					//si ha leido bien lo que queriamos
-					String id = datosCancion.getString("cancion");
+					String idCancion = datosCancion.getString("cancion");
 					String titulo = datosCancion.getString("titulo");
 					String autor = datosCancion.getString("autor");
 					String album = datosCancion.getString("album");
@@ -111,18 +111,18 @@ public class SASDAO implements InterfazSASDAO {
 					String idGenero = datosCancion.getString("genero");
 					
 					Letra letra = null;
-					if (idLetra != null)
-					letra = this.getLetraDB(idLetra);
-					
+					if (this.existeLetra(idLetra))
+						letra = this.getLetraDB(idLetra);
+
 					Video video = null;
-					if (idVideo != null)
-					video = this.getVideoDB(idVideo);
+					if (this.existeVideo(idVideo))
+						video = this.getVideoDB(idVideo);
 					
 					Genero genero = null;
-					if (idGenero != null)
-					genero = this.getGeneroDB(idGenero);
+					if (this.existeGenero(idGenero))
+						genero = this.getGeneroDB(idGenero);
 					
-					cancion = new Cancion(id, titulo, autor, album, duracion, letra, video, genero);
+					cancion = new Cancion(idCancion, titulo, autor, album, duracion, letra, video, genero);
 				}
 				return cancion;
 			}
@@ -184,17 +184,28 @@ public class SASDAO implements InterfazSASDAO {
 			    ResultSet datosLista = stat.executeQuery();
 				if(datosLista.next()) {
 					//si ha leido bien lo que queriamos obtenemos datos
+					//id
 					String id = datosLista.getString("lista");
+					
+					//titulo
 					String titulo = datosLista.getString("nombre");
-					String idGenero = null;
-					// idGenero = datosLista.getString("genero"); //podria ser null
+
+					
+					//genero (si existe)
 					Genero genero = null;
-					if (idGenero != null){
-						//esto es una listaaut
-						if (this.existeGenero(idGenero)) {
-							genero = this.getGeneroDB(idGenero);
+
+					if (this.existeListaAuto(id)) {
+						//si es una listaauto, cargar el genero
+						stat = this.DBconn.prepareStatement("select * from listaAuto where lista = '" + idLista + "';");
+					    datosLista = stat.executeQuery();
+					    if (datosLista.next()) {
+							String idGenero = datosLista.getString("genero");
+							if (this.existeGenero(idGenero)) {
+								genero = this.getGeneroDB(idGenero);
+							}
 						}
 					}
+					
 					//procedimiento para obtener lista de canciones
 					ArrayList<Cancion> canciones = new ArrayList<Cancion>();
 				    PreparedStatement stat2 = this.DBconn.prepareStatement("select * from rlistacancion where lista = '" + idLista + "';");
@@ -204,6 +215,8 @@ public class SASDAO implements InterfazSASDAO {
 				    		Cancion cancion = this.getCancionDB(idCancion);
 				    		canciones.add(cancion);
 					}
+				    
+				    //creacion objeto
 					if (genero != null)
 						lista = new ListaAuto(id, titulo, genero, canciones);
 					else
@@ -227,6 +240,7 @@ public class SASDAO implements InterfazSASDAO {
 				    ResultSet datosLista = stat.executeQuery();
 				    while (datosLista.next()) {
 				    		//si ha leido bien lo que queriamos obtenemos datos
+				    		System.out.println("obteniendo listas del usuario");
 						String id = datosLista.getString("lista");
 						listas.add(this.getListaDB(id));
 				    }
@@ -273,6 +287,7 @@ public class SASDAO implements InterfazSASDAO {
 					String id = datosUsuario.getString("usuario");
 					String nombre = datosUsuario.getString("nombre");
 					String claveObtenida = datosUsuario.getString("clave");
+
 					if (!claveObtenida.equals(clave)) throw new ErrorAutenticacion("Pass incorrecta para el usuario: " + nombre);
 					//procedimiento para obtener lista de generos
 					ArrayList<Genero> generos = new ArrayList<Genero>();
@@ -299,10 +314,11 @@ public class SASDAO implements InterfazSASDAO {
 		try {
 			if (this.conectado() && id != null) {
 				ArrayList<Cancion> canciones = new ArrayList<Cancion>();
-			    PreparedStatement stat = this.DBconn.prepareStatement("select * from rusuariogenero where genero = '" + id + "';");
+			    PreparedStatement stat = this.DBconn.prepareStatement("select * from cancion where genero = '" + id + "';");
 			    ResultSet datosCancion = stat.executeQuery();
 				while(datosCancion.next()) {
 					//si ha leido bien lo que queriamos obtenemos datos
+					System.out.println("Obteniendo canciones para lista automatica");
 					String idCancion = datosCancion.getString("cancion");
 					String titulo = datosCancion.getString("titulo");
 					String autor = datosCancion.getString("autor");
@@ -313,24 +329,28 @@ public class SASDAO implements InterfazSASDAO {
 					String idGenero = datosCancion.getString("genero");
 					
 					Letra letra = null;
-					if (idLetra != null)
-					letra = this.getLetraDB(idLetra);
-					
+					if (this.existeLetra(idLetra))
+						letra = this.getLetraDB(idLetra);
+
 					Video video = null;
-					if (idVideo != null)
-					video = this.getVideoDB(idVideo);
+					if (this.existeVideo(idVideo))
+						video = this.getVideoDB(idVideo);
 					
 					Genero genero = null;
-					if (idGenero != null)
-					genero = this.getGeneroDB(idGenero);
-					
-					Cancion cancion = new Cancion(idCancion, titulo, autor, album, duracion, letra, video, genero);
-					canciones.add(cancion);
+					if (this.existeGenero(idGenero))
+						genero = this.getGeneroDB(idGenero);
+					try {
+						Cancion cancion = new Cancion(idCancion, titulo, autor, album, duracion, letra, video, genero);
+						canciones.add(cancion);
+					} catch (ErrorCreacionObjeto e) {
+						System.out.println("error datos cancion dañados");
+					}
 				}
+				System.out.println(canciones.size() +" canciones obtenidas ok");
 				return canciones;
 			}
 		} catch (SQLException e) {
-			throw new ErrorConsulta();
+			throw new ErrorConsulta("Error al obtener canciones de DB");
 		}
 		return null; 
 	}
@@ -347,7 +367,7 @@ public class SASDAO implements InterfazSASDAO {
 				String autor = cancion.getAutor();
 				int duracion = cancion.getDuracion();
 				String album = cancion.getAlbum();
-				String genero = "g0";
+				String genero = "g0"; //ids por defecto
 				String video = "v0";
 				String letra = "l0";
 				//las siguientes comprobaciones previenen errores en la DB
@@ -385,7 +405,7 @@ public class SASDAO implements InterfazSASDAO {
 					//insertar datos
 					sentencia = DBstruct.insertCancion(id, titulo, autor, duracion, album, genero, video, letra);
 					PreparedStatement ps = this.DBconn.prepareStatement(sentencia);
-					ps.executeQuery(); //Me falla aqui al intentar insertar cancion 
+					ps.executeQuery();
 					//anadir la cancion a la biblioteca
 					sentencia = DBstruct.insertRlistaCancion(DBstruct.getIdBiblioteca(), id);
 					ps = this.DBconn.prepareStatement(sentencia);
@@ -558,21 +578,25 @@ public class SASDAO implements InterfazSASDAO {
     }
     
     @Override
-	public void setListaAuto(Lista lista, Genero genero, Usuario usuario) throws ErrorAutenticacion, ErrorGuardado {
-		this.setLista(lista, usuario);
-		//recabar datos
-		String idLista = lista.getId();
-		String idGenero = genero.getId();
-		//comprobar genero
-		if (this.existeGenero(idGenero)) {
-			String sentencia = DBstruct.updateGeneroLista(idLista, idGenero);
-			PreparedStatement ps;
-			try {
+	public void setListaAuto(ListaAuto lista, Usuario usuario) throws ErrorAutenticacion, ErrorGuardado {
+		try {	
+			//crear la lista como cualquier otra
+	    		this.setLista(lista, usuario);
+			//recabar datos
+			String idLista = lista.getId();
+			String idGenero = lista.getGenero().getId();
+			//comprobar genero
+			if (this.existeGenero(idGenero)) {
+				String sentencia = DBstruct.insertListaAuto(idLista, idGenero);
+				PreparedStatement ps;
 				ps = this.DBconn.prepareStatement(sentencia + ';');
 				ps.executeQuery(); 
-			} catch (SQLException e) {
+			} else {
+				//el genero deberia existir si se ha llamado a esta funcion
 				throw new ErrorGuardado();
 			}
+		} catch (SQLException e) {
+			throw new ErrorGuardado();
 		}
 	}
     
@@ -695,7 +719,7 @@ public class SASDAO implements InterfazSASDAO {
     // --------------- EXISTE ---------------
     private boolean existeCancion(String cancionId) {
     		try {
-				return this.getCancionDB(cancionId) != null;
+			return this.getCancionDB(cancionId) != null;
 		} catch (ErrorCreacionObjeto | ErrorConsulta e) {
 			return false;
 		}
@@ -716,7 +740,22 @@ public class SASDAO implements InterfazSASDAO {
 			return false;
 		}
     }
-    
+
+	private boolean existeListaAuto(String id) {
+		try {
+			if (this.conectado() && id != null) {
+				PreparedStatement stat = this.DBconn.prepareStatement("select * from listaauto where lista = '" + id + "';");
+			    ResultSet datosLista = stat.executeQuery();
+				if(datosLista.next()) {
+					return true;
+				}
+			}
+		} catch (SQLException e) {
+			return false;
+		}
+		return false;
+	}
+
     private boolean existeGenero(String generoId) {
 		try {
 			return this.getGeneroDB(generoId) != null;

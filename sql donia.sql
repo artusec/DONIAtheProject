@@ -127,7 +127,7 @@ VALUES('l0');
 
 INSERT INTO donia.usuario
 (usuario, nombre, clave)
-VALUES('u0', 'admin', '');
+VALUES('u0', 'admin', 'u0');
 
 INSERT INTO donia.usuarioadmin
 (usuario)

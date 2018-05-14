@@ -22,9 +22,9 @@ public class CrearListaAuto extends JPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private JTextField textField; //NOmbre
-	private JTextField textField_1; //Genero
-	private JTextField textField_2; //Duracion
+	private JTextField nombre; //NOmbre
+	private JTextField genero; //Genero
+	private JTextField duracion; //Duracion
 
 	/**
 	 * Create the panel.
@@ -39,21 +39,17 @@ public class CrearListaAuto extends JPanel {
 		
 		JLabel lblDuracinMaxima = new JLabel("Duracion maxima:");
 		
-		textField = new JTextField();
-		textField.setColumns(10);
-		textField.setText("");
+		nombre = new JTextField();
+		nombre.setColumns(10);
+		nombre.setText("");
 		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		textField_1.setText("");
+		genero = new JTextField();
+		genero.setColumns(10);
+		genero.setText("");
 		
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
-		textField_2.setText("");
-
-		
-		ControlLista ctrl = new ControlLista(ventanaPrincipal.getUsuarioActual());
-		ControlGenero ctrlGenero = new ControlGenero(ventanaPrincipal.getUsuarioActual());
+		duracion = new JTextField();
+		duracion.setColumns(10);
+		duracion.setText("");
 		
 		JButton btnCrear = new JButton("Crear");
 		
@@ -74,9 +70,9 @@ public class CrearListaAuto extends JPanel {
 								.addComponent(lblNombre))
 							.addGap(18)
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
-								.addComponent(textField, GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE)
-								.addComponent(textField_1)
-								.addComponent(textField_2)))
+								.addComponent(nombre, GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE)
+								.addComponent(genero)
+								.addComponent(duracion)))
 						.addGroup(groupLayout.createSequentialGroup()
 							.addContainerGap()
 							.addComponent(lblNewLabel, GroupLayout.PREFERRED_SIZE, 401, GroupLayout.PREFERRED_SIZE)))
@@ -90,15 +86,15 @@ public class CrearListaAuto extends JPanel {
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblNombre)
-						.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(nombre, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addGap(18)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblGenero)
-						.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(genero, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addGap(18)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblDuracinMaxima)
-						.addComponent(textField_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(duracion, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addGap(34)
 					.addComponent(btnCrear)
 					.addContainerGap(77, Short.MAX_VALUE))
@@ -107,17 +103,17 @@ public class CrearListaAuto extends JPanel {
 		
 		btnCrear.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (!textField.getText().equals("") && !textField_1.getText().equals("") && !textField_2.getText().equals("")) {
-					Genero genero = ctrlGenero.Consultar(textField_1.getText());
+				if (!nombre.getText().equals("") && !genero.getText().equals("") && Integer.parseInt(duracion.getText()) > 0) {
 					try {
-						ListaAuto lista = new ListaAuto("", textField.getText(), genero);
-						ctrl.crearListaAuto(lista, genero, Integer.parseInt(textField_2.getText()));
+						Genero nuevoGenero = new Genero(genero.getText());
+						ListaAuto lista = new ListaAuto(ventanaPrincipal.generaId(), nombre.getText(), nuevoGenero);
+						ControlLista control = new ControlLista(ventanaPrincipal.getUsuarioActual());
+						control.crearListaAuto(lista, Integer.parseInt(duracion.getText()));
 					} catch (ErrorCreacionObjeto e1) {
-						e1.printStackTrace();
+						VentanaPrincipal.muestraError(e1);
 					}
-				}
-				else {
-					lblNewLabel.setText("Rellena todos los campos para crear la lista correctamente");
+				} else {
+					lblNewLabel.setText("Rellena todos los campos para crear la lista correctamente. Y hazlo bien!");
 				}
 			}
 		});

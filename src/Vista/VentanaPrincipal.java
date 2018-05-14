@@ -40,13 +40,6 @@ public class VentanaPrincipal extends JFrame {
 	private ToolBar toolBar;
 	private JPanel panelCambiante;
 	private JPanel panelCentral;
-
-
-	// CONTROLADORES (se crean cuando se utilizan porque es una arquitectura web)
-	private ControlCancion controlCancion;
-	private ControlGenero controlGenero;
-	private ControlLista controlLista;
-	private ControlUsuario controlUsuario;
 	
 	// USUARIO
 	private Usuario usuarioActual;
@@ -59,8 +52,9 @@ public class VentanaPrincipal extends JFrame {
 		try {
 			usuarioActual = new Usuario("u0", "admin", "");
 		} catch (ErrorCreacionObjeto e) {}
+
 		initGUI();
-		Login = new Login(new ControlUsuario(usuarioActual), this);
+		Login = new Login(this);
 		Login.setVisible(true);
 	}
 	
@@ -110,7 +104,6 @@ public class VentanaPrincipal extends JFrame {
 		creaPanelListas(panelCentral);
 		creaPanelCanciones(panelCentral);
 		createPanelCambiante();
-		verPerfil();
 		pack();
 		setVisible(false);
 		setExtendedState(java.awt.Frame.MAXIMIZED_BOTH);
@@ -124,7 +117,7 @@ public class VentanaPrincipal extends JFrame {
 	}
 
 	private void addToolBar(JPanel panelSupremo) {
-		toolBar = new ToolBar(this, controlCancion, controlGenero, controlLista, controlUsuario);
+		toolBar = new ToolBar(this);
 		toolBar.setFloatable(false);
 		toolBar.setLayout(new GridLayout(6, 1));
 		panelSupremo.add(toolBar, BorderLayout.EAST);
@@ -141,7 +134,7 @@ public class VentanaPrincipal extends JFrame {
 	private void creaPanelListas(JPanel panelCentral) {
 		JPanel izquierda = new JPanel();
 		izquierda.setLayout(new BorderLayout());
-		ToolBarListas barListas = new ToolBarListas(this, controlLista);
+		ToolBarListas barListas = new ToolBarListas(this);
 		barListas.setFloatable(false);
 		setFont(new Font("MyStyle", 1, 20));
 		panelListas = new PanelDePaneles<Lista>("Listas de reproduccion");
@@ -157,7 +150,7 @@ public class VentanaPrincipal extends JFrame {
 		panelCanciones = new PanelDePaneles<Cancion>("Canciones");
 		panelCanciones.setAutoscrolls(true);
 		medio.add(panelCanciones);
-		ToolBarCanciones barCanciones = new ToolBarCanciones(this, controlCancion, controlLista, controlGenero);
+		ToolBarCanciones barCanciones = new ToolBarCanciones(this);
 		barCanciones.setFloatable(false);
 		medio.add(barCanciones, BorderLayout.SOUTH);
 		panelCentral.add(medio);
@@ -185,9 +178,9 @@ public class VentanaPrincipal extends JFrame {
 		panelCambiante.setLayout(new BorderLayout());
 		this.panelCambiante.setOpaque(false);
 		Account_panel account = new Account_panel();
+		account.setDatosUsuario(usuarioActual);
 		account.setVisible(true);
 		account.setOpaque(false);
-		account.setDatosUsuario(usuarioActual);
 		panelCambiante.add(account);
 		panelCentral.add(panelCambiante);
 	}
@@ -387,8 +380,7 @@ public class VentanaPrincipal extends JFrame {
 	// Esto aun no funciona muy bien
 	public void setPanelListas() {
 		
-		this.panelListas.setList(controlLista.getListasUsuario(usuarioActual));
-
+		// this.panelListas.setList(controlLista.getListasUsuario(usuarioActual));
 	}
 
 	public void setPanelListas(ArrayList<Lista> listas) {
