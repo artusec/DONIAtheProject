@@ -121,7 +121,8 @@ public class SASLista implements InterfazSASLista {
     			ArrayList<Cancion> canciones = dao.getCancionesGeneroDB(lista.getGenero().getId());
     			if (canciones != null) {
         			int duracion = 0;
-	    	    		int i = 0;
+	    	    	int i = 0;
+	    	    	if (canciones.size() > 0) {
 		    		Cancion cancion = canciones.get(i);
 		    		duracion += cancion.getDuracion();
 		    		while (duracion < duracionMax && i < canciones.size()) {
@@ -132,11 +133,12 @@ public class SASLista implements InterfazSASLista {
 		    		}
 		    		dao.setListaAuto(lista, usuario);
 		    		if (i == canciones.size())
-		    			throw new ErrorCreacionObjeto("Lista creada\n Aviso: No hay suficiente canciones para llegar a la duracion solicitada");
-	    		} else {
+		    			throw new ErrorCreacionObjeto("Lista creada\n Aviso: No hay suficientes canciones para llegar a la duracion solicitada");
+		    	}
+	    	} else {
 	    			throw new ErrorCreacionObjeto("No hay canciones de " + lista.getGenero());
-	    		}
-    		}	
+	    	}
+    	}	
     }
 
     /**
