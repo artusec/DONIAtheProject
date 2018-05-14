@@ -17,9 +17,12 @@ import javax.swing.JPanel;
 import javax.swing.border.Border;
 
 import Controlador.ControlCancion;
+import Controlador.ControlGenero;
 import Controlador.ControlLista;
+import Controlador.ControlUsuario;
 import Excepciones.ErrorCreacionObjeto;
 import Model.Objetos.Cancion;
+import Model.Objetos.Genero;
 import Model.Objetos.Lista;
 import Model.Objetos.Usuario;
 
@@ -29,8 +32,8 @@ public class VentanaPrincipal extends JFrame {
 	
 	public static Border bordePorDefecto = BorderFactory.createLineBorder(Color.black, 2);
 
-	static private final String[] columnCanciones = {"#", "Title", "Artist", "Genre", "Duration"};
-	static private final String[] columnLista = {"#", "Name", "Duration", "Genre"};
+	//static private final String[] columnCanciones = {"#", "Title", "Artist", "Genre", "Duration"};
+	//static private final String[] columnLista = {"#", "Name", "Duration", "Genre"};
 
 	// PANELES
 	private PanelAreaTexto panelDeLetras;
@@ -39,11 +42,13 @@ public class VentanaPrincipal extends JFrame {
 	private ToolBar toolBar;
 	private JPanel panelCambiante;
 	private JPanel panelCentral;
+	// PANELES CAMBIANTES (pueden necesitar actualizacion de datos)
+	private static PanelDePaneles<Genero> panelFavoritos;
 	
 	// USUARIO
 	private static Usuario usuarioActual;
 
-	private Login Login;
+	private Login Login;;
 
 	public VentanaPrincipal () {	
 		super("Donia");
@@ -178,6 +183,19 @@ public class VentanaPrincipal extends JFrame {
 		panelCentral.add(panelCambiante);
 	}
 	
+	public void verFavoritos() {
+		resetearPanelCambiante();
+		panelCambiante = new JPanel();
+		panelCambiante.setLayout(new BorderLayout());
+		this.panelCambiante.setOpaque(false);
+		panelFavoritos = new PanelDePaneles<Genero>("Géneros favoritos");
+		VentanaPrincipal.actualizaGeneros();
+		panelFavoritos.setVisible(true);
+		panelFavoritos.setOpaque(false);
+		panelCambiante.add(panelFavoritos);
+		panelCentral.add(panelCambiante);
+	}
+	
 	public void verAniadirCancion() {
 		
 		resetearPanelCambiante();
@@ -287,7 +305,8 @@ public class VentanaPrincipal extends JFrame {
 	}
 	
 	public static void actualizaGeneros() {
-		// TODO Auto-generated method stub
+		ControlUsuario control = new ControlUsuario(usuarioActual);
+		panelFavoritos.setList(control.getUsuario().getGustos());
 	}
 
 	public static void actualizaListas() {

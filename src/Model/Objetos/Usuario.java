@@ -9,7 +9,7 @@ public class Usuario {
     private String id;
     private String nombre;
     private String clave;
-    public ArrayList<Genero> gustos;
+    public ArrayList<Genero> generos;
 
     public Usuario(String id, String nombre, String clave, ArrayList<Genero> generos) throws ErrorCreacionObjeto {
 	    	this.setId(id);
@@ -52,10 +52,10 @@ public class Usuario {
     }
     
     public ArrayList<Genero> getGustos(){
-		return gustos;
+		return generos;
     }
     
 	public void setGustos(ArrayList<Genero> gustos) {
-		this.gustos = gustos;
+		this.generos = gustos;
 	}
 }

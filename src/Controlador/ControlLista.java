@@ -10,7 +10,6 @@ import Excepciones.ErrorGuardado;
 import Model.Lista.InterfazFachadaLista;
 import Model.Lista.ListaFachada;
 import Model.Objetos.Cancion;
-import Model.Objetos.Genero;
 import Model.Objetos.Lista;
 import Model.Objetos.ListaAuto;
 import Model.Objetos.Usuario;
