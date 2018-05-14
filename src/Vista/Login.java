@@ -33,7 +33,6 @@ public class Login extends JDialog {
 	private Boolean correcto;
 	
 	private SingUp singUp;
-	
 
 	public class SingUp extends JDialog {
 
@@ -45,17 +44,19 @@ public class Login extends JDialog {
 		private JPasswordField passwordField;
 
 		private Login login;
+		
 		/**
 		 * Create the dialog.
 		 * @param login 
 		 * @param ctrlU 
 		 */
-		public SingUp(Login login, ControlUsuario ctrlU) {
+		public SingUp(Login login) {
 			this.login = login;
-			initGui(ctrlU);
+			initGui();
 			setVisible(false);
 		}
-		private void initGui(ControlUsuario ctrlU) {
+		
+		private void initGui() {
 			
 		addWindowListener(new WindowListener() {
 			
@@ -122,11 +123,12 @@ public class Login extends JDialog {
 					@Override
 					public void actionPerformed(ActionEvent e) {
 						//Registrar usuario
-						Usuario yo = null;
+						Usuario nuevoUsuario = null;
 						try {
-							yo = new Usuario(textField.getText().trim(), textField_1.getText().trim(), String.valueOf(passwordField.getPassword()));
-							if (yo != null) {
-								ctrlU.registro(yo);
+							nuevoUsuario = new Usuario(textField.getText().trim(), textField_1.getText().trim(), String.valueOf(passwordField.getPassword()));
+							if (nuevoUsuario != null) {
+								ControlUsuario ctrlU = new ControlUsuario(null);
+								ctrlU.registro(nuevoUsuario);
 							}					
 						} catch (ErrorCreacionObjeto e1) {
 							System.out.println("ERROR");
@@ -161,13 +163,13 @@ public class Login extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public Login(ControlUsuario ctrlU, VentanaPrincipal ventanaPrincipal) {
+	public Login(VentanaPrincipal ventanaPrincipal) {
 		correcto = false;
-		singUp = new SingUp(this, ctrlU);
-		initGui(ctrlU, ventanaPrincipal);
+		singUp = new SingUp(this);
+		initGui(ventanaPrincipal);
 	}
 
-	private void initGui(ControlUsuario ctrlU, VentanaPrincipal ventanaPrincipal) {
+	private void initGui(VentanaPrincipal ventanaPrincipal) {
 		setBounds(100, 100, 501, 616);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -208,18 +210,18 @@ public class Login extends JDialog {
 			}
 		});
 		
-		ControlLista ctrlLista = new ControlLista(ventanaPrincipal.getUsuarioActual());
-		
 		JButton btnLogin = new JButton("Login");
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {		
 				//si existe y es correcto
+				ControlUsuario ctrlU = new ControlUsuario(ventanaPrincipal.getUsuarioActual());
 				Usuario accesor = ctrlU.ingreso(textField.getText().trim(), String.valueOf(passwordField.getPassword()));
 				if (accesor != null) {
 					correcto = true;
 					ventanaPrincipal.setUsuarioActual(accesor);
 					
-					//Habria que cargar todas las listas del usuario
+					//Cargar todas las listas del usuario (mejor en ventanaprincipal creo...)
+					ControlLista ctrlLista = new ControlLista(ventanaPrincipal.getUsuarioActual());
 					ArrayList<Lista> listas = ctrlLista.getListasUsuario(ventanaPrincipal.getUsuarioActual());
 					if (listas != null)
 						ventanaPrincipal.getPanelListas().getModelo().lista.addAll(listas);

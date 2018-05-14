@@ -19,13 +19,8 @@ public class ToolBar extends JToolBar {
 	private static final long serialVersionUID = 1L;
 	
 	
-	public ToolBar(VentanaPrincipal mainWindow, ControlCancion controlCancion, ControlGenero controlGenero,
-			ControlLista controlLista, ControlUsuario controlUsuario)
-	{
+	public ToolBar(VentanaPrincipal mainWindow) {
 		super();	
-
-
-		
 
 		JButton perfil = new JButton();
 		perfil.setToolTipText("Perfil");
@@ -43,7 +38,6 @@ public class ToolBar extends JToolBar {
 		 });
 		
 		this.add(perfil);
-		
 		
 		JButton verGustos = new JButton();
 		verGustos.setToolTipText("Gustos");
@@ -101,7 +95,7 @@ public class ToolBar extends JToolBar {
 		
 		this.add(eliminarCancion);
 		
-		/* Los shiavales dicen que lo quitamos
+		/* Los shiavales dicen que lo quitamos NO SERIA MUY DIFICIL DE HACER EH
 		JButton modifCancion = new JButton();
 		modifCancion.setToolTipText("Modificar cancion");
 		modifCancion.setIcon(new ImageIcon("src/icons/modificarCancion.png"));

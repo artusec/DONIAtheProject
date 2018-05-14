@@ -50,10 +50,6 @@ public class CrearListaAuto extends JPanel {
 		duracion = new JTextField();
 		duracion.setColumns(10);
 		duracion.setText("");
-
-		
-		ControlLista ctrl = new ControlLista(ventanaPrincipal.getUsuarioActual());
-		ControlGenero ctrlGenero = new ControlGenero(ventanaPrincipal.getUsuarioActual());
 		
 		JButton btnCrear = new JButton("Crear");
 		
@@ -107,17 +103,17 @@ public class CrearListaAuto extends JPanel {
 		
 		btnCrear.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (!nombre.getText().equals("") && !genero.getText().equals("") && !duracion.getText().equals("")) {
+				if (!nombre.getText().equals("") && !genero.getText().equals("") && Integer.parseInt(duracion.getText()) > 0) {
 					try {
 						Genero nuevoGenero = new Genero(genero.getText());
 						ListaAuto lista = new ListaAuto(ventanaPrincipal.generaId(), nombre.getText(), nuevoGenero);
-						ctrl.crearListaAuto(lista, Integer.parseInt(duracion.getText()));
+						ControlLista control = new ControlLista(ventanaPrincipal.getUsuarioActual());
+						control.crearListaAuto(lista, Integer.parseInt(duracion.getText()));
 					} catch (ErrorCreacionObjeto e1) {
 						VentanaPrincipal.muestraError(e1);
 					}
-				}
-				else {
-					lblNewLabel.setText("Rellena todos los campos para crear la lista correctamente");
+				} else {
+					lblNewLabel.setText("Rellena todos los campos para crear la lista correctamente. Y hazlo bien!");
 				}
 			}
 		});

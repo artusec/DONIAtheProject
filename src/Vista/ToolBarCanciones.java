@@ -15,7 +15,7 @@ public class ToolBarCanciones extends JToolBar {
 
 	private static final long serialVersionUID = 1L;
 
-	public ToolBarCanciones(VentanaPrincipal mainWindow , ControlCancion controlCancion, ControlLista controlLista, ControlGenero controlGenero)
+	public ToolBarCanciones(VentanaPrincipal mainWindow)
 	{
 		super();
 		
@@ -41,8 +41,9 @@ public class ToolBarCanciones extends JToolBar {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Cancion seleccionada = mainWindow.getPanelCanciones().getModelo().cancionSel();
-				if (seleccionada != null) {			
-					controlLista.eliminarCancion(seleccionada, mainWindow.getPanelListas().getModelo().listaSel());
+				if (seleccionada != null) {		
+					ControlLista control = new ControlLista(mainWindow.getUsuarioActual());
+					control.eliminarCancion(seleccionada, mainWindow.getPanelListas().getModelo().listaSel());
 				}
 			}
 		});		
@@ -58,7 +59,8 @@ public class ToolBarCanciones extends JToolBar {
 			public void actionPerformed(ActionEvent arg0) {
 				Cancion seleccionada = mainWindow.getPanelCanciones().getModelo().cancionSel();
 				if (seleccionada != null) {	
-					controlGenero.Anadir(seleccionada.getGenero());
+					ControlGenero control = new ControlGenero(mainWindow.getUsuarioActual());
+					control.Anadir(seleccionada.getGenero());
 				}
 			}
 		 });

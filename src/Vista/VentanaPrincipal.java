@@ -39,13 +39,6 @@ public class VentanaPrincipal extends JFrame {
 	private ToolBar toolBar;
 	private JPanel panelCambiante;
 	private JPanel panelCentral;
-
-
-	// CONTROLADORES (se crean cuando se utilizan porque es una arquitectura web)
-	private ControlCancion controlCancion;
-	private ControlGenero controlGenero;
-	private ControlLista controlLista;
-	private ControlUsuario controlUsuario;
 	
 	// USUARIO
 	private Usuario usuarioActual;
@@ -54,12 +47,8 @@ public class VentanaPrincipal extends JFrame {
 
 	public VentanaPrincipal () {
 		super("Donia");
-		//forzamos admin para pruebas
-//		try {
-//			usuarioActual = new Usuario("u0", "admin", "");
-//		} catch (ErrorCreacionObjeto e) {}
 		initGUI();
-		Login = new Login(new ControlUsuario(usuarioActual), this);
+		Login = new Login(this);
 		Login.setVisible(true);
 	}
 	
@@ -124,7 +113,7 @@ public class VentanaPrincipal extends JFrame {
 	}
 
 	private void addToolBar(JPanel panelSupremo) {
-		toolBar = new ToolBar(this, controlCancion, controlGenero, controlLista, controlUsuario);
+		toolBar = new ToolBar(this);
 		toolBar.setFloatable(false);
 		toolBar.setLayout(new GridLayout(6, 1));
 		panelSupremo.add(toolBar, BorderLayout.EAST);
@@ -141,10 +130,10 @@ public class VentanaPrincipal extends JFrame {
 	private void creaPanelListas(JPanel panelCentral) {
 		JPanel izquierda = new JPanel();
 		izquierda.setLayout(new BorderLayout());
-		ToolBarListas barListas = new ToolBarListas(this, controlLista);
+		ToolBarListas barListas = new ToolBarListas(this);
 		barListas.setFloatable(false);
 		setFont(new Font("MyStyle", 1, 20));
-		panelListas = new PanelTabla<Lista>("Listas de reproduccion", new ModeloTablaListas(columnLista, controlLista, controlUsuario));
+		panelListas = new PanelTabla<Lista>("Listas de reproduccion", new ModeloTablaListas(columnLista));
 		panelListas.setAutoscrolls(true);
 		izquierda.add(panelListas);
 		izquierda.add(barListas, BorderLayout.SOUTH);
@@ -154,10 +143,10 @@ public class VentanaPrincipal extends JFrame {
 	private void creaPanelCanciones(JPanel panelCentral) {
 		JPanel medio = new JPanel();
 		medio.setLayout(new BorderLayout());
-		panelCanciones = new PanelTabla<Cancion>("Canciones", new ModeloTablaCanciones(columnCanciones, controlCancion, controlLista));
+		panelCanciones = new PanelTabla<Cancion>("Canciones", new ModeloTablaCanciones(columnCanciones));
 		panelCanciones.setAutoscrolls(true);
 		medio.add(panelCanciones);
-		ToolBarCanciones barCanciones = new ToolBarCanciones(this, controlCancion, controlLista, controlGenero);
+		ToolBarCanciones barCanciones = new ToolBarCanciones(this);
 		barCanciones.setFloatable(false);
 		medio.add(barCanciones, BorderLayout.SOUTH);
 		panelCentral.add(medio);

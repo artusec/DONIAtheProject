@@ -8,15 +8,9 @@ import Model.Objetos.Cancion;
 public class ModeloTablaCanciones extends ModeloTabla<Cancion> {
 
 	private static final long serialVersionUID = 1L;
-	
-	private ControlCancion controlCancion;
-	private ControlLista controlLista;
 
-	public ModeloTablaCanciones(String[] columnIdCanciones, ControlCancion controlCancion, ControlLista controlLista) {
-		
+	public ModeloTablaCanciones(String[] columnIdCanciones) {
 		super(columnIdCanciones);
-		this.controlLista = controlLista;
-		this.controlCancion = controlCancion;
 	}
 	
 	 @Override
@@ -34,9 +28,10 @@ public class ModeloTablaCanciones extends ModeloTabla<Cancion> {
 		 return s;
 	 }
 	 
+	 /*SGURO QUE ESTO SE HACE AQUI??
 	 public void actualizarDatos(String idLista) {
-		 
 		 lista.clear();
-		 lista.addAll(controlLista.consulta(idLista).getCanciones());
-	 }
+		 ControlLista control = new ControlLista(ventanaPrincipal.getUsuarioActual());
+		 lista.addAll(control.consulta(idLista).getCanciones());
+	 }*/
 }

@@ -8,14 +8,9 @@ import Model.Objetos.Lista;
 public class ModeloTablaListas extends ModeloTabla<Lista> {
 
 	private static final long serialVersionUID = 1L;
-	
-	private ControlLista controlLista;
-	private ControlUsuario controlUsuario;
 
-	public ModeloTablaListas(String[] columnaCanciones, ControlLista controladorLista, ControlUsuario controladorUsuario) {
+	public ModeloTablaListas(String[] columnaCanciones) {
 		super(columnaCanciones);
-		controlLista = controladorLista;
-		controlUsuario = controladorUsuario;
 	}
 
 	@Override

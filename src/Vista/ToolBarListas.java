@@ -13,7 +13,7 @@ public class ToolBarListas extends JToolBar {
 
 	private static final long serialVersionUID = 1L;
 
-	public ToolBarListas(VentanaPrincipal mainWindow, ControlLista controlador)
+	public ToolBarListas(VentanaPrincipal ventanaPrincipal)
 	{
 		super();
 		
@@ -26,7 +26,7 @@ public class ToolBarListas extends JToolBar {
 		{
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				mainWindow.verCrearLista();
+				ventanaPrincipal.verCrearLista();
 			}
 		 });
 		
@@ -40,8 +40,9 @@ public class ToolBarListas extends JToolBar {
 		{
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				Lista selec = mainWindow.getPanelListas().getModelo().listaSel();
+				Lista selec = ventanaPrincipal.getPanelListas().getModelo().listaSel();
 				if (selec != null) {
+					ControlLista controlador = new ControlLista(ventanaPrincipal.getUsuarioActual());
 					controlador.eliminar(selec);
 				}
 			}
@@ -56,7 +57,7 @@ public class ToolBarListas extends JToolBar {
 		{
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				mainWindow.verCrearListaAuto();
+				ventanaPrincipal.verCrearListaAuto();
 			}
 		 });
 		
