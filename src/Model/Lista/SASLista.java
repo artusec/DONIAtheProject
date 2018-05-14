@@ -154,7 +154,7 @@ public class SASLista implements InterfazSASLista {
      */
     @Override
     public void anadirCancion(Cancion cancion, Lista lista, Usuario usuario) throws ErrorAutenticacion, ErrorCreacionObjeto, ErrorConsulta, ErrorGuardado {
-    		if (dao.getCancionDB(cancion.getId()).equals(cancion)) {
+    		if (dao.getCancionDB(cancion.getTitulo()).getId().equals(cancion.getId())) {
     			//comprueba que vamos a anadir una cancion valida
     			lista.anadirCancion(cancion);
     			dao.setLista(lista, usuario);

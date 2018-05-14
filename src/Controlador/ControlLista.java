@@ -84,7 +84,7 @@ public class ControlLista {
 	public void anadirCancion(Cancion cancion, Lista lista) {
 		try {
 			fLista.anadirCancion(cancion, lista, usuarioActual);
-			VentanaPrincipal.actualizaListas();
+			VentanaPrincipal.actualizaCanciones(lista.getId());
 		} catch (ErrorAutenticacion | ErrorCreacionObjeto | ErrorConsulta | ErrorGuardado e) {
 			VentanaPrincipal.muestraError(e);
 		}

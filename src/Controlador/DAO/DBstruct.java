@@ -347,7 +347,7 @@ public abstract class DBstruct {
 	public static String updateLista(String id, String nombre) {
 		return "UPDATE donia.lista \n" +
 				"SET nombre='" + nombre + "' \n" +
-				"WHERE genero='" + id + "'";
+				"WHERE lista='" + id + "'";
 	}
 	public static String updateGeneroLista(String idLista, String idGenero) {
 		return "UPDATE donia.listaauto\n" + 
