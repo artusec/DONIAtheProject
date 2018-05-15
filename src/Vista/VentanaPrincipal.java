@@ -7,7 +7,6 @@ import java.awt.GridLayout;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.UUID;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -15,12 +14,9 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
-
 import Controlador.ControlCancion;
-import Controlador.ControlGenero;
 import Controlador.ControlLista;
 import Controlador.ControlUsuario;
-import Excepciones.ErrorCreacionObjeto;
 import Model.Objetos.Cancion;
 import Model.Objetos.Genero;
 import Model.Objetos.Lista;
@@ -53,8 +49,8 @@ public class VentanaPrincipal extends JFrame {
 	public VentanaPrincipal () {	
 		super("Donia");
 		initGUI();
-		Login = new Login(this);
-		Login.setVisible(true);
+		// Login = new Login(this);
+		// Login.setVisible(true);
 	}
 	
 	private void initGUI() {
@@ -104,7 +100,7 @@ public class VentanaPrincipal extends JFrame {
 		creaPanelCanciones(panelCentral);
 		createPanelCambiante();
 		pack();
-		setVisible(false);
+		setVisible(true);
 		setExtendedState(java.awt.Frame.MAXIMIZED_BOTH);
 	}
 

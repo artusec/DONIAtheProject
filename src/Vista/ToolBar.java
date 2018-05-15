@@ -83,24 +83,23 @@ public class ToolBar extends JToolBar {
 		
 		this.add(eliminarCancion);
 		
-		/* Los shiavales dicen que lo quitamos NO SERIA MUY DIFICIL DE HACER EH
-		JButton modifCancion = new JButton();
-		modifCancion.setToolTipText("Modificar cancion");
-		modifCancion.setIcon(new ImageIcon("src/icons/modificarCancion.png"));
-		modifCancion.setText("Modificar cancion");
-		modifCancion.setHorizontalTextPosition( SwingConstants.CENTER );
-		modifCancion.setVerticalTextPosition( SwingConstants.BOTTOM );
-		modifCancion.addActionListener(new ActionListener()
+		
+		JButton verBiblioteca = new JButton();
+		verBiblioteca.setToolTipText("Ver biblioteca");
+		verBiblioteca.setIcon(new ImageIcon("src/icons/biblioteca.png"));
+		verBiblioteca.setText("Ver biblioteca");
+		verBiblioteca.setHorizontalTextPosition( SwingConstants.CENTER );
+		verBiblioteca.setVerticalTextPosition( SwingConstants.BOTTOM );
+		verBiblioteca.addActionListener(new ActionListener()
 		{
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				
-				mainWindow.verModificarCancion();
 			}
 		 });
 		
-		this.add(modifCancion);
-		*/
+		this.add(verBiblioteca);
+		
 		
 		JButton salir = new JButton();
 		salir.setToolTipText("Salir");

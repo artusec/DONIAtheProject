@@ -7,12 +7,10 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.border.TitledBorder;
-import Controlador.ControlGenero;
 import Controlador.ControlLista;
 import Excepciones.ErrorCreacionObjeto;
 import Model.Objetos.Genero;
 import Model.Objetos.ListaAuto;
-
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.LayoutStyle.ComponentPlacement;
