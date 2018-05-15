@@ -33,8 +33,8 @@ public class VentanaPrincipal extends JFrame {
 
 	// PANELES
 	private PanelAreaTexto panelDeLetras;
-	private static PanelDePaneles<Lista> panelListas;
-	private static PanelDePaneles<Cancion> panelCanciones;
+	private static PanelListas panelListas;
+	private static PanelCanciones panelCanciones;
 	private ToolBar toolBar;
 	private JPanel panelCambiante;
 	private JPanel panelCentral;
@@ -131,7 +131,7 @@ public class VentanaPrincipal extends JFrame {
 		ToolBarListas barListas = new ToolBarListas(this);
 		barListas.setFloatable(false);
 		setFont(new Font("MyStyle", 1, 20));
-		panelListas = new PanelDePaneles<Lista>("Listas de reproduccion");
+		panelListas = new PanelListas("Listas de reproduccion", this);
 		panelListas.setAutoscrolls(true);
 		izquierda.add(panelListas);
 		izquierda.add(barListas, BorderLayout.SOUTH);
@@ -141,7 +141,7 @@ public class VentanaPrincipal extends JFrame {
 	private void creaPanelCanciones(JPanel panelCentral) {
 		JPanel medio = new JPanel();
 		medio.setLayout(new BorderLayout());
-		panelCanciones = new PanelDePaneles<Cancion>("Canciones");
+		panelCanciones = new PanelCanciones("Canciones", this);
 		panelCanciones.setAutoscrolls(true);
 		medio.add(panelCanciones);
 		ToolBarCanciones barCanciones = new ToolBarCanciones(this);
@@ -212,14 +212,6 @@ public class VentanaPrincipal extends JFrame {
 		panelCambiante.setLayout(new BorderLayout());
 		this.panelCambiante.setOpaque(false);
 		panelDeLetras = new PanelAreaTexto("Letra", false);
-		Cancion seleccionada = this.getPanelCanciones().getModelo().cancionSel();
-		if (seleccionada != null) {			
-			String letra = seleccionada.getLetra().toString();
-			panelDeLetras.areatexto.setText(letra);
-			}
-		else
-			panelDeLetras.areatexto.setText("Debes seleccionar una cancion primero.");
-		
 		panelDeLetras.setVisible(true);
 		panelDeLetras.setOpaque(false);
 		panelCambiante.add(panelDeLetras);
@@ -279,14 +271,6 @@ public class VentanaPrincipal extends JFrame {
 		panelCambiante.add(crear);
 		panelCentral.add(panelCambiante);		
 	}
-	
-	public PanelDePaneles<Cancion> getPanelCanciones(){
-		return panelCanciones;
-	}
-	
-	public PanelDePaneles<Lista> getPanelListas(){
-		return panelListas;
-	}
 
 	public static void muestraError(Exception e) {
 		JOptionPane.showOptionDialog(new JFrame(), e.getMessage(), "ERROR", JOptionPane.PLAIN_MESSAGE, 
@@ -316,10 +300,25 @@ public class VentanaPrincipal extends JFrame {
 		// TODO Auto-generated method stub
 	}
 
-	public void setLetra(String letra) {
-		panelDeLetras.setTexto(letra);
+	/**
+	 * Establece la cancion de la cual se muestra la informacion (letra, enlaces etc...)
+	 * @param lista
+	 */
+	public void setCancion(Cancion cancion) {
+		//habilitar el panel de letras
+		this.verPanelLetras();
+		//esa linea es provisional, hay que pasarle toda la cancion
+		panelDeLetras.setTexto(cancion.getLetra().getTexto());
 	}
-
+	
+	/**
+	 * Establece la lista de la cual se muestra la informacion
+	 * @param lista
+	 */
+	public void setLista(Lista lista) {
+		panelCanciones.setList(lista.getCanciones());
+	}
+	
 	public void setUsuarioActual(Usuario accesor) {
 		VentanaPrincipal.usuarioActual = accesor;
 	}
@@ -367,6 +366,10 @@ public class VentanaPrincipal extends JFrame {
 		return VentanaPrincipal.panelCanciones.getSelectedItems();
 	}
 
+	public ArrayList<Lista> getListaSelecccionada() {
+		return VentanaPrincipal.panelListas.getSelectedItems();
+	}
+	
 	public void eliminarCancion() {
 		ArrayList<Cancion> cancionesBorrar = this.getCancionSelecccionada();
 		for (Cancion c : cancionesBorrar) {

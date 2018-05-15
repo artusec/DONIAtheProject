@@ -11,8 +11,8 @@ public class PanelDePaneles<T> extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 
-	private ListModel<T> listModel;
-	private JList<T> objList;
+	protected ListModel<T> listModel;
+	protected JList<T> objList;
 	
 	public PanelDePaneles(String titulo) {
 		
@@ -26,13 +26,18 @@ public class PanelDePaneles<T> extends JPanel {
 	}
 	
 	public ArrayList<T> getSelectedItems() {
-		
 		ArrayList<T> l = new ArrayList<>();
-		
 		for (int i : this.objList.getSelectedIndices()) {
 			l.add(listModel.getElementAt(i));
 		}
 		return l;
+	}
+	
+	public T getSelectedItem() {
+		int i = this.objList.getMinSelectionIndex();
+		if (i < 0)
+			return null;
+		return listModel.getElementAt(i);
 	}
 	
 	public void setList(ArrayList<T> lista) {

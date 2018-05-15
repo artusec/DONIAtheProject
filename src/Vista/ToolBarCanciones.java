@@ -12,6 +12,7 @@ import javax.swing.SwingConstants;
 import Controlador.ControlGenero;
 import Controlador.ControlLista;
 import Model.Objetos.Cancion;
+import Model.Objetos.Lista;
 
 public class ToolBarCanciones extends JToolBar {
 
@@ -39,6 +40,7 @@ public class ToolBarCanciones extends JToolBar {
 		this.add(aniadirCancion);
 		
 		JButton eliminarCancion = new JButton();
+
 		eliminarCancion.setToolTipText("Borra una cancion de la lista");
 		eliminarCancion.setText("Borrar cancion");
 		eliminarCancion.setHorizontalTextPosition( SwingConstants.CENTER );
@@ -48,12 +50,15 @@ public class ToolBarCanciones extends JToolBar {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Cancion seleccionada = mainWindow.getPanelCanciones().getModelo().cancionSel();
-
-				if (seleccionada != null) {		
-					
-					ControlLista control = new ControlLista(mainWindow.getUsuarioActual());
-					control.eliminarCancion(seleccionada, mainWindow.getPanelListas().getSelectedItems().get(0));
+				ArrayList<Cancion> selC = mainWindow.getCancionSelecccionada();
+				ArrayList<Lista> selL = mainWindow.getListaSelecccionada();
+				if (selC != null && !selC.isEmpty() && selL != null && !selL.isEmpty() ) {
+					for (Cancion c : selC) {
+						for (Lista l : selL) {
+							ControlLista control = new ControlLista(mainWindow.getUsuarioActual());
+							control.eliminarCancion(c, l);
+						}
+					}
 				}
 			}
 		});		
@@ -80,7 +85,6 @@ public class ToolBarCanciones extends JToolBar {
 			}
 		 });
 		this.add(meGusta);
-
 		
 		JButton verLetra = new JButton();
 		verLetra.setToolTipText("Ver la letra de la cancion");
@@ -88,13 +92,5 @@ public class ToolBarCanciones extends JToolBar {
 		verLetra.setHorizontalTextPosition( SwingConstants.CENTER );
 		verLetra.setVerticalTextPosition( SwingConstants.BOTTOM );
 		verLetra.setIcon(new ImageIcon("src/icons/VerLetra.png"));
-		verLetra.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				mainWindow.verPanelLetras();
-			}
-		});		
-		this.add(verLetra);
 	}
 }
