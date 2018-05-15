@@ -34,7 +34,7 @@ public class PanelListas extends PanelDePaneles<Lista> {
 		//mostrar siempre la biblioteca
 		ControlLista control = new ControlLista(ventanaPrincipal.getUsuarioActual());
 		Lista bib = control.consulta("l0");
-		if (lista != null) lista.add(bib);
+		if (lista != null) lista.add(0, bib);
 		super.setList(lista);
 	}
 }
