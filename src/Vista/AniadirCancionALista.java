@@ -1,3 +1,4 @@
+//DEPRECATED??
 package Vista;
 
 import javax.swing.JPanel;
@@ -66,11 +67,10 @@ public class AniadirCancionALista extends JPanel {
 			public void actionPerformed(ActionEvent arg0) {
 				Cancion aAniadir = ctrlCancion.consultaCancion(textField.getText());
 				if (aAniadir != null) {
-					
-					ctrlLista.anadirCancion(aAniadir, ventanaPrincipal.getPanelListas().getSelectedItems().get(0));
+					//ctrlLista.anadirCancion(aAniadir, ventanaPrincipal.getPanelListas().getSelectedItems().get(0));
 				}
 				else
-					lblNewLabel.setText("Canci�n no encontrada");
+					lblNewLabel.setText("Cancion no encontrada");
 			}
 		});
 		

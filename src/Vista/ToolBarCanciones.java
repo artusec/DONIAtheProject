@@ -12,6 +12,7 @@ import Controlador.ControlCancion;
 import Controlador.ControlGenero;
 import Controlador.ControlLista;
 import Model.Objetos.Cancion;
+import Model.Objetos.Lista;
 
 public class ToolBarCanciones extends JToolBar {
 
@@ -36,18 +37,21 @@ public class ToolBarCanciones extends JToolBar {
 		this.add(aniadirCancion);
 		
 		JButton eliminarCancion = new JButton();
-		eliminarCancion.setToolTipText("Borra una cancion de la lista");
+		eliminarCancion.setToolTipText("Borra canciones seleccionadas de las listas seleccionadas");
 		eliminarCancion.setIcon(new ImageIcon("src/icons/delete.png"));
 		eliminarCancion.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Cancion seleccionada = mainWindow.getPanelCanciones().getModelo().cancionSel();
-
-				if (seleccionada != null) {		
-					
-					ControlLista control = new ControlLista(mainWindow.getUsuarioActual());
-					control.eliminarCancion(seleccionada, mainWindow.getPanelListas().getSelectedItems().get(0));
+				ArrayList<Cancion> selC = mainWindow.getCancionSelecccionada();
+				ArrayList<Lista> selL = mainWindow.getListaSelecccionada();
+				if (selC != null && !selC.isEmpty() && selL != null && !selL.isEmpty() ) {
+					for (Cancion c : selC) {
+						for (Lista l : selL) {
+							ControlLista control = new ControlLista(mainWindow.getUsuarioActual());
+							control.eliminarCancion(c, l);
+						}
+					}
 				}
 			}
 		});		
@@ -71,9 +75,8 @@ public class ToolBarCanciones extends JToolBar {
 			}
 		 });
 		this.add(meGusta);
-
 		
-		JButton verLetra = new JButton();
+		/*JButton verLetra = new JButton(); ESTO ES COSA CUTRE DEL PASADO!!
 		verLetra.setToolTipText("Ver letra");
 		verLetra.setIcon(new ImageIcon("src/icons/flecha.png"));
 		verLetra.addActionListener(new ActionListener() {
@@ -83,6 +86,6 @@ public class ToolBarCanciones extends JToolBar {
 				mainWindow.verPanelLetras();
 			}
 		});		
-		this.add(verLetra);
+		this.add(verLetra);*/
 	}
 }

@@ -64,7 +64,10 @@ public class ControlLista {
 
 	public void eliminar(Lista lista) {
 		try {
-			fLista.eliminar(lista, usuarioActual);
+			if (lista.getId() != "l0")
+				fLista.eliminar(lista, usuarioActual);
+			else
+				VentanaPrincipal.muestraError(new ErrorEliminacion("No borres la biblioteca loc@!"));
 		} catch (ErrorAutenticacion | ErrorEliminacion e) {
 			VentanaPrincipal.muestraError(e);
 		}
