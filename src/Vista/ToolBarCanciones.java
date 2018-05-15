@@ -92,5 +92,14 @@ public class ToolBarCanciones extends JToolBar {
 		verLetra.setHorizontalTextPosition( SwingConstants.CENTER );
 		verLetra.setVerticalTextPosition( SwingConstants.BOTTOM );
 		verLetra.setIcon(new ImageIcon("src/icons/VerLetra.png"));
+		verLetra.addActionListener(new ActionListener()
+		{
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				
+				mainWindow.verPanelLetras();
+			}
+		 });
+		this.add(verLetra);
 	}
 }
