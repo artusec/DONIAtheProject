@@ -32,11 +32,11 @@ public class ControlCancion {
 	}
 	
 	public void creaCancion(Cancion cancion) {
-		if (this.usuarioActual != null && this.usuarioActual.getId() == "u0") {
+		if (this.usuarioActual != null && this.usuarioActual.getId().equals("u0")) {
 			//si es administrador puede hacer esto
 			try {
 				fCancion.creaCancion(cancion);
-				VentanaPrincipal.actualizaCanciones();
+				VentanaPrincipal.actualizaCanciones("l0");
 			} catch (ErrorCreacionObjeto | ErrorGuardado e) {
 				//notifica
 				VentanaPrincipal.muestraError(e);
@@ -48,11 +48,11 @@ public class ControlCancion {
 	}
 	
 	public void eliminaCancion(Cancion cancion) {
-		if (this.usuarioActual.getId() == "u0") {
+		if (this.usuarioActual.getId().equals("u0")) {
 			//si es administrador puede hacer esto
 			try {
 				fCancion.eliminaCancion(cancion);
-				VentanaPrincipal.actualizaCanciones();
+				VentanaPrincipal.actualizaCanciones("l0");
 			} catch (Exception e) {
 				//notifica
 				VentanaPrincipal.muestraError(e);

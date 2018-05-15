@@ -15,12 +15,14 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
+
 import Controlador.ControlCancion;
 import Controlador.ControlGenero;
 import Controlador.ControlLista;
 import Controlador.ControlUsuario;
 import Excepciones.ErrorCreacionObjeto;
 import Model.Objetos.Cancion;
+import Model.Objetos.Genero;
 import Model.Objetos.Lista;
 import Model.Objetos.Usuario;
 
@@ -30,29 +32,26 @@ public class VentanaPrincipal extends JFrame {
 	
 	public static Border bordePorDefecto = BorderFactory.createLineBorder(Color.black, 2);
 
-	static private final String[] columnCanciones = {"#", "Title", "Artist", "Genre", "Duration"};
-	static private final String[] columnLista = {"#", "Name", "Duration", "Genre"};
+	//static private final String[] columnCanciones = {"#", "Title", "Artist", "Genre", "Duration"};
+	//static private final String[] columnLista = {"#", "Name", "Duration", "Genre"};
 
 	// PANELES
 	private PanelAreaTexto panelDeLetras;
-	private PanelDePaneles<Lista> panelListas;
-	private PanelDePaneles<Cancion> panelCanciones;
+	private static PanelDePaneles<Lista> panelListas;
+	private static PanelDePaneles<Cancion> panelCanciones;
 	private ToolBar toolBar;
 	private JPanel panelCambiante;
 	private JPanel panelCentral;
+	// PANELES CAMBIANTES (pueden necesitar actualizacion de datos)
+	private static PanelDePaneles<Genero> panelFavoritos;
 	
 	// USUARIO
-	private Usuario usuarioActual;
+	private static Usuario usuarioActual;
 
-	private Login Login;
+	private Login Login;;
 
-	public VentanaPrincipal () {
-		
+	public VentanaPrincipal () {	
 		super("Donia");
-		try {
-			usuarioActual = new Usuario("u0", "admin", "");
-		} catch (ErrorCreacionObjeto e) {}
-
 		initGUI();
 		Login = new Login(this);
 		Login.setVisible(true);
@@ -130,7 +129,6 @@ public class VentanaPrincipal extends JFrame {
 		return panelCentral;
 	}
 	
-
 	private void creaPanelListas(JPanel panelCentral) {
 		JPanel izquierda = new JPanel();
 		izquierda.setLayout(new BorderLayout());
@@ -185,6 +183,19 @@ public class VentanaPrincipal extends JFrame {
 		panelCentral.add(panelCambiante);
 	}
 	
+	public void verFavoritos() {
+		resetearPanelCambiante();
+		panelCambiante = new JPanel();
+		panelCambiante.setLayout(new BorderLayout());
+		this.panelCambiante.setOpaque(false);
+		panelFavoritos = new PanelDePaneles<Genero>("Géneros favoritos");
+		VentanaPrincipal.actualizaGeneros();
+		panelFavoritos.setVisible(true);
+		panelFavoritos.setOpaque(false);
+		panelCambiante.add(panelFavoritos);
+		panelCentral.add(panelCambiante);
+	}
+	
 	public void verAniadirCancion() {
 		
 		resetearPanelCambiante();
@@ -232,20 +243,6 @@ public class VentanaPrincipal extends JFrame {
 		panelCambiante.add(modificar);
 		panelCentral.add(panelCambiante);
 		
-	}
-	
-	public void verEliminarCancion() {
-		
-		resetearPanelCambiante();
-		panelCambiante = new JPanel();
-		panelCambiante.setLayout(new BorderLayout());
-		this.panelCambiante.setOpaque(false);
-		
-		EliminarCancion_panel eliminar = new EliminarCancion_panel(this);
-		eliminar.setVisible(true);
-		eliminar.setOpaque(false);
-		panelCambiante.add(eliminar);
-		panelCentral.add(panelCambiante);
 	}
 	
 	public void verAniadirCancionALista() {
@@ -300,24 +297,27 @@ public class VentanaPrincipal extends JFrame {
 				JOptionPane.ERROR_MESSAGE, null, null, null);
 	}
 	
-	public static void actualizaCanciones() {
-		
-		// TODO Auto-generated method stub
+	// --- ACTUALIZACION DE VISTA ----
+	
+	public static void actualizaCanciones(String idLista) {
+		ControlLista control = new ControlLista(usuarioActual);
+		panelCanciones.setList(control.consulta(idLista).getCanciones());
 	}
 	
 	public static void actualizaGeneros() {
-		// TODO Auto-generated method stub
-		
+		ControlUsuario control = new ControlUsuario(usuarioActual);
+		ArrayList<Genero> generos = control.ingreso(usuarioActual.getId(), usuarioActual.getClave()).getGustos();
+		if (generos != null)
+			panelFavoritos.setList(generos);
 	}
-
+;
 	public static void actualizaListas() {
-		// TODO Auto-generated method stub
-		
+		ControlLista control = new ControlLista(usuarioActual);
+		panelListas.setList(control.getListasUsuario());
 	}
 
 	public static void actualizaUsuario() {
 		// TODO Auto-generated method stub
-		
 	}
 
 	public void setLetra(String letra) {
@@ -325,7 +325,7 @@ public class VentanaPrincipal extends JFrame {
 	}
 
 	public void setUsuarioActual(Usuario accesor) {
-		this.usuarioActual = accesor;
+		VentanaPrincipal.usuarioActual = accesor;
 	}
 
 	public JPanel getPanelCambiante() {
@@ -345,7 +345,7 @@ public class VentanaPrincipal extends JFrame {
 	}
 
 	public Usuario getUsuarioActual() {
-		return this.usuarioActual;
+		return VentanaPrincipal.usuarioActual;
 	}
 	
 	/**
@@ -364,27 +364,18 @@ public class VentanaPrincipal extends JFrame {
 	 * @return si es valido
 	 */
 	public boolean entradaValida(String entrada) {
-		return entrada.matches("[a-zA-Z0-9]*");
+		return entrada.matches("[a-zA-Z0-9 ]*");
 	}
 	
-	public List<Cancion> getCancionSelecccionada() {
-		
-		return this.panelCanciones.getSelectedItems();
-	}
-	
-	public List<Lista> getCarreterasSeleccionadas() {
-		
-		return this.panelListas.getSelectedItems();
+	public ArrayList<Cancion> getCancionSelecccionada() {
+		return VentanaPrincipal.panelCanciones.getSelectedItems();
 	}
 
-	// Esto aun no funciona muy bien
-	public void setPanelListas() {
-		
-		// this.panelListas.setList(controlLista.getListasUsuario(usuarioActual));
-	}
-
-	public void setPanelListas(ArrayList<Lista> listas) {
-		
-		this.panelListas.setList(listas);
+	public void eliminarCancion() {
+		ArrayList<Cancion> cancionesBorrar = this.getCancionSelecccionada();
+		for (Cancion c : cancionesBorrar) {
+			ControlCancion control = new ControlCancion(this.getUsuarioActual());
+			control.eliminaCancion(c);
+		}
 	}
 }

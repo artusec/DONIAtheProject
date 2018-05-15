@@ -8,6 +8,7 @@ import Excepciones.ErrorCreacionObjeto;
 import Excepciones.ErrorEliminacion;
 import Excepciones.ErrorGuardado;
 import Model.Objetos.Usuario;
+import Vista.VentanaPrincipal;
 
 public class SASUsuario implements InterfazSASUsuario {
 	
@@ -62,7 +63,6 @@ public class SASUsuario implements InterfazSASUsuario {
      * @throws ErrorDeAutenticacion si se ha producido un error al validar los datos del usuario (la contrasena esta mal)
      */
     public void modificar(Usuario nuevo) throws ErrorCreacionObjeto, ErrorAutenticacion, ErrorGuardado {
-    		//Usuario nuevo = new Usuario(usuario.getId(), nombre, pass, usuario.getGustos());
     		dao.setUsuario(nuevo);
     }
     

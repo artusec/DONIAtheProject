@@ -3,6 +3,8 @@ package Vista;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JToolBar;
@@ -59,10 +61,12 @@ public class ToolBarCanciones extends JToolBar {
 		{
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				Cancion seleccionada = mainWindow.getPanelCanciones().getModelo().cancionSel();
-				if (seleccionada != null) {	
-					ControlGenero control = new ControlGenero(mainWindow.getUsuarioActual());
-					control.Anadir(seleccionada.getGenero());
+				ArrayList<Cancion> sel = mainWindow.getCancionSelecccionada();
+				if (sel != null && !sel.isEmpty()) {
+					for (Cancion c : sel) {
+						ControlGenero control = new ControlGenero(mainWindow.getUsuarioActual());
+						control.Anadir(c.getGenero());
+					}
 				}
 			}
 		 });

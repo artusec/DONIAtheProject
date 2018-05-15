@@ -1,27 +1,24 @@
 package Vista;
 
 import java.awt.BorderLayout;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-import Controlador.ControlLista;
 import Controlador.ControlUsuario;
 import Excepciones.ErrorCreacionObjeto;
-import Model.Objetos.Lista;
 import Model.Objetos.Usuario;
-import javax.swing.JLabel;
-import java.awt.Font;
-import javax.swing.JTextField;
-import javax.swing.JPasswordField;
-import java.awt.event.ActionListener;
-import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
-import java.util.ArrayList;
-import java.awt.event.ActionEvent;
 
 public class Login extends JDialog {
 
@@ -220,11 +217,10 @@ public class Login extends JDialog {
 					correcto = true;
 					ventanaPrincipal.setUsuarioActual(accesor);
 					
-					//Cargar todas las listas del usuario (mejor en ventanaprincipal creo...)
-					ControlLista ctrlLista = new ControlLista(ventanaPrincipal.getUsuarioActual());
-					ArrayList<Lista> listas = ctrlLista.getListasUsuario(ventanaPrincipal.getUsuarioActual());
-					if (listas != null)
-						ventanaPrincipal.setPanelListas(listas);
+					//Cargar todas las listas del usuario
+					VentanaPrincipal.actualizaListas();
+					//Cargar canciones de la biblioteca (TODO) es para pruebas
+					VentanaPrincipal.actualizaCanciones("l0");
 					
 					setVisible(false);
 					ventanaPrincipal.verPerfil();

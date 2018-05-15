@@ -21,6 +21,7 @@ public class Cancion {
     		this.setAlbum(album);
     		this.setDuracion(duracion);
     		this.setLetra(letra);
+    		this.setVideo(video);
     		this.setTitulo(titulo);
     		this.setGenero(genero);
     }
@@ -90,5 +91,9 @@ public class Cancion {
 
 	public void setGenero(Genero genero) {
 		this.genero = genero;
+	}
+	
+	public String toString() {
+		return this.titulo;
 	}
 }

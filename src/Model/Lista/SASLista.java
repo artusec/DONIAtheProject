@@ -121,7 +121,8 @@ public class SASLista implements InterfazSASLista {
     			ArrayList<Cancion> canciones = dao.getCancionesGeneroDB(lista.getGenero().getId());
     			if (canciones != null) {
         			int duracion = 0;
-	    	    		int i = 0;
+	    	    	int i = 0;
+	    	    	if (canciones.size() > 0) {
 		    		Cancion cancion = canciones.get(i);
 		    		duracion += cancion.getDuracion();
 		    		while (duracion < duracionMax && i < canciones.size()) {
@@ -131,12 +132,14 @@ public class SASLista implements InterfazSASLista {
 			    		i++;
 		    		}
 		    		dao.setListaAuto(lista, usuario);
-		    		if (i == canciones.size())
-		    			throw new ErrorCreacionObjeto("Lista creada\n Aviso: No hay suficiente canciones para llegar a la duracion solicitada");
-	    		} else {
+		    		//ESTO ESTA BIEN; PERO SI LO HACEMOS NO ACTUALIZA LA VISTA DEBIDO AL ERROR
+		    		/*if (i == canciones.size())
+		    			throw new ErrorCreacionObjeto("Lista creada\n Aviso: No hay suficientes canciones para llegar a la duracion solicitada");*/
+		    	}
+	    	} else {
 	    			throw new ErrorCreacionObjeto("No hay canciones de " + lista.getGenero());
-	    		}
-    		}	
+	    	}
+    	}	
     }
 
     /**
@@ -152,7 +155,7 @@ public class SASLista implements InterfazSASLista {
      */
     @Override
     public void anadirCancion(Cancion cancion, Lista lista, Usuario usuario) throws ErrorAutenticacion, ErrorCreacionObjeto, ErrorConsulta, ErrorGuardado {
-    		if (dao.getCancionDB(cancion.getId()).equals(cancion)) {
+    		if (dao.getCancionDB(cancion.getTitulo()).getId().equals(cancion.getId())) {
     			//comprueba que vamos a anadir una cancion valida
     			lista.anadirCancion(cancion);
     			dao.setLista(lista, usuario);

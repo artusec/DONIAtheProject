@@ -32,13 +32,11 @@ public class SASCancion implements InterfazSASCancion {
 	 * @throws ErrorCreacionObjeto
 	 */
 	public void creaCancion(Cancion cancion) throws ErrorCreacionObjeto, ErrorGuardado {
-		//if (/*validar que el usuario actual es admin*/ true){ //Este if se hace en controlador
-			//Cancion cancion = new Cancion(this.GeneradorId(), titulo, autor, album, duracion, letra, video, genero);
-			if (cancion == null)
-				throw new ErrorCreacionObjeto("Error al crear la cancion");
-			else
-				dao.setCancion(cancion);
-				//la cancion deberia eliminarse anadirse sola a la biblioteca
+		if (cancion == null)
+			throw new ErrorCreacionObjeto("Error al crear la cancion");
+		else
+			dao.setCancion(cancion);
+			//la cancion deberia eliminarse anadirse sola a la biblioteca
 	}
 	
 	@Override

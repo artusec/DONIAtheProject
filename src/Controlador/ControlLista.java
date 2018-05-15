@@ -10,7 +10,6 @@ import Excepciones.ErrorGuardado;
 import Model.Lista.InterfazFachadaLista;
 import Model.Lista.ListaFachada;
 import Model.Objetos.Cancion;
-import Model.Objetos.Genero;
 import Model.Objetos.Lista;
 import Model.Objetos.ListaAuto;
 import Model.Objetos.Usuario;
@@ -84,7 +83,7 @@ public class ControlLista {
 	public void anadirCancion(Cancion cancion, Lista lista) {
 		try {
 			fLista.anadirCancion(cancion, lista, usuarioActual);
-			VentanaPrincipal.actualizaListas();
+			VentanaPrincipal.actualizaCanciones(lista.getId());
 		} catch (ErrorAutenticacion | ErrorCreacionObjeto | ErrorConsulta | ErrorGuardado e) {
 			VentanaPrincipal.muestraError(e);
 		}
@@ -99,9 +98,9 @@ public class ControlLista {
 		}
 	}
 	
-	public ArrayList<Lista> getListasUsuario(Usuario usuario) {
+	public ArrayList<Lista> getListasUsuario() {
 		try {
-			return fLista.mostrar(usuario);
+			return fLista.mostrar(usuarioActual);
 		} catch (ErrorAutenticacion | ErrorConsulta | ErrorCreacionObjeto e) {
 			VentanaPrincipal.muestraError(e);
 		}

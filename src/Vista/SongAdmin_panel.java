@@ -193,9 +193,7 @@ public class SongAdmin_panel extends JPanel {
 					Integer.parseInt(duracion.getText()) > 0) {
 					System.out.println("Entrada datos cancion valida");
 					try {
-						//ControlGenero controlG = new ControlGenero(ventanaPrincipal.getUsuarioActual());
 						Genero generoNuevo = new Genero(genero.getText());
-						//controlG.Anadir(generoNuevo);
 						Video videoNuevo = new Video(ventanaPrincipal.generaId(), video.getText(), descarga.getText());
 						Letra letraNueva = new Letra(ventanaPrincipal.generaId(), letra.getText());
 						ControlCancion controlC = new ControlCancion(ventanaPrincipal.getUsuarioActual());
@@ -208,7 +206,7 @@ public class SongAdmin_panel extends JPanel {
 						VentanaPrincipal.muestraError(e1);
 					}
 				} else {
-					VentanaPrincipal.muestraError(new ErrorGuardado("Imposible guardar cancion"));
+					VentanaPrincipal.muestraError(new ErrorGuardado("Imposible guardar cancion porque has metido mal los datos!"));
 				}
 			}
 		});
