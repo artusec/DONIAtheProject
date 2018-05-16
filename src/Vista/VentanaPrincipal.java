@@ -203,6 +203,18 @@ public class VentanaPrincipal extends JFrame {
 		panelCentral.add(panelCambiante);
 	}
 	
+	public void verEliminarCancion() {
+		resetearPanelCambiante();
+		panelCambiante = new JPanel();
+		panelCambiante.setLayout(new BorderLayout());
+		this.panelCambiante.setOpaque(false);
+		SongBorrarAdmin_panel songAdmin = new SongBorrarAdmin_panel(this);
+		songAdmin.setVisible(true);
+		songAdmin.setOpaque(false);
+		panelCambiante.add(songAdmin);
+		panelCentral.add(panelCambiante);
+	}
+	
 	public void verPanelLetras() {
 		
 		resetearPanelCambiante();
@@ -376,7 +388,7 @@ public class VentanaPrincipal extends JFrame {
 		return VentanaPrincipal.panelListas.getSelectedItems();
 	}
 	
-	public void eliminarCancion() {
+	public void f() {
 		ArrayList<Cancion> cancionesBorrar = this.getCancionSelecccionada();
 		for (Cancion c : cancionesBorrar) {
 			ControlCancion control = new ControlCancion(this.getUsuarioActual());
