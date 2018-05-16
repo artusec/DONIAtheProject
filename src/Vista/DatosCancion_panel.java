@@ -139,10 +139,14 @@ public class DatosCancion_panel extends JPanel {
 		
 		this.titulo.setText(cancion.getTitulo());
 		this.artista.setText(cancion.getAutor());
-		// String a = Integer.toString(cancion.getDuracion()); me peta por ser un double
-		// this.duracion.setText(a);
-		// enlace.setText(cancion.getVideo().getEnlace());
-		// descarga.setText(cancion.getVideo().getEnlaceDescarga());
+		this.genero.setText(cancion.getGenero().toString());
+		Double duracion = cancion.getDuracion();
+		int min = (int) (duracion / 60);
+		int seg = (int) (duracion % 60);
+		String a = String.valueOf(duracion);
+		this.duracion.setText(Integer.toString(min) + "min" + Integer.toString(seg) + "seg");
+		enlace.setText(cancion.getVideo().getEnlace());
+		descarga.setText(cancion.getVideo().getEnlaceDescarga());
 	}
 
 	public void vaciarCampos() {

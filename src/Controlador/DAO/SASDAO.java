@@ -105,7 +105,7 @@ public class SASDAO implements InterfazSASDAO {
 					String titulo = datosCancion.getString("titulo");
 					String autor = datosCancion.getString("autor");
 					String album = datosCancion.getString("album");
-					int duracion = datosCancion.getInt("duracion");
+					double duracion = datosCancion.getDouble("duracion");
 					String idLetra = datosCancion.getString("letra");
 					String idVideo = datosCancion.getString("video");
 					String idGenero = datosCancion.getString("genero");
