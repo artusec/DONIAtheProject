@@ -233,8 +233,7 @@ public class VentanaPrincipal extends JFrame {
 		
 	}
 	
-	public void verAniadirCancionALista() {
-		
+	public void verAniadirCancionALista() {	
 		resetearPanelCambiante();
 		panelCambiante = new JPanel();
 		panelCambiante.setLayout(new BorderLayout());
@@ -325,7 +324,8 @@ public class VentanaPrincipal extends JFrame {
 	 * @param lista
 	 */
 	public void setLista(Lista lista) {
-		panelCanciones.setList(lista.getCanciones());
+		if (lista != null)
+			panelCanciones.setList(lista.getCanciones());
 	}
 	
 	public void setUsuarioActual(Usuario accesor) {

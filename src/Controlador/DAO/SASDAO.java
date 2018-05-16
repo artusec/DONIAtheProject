@@ -655,9 +655,9 @@ public class SASDAO implements InterfazSASDAO {
 				if (!this.existeLista(idLista))
 					throw new ErrorEliminacion();
 				//borrar lista
-				String sentencia = "";
+				String sentencia;
 				//al borrar la lista deberia hacer cascade
-				sentencia += DBstruct.deleteLista(idLista);
+				sentencia = DBstruct.deleteLista(idLista);
 				PreparedStatement ps = this.DBconn.prepareStatement(sentencia + ';');
 				ps.executeQuery();
 			}
