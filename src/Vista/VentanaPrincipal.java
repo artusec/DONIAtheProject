@@ -11,10 +11,15 @@ import java.util.ArrayList;
 import java.util.UUID;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.UIManager;
 import javax.swing.border.Border;
+import javax.swing.border.TitledBorder;
+
 import Controlador.ControlCancion;
 import Controlador.ControlLista;
 import Controlador.ControlUsuario;
@@ -184,12 +189,14 @@ public class VentanaPrincipal extends JFrame {
 		panelCambiante = new JPanel();
 		panelCambiante.setLayout(new BorderLayout());
 		this.panelCambiante.setOpaque(false);
-		panelFavoritos = new PanelDePaneles<Genero>("Géneros favoritos");
-		VentanaPrincipal.actualizaGeneros();
-		panelFavoritos.setVisible(true);
-		panelFavoritos.setOpaque(false);
-		panelCambiante.add(panelFavoritos);
+		
+	 	panelFavoritos = new PanelDePaneles<Genero>("Géneros favoritos");
+	 	VentanaPrincipal.actualizaGeneros();
+		
+		PanelGeneros pg = new PanelGeneros(panelFavoritos, this);
+		panelCambiante.add(pg);
 		panelCentral.add(panelCambiante);
+		VentanaPrincipal.actualizaGeneros();
 	}
 	
 	public void verAniadirCancion() {
@@ -377,6 +384,10 @@ public class VentanaPrincipal extends JFrame {
 
 	public ArrayList<Lista> getListaSelecccionada() {
 		return VentanaPrincipal.panelListas.getSelectedItems();
+	}
+	
+	public ArrayList<Genero> getGeneroSeleccionado(){
+		return VentanaPrincipal.panelFavoritos.getSelectedItems();
 	}
 	
 	public void eliminarCancion() {

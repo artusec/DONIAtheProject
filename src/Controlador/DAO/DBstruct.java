@@ -382,7 +382,7 @@ public abstract class DBstruct {
 	
 	public static String deleteRgeneroUsuario(String idUsuario, String idGenero) {
 		return "DELETE FROM donia.rgenerousuario \n" + 
-				"WHERE usuario='" + idUsuario + "' AND cancion='" + idGenero + "'";
+				"WHERE usuario='" + idUsuario + "' AND genero='" + idGenero + "'";
 	}
 	
 	
