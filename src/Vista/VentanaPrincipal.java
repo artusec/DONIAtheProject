@@ -226,12 +226,7 @@ public class VentanaPrincipal extends JFrame {
 		this.panelCambiante.setOpaque(false);
 		DatosCancion_panel panelDatos = new DatosCancion_panel();
 		PanelAreaTexto panelDeLetras = new PanelAreaTexto("Letra", false);
-		panelUnTercio = new PanelUnTercio(panelDeLetras, panelDatos);
-		
-		ArrayList<Cancion> c = this.getCancionSelecccionada();
-		if(!c.equals(null) && !c.isEmpty())
-			this.setCancion(c.get(0));
-		
+		panelUnTercio = new PanelUnTercio(panelDeLetras, panelDatos);		
 		panelUnTercio.setVisible(true);
 		panelCambiante.add(panelUnTercio);
 		panelCentral.add(panelCambiante);
@@ -322,7 +317,7 @@ public class VentanaPrincipal extends JFrame {
 	 * @param lista
 	 */
 	public void setCancion(Cancion cancion) {
-
+		verPanelLetras();
 		panelUnTercio.setDatos(cancion);
 	}
 	
@@ -331,31 +326,39 @@ public class VentanaPrincipal extends JFrame {
 	 * @param lista
 	 */
 	public void setLista(Lista lista) {
+		
+		verPanelLetras();
 		if (lista != null)
 			panelCanciones.setList(lista.getCanciones());
 	}
 	
 	public void setUsuarioActual(Usuario accesor) {
+		
 		VentanaPrincipal.usuarioActual = accesor;
 	}
 
 	public JPanel getPanelCambiante() {
+		
 		return panelCambiante;
 	}
 
 	public void setPanelCambiante(JPanel panelCambiante) {
+		
 		this.panelCambiante = panelCambiante;
 	}
 
 	public JPanel getPanelCentral() {
+		
 		return panelCentral;
 	}
 
 	public void setPanelCentral(JPanel panelCentral) {
+		
 		this.panelCentral = panelCentral;
 	}
 
 	public Usuario getUsuarioActual() {
+		
 		return VentanaPrincipal.usuarioActual;
 	}
 	

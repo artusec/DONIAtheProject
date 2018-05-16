@@ -21,7 +21,7 @@ public class DatosCancion_panel extends JPanel {
 	private JTextField duracion;
 	private JTextField genero;
 	private JTextField enlace;
-	private JTextField textField;
+	private JTextField descarga;
 
 	/**
 	 * Create the panel.
@@ -67,8 +67,8 @@ public class DatosCancion_panel extends JPanel {
 		JLabel lblEnlaceVerVideoclip = new JLabel("Enlace ver videoclip");
 		lblEnlaceVerVideoclip.setFont(new Font("Arial Black", Font.ITALIC, 14));
 		
-		textField = new JTextField();
-		textField.setColumns(10);
+		descarga = new JTextField();
+		descarga.setColumns(10);
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.TRAILING)
@@ -96,7 +96,7 @@ public class DatosCancion_panel extends JPanel {
 					.addContainerGap(75, Short.MAX_VALUE))
 				.addGroup(groupLayout.createSequentialGroup()
 					.addGap(8)
-					.addComponent(textField, GroupLayout.PREFERRED_SIZE, 354, GroupLayout.PREFERRED_SIZE)
+					.addComponent(descarga, GroupLayout.PREFERRED_SIZE, 354, GroupLayout.PREFERRED_SIZE)
 					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap()
@@ -128,7 +128,7 @@ public class DatosCancion_panel extends JPanel {
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(lblEnlaceVerVideoclip)
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addComponent(descarga, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
 		setLayout(groupLayout);
@@ -141,6 +141,16 @@ public class DatosCancion_panel extends JPanel {
 		this.artista.setText(cancion.getAutor());
 		// String a = Integer.toString(cancion.getDuracion()); me peta por ser un double
 		// this.duracion.setText(a);
-		this.enlace.setText(cancion.getVideo().getEnlace());		
+		// enlace.setText(cancion.getVideo().getEnlace());
+		// descarga.setText(cancion.getVideo().getEnlaceDescarga());
+	}
+
+	public void vaciarCampos() {
+		
+		titulo.setText("");
+		artista.setText("");
+		duracion.setText("");
+		enlace.setText("");
+		descarga.setText("");
 	}
 }

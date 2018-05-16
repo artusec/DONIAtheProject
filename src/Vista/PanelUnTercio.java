@@ -53,4 +53,10 @@ public class PanelUnTercio extends JPanel {
 		panelDeLetra.setTexto(cancion);
 		panelDeDatos.setDatos(cancion);
 	}
+	
+	public void vaciaElPanel() {
+		
+		panelDeLetra.setTexto("");
+		panelDeDatos.vaciarCampos();
+	}
 }
