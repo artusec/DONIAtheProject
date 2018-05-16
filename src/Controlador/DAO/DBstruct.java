@@ -381,13 +381,13 @@ public abstract class DBstruct {
 	}
 	
 	public static String deleteRgeneroUsuario(String idUsuario, String idGenero) {
-		return "DELETE FROM donia.rgenerousuario \n" + 
-				"WHERE usuario='" + idUsuario + "' AND genero='" + idGenero + "'";
+		return "DELETE FROM donia.rusuariogenero\n" + 
+				"WHERE usuario='" + idUsuario + "' AND genero='" + idGenero + "';";
 	}
 	
 	
 	public static String deleteRgenerosUsuario(String idUsuario) {
-		return "DELETE FROM donia.rgenerousuario \n" + 
+		return "DELETE FROM donia.rusuariogenero \n" + 
 				"WHERE usuario='" + idUsuario + "'";
 	}
 }

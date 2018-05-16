@@ -30,6 +30,7 @@ public class PanelGeneros extends JPanel{
 			boton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					ArrayList<Genero> generos = ventanaPrincipal.getGeneroSeleccionado();
+					if (generos != null && !generos.isEmpty())
 					for (Genero g: generos) {
 						ControlGenero controlGenero = new ControlGenero(ventanaPrincipal.getUsuarioActual());
 						controlGenero.Eliminar(g);
