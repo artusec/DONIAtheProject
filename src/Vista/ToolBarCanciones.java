@@ -20,7 +20,6 @@ public class ToolBarCanciones extends JToolBar {
 
 	public ToolBarCanciones(VentanaPrincipal mainWindow) {
 		super();
-		
 		setLayout(new GridLayout(1, 4));
 		
 		JButton aniadirCancion = new JButton();
@@ -38,17 +37,18 @@ public class ToolBarCanciones extends JToolBar {
 		});
 		this.add(aniadirCancion);
 		
+		
 		JButton eliminarCancion = new JButton();
-
 		eliminarCancion.setToolTipText("Borra una cancion de la lista");
 		eliminarCancion.setText("Borrar cancion");
 		eliminarCancion.setHorizontalTextPosition( SwingConstants.CENTER );
 		eliminarCancion.setVerticalTextPosition( SwingConstants.BOTTOM );
 		eliminarCancion.setIcon(new ImageIcon("src/icons/delete.png"));
 		eliminarCancion.addActionListener(new ActionListener() {
-			
+		
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				
 				ArrayList<Cancion> selC = mainWindow.getCancionSelecccionada();
 				ArrayList<Lista> selL = mainWindow.getListaSelecccionada();
 				if (selC != null && !selC.isEmpty() && selL != null && !selL.isEmpty() ) {
@@ -74,6 +74,7 @@ public class ToolBarCanciones extends JToolBar {
 		{
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
+				
 				ArrayList<Cancion> sel = mainWindow.getCancionSelecccionada();
 				if (sel != null && !sel.isEmpty()) {
 					for (Cancion c : sel) {
@@ -94,9 +95,8 @@ public class ToolBarCanciones extends JToolBar {
 		verLetra.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
+				
 				mainWindow.verPanelLetras();
-				//establece la cancion a la seleccionada
-				mainWindow.setCancion();
 			}
 		 });
 		this.add(verLetra);

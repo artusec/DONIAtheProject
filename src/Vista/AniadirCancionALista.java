@@ -5,20 +5,15 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
-
 import org.eclipse.wb.swing.FocusTraversalOnArray;
-
-import Controlador.ControlCancion;
 import Controlador.ControlLista;
 import Model.Objetos.Cancion;
 import Model.Objetos.Lista;
-import Model.Objetos.ListaNormal;
 import net.miginfocom.swing.MigLayout;
 
 public class AniadirCancionALista extends JPanel {

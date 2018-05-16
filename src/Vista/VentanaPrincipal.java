@@ -11,15 +11,10 @@ import java.util.ArrayList;
 import java.util.UUID;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.UIManager;
 import javax.swing.border.Border;
-import javax.swing.border.TitledBorder;
-
 import Controlador.ControlCancion;
 import Controlador.ControlLista;
 import Controlador.ControlUsuario;
@@ -35,12 +30,12 @@ public class VentanaPrincipal extends JFrame {
 	public static Border bordePorDefecto = BorderFactory.createLineBorder(Color.black, 2);
 
 	// PANELES
-	private PanelAreaTexto panelDeLetras;
 	private static PanelListas panelListas;
 	private static PanelCanciones panelCanciones;
 	private ToolBar toolBar;
 	private JPanel panelCambiante;
 	private JPanel panelCentral;
+	private PanelUnTercio panelUnTercio;
 	
 	// PANELES CAMBIANTES (pueden necesitar actualizacion de datos)
 	private static PanelDePaneles<Genero> panelFavoritos;
@@ -178,6 +173,7 @@ public class VentanaPrincipal extends JFrame {
 	}
 	
 	public void verFavoritos() {
+		
 		resetearPanelCambiante();
 		panelCambiante = new JPanel();
 		panelCambiante.setLayout(new BorderLayout());
@@ -224,7 +220,8 @@ public class VentanaPrincipal extends JFrame {
 		panelCambiante.setLayout(new BorderLayout());
 		this.panelCambiante.setOpaque(false);
 		DatosCancion_panel panelDatos = new DatosCancion_panel();
-		PanelUnTercio panelUnTercio = new PanelUnTercio(panelDeLetras, panelDatos);
+		PanelAreaTexto panelDeLetras = new PanelAreaTexto("Letra", false);
+		panelUnTercio = new PanelUnTercio(panelDeLetras, panelDatos);		
 		panelUnTercio.setVisible(true);
 		panelCambiante.add(panelUnTercio);
 		panelCentral.add(panelCambiante);
@@ -315,20 +312,8 @@ public class VentanaPrincipal extends JFrame {
 	 * @param lista
 	 */
 	public void setCancion(Cancion cancion) {
-		//habilitar el panel de letras
-		this.verPanelLetras();
-		if (cancion != null) {
-			panelDeLetras.setTexto(cancion);
-		}
-	}
-	
-	public void setCancion() {
-		//habilitar el panel de letras
-		this.verPanelLetras();
-		//esa linea es provisional, hay que pasarle toda la cancion
-		ArrayList<Cancion> c = this.getCancionSelecccionada();
-		if (c != null & !c.isEmpty())
-			panelDeLetras.setTexto(c.get(0));
+		verPanelLetras();
+		panelUnTercio.setDatos(cancion);
 	}
 	
 	/**
@@ -336,31 +321,39 @@ public class VentanaPrincipal extends JFrame {
 	 * @param lista
 	 */
 	public void setLista(Lista lista) {
+		
+		verPanelLetras();
 		if (lista != null)
 			panelCanciones.setList(lista.getCanciones());
 	}
 	
 	public void setUsuarioActual(Usuario accesor) {
+		
 		VentanaPrincipal.usuarioActual = accesor;
 	}
 
 	public JPanel getPanelCambiante() {
+		
 		return panelCambiante;
 	}
 
 	public void setPanelCambiante(JPanel panelCambiante) {
+		
 		this.panelCambiante = panelCambiante;
 	}
 
 	public JPanel getPanelCentral() {
+		
 		return panelCentral;
 	}
 
 	public void setPanelCentral(JPanel panelCentral) {
+		
 		this.panelCentral = panelCentral;
 	}
 
 	public Usuario getUsuarioActual() {
+		
 		return VentanaPrincipal.usuarioActual;
 	}
 	
@@ -370,6 +363,7 @@ public class VentanaPrincipal extends JFrame {
 	 * @return id
 	 */
 	public String generaId() {
+		
 		UUID uuid = UUID.randomUUID();
 		return uuid.toString();
 	}
@@ -384,6 +378,7 @@ public class VentanaPrincipal extends JFrame {
 	}
 	
 	public ArrayList<Cancion> getCancionSelecccionada() {
+		
 		return VentanaPrincipal.panelCanciones.getSelectedItems();
 	}
 
@@ -396,6 +391,7 @@ public class VentanaPrincipal extends JFrame {
 	}
 	
 	public void eliminarCancion() {
+		
 		ArrayList<Cancion> cancionesBorrar = this.getCancionSelecccionada();
 		for (Cancion c : cancionesBorrar) {
 			ControlCancion control = new ControlCancion(this.getUsuarioActual());

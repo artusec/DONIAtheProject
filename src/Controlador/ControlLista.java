@@ -50,6 +50,8 @@ public class ControlLista {
     			VentanaPrincipal.actualizaListas();
 		} catch (ErrorAutenticacion | ErrorCreacionObjeto | ErrorConsulta | ErrorGuardado e) {
 			VentanaPrincipal.muestraError(e);
+		} finally {
+			VentanaPrincipal.actualizaListas();
 		}
     }
 

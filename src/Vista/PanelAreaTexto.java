@@ -33,9 +33,15 @@ public class PanelAreaTexto extends JPanel {
 		 return areatexto.getText();
 	 }
 	 
-	 public void setTexto(Cancion cancion)
-	 {
-		 this.areatexto.setText(cancion.getLetra().getTexto());
+	 public void setTexto(Cancion cancion) {
+		 
+		 if(!cancion.equals(null))
+			 this.areatexto.setText(cancion.getLetra().getTexto());
+	 }
+	 
+	 public void setTexto(String string) {
+		 
+		 this.areatexto.setText(string);
 	 }
 	 
 	 public void limpiar() 

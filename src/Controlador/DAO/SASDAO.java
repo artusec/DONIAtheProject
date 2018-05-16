@@ -550,7 +550,7 @@ public class SASDAO implements InterfazSASDAO {
 				//comprobar usuario
 				if (!this.existeUsuario(idUsuario, clave))
 					throw new ErrorAutenticacion();
-				String sentencia = "";
+				String sentencia;
 				//comprobar lista
 				if (this.existeLista(idLista)) {
 					//actualizar DB
@@ -573,6 +573,7 @@ public class SASDAO implements InterfazSASDAO {
 				}
 				//insertar canciones en la lista
 				if (lista.getCanciones() != null) {
+					System.out.println("insertando cancion en la lista");
 					for(Cancion cancion : lista.getCanciones()) {
 						sentencia = DBstruct.insertRlistaCancion(idLista, cancion.getId());
 						PreparedStatement ps = this.DBconn.prepareStatement(sentencia);
@@ -591,6 +592,7 @@ public class SASDAO implements InterfazSASDAO {
 	public void setListaAuto(ListaAuto lista, Usuario usuario) throws ErrorAutenticacion, ErrorGuardado {
 		try {	
 			//crear la lista como cualquier otra
+			System.out.println("guardando lista auto "+ lista.getGenero() +"...");
 	    		this.setLista(lista, usuario);
 			//recabar datos
 			String idLista = lista.getId();

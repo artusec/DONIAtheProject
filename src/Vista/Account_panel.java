@@ -2,29 +2,19 @@ package Vista;
 
 import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
-
 import Controlador.ControlUsuario;
 import Excepciones.ErrorCreacionObjeto;
 import Model.Objetos.Usuario;
-
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
-
 import javax.swing.JButton;
-
 import net.miginfocom.swing.MigLayout;
 import javax.swing.JSeparator;
-
-import javax.swing.BoxLayout;
-import java.awt.Dimension;
 import com.jgoodies.forms.factories.DefaultComponentFactory;
-
 
 public class Account_panel extends JPanel {
 	/**
