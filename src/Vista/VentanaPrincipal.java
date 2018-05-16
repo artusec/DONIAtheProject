@@ -30,12 +30,12 @@ public class VentanaPrincipal extends JFrame {
 	public static Border bordePorDefecto = BorderFactory.createLineBorder(Color.black, 2);
 
 	// PANELES
-	private PanelAreaTexto panelDeLetras;
 	private static PanelListas panelListas;
 	private static PanelCanciones panelCanciones;
 	private ToolBar toolBar;
 	private JPanel panelCambiante;
 	private JPanel panelCentral;
+	private PanelUnTercio panelUnTercio;
 	
 	// PANELES CAMBIANTES (pueden necesitar actualizacion de datos)
 	private static PanelDePaneles<Genero> panelFavoritos;
@@ -178,6 +178,7 @@ public class VentanaPrincipal extends JFrame {
 	}
 	
 	public void verFavoritos() {
+		
 		resetearPanelCambiante();
 		panelCambiante = new JPanel();
 		panelCambiante.setLayout(new BorderLayout());
@@ -210,7 +211,13 @@ public class VentanaPrincipal extends JFrame {
 		panelCambiante.setLayout(new BorderLayout());
 		this.panelCambiante.setOpaque(false);
 		DatosCancion_panel panelDatos = new DatosCancion_panel();
-		PanelUnTercio panelUnTercio = new PanelUnTercio(panelDeLetras, panelDatos);
+		PanelAreaTexto panelDeLetras = new PanelAreaTexto("Letra", false);
+		panelUnTercio = new PanelUnTercio(panelDeLetras, panelDatos);
+		
+		ArrayList<Cancion> c = this.getCancionSelecccionada();
+		if(!c.equals(null) && !c.isEmpty())
+			this.setCancion(c.get(0));
+		
 		panelUnTercio.setVisible(true);
 		panelCambiante.add(panelUnTercio);
 		panelCentral.add(panelCambiante);
@@ -301,19 +308,8 @@ public class VentanaPrincipal extends JFrame {
 	 * @param lista
 	 */
 	public void setCancion(Cancion cancion) {
-		//habilitar el panel de letras
-		this.verPanelLetras();
-		//esa linea es provisional, hay que pasarle toda la cancion
-		panelDeLetras.setTexto(cancion.getLetra().getTexto());
-	}
-	
-	public void setCancion() {
-		//habilitar el panel de letras
-		this.verPanelLetras();
-		//esa linea es provisional, hay que pasarle toda la cancion
-		ArrayList<Cancion> c = this.getCancionSelecccionada();
-		if (c != null & !c.isEmpty())
-			panelDeLetras.setTexto(c.get(0).getLetra().getTexto());
+		
+		panelUnTercio.setDatos(cancion);
 	}
 	
 	/**
@@ -355,6 +351,7 @@ public class VentanaPrincipal extends JFrame {
 	 * @return id
 	 */
 	public String generaId() {
+		
 		UUID uuid = UUID.randomUUID();
 		return uuid.toString();
 	}
@@ -365,10 +362,12 @@ public class VentanaPrincipal extends JFrame {
 	 * @return si es valido
 	 */
 	public boolean entradaValida(String entrada) {
+		
 		return entrada.matches("[a-zA-Z0-9 ]*");
 	}
 	
 	public ArrayList<Cancion> getCancionSelecccionada() {
+		
 		return VentanaPrincipal.panelCanciones.getSelectedItems();
 	}
 
@@ -377,6 +376,7 @@ public class VentanaPrincipal extends JFrame {
 	}
 	
 	public void eliminarCancion() {
+		
 		ArrayList<Cancion> cancionesBorrar = this.getCancionSelecccionada();
 		for (Cancion c : cancionesBorrar) {
 			ControlCancion control = new ControlCancion(this.getUsuarioActual());

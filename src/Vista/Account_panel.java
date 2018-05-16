@@ -16,6 +16,8 @@ import javax.swing.JPasswordField;
 import javax.swing.JButton;
 import javax.swing.BoxLayout;
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class Account_panel extends JPanel {
 	/**
@@ -111,6 +113,15 @@ public class Account_panel extends JPanel {
 		);
 		
 		JButton btnEditarPerfil = new JButton("Editar perfil");
+		btnEditarPerfil.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				// TODO recoger los datos que ha escrito el usuario y sobreescribir la base de datos
+				
+			}
+		});
 		GroupLayout gl_panel_5 = new GroupLayout(panel_5);
 		gl_panel_5.setHorizontalGroup(
 			gl_panel_5.createParallelGroup(Alignment.LEADING)
