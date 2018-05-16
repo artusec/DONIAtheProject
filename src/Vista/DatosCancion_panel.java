@@ -21,7 +21,6 @@ public class DatosCancion_panel extends JPanel {
 	private JTextField duracion;
 	private JTextField genero;
 	private JTextField enlace;
-	private JLabel lblEnlaceVerVideoclip;
 	private JTextField textField;
 
 	/**
@@ -65,7 +64,7 @@ public class DatosCancion_panel extends JPanel {
 		enlace = new JTextField();
 		enlace.setColumns(10);
 		
-		lblEnlaceVerVideoclip = new JLabel("Enlace ver videoclip");
+		JLabel lblEnlaceVerVideoclip = new JLabel("Enlace ver videoclip");
 		lblEnlaceVerVideoclip.setFont(new Font("Arial Black", Font.ITALIC, 14));
 		
 		textField = new JTextField();
@@ -140,8 +139,8 @@ public class DatosCancion_panel extends JPanel {
 		
 		this.titulo.setText(cancion.getTitulo());
 		this.artista.setText(cancion.getAutor());
-		String a = Integer.toString(cancion.getDuracion());
-		this.duracion.setText(a);
-		// this.enlace.setText(cancion.getVideo().getEnlace());		
+		// String a = Integer.toString(cancion.getDuracion()); me peta por ser un double
+		// this.duracion.setText(a);
+		this.enlace.setText(cancion.getVideo().getEnlace());		
 	}
 }

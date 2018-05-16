@@ -8,18 +8,18 @@ public class Cancion {
     private String titulo;
     private String autor;
     private String album;
-    private int duracion; //en segundos
+    private double duracion; //en segundos
     private Letra letra;
     private Video video;
     private Genero genero;
 
     public Cancion(String id, String titulo, String autor, String album,
-    					int duracion, Letra letra, Video video, Genero genero) throws ErrorCreacionObjeto {
+    					double d, Letra letra, Video video, Genero genero) throws ErrorCreacionObjeto {
     		this.setId(id);
     		this.setTitulo(titulo);
     		this.setAutor(autor);
     		this.setAlbum(album);
-    		this.setDuracion(duracion);
+    		this.setDuracion(d);
     		this.setLetra(letra);
     		this.setVideo(video);
     		this.setTitulo(titulo);
@@ -60,13 +60,13 @@ public class Cancion {
     		this.album = album;
     }
 
-    public int getDuracion() {
+    public double getDuracion() {
 		return duracion;
     }
 
-    public void setDuracion(int duracion) throws ErrorCreacionObjeto {
-    		if (duracion < 0) throw new ErrorCreacionObjeto();
-    		this.duracion = duracion;
+    public void setDuracion(double d) throws ErrorCreacionObjeto {
+    		if (d < 0) throw new ErrorCreacionObjeto();
+    		this.duracion = d;
     }
 
 	public Letra getLetra() {

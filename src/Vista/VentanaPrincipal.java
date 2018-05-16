@@ -376,8 +376,8 @@ public class VentanaPrincipal extends JFrame {
 	 * @return si es valido
 	 */
 	public boolean entradaValida(String entrada) {
-		
-		return entrada.matches("[a-zA-Z0-9 ]*");
+
+		return entrada.matches("[a-zA-Z0-9ñÑ& ]*");
 	}
 	
 	public ArrayList<Cancion> getCancionSelecccionada() {

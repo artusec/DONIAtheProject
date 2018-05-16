@@ -50,8 +50,7 @@ public class PanelUnTercio extends JPanel {
 	
 	public void setDatos(Cancion cancion) {
 		
-		panelDeLetra.setTexto(cancion.getLetra().getTexto());
+		panelDeLetra.setTexto(cancion);
 		panelDeDatos.setDatos(cancion);
 	}
-	
 }

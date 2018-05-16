@@ -6,6 +6,8 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
+import Model.Objetos.Cancion;
+
 public class PanelAreaTexto extends JPanel {
 
 	private static final long serialVersionUID = 1L;
@@ -31,9 +33,9 @@ public class PanelAreaTexto extends JPanel {
 		 return areatexto.getText();
 	 }
 	 
-	 public void setTexto(String texto)
+	 public void setTexto(Cancion cancion)
 	 {
-		 this.areatexto.setText(texto);
+		 this.areatexto.setText(cancion.getLetra().getTexto());
 	 }
 	 
 	 public void limpiar() 
