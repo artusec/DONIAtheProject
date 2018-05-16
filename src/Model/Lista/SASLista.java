@@ -11,6 +11,7 @@ import Excepciones.ErrorEliminacion;
 import Excepciones.ErrorGuardado;
 import Model.Lista.InterfazSASLista;
 import Model.Objetos.*;
+import Vista.VentanaPrincipal;
 
 /**
  * Clase SASLista
@@ -75,7 +76,8 @@ public class SASLista implements InterfazSASLista {
      */
     @Override
     public void eliminar(Lista lista, Usuario usuario) throws ErrorAutenticacion, ErrorEliminacion { 
-    		dao.eliminarLista(lista, usuario);
+    		if (!lista.getId().equals("l0"))
+    			dao.eliminarLista(lista, usuario);
     }
     
     /**
@@ -86,8 +88,8 @@ public class SASLista implements InterfazSASLista {
      */
     @Override
     public void modificar(Lista lista, Usuario usuario) throws ErrorAutenticacion, ErrorGuardado{
-    		//lista.setNombre(nombre); Se debe hacer antes y aqui llega ya la lista con los datos completos
-    		dao.setLista(lista, usuario);
+	    	if (!lista.getId().equals("l0"))
+	    		dao.setLista(lista, usuario);
     }
 
     /**
@@ -137,7 +139,7 @@ public class SASLista implements InterfazSASLista {
 		    			throw new ErrorCreacionObjeto("Lista creada\n Aviso: No hay suficientes canciones para llegar a la duracion solicitada");*/
 		    	}
 	    	} else {
-	    			throw new ErrorCreacionObjeto("No hay canciones de " + lista.getGenero());
+	    		throw new ErrorCreacionObjeto("No hay canciones de " + lista.getGenero());
 	    	}
     	}	
     }
@@ -157,8 +159,12 @@ public class SASLista implements InterfazSASLista {
     public void anadirCancion(Cancion cancion, Lista lista, Usuario usuario) throws ErrorAutenticacion, ErrorCreacionObjeto, ErrorConsulta, ErrorGuardado {
     		if (dao.getCancionDB(cancion.getId()).getId().equals(cancion.getId())) {
     			//comprueba que vamos a anadir una cancion valida
-    			lista.anadirCancion(cancion);
-    			dao.setLista(lista, usuario);
+    			if (!lista.getId().equals("l0")) {	
+	    			lista.anadirCancion(cancion);
+	    			dao.setLista(lista, usuario);
+    			} else {
+    				throw new ErrorGuardado("No puedes añador canciones a la biblioteca");
+    			}
     		}
     }
     
@@ -174,9 +180,14 @@ public class SASLista implements InterfazSASLista {
      */
     @Override
     public void eliminarCancion(Cancion cancion, Lista lista, Usuario usuario) throws ErrorAutenticacion, ErrorCreacionObjeto, ErrorConsulta, ErrorGuardado {
-    		if (dao.getCancionDB(cancion.getId()).equals(cancion)) {
-    			lista.eliminarCancion(cancion);
-    			dao.setLista(lista, usuario);
+    		if (dao.getCancionDB(cancion.getId()).getId().equals(cancion.getId())) {
+    			if (!lista.getId().equals("l0")) {	
+	    			lista.eliminarCancion(cancion);
+	    			dao.setLista(lista, usuario);
+	    			VentanaPrincipal.actualizaCanciones(lista.getId());
+    			} else {
+    				throw new ErrorGuardado("No puedes borrar canciones de la biblioteca");
+    			}
     		}
     }
 }

@@ -235,8 +235,11 @@ public class Login extends JDialog {
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {		
 				//si existe y es correcto
+
 				in(ventanaPrincipal);
-			}
+;
+				}
+
 		});
 		btnLogin.setBounds(258, 516, 97, 25);
 		contentPanel.add(btnLogin);

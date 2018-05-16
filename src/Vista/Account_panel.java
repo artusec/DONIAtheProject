@@ -16,8 +16,13 @@ import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 
 import javax.swing.JButton;
+
 import net.miginfocom.swing.MigLayout;
 import javax.swing.JSeparator;
+
+import javax.swing.BoxLayout;
+import java.awt.Dimension;
+
 
 public class Account_panel extends JPanel {
 	/**
@@ -32,15 +37,16 @@ public class Account_panel extends JPanel {
 	 * Create the panel.
 	 */
 
-	
 	public Account_panel(VentanaPrincipal view) {
 		this.view = view;
 		setBorder(new TitledBorder(null, "PERFIL", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		setLayout(new BorderLayout(0, 0));
 		
+
 		JPanel panel_2 = new JPanel();
 		add(panel_2, BorderLayout.CENTER);
 		panel_2.setLayout(new MigLayout("", "[445.00,grow]", "[][206.00,grow][84.00][grow]"));
+
 		
 		JPanel panel_5 = new JPanel();
 		panel_2.add(panel_5, "cell 0 0,grow");
@@ -50,21 +56,18 @@ public class Account_panel extends JPanel {
 		panel_5.add(panel, "cell 2 0,grow");
 		panel.setLayout(null);
 
-		
+
 		PanelImagen panelimg = new PanelImagen(false);
 		panelimg.setBounds(0, 0, panel.getWidth(),panel.getHeight());
 		panel.add(panelimg);
-		
-		
-		
-		
-		
-		
+
+		JButton btnEditarPerfil = new JButton("Editar perfil");
+	
 		JLabel lblPrimeroEditaLos = new JLabel("Primero edita los campos de");
 		panel_5.add(lblPrimeroEditaLos, "cell 1 6,alignx left,aligny center");
 		
 				
-		JButton btnEditarPerfil = new JButton("Editar perfil");
+
 		panel_5.add(btnEditarPerfil, "cell 3 6,growx,aligny top");
 		JLabel lblDebajoYDespus = new JLabel("debajo y después pulsa el");
 		panel_5.add(lblDebajoYDespus, "cell 1 7,alignx left,aligny center");
@@ -115,7 +118,9 @@ public class Account_panel extends JPanel {
 		panel_6.add(lblContrasea, "cell 3 5,alignx left,aligny center");
 		
 		passwordField = new JPasswordField();
+
 		panel_6.add(passwordField, "cell 5 5,growx,aligny top");
+
 
 	}
 	

@@ -72,6 +72,7 @@ public class ControlLista {
 			VentanaPrincipal.muestraError(e);
 		}
 		VentanaPrincipal.actualizaListas();
+		VentanaPrincipal.actualizaCanciones("l0");
 	}
 
 	public void modificar(Lista lista) {

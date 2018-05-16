@@ -50,12 +50,12 @@ public class ToolBarListas extends JToolBar {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				
-				ArrayList<Lista> aux =  ventanaPrincipal.getListaSelecccionada();
-				Lista selec = aux.get(0);
-
-				if (selec != null) {
-					ControlLista controlador = new ControlLista(ventanaPrincipal.getUsuarioActual());
-					controlador.eliminar(selec);
+				ArrayList<Lista> listas =  ventanaPrincipal.getListaSelecccionada();
+				if (listas != null && !listas.isEmpty()) {
+					for (Lista l : listas) {
+						ControlLista controlador = new ControlLista(ventanaPrincipal.getUsuarioActual());
+						controlador.eliminar(l);
+					}
 				}
 			}
 		 });
@@ -78,21 +78,21 @@ public class ToolBarListas extends JToolBar {
 		
 		this.add(listaAuto);
 		
-		JButton verCanciones = new JButton();
-		verCanciones.setToolTipText("Ver las canciones de la lista seleccionada");
-		verCanciones.setText("Ver canciones");
-		verCanciones.setHorizontalTextPosition( SwingConstants.CENTER );
-		verCanciones.setVerticalTextPosition( SwingConstants.BOTTOM );
-		verCanciones.setIcon(new ImageIcon(("src/icons/VerCanciones.png")));
-		verCanciones.addActionListener(new ActionListener()
-		{
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				
-				// TODO
-			}
-		 });
-		
-		this.add(verCanciones);
+//		JButton verCanciones = new JButton();
+//		verCanciones.setToolTipText("Ver las canciones de la lista seleccionada");
+//		verCanciones.setText("Ver canciones");
+//		verCanciones.setHorizontalTextPosition( SwingConstants.CENTER );
+//		verCanciones.setVerticalTextPosition( SwingConstants.BOTTOM );
+//		verCanciones.setIcon(new ImageIcon(("src/icons/VerCanciones.png")));
+//		verCanciones.addActionListener(new ActionListener()
+//		{
+//			@Override
+//			public void actionPerformed(ActionEvent arg0) {
+//				
+//				// TODO
+//			}
+//		 });
+//		
+//		this.add(verCanciones);
 	}
 }
