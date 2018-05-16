@@ -78,21 +78,21 @@ public class ToolBarListas extends JToolBar {
 		
 		this.add(listaAuto);
 		
-		JButton verCanciones = new JButton();
-		verCanciones.setToolTipText("Ver las canciones de la lista seleccionada");
-		verCanciones.setText("Ver canciones");
-		verCanciones.setHorizontalTextPosition( SwingConstants.CENTER );
-		verCanciones.setVerticalTextPosition( SwingConstants.BOTTOM );
-		verCanciones.setIcon(new ImageIcon(("src/icons/VerCanciones.png")));
-		verCanciones.addActionListener(new ActionListener()
-		{
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				
-				// TODO
-			}
-		 });
-		
-		this.add(verCanciones);
+//		JButton verCanciones = new JButton();
+//		verCanciones.setToolTipText("Ver las canciones de la lista seleccionada");
+//		verCanciones.setText("Ver canciones");
+//		verCanciones.setHorizontalTextPosition( SwingConstants.CENTER );
+//		verCanciones.setVerticalTextPosition( SwingConstants.BOTTOM );
+//		verCanciones.setIcon(new ImageIcon(("src/icons/VerCanciones.png")));
+//		verCanciones.addActionListener(new ActionListener()
+//		{
+//			@Override
+//			public void actionPerformed(ActionEvent arg0) {
+//				
+//				// TODO
+//			}
+//		 });
+//		
+//		this.add(verCanciones);
 	}
 }

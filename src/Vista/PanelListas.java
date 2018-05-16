@@ -36,5 +36,6 @@ public class PanelListas extends PanelDePaneles<Lista> {
 		Lista bib = control.consulta("l0");
 		if (lista != null) lista.add(0, bib);
 		super.setList(lista);
+		this.objList.clearSelection();
 	}
 }
