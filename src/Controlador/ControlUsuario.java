@@ -21,7 +21,7 @@ public class ControlUsuario {
 		fUsuario = new FachadaUsuario();
 	}
 
-	private void setUsuarioActual(Usuario usuarioActual) {
+	public void setUsuarioActual(Usuario usuarioActual) {
 		this.usuarioActual = usuarioActual;
 	}
 	

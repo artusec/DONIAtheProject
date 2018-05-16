@@ -21,6 +21,6 @@ public class Main {
 
 	private static void iniciarGUI() throws ErrorCreacionObjeto {
 		
-		 vista = new VentanaPrincipal();	
+		 vista = new VentanaPrincipal();
 	}
 }

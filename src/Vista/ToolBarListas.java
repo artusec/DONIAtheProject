@@ -50,12 +50,12 @@ public class ToolBarListas extends JToolBar {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				
-				ArrayList<Lista> aux =  ventanaPrincipal.getListaSelecccionada();
-				Lista selec = aux.get(0);
-
-				if (selec != null) {
-					ControlLista controlador = new ControlLista(ventanaPrincipal.getUsuarioActual());
-					controlador.eliminar(selec);
+				ArrayList<Lista> listas =  ventanaPrincipal.getListaSelecccionada();
+				if (listas != null && !listas.isEmpty()) {
+					for (Lista l : listas) {
+						ControlLista controlador = new ControlLista(ventanaPrincipal.getUsuarioActual());
+						controlador.eliminar(l);
+					}
 				}
 			}
 		 });
