@@ -1,95 +1,70 @@
-//DEPRECATED??
 package Vista;
 
-import javax.swing.JPanel;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
+import java.awt.Component;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.UIManager;
+import javax.swing.border.TitledBorder;
+
 import org.eclipse.wb.swing.FocusTraversalOnArray;
+
 import Controlador.ControlCancion;
 import Controlador.ControlLista;
 import Model.Objetos.Cancion;
-import java.awt.Component;
-import javax.swing.border.TitledBorder;
-import javax.swing.UIManager;
-import javax.swing.SwingConstants;
+import Model.Objetos.Lista;
+import Model.Objetos.ListaNormal;
+import net.miginfocom.swing.MigLayout;
 
 public class AniadirCancionALista extends JPanel {
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
-	private JTextField textField;
-	private ControlCancion ctrlCancion;
-	private ControlLista ctrlLista;
-
-	/**
-	 * Create the panel.
-	 */
+	private PanelDePaneles<Cancion> panelCanciones;
+	private Lista listaSel;
+	
 	public AniadirCancionALista(VentanaPrincipal ventanaPrincipal) {
-		setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "A\u00F1adir canci\u00F3n", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		
-		JLabel lblNombre = new JLabel("Nombre:");
-		lblNombre.setVerticalAlignment(SwingConstants.BOTTOM);
-		
-		textField = new JTextField();
-		textField.setColumns(10);
+		ArrayList<Lista> listas = ventanaPrincipal.getListaSelecccionada();
+		if (listas != null && !listas.isEmpty()) {
+			listaSel = listas.get(0);
+		}
+		String titulo = "A\u00F1adir canciones a la lista " + listaSel.getNombre();
+		setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), titulo, TitledBorder.LEADING, TitledBorder.TOP, null, null));
 
-		
 		JButton btnAadir = new JButton("A\u00F1adir");
 		
-		
 		JLabel lblNewLabel = new JLabel("");
-		GroupLayout groupLayout = new GroupLayout(this);
-		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.TRAILING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap(106, Short.MAX_VALUE)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
-						.addComponent(lblNewLabel, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
-							.addComponent(lblNombre)
-							.addGap(18)
-							.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-							.addGap(18)
-							.addComponent(btnAadir)))
-					.addGap(106))
-		);
 		
-		ctrlCancion = new ControlCancion(ventanaPrincipal.getUsuarioActual());
-		ctrlLista = new ControlLista(ventanaPrincipal.getUsuarioActual());
-		
+		// --------------- boton magico
 		btnAadir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				Cancion aAniadir = ctrlCancion.consultaCancion(textField.getText());
-				if (aAniadir != null) {
-					//ctrlLista.anadirCancion(aAniadir, ventanaPrincipal.getPanelListas().getSelectedItems().get(0));
+				ArrayList<Cancion> sel = panelCanciones.getSelectedItems();
+				if (sel != null && !sel.isEmpty() && listaSel != null) {
+					ControlLista control = new ControlLista(ventanaPrincipal.getUsuarioActual());
+					for (Cancion c : sel) {
+						control.anadirCancion(c, listaSel);
+					}
 				}
-				else
-					lblNewLabel.setText("Cancion no encontrada");
 			}
 		});
+		setLayout(new MigLayout("", "[1px][406.00px,grow]", "[1px][199.00,grow][20.00px]"));
+		add(lblNewLabel, "cell 0 0,alignx left,aligny top");
+		add(btnAadir, "cell 1 2,alignx center,aligny bottom");
 		
-
-		groupLayout.setVerticalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(119)
-					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(btnAadir)
-						.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblNombre))
-					.addGap(46)
-					.addComponent(lblNewLabel)
-					.addContainerGap(89, Short.MAX_VALUE))
-		);
-		setLayout(groupLayout);
-		setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{lblNombre, textField, btnAadir}));
-
+		// ---------------- panel con la lista de canciones
+		JPanel panelLista = new JPanel();
+		add(panelLista, "cell 1 1,grow");
+		setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{btnAadir}));
+		panelCanciones = new PanelDePaneles<Cancion>("Biblioteca");
+		ControlLista control = new ControlLista(ventanaPrincipal.getUsuarioActual());
+		Lista bib = control.consulta("l0");
+		panelLista.setLayout(new GridLayout(0, 1, 0, 0));
+		panelCanciones.setList(bib.getCanciones());
+		panelLista.add(panelCanciones);
 	}
 
 }
