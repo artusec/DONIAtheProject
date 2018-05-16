@@ -262,7 +262,7 @@ public abstract class DBstruct {
 	}
 	
 	//SENTENCIAS DE INSERCION
-	public static String insertCancion(String id, String titulo, String autor, int duracion, String album,
+	public static String insertCancion(String id, String titulo, String autor, double duracion, String album,
 			String genero, String video, String letra) {
 		return 	"INSERT INTO donia.cancion\n" +
 				"(cancion, titulo, autor, duracion, album, genero, video, letra)\n" +
@@ -325,7 +325,7 @@ public abstract class DBstruct {
 	}
 	
 	//SENTENCIAS DE ACTUALIZACION
-	public static String updateCancion(String id, String titulo, String autor, int duracion, String album,
+	public static String updateCancion(String id, String titulo, String autor, double duracion, String album,
 			String genero, String video, String letra) {
 		return 	"UPDATE donia.cancion \n" +
 				"SET titulo='" + titulo + "', autor='" + autor + "', duracion=" + duracion + 

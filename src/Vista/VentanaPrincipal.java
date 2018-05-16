@@ -322,9 +322,9 @@ public class VentanaPrincipal extends JFrame {
 	public void setCancion(Cancion cancion) {
 		//habilitar el panel de letras
 		this.verPanelLetras();
-		if (cancion != null)
-		//esa linea es provisional, hay que pasarle toda la cancion
-		panelDeLetras.setTexto(cancion.getLetra().getTexto());
+		if (cancion != null) {
+			panelDeLetras.setTexto(cancion);
+		}
 	}
 	
 	public void setCancion() {
@@ -333,7 +333,7 @@ public class VentanaPrincipal extends JFrame {
 		//esa linea es provisional, hay que pasarle toda la cancion
 		ArrayList<Cancion> c = this.getCancionSelecccionada();
 		if (c != null & !c.isEmpty())
-			panelDeLetras.setTexto(c.get(0).getLetra().getTexto());
+			panelDeLetras.setTexto(c.get(0));
 	}
 	
 	/**
@@ -385,7 +385,7 @@ public class VentanaPrincipal extends JFrame {
 	 * @return si es valido
 	 */
 	public boolean entradaValida(String entrada) {
-		return entrada.matches("[a-zA-Z0-9 ]*");
+		return entrada.matches("[a-zA-Z0-9ñÑ& ]*");
 	}
 	
 	public ArrayList<Cancion> getCancionSelecccionada() {
