@@ -29,9 +29,6 @@ public class VentanaPrincipal extends JFrame {
 	
 	public static Border bordePorDefecto = BorderFactory.createLineBorder(Color.black, 2);
 
-	//static private final String[] columnCanciones = {"#", "Title", "Artist", "Genre", "Duration"};
-	//static private final String[] columnLista = {"#", "Name", "Duration", "Genre"};
-
 	// PANELES
 	private PanelAreaTexto panelDeLetras;
 	private static PanelListas panelListas;
@@ -39,6 +36,7 @@ public class VentanaPrincipal extends JFrame {
 	private ToolBar toolBar;
 	private JPanel panelCambiante;
 	private JPanel panelCentral;
+	
 	// PANELES CAMBIANTES (pueden necesitar actualizacion de datos)
 	private static PanelDePaneles<Genero> panelFavoritos;
 	
@@ -211,10 +209,10 @@ public class VentanaPrincipal extends JFrame {
 		panelCambiante = new JPanel();
 		panelCambiante.setLayout(new BorderLayout());
 		this.panelCambiante.setOpaque(false);
-		panelDeLetras = new PanelAreaTexto("Letra", false);
-		panelDeLetras.setVisible(true);
-		panelDeLetras.setOpaque(false);
-		panelCambiante.add(panelDeLetras);
+		DatosCancion_panel panelDatos = new DatosCancion_panel();
+		PanelUnTercio panelUnTercio = new PanelUnTercio(panelDeLetras, panelDatos);
+		panelUnTercio.setVisible(true);
+		panelCambiante.add(panelUnTercio);
 		panelCentral.add(panelCambiante);
 	}
 	
@@ -224,7 +222,6 @@ public class VentanaPrincipal extends JFrame {
 		panelCambiante = new JPanel();
 		panelCambiante.setLayout(new BorderLayout());
 		this.panelCambiante.setOpaque(false);
-		
 		ModificarCancion_panel modificar = new ModificarCancion_panel(this);
 		modificar.setVisible(true);
 		modificar.setOpaque(false);
