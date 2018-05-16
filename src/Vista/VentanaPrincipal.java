@@ -169,7 +169,7 @@ public class VentanaPrincipal extends JFrame {
 		panelCambiante = new JPanel();
 		panelCambiante.setLayout(new BorderLayout());
 		this.panelCambiante.setOpaque(false);
-		Account_panel account = new Account_panel();
+		Account_panel account = new Account_panel(this);
 		account.setDatosUsuario(usuarioActual);
 		account.setVisible(true);
 		account.setOpaque(false);
@@ -183,12 +183,14 @@ public class VentanaPrincipal extends JFrame {
 		panelCambiante = new JPanel();
 		panelCambiante.setLayout(new BorderLayout());
 		this.panelCambiante.setOpaque(false);
-		panelFavoritos = new PanelDePaneles<Genero>("Géneros favoritos");
-		VentanaPrincipal.actualizaGeneros();
-		panelFavoritos.setVisible(true);
-		panelFavoritos.setOpaque(false);
-		panelCambiante.add(panelFavoritos);
+		
+	 	panelFavoritos = new PanelDePaneles<Genero>("Géneros favoritos");
+	 	VentanaPrincipal.actualizaGeneros();
+		
+		PanelGeneros pg = new PanelGeneros(panelFavoritos, this);
+		panelCambiante.add(pg);
 		panelCentral.add(panelCambiante);
+		VentanaPrincipal.actualizaGeneros();
 	}
 	
 	public void verAniadirCancion() {
@@ -198,6 +200,18 @@ public class VentanaPrincipal extends JFrame {
 		panelCambiante.setLayout(new BorderLayout());
 		this.panelCambiante.setOpaque(false);
 		SongAdmin_panel songAdmin = new SongAdmin_panel(this);
+		songAdmin.setVisible(true);
+		songAdmin.setOpaque(false);
+		panelCambiante.add(songAdmin);
+		panelCentral.add(panelCambiante);
+	}
+	
+	public void verEliminarCancion() {
+		resetearPanelCambiante();
+		panelCambiante = new JPanel();
+		panelCambiante.setLayout(new BorderLayout());
+		this.panelCambiante.setOpaque(false);
+		SongBorrarAdmin_panel songAdmin = new SongBorrarAdmin_panel(this);
 		songAdmin.setVisible(true);
 		songAdmin.setOpaque(false);
 		panelCambiante.add(songAdmin);
@@ -308,7 +322,7 @@ public class VentanaPrincipal extends JFrame {
 	 * @param lista
 	 */
 	public void setCancion(Cancion cancion) {
-		
+
 		panelUnTercio.setDatos(cancion);
 	}
 	
@@ -373,6 +387,10 @@ public class VentanaPrincipal extends JFrame {
 
 	public ArrayList<Lista> getListaSelecccionada() {
 		return VentanaPrincipal.panelListas.getSelectedItems();
+	}
+	
+	public ArrayList<Genero> getGeneroSeleccionado(){
+		return VentanaPrincipal.panelFavoritos.getSelectedItems();
 	}
 	
 	public void eliminarCancion() {

@@ -45,20 +45,20 @@ public class ToolBarListas extends JToolBar {
 		eliminarLista.setHorizontalTextPosition( SwingConstants.CENTER );
 		eliminarLista.setVerticalTextPosition( SwingConstants.BOTTOM );
 		eliminarLista.setIcon(new ImageIcon(("src/icons/delete.png")));
-		eliminarLista.addActionListener(new ActionListener()
-		{
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				
-				ArrayList<Lista> listas =  ventanaPrincipal.getListaSelecccionada();
-				if (listas != null && !listas.isEmpty()) {
-					for (Lista l : listas) {
-						ControlLista controlador = new ControlLista(ventanaPrincipal.getUsuarioActual());
-						controlador.eliminar(l);
+		eliminarLista.addActionListener(
+			new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent arg0) {
+					ArrayList<Lista> listas =  ventanaPrincipal.getListaSelecccionada();
+					if (listas != null && !listas.isEmpty()) {
+						for (Lista l : listas) {
+							ControlLista controlador = new ControlLista(ventanaPrincipal.getUsuarioActual());
+							controlador.eliminar(l);
+						}
 					}
 				}
 			}
-		 });
+		);
 		
 		this.add(eliminarLista);
 		

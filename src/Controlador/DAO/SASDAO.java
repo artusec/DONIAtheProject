@@ -689,16 +689,19 @@ public class SASDAO implements InterfazSASDAO {
 		try {
 			if (this.conectado() && genero != null && usuario != null) {
 				//recabar datos
+				System.out.println("eliminando genero...");
 				String idGenero = genero.getId();
 				String idUsuario = usuario.getId();
 				String clave = usuario.getClave();
 				if (!this.existeGenero(idGenero) || !this.existeUsuario(idUsuario, clave))
-					throw new ErrorEliminacion();
+					throw new ErrorEliminacion("El genero no existe");
 				//borrar relacion
-				String sentencia = "";
-				sentencia += DBstruct.deleteRgeneroUsuario(idUsuario, idGenero);
-				PreparedStatement ps = this.DBconn.prepareStatement(sentencia + ';');
+				String sentencia;
+				System.out.println("eliminando " + genero.getId() + " para " + usuario.getNombre());
+				sentencia = DBstruct.deleteRgeneroUsuario(idUsuario, idGenero);
+				PreparedStatement ps = this.DBconn.prepareStatement(sentencia);
 				ps.executeQuery();
+				System.out.println("genero eliminado ok");
 			}
 		} catch (SQLException e) {
 			throw new ErrorEliminacion();

@@ -4,6 +4,8 @@ import java.awt.BorderLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 
@@ -193,6 +195,26 @@ public class Login extends JDialog {
 		
 		passwordField = new JPasswordField();
 		passwordField.setBounds(258, 459, 130, 22);
+		passwordField.addKeyListener(new KeyListener() {
+			
+			@Override
+			public void keyTyped(KeyEvent e) {
+				
+			}
+			
+			@Override
+			public void keyReleased(KeyEvent e) {
+
+			}
+			
+			@Override
+			public void keyPressed(KeyEvent e) {
+                if(e.getKeyCode()==KeyEvent.VK_ENTER){
+                		in(ventanaPrincipal);
+                }
+		
+			}
+		});
 		contentPanel.add(passwordField);
 		
 		JButton btnSingUp = new JButton("Sing Up");
@@ -211,25 +233,7 @@ public class Login extends JDialog {
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {		
 				//si existe y es correcto
-				ControlUsuario ctrlU = new ControlUsuario(ventanaPrincipal.getUsuarioActual());
-				Usuario accesor = ctrlU.ingreso(textField.getText().trim(), String.valueOf(passwordField.getPassword()));
-				if (accesor != null) {
-					correcto = true;
-					ventanaPrincipal.setUsuarioActual(accesor);
-					
-					//Cargar todas las listas del usuario
-					VentanaPrincipal.actualizaListas();
-					//Cargar canciones de la biblioteca (TODO) es para pruebas
-					VentanaPrincipal.actualizaCanciones("l0");
-					
-					setVisible(false);
-					
-					if(!accesor.getId().equals("u0"))
-						ventanaPrincipal.desactivarBotones();
-					
-					ventanaPrincipal.verPerfil();
-					ventanaPrincipal.setVisible(true);
-				}
+				in(ventanaPrincipal);
 			}
 		});
 		btnLogin.setBounds(258, 516, 97, 25);
@@ -244,6 +248,24 @@ public class Login extends JDialog {
 		setTitle("Donia");
 	}
 
+	public void in(VentanaPrincipal ventanaPrincipal) {
+		ControlUsuario ctrlU = new ControlUsuario(ventanaPrincipal.getUsuarioActual());
+		Usuario accesor = ctrlU.ingreso(textField.getText().trim(), String.valueOf(passwordField.getPassword()));
+		if (accesor != null) {
+			correcto = true;
+			ventanaPrincipal.setUsuarioActual(accesor);
+			
+			//Cargar todas las listas del usuario
+			VentanaPrincipal.actualizaListas();
+			//Cargar canciones de la biblioteca (TODO) es para pruebas
+			VentanaPrincipal.actualizaCanciones("l0");
+			
+			setVisible(false);
+			ventanaPrincipal.verPerfil();
+			ventanaPrincipal.setVisible(true);
+		}
+	}
+	
 	public Boolean getCorrecto() {
 		return correcto;
 	}

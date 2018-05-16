@@ -163,7 +163,7 @@ public class SASLista implements InterfazSASLista {
 	    			lista.anadirCancion(cancion);
 	    			dao.setLista(lista, usuario);
     			} else {
-    				throw new ErrorGuardado("No puedes añador canciones a la biblioteca");
+    				throw new ErrorGuardado("No puedes añadir canciones a la biblioteca");
     			}
     		}
     }
