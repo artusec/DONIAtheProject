@@ -96,8 +96,9 @@ public class ToolBarCanciones extends JToolBar {
 		{
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				
 				mainWindow.verPanelLetras();
+				//establece la cancion a la seleccionada
+				mainWindow.setCancion();
 			}
 		 });
 		this.add(verLetra);

@@ -1,3 +1,4 @@
+
 package Vista;
 
 import java.awt.BorderLayout;
@@ -385,7 +386,7 @@ public class VentanaPrincipal extends JFrame {
 			control.eliminaCancion(c);
 		}
 	}
-
+	
 	public void desactivarBotones() {
 		
 		toolBar.desactivarBotones();

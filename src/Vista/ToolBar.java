@@ -1,6 +1,5 @@
 package Vista;
 
-import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
@@ -18,7 +17,6 @@ public class ToolBar extends JToolBar {
 	private JButton verGustos;
 	private JButton aniadirCancion;
 	private JButton eliminarCancion;
-	private JButton verBiblioteca;
 	private JButton salir;
 	
 	public ToolBar(VentanaPrincipal mainWindow) {
@@ -90,6 +88,8 @@ public class ToolBar extends JToolBar {
 		
 		this.add(eliminarCancion);
 		
+
+		this.add(new Separator());
 		
 		
 		salir = new JButton();
