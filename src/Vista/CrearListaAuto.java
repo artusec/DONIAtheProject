@@ -101,17 +101,22 @@ public class CrearListaAuto extends JPanel {
 		
 		btnCrear.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (!nombre.getText().equals("") && !genero.getText().equals("") && Integer.parseInt(duracion.getText()) > 0) {
+				String gener = genero.getText();
+				String nombr = nombre.getText();
+				if (!nombre.getText().equals("") && !genero.getText().equals("") && Double.parseDouble(duracion.getText()) > 0 && 
+						VentanaPrincipal.entradaValida(gener) && VentanaPrincipal.entradaValida(nombr)) {
 					try {
 						Genero nuevoGenero = new Genero(genero.getText());
 						ListaAuto lista = new ListaAuto(ventanaPrincipal.generaId(), nombre.getText(), nuevoGenero);
 						ControlLista control = new ControlLista(ventanaPrincipal.getUsuarioActual());
-						control.crearListaAuto(lista, Integer.parseInt(duracion.getText()));
+						control.crearListaAuto(lista, Double.parseDouble(duracion.getText()));
+						lblNewLabel.setVisible(false);
 					} catch (ErrorCreacionObjeto e1) {
 						VentanaPrincipal.muestraError(e1);
 					}
 				} else {
-					lblNewLabel.setText("Rellena todos los campos para crear la lista correctamente. Y hazlo bien!");
+					lblNewLabel.setVisible(true);
+					lblNewLabel.setText("Datos invalidos. Rellene los campos correctamente");
 				}
 			}
 		});

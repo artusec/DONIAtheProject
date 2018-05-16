@@ -115,14 +115,14 @@ public class SASLista implements InterfazSASLista {
      * @throws ErrorGuardado 
      */
     @Override
-    public void crearListaAuto(ListaAuto lista, Usuario usuario, int duracionMax) throws ErrorAutenticacion, ErrorCreacionObjeto, ErrorConsulta, ErrorGuardado {
+    public void crearListaAuto(ListaAuto lista, Usuario usuario, double duracionMax) throws ErrorAutenticacion, ErrorCreacionObjeto, ErrorConsulta, ErrorGuardado {
     		if (lista == null)
     			throw new ErrorCreacionObjeto("Error al crear lista auto");
     		else {
 	    		//obtener lista de canciones con el genero que nos interesa
     			ArrayList<Cancion> canciones = dao.getCancionesGeneroDB(lista.getGenero().getId());
     			if (canciones != null) {
-        			int duracion = 0;
+        			double duracion = 0;
 	    	    	int i = 0;
 	    	    	if (canciones.size() > 0) {
 		    		Cancion cancion = canciones.get(i);

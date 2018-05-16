@@ -22,6 +22,7 @@ import Model.Objetos.Cancion;
 import Model.Objetos.Genero;
 import Model.Objetos.Letra;
 import Model.Objetos.Video;
+import javax.swing.JScrollPane;
 
 public class SongAdmin_panel extends JPanel {
 	/**
@@ -44,12 +45,6 @@ public class SongAdmin_panel extends JPanel {
 		
 		JPanel panel = new JPanel();
 		panel.setBorder(new TitledBorder(null, "DATOS", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		
-		JPanel panel_1 = new JPanel();
-		panel_1.setBorder(new TitledBorder(null, "LETRA", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		
-		letra = new JEditorPane();
-		letra.setText("Escribe aquí la letra");
 		setLayout(new GridLayout(0, 2, 0, 0));
 		add(panel);
 		GridBagLayout gbl_panel = new GridBagLayout();
@@ -224,9 +219,19 @@ public class SongAdmin_panel extends JPanel {
 		gbc_btnHecho.gridx = 0;
 		gbc_btnHecho.gridy = 17;
 		panel.add(btnHecho, gbc_btnHecho);
+		
+		JPanel panel_1 = new JPanel();
 		add(panel_1);
+		panel_1.setForeground(Color.LIGHT_GRAY);
+		panel_1.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "LETRA", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel_1.setLayout(new GridLayout(0, 1, 0, 0));
-		panel_1.add(letra);
+		
+		JScrollPane scrollPane_1 = new JScrollPane();
+		panel_1.add(scrollPane_1);
+		
+		letra = new JEditorPane();
+		scrollPane_1.setViewportView(letra);
+		letra.setText("Escribe aquí la letra");
 
 	}
 }

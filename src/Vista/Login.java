@@ -12,7 +12,9 @@ import java.awt.event.WindowListener;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -124,11 +126,21 @@ public class Login extends JDialog {
 						//Registrar usuario
 						Usuario nuevoUsuario = null;
 						try {
-							nuevoUsuario = new Usuario(textField.getText().trim(), textField_1.getText().trim(), String.valueOf(passwordField.getPassword()));
-							if (nuevoUsuario != null) {
-								ControlUsuario ctrlU = new ControlUsuario(null);
-								ctrlU.registro(nuevoUsuario);
-							}					
+							String id = textField.getText().trim();
+							String usuario = textField_1.getText().trim();
+							String clave = String.valueOf(passwordField.getPassword());
+							if (VentanaPrincipal.entradaValida(id) && 
+								VentanaPrincipal.entradaValida(usuario) && 
+								VentanaPrincipal.entradaValida(clave)) {
+								nuevoUsuario = new Usuario(id, usuario, clave);
+								if (nuevoUsuario != null) {
+									ControlUsuario ctrlU = new ControlUsuario(null);
+									ctrlU.registro(nuevoUsuario);
+								}
+							}
+							else {
+								JOptionPane.showMessageDialog(new JFrame(), "Caracteres invalidos", "ERROR", JOptionPane.ERROR_MESSAGE);
+							}
 						} catch (ErrorCreacionObjeto e1) {
 							System.out.println("ERROR");
 						}
@@ -250,19 +262,28 @@ public class Login extends JDialog {
 
 	public void in(VentanaPrincipal ventanaPrincipal) {
 		ControlUsuario ctrlU = new ControlUsuario(ventanaPrincipal.getUsuarioActual());
-		Usuario accesor = ctrlU.ingreso(textField.getText().trim(), String.valueOf(passwordField.getPassword()));
-		if (accesor != null) {
-			correcto = true;
-			ventanaPrincipal.setUsuarioActual(accesor);
-			
-			//Cargar todas las listas del usuario
-			VentanaPrincipal.actualizaListas();
-			//Cargar canciones de la biblioteca (TODO) es para pruebas
-			VentanaPrincipal.actualizaCanciones("l0");
-			
-			setVisible(false);
-			ventanaPrincipal.verPerfil();
-			ventanaPrincipal.setVisible(true);
+		String id = textField.getText().trim();
+		String clave = String.valueOf(passwordField.getPassword());
+		if (VentanaPrincipal.entradaValida(id) && 
+			VentanaPrincipal.entradaValida(clave)) 
+		{
+			Usuario accesor = ctrlU.ingreso(textField.getText().trim(), String.valueOf(passwordField.getPassword()));
+			if (accesor != null) {
+				correcto = true;
+				ventanaPrincipal.setUsuarioActual(accesor);
+				
+				//Cargar todas las listas del usuario
+				VentanaPrincipal.actualizaListas();
+				//Cargar canciones de la biblioteca (TODO) es para pruebas
+				VentanaPrincipal.actualizaCanciones("l0");
+				
+				setVisible(false);
+				ventanaPrincipal.verPerfil();
+				ventanaPrincipal.setVisible(true);
+			}
+		}
+		else {
+			JOptionPane.showMessageDialog(new JFrame(), "Caracteres invalidos", "ERROR", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	

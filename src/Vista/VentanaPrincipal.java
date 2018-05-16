@@ -142,15 +142,10 @@ public class VentanaPrincipal extends JFrame {
 	}
 	
 	private void creaPanelCanciones(JPanel panelCentral) {
-		JPanel medio = new JPanel();
-		medio.setLayout(new BorderLayout());
+		
 		panelCanciones = new PanelCanciones("Canciones", this);
-		panelCanciones.setAutoscrolls(true);
-		medio.add(panelCanciones);
 		ToolBarCanciones barCanciones = new ToolBarCanciones(this);
-		barCanciones.setFloatable(false);
-		medio.add(barCanciones, BorderLayout.SOUTH);
-		panelCentral.add(medio);
+		panelCentral.add(new PanelMedio(barCanciones, panelCanciones));
 	}
 	
 	private void createPanelCambiante() {
@@ -384,7 +379,7 @@ public class VentanaPrincipal extends JFrame {
 	 * @param entrada texto a validar
 	 * @return si es valido
 	 */
-	public boolean entradaValida(String entrada) {
+	public static boolean entradaValida(String entrada) {
 		return entrada.matches("[a-zA-Z0-9ñÑ& ]*");
 	}
 	

@@ -44,9 +44,9 @@ public class ControlLista {
 	    	}
     }
 
-    public void crearListaAuto(ListaAuto listaAuto, int duracion) {
+    public void crearListaAuto(ListaAuto listaAuto, double d) {
     		try {
-    			fLista.crearListaAuto(listaAuto, usuarioActual, duracion);
+    			fLista.crearListaAuto(listaAuto, usuarioActual, d);
     			VentanaPrincipal.actualizaListas();
 		} catch (ErrorAutenticacion | ErrorCreacionObjeto | ErrorConsulta | ErrorGuardado e) {
 			VentanaPrincipal.muestraError(e);

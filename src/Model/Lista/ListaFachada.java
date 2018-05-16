@@ -23,7 +23,7 @@ public class ListaFachada implements InterfazFachadaLista {
     }
 
     @Override
-    public void crearListaAuto(ListaAuto lista, Usuario usuario,int duracion) throws ErrorAutenticacion, ErrorCreacionObjeto, ErrorConsulta, ErrorGuardado {
+    public void crearListaAuto(ListaAuto lista, Usuario usuario, double duracion) throws ErrorAutenticacion, ErrorCreacionObjeto, ErrorConsulta, ErrorGuardado {
     		sasLista.crearListaAuto(lista, usuario,duracion);
     }
 

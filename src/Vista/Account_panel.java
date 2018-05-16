@@ -4,6 +4,7 @@ import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
 
 import Controlador.ControlUsuario;
+import Excepciones.ErrorCreacionObjeto;
 import Model.Objetos.Usuario;
 
 import java.awt.BorderLayout;
@@ -22,6 +23,7 @@ import javax.swing.JSeparator;
 
 import javax.swing.BoxLayout;
 import java.awt.Dimension;
+import com.jgoodies.forms.factories.DefaultComponentFactory;
 
 
 public class Account_panel extends JPanel {
@@ -61,7 +63,31 @@ public class Account_panel extends JPanel {
 		panelimg.setBounds(0, 0, panel.getWidth(),panel.getHeight());
 		panel.add(panelimg);
 
+		JLabel lblNewJgoodiesLabel = DefaultComponentFactory.getInstance().createLabel("");
+		
 		JButton btnEditarPerfil = new JButton("Editar perfil");
+		btnEditarPerfil.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				String id = textField.getText();
+				String nombre = textField_1.getText();
+				String clave = passwordField.getText();
+				if (VentanaPrincipal.entradaValida(id) && VentanaPrincipal.entradaValida(nombre)
+					&& VentanaPrincipal.entradaValida(clave)) {
+					ControlUsuario ctrlUsuario = new ControlUsuario(view.getUsuarioActual());
+					Usuario usuario;
+					try {
+						usuario = new Usuario(id, nombre, clave);
+						ctrlUsuario.modificar(usuario);
+						lblNewJgoodiesLabel.setText("Usuario modificado con éxito");
+					} catch (ErrorCreacionObjeto e) {
+						lblNewJgoodiesLabel.setText("Datos invalidos. Introduzcalos correctamente");
+					}
+				}
+				else {
+					
+				}
+			}
+		});
 	
 		JLabel lblPrimeroEditaLos = new JLabel("Primero edita los campos de");
 		panel_5.add(lblPrimeroEditaLos, "cell 1 6,alignx left,aligny center");
@@ -87,6 +113,8 @@ public class Account_panel extends JPanel {
 					}
 				});
 		
+		panel_2.add(lblNewJgoodiesLabel, "cell 0 1");
+		
 		JSeparator separator = new JSeparator();
 		panel_2.add(separator, "cell 0 2");
 		
@@ -99,6 +127,7 @@ public class Account_panel extends JPanel {
 		JLabel lblId = new JLabel("ID");
 		panel_6.add(lblId, "cell 3 1,alignx left,aligny center");
 		textField = new JTextField();
+		textField.setEditable(false);
 		textField.setColumns(10);
 		panel_6.add(textField, "cell 5 1,alignx left,aligny top");
 		
