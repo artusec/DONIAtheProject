@@ -13,7 +13,6 @@ import Vista.VentanaPrincipal;
 public class SASUsuario implements InterfazSASUsuario {
 	
 	private InterfazDAOFachada dao;
-	//hay un objeto dao, solo que no se donde deberiamos ponerlo
 	
 	/**
 	 * @param dao interfazDAOFachada
@@ -21,7 +20,6 @@ public class SASUsuario implements InterfazSASUsuario {
 	public SASUsuario() {
 		this.setDao();
 		dao = new DAOFachada();
-		
 	}
 	
 	private void setDao() {

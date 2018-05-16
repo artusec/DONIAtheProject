@@ -14,7 +14,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JButton;
 import net.miginfocom.swing.MigLayout;
 import javax.swing.JSeparator;
-import com.jgoodies.forms.factories.DefaultComponentFactory;
+//import com.jgoodies.forms.factories.DefaultComponentFactory;
 
 public class Account_panel extends JPanel {
 	/**
@@ -37,7 +37,7 @@ public class Account_panel extends JPanel {
 
 		JPanel panel_2 = new JPanel();
 		add(panel_2, BorderLayout.CENTER);
-		panel_2.setLayout(new MigLayout("", "[445.00,grow]", "[][206.00,grow][84.00][grow]"));
+		panel_2.setLayout(new MigLayout("", "[445.00,grow]", "[164.00][206.00][84.00][]"));
 
 		
 		JPanel panel_5 = new JPanel();
@@ -53,7 +53,7 @@ public class Account_panel extends JPanel {
 		panelimg.setBounds(0, 0, panel.getWidth(),panel.getHeight());
 		panel.add(panelimg);
 
-		JLabel lblNewJgoodiesLabel = DefaultComponentFactory.getInstance().createLabel("");
+		JLabel lblNewJgoodiesLabel = new JLabel("");//DefaultComponentFactory.getInstance().createLabel("");
 		
 		JButton btnEditarPerfil = new JButton("Editar perfil");
 		btnEditarPerfil.addActionListener(new ActionListener() {
@@ -103,7 +103,7 @@ public class Account_panel extends JPanel {
 					}
 				});
 		
-		panel_2.add(lblNewJgoodiesLabel, "cell 0 1");
+		panel_2.add(lblNewJgoodiesLabel, "cell 0 1,alignx center,aligny center");
 		
 		JSeparator separator = new JSeparator();
 		panel_2.add(separator, "cell 0 2");

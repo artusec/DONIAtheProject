@@ -334,8 +334,8 @@ public abstract class DBstruct {
 	}
 	public static String updateUsuario(String id, String nombre, String clave) {
 		return 	"UPDATE donia.usuario\n" +
-		"SET nombre='" + nombre + "', clave=" + clave + "' \n" +
-		"WHERE usuario='" + id + "';\n";
+				"SET nombre='" + nombre + "', clave='" + clave + "'\n" +
+				"WHERE usuario='" + id + "';\n";
 	}
 	
 	public static String updateGenero(String id, String nombre) {
