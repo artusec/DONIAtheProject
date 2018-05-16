@@ -223,6 +223,10 @@ public class Login extends JDialog {
 					VentanaPrincipal.actualizaCanciones("l0");
 					
 					setVisible(false);
+					
+					if(!accesor.getId().equals("u0"))
+						ventanaPrincipal.desactivarBotones();
+					
 					ventanaPrincipal.verPerfil();
 					ventanaPrincipal.setVisible(true);
 				}

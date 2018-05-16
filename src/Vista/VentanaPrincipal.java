@@ -49,8 +49,8 @@ public class VentanaPrincipal extends JFrame {
 	public VentanaPrincipal () {	
 		super("Donia");
 		initGUI();
-		// Login = new Login(this);
-		// Login.setVisible(true);
+		Login = new Login(this);
+		Login.setVisible(true);
 	}
 	
 	private void initGUI() {
@@ -100,7 +100,6 @@ public class VentanaPrincipal extends JFrame {
 		creaPanelCanciones(panelCentral);
 		createPanelCambiante();
 		pack();
-		setVisible(true);
 		setExtendedState(java.awt.Frame.MAXIMIZED_BOTH);
 	}
 
@@ -311,6 +310,15 @@ public class VentanaPrincipal extends JFrame {
 		panelDeLetras.setTexto(cancion.getLetra().getTexto());
 	}
 	
+	public void setCancion() {
+		//habilitar el panel de letras
+		this.verPanelLetras();
+		//esa linea es provisional, hay que pasarle toda la cancion
+		ArrayList<Cancion> c = this.getCancionSelecccionada();
+		if (c != null & !c.isEmpty())
+			panelDeLetras.setTexto(c.get(0).getLetra().getTexto());
+	}
+	
 	/**
 	 * Establece la lista de la cual se muestra la informacion
 	 * @param lista
@@ -376,5 +384,10 @@ public class VentanaPrincipal extends JFrame {
 			ControlCancion control = new ControlCancion(this.getUsuarioActual());
 			control.eliminaCancion(c);
 		}
+	}
+
+	public void desactivarBotones() {
+		
+		toolBar.desactivarBotones();
 	}
 }

@@ -1,5 +1,6 @@
 package Vista;
 
+import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
@@ -13,11 +14,17 @@ public class ToolBar extends JToolBar {
 	
 	private static final long serialVersionUID = 1L;
 	
+	private JButton perfil;
+	private JButton verGustos;
+	private JButton aniadirCancion;
+	private JButton eliminarCancion;
+	private JButton verBiblioteca;
+	private JButton salir;
 	
 	public ToolBar(VentanaPrincipal mainWindow) {
 		super();	
 
-		JButton perfil = new JButton();
+		perfil = new JButton();
 		perfil.setToolTipText("Perfil");
 		perfil.setIcon(new ImageIcon("src/icons/perfil.png"));
 		perfil.setText("Perfil");
@@ -34,7 +41,7 @@ public class ToolBar extends JToolBar {
 		
 		this.add(perfil);
 		
-		JButton verGustos = new JButton();
+		verGustos = new JButton();
 		verGustos.setToolTipText("Gustos");
 		verGustos.setIcon(new ImageIcon("src/icons/gustos.png"));
 		verGustos.setText("Gustos");
@@ -50,7 +57,7 @@ public class ToolBar extends JToolBar {
 		
 		this.add(verGustos);
 		
-		JButton aniadirCancion = new JButton();
+		aniadirCancion = new JButton();
 		aniadirCancion.setToolTipText("Añadir cancion");
 		aniadirCancion.setIcon(new ImageIcon("src/icons/addCancion.png"));
 		aniadirCancion.setText("Añadir cancion");
@@ -67,7 +74,7 @@ public class ToolBar extends JToolBar {
 		this.add(aniadirCancion);
 		
 		
-		JButton eliminarCancion = new JButton();
+		eliminarCancion = new JButton();
 		eliminarCancion.setToolTipText("Borrar cancion");
 		eliminarCancion.setIcon(new ImageIcon("src/icons/eliminarCancion.png"));
 		eliminarCancion.setText("Borrar cancion");
@@ -84,24 +91,8 @@ public class ToolBar extends JToolBar {
 		this.add(eliminarCancion);
 		
 		
-		JButton verBiblioteca = new JButton();
-		verBiblioteca.setToolTipText("Ver biblioteca");
-		verBiblioteca.setIcon(new ImageIcon("src/icons/biblioteca.png"));
-		verBiblioteca.setText("Ver biblioteca");
-		verBiblioteca.setHorizontalTextPosition( SwingConstants.CENTER );
-		verBiblioteca.setVerticalTextPosition( SwingConstants.BOTTOM );
-		verBiblioteca.addActionListener(new ActionListener()
-		{
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				
-			}
-		 });
 		
-		this.add(verBiblioteca);
-		
-		
-		JButton salir = new JButton();
+		salir = new JButton();
 		salir.setToolTipText("Salir");
 		salir.setIcon(new ImageIcon("src/icons/exit.png"));
 		salir.setText("Salir");
@@ -120,5 +111,12 @@ public class ToolBar extends JToolBar {
 		 });
 		
 		this.add(salir);
+	}
+
+
+	public void desactivarBotones() {
+		
+		aniadirCancion.setEnabled(false);
+		eliminarCancion.setEnabled(false);
 	}
 }
