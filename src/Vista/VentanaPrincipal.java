@@ -170,7 +170,7 @@ public class VentanaPrincipal extends JFrame {
 		panelCambiante = new JPanel();
 		panelCambiante.setLayout(new BorderLayout());
 		this.panelCambiante.setOpaque(false);
-		Account_panel account = new Account_panel();
+		Account_panel account = new Account_panel(this);
 		account.setDatosUsuario(usuarioActual);
 		account.setVisible(true);
 		account.setOpaque(false);
