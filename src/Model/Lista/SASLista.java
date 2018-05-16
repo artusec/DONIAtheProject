@@ -11,6 +11,7 @@ import Excepciones.ErrorEliminacion;
 import Excepciones.ErrorGuardado;
 import Model.Lista.InterfazSASLista;
 import Model.Objetos.*;
+import Vista.VentanaPrincipal;
 
 /**
  * Clase SASLista
@@ -174,9 +175,16 @@ public class SASLista implements InterfazSASLista {
      */
     @Override
     public void eliminarCancion(Cancion cancion, Lista lista, Usuario usuario) throws ErrorAutenticacion, ErrorCreacionObjeto, ErrorConsulta, ErrorGuardado {
-    		if (dao.getCancionDB(cancion.getId()).equals(cancion)) {
+    		if (dao.getCancionDB(cancion.getId()).getId().equals(cancion.getId())) {
+    			if (!lista.getId().equals("l0")) {
+    				
     			lista.eliminarCancion(cancion);
     			dao.setLista(lista, usuario);
+    			VentanaPrincipal.actualizaCanciones(lista.getId());
+    			}
+    			else {
+    				throw new ErrorGuardado("No puedes borrar canciones de la biblioteca");
+    			}
     		}
     }
 }
