@@ -221,7 +221,13 @@ public class VentanaPrincipal extends JFrame {
 		this.panelCambiante.setOpaque(false);
 		DatosCancion_panel panelDatos = new DatosCancion_panel();
 		PanelAreaTexto panelDeLetras = new PanelAreaTexto("Letra", false);
-		panelUnTercio = new PanelUnTercio(panelDeLetras, panelDatos);		
+		panelUnTercio = new PanelUnTercio(panelDeLetras, panelDatos);
+		
+		Cancion aux = panelCanciones.getSelectedItem();
+		if(aux != null) {
+			
+			setCancion(aux);
+		}
 		panelUnTercio.setVisible(true);
 		panelCambiante.add(panelUnTercio);
 		panelCentral.add(panelCambiante);
@@ -312,7 +318,7 @@ public class VentanaPrincipal extends JFrame {
 	 * @param lista
 	 */
 	public void setCancion(Cancion cancion) {
-		verPanelLetras();
+		
 		panelUnTercio.setDatos(cancion);
 	}
 	
@@ -322,7 +328,6 @@ public class VentanaPrincipal extends JFrame {
 	 */
 	public void setLista(Lista lista) {
 		
-		verPanelLetras();
 		if (lista != null)
 			panelCanciones.setList(lista.getCanciones());
 	}
@@ -403,4 +408,15 @@ public class VentanaPrincipal extends JFrame {
 		
 		toolBar.desactivarBotones();
 	}
+
+	public void deshacerSelecciones() {
+		
+		panelCanciones.borrarSeleccionado();
+	}
+
+	public void vaciaPanelCanciones() {
+		
+		panelCanciones.listModel.clear();
+	}
+
 }

@@ -35,7 +35,7 @@ public class PanelAreaTexto extends JPanel {
 	 
 	 public void setTexto(Cancion cancion) {
 		 
-		 if(!cancion.equals(null))
+		 if(cancion != null)
 			 this.areatexto.setText(cancion.getLetra().getTexto());
 	 }
 	 

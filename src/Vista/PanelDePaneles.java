@@ -47,4 +47,9 @@ public class PanelDePaneles<T> extends JPanel {
 	public ListModel<T> getModelo() {
 		return listModel;
 	}
+	
+	public void borrarSeleccionado() {
+		
+		objList.clearSelection();
+	}
 }

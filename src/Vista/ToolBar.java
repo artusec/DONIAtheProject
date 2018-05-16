@@ -49,6 +49,7 @@ public class ToolBar extends JToolBar {
 		{
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
+				
 				mainWindow.verFavoritos();
 			}
 		 });

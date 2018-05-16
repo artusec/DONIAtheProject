@@ -22,6 +22,9 @@ public class PanelListas extends PanelDePaneles<Lista> {
 	            @Override
 	            public void valueChanged(ListSelectionEvent e) {
 	                if (!e.getValueIsAdjusting()) {
+	                		
+	                		ventanaPrincipal.vaciaPanelCanciones();
+	                		ventanaPrincipal.verPanelLetras();
 	                		ventanaPrincipal.setLista(objList.getSelectedValue());
 	                }
 	            }

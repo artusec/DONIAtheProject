@@ -62,6 +62,7 @@ public class DatosCancion_panel extends JPanel {
 		genero.setColumns(10);
 		
 		enlace = new JTextField();
+		enlace.setEnabled(true);
 		enlace.setColumns(10);
 		
 		JLabel lblEnlaceVerVideoclip = new JLabel("Enlace ver videoclip");
@@ -137,16 +138,20 @@ public class DatosCancion_panel extends JPanel {
 	
 	public void setDatos(Cancion cancion) {
 		
-		this.titulo.setText(cancion.getTitulo());
-		this.artista.setText(cancion.getAutor());
-		this.genero.setText(cancion.getGenero().toString());
-		Double duracion = cancion.getDuracion();
-		int min = (int) (duracion / 60);
-		int seg = (int) (duracion % 60);
-		String a = String.valueOf(duracion);
-		this.duracion.setText(Integer.toString(min) + "min" + Integer.toString(seg) + "seg");
-		enlace.setText(cancion.getVideo().getEnlace());
-		descarga.setText(cancion.getVideo().getEnlaceDescarga());
+		if(cancion != null) {
+			
+			this.titulo.setText(cancion.getTitulo());
+			this.artista.setText(cancion.getAutor());
+			this.genero.setText(cancion.getGenero().toString());
+			Double duracion = cancion.getDuracion();
+			int min = (int) (duracion / 60);
+			int seg = (int) (duracion % 60);
+			String a = String.valueOf(duracion);
+			this.duracion.setText(Integer.toString(min) + " min " + Integer.toString(seg) + " seg");
+			// enlace.setText(cancion.getVideo().getEnlace()); // no va bien
+			// descarga.setText(cancion.getVideo().getEnlaceDescarga());
+		}
+		
 	}
 
 	public void vaciarCampos() {
