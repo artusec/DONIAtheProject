@@ -84,21 +84,23 @@ public class ToolBar extends JToolBar {
 		this.add(eliminarCancion);
 		
 		
-		JButton verBiblioteca = new JButton();
-		verBiblioteca.setToolTipText("Ver biblioteca");
-		verBiblioteca.setIcon(new ImageIcon("src/icons/biblioteca.png"));
-		verBiblioteca.setText("Ver biblioteca");
-		verBiblioteca.setHorizontalTextPosition( SwingConstants.CENTER );
-		verBiblioteca.setVerticalTextPosition( SwingConstants.BOTTOM );
-		verBiblioteca.addActionListener(new ActionListener()
-		{
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				
-			}
-		 });
+//		JButton verBiblioteca = new JButton();
+//		verBiblioteca.setToolTipText("Ver biblioteca");
+//		verBiblioteca.setIcon(new ImageIcon("src/icons/biblioteca.png"));
+//		verBiblioteca.setText("Ver biblioteca");
+//		verBiblioteca.setHorizontalTextPosition( SwingConstants.CENTER );
+//		verBiblioteca.setVerticalTextPosition( SwingConstants.BOTTOM );
+//		verBiblioteca.addActionListener(new ActionListener()
+//		{
+//			@Override
+//			public void actionPerformed(ActionEvent arg0) {
+//				
+//			}
+//		 });
+//		
+//		this.add(verBiblioteca);
 		
-		this.add(verBiblioteca);
+		this.add(new Separator());
 		
 		
 		JButton salir = new JButton();
