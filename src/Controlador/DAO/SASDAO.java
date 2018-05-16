@@ -463,6 +463,7 @@ public class SASDAO implements InterfazSASDAO {
     public void setUsuario(Usuario usuario) throws ErrorAutenticacion, ErrorGuardado {
      	try {
 			if (this.conectado() && usuario != null) {
+				System.out.println("Estableciendo usuario...");
 				//recabar datos
 				String id = usuario.getId();
 				String nombre = usuario.getNombre();
@@ -473,11 +474,13 @@ public class SASDAO implements InterfazSASDAO {
 				//comprobar usuario
 				if (this.existeUsuario(id, clave)) {
 					//actualizar DB
+					System.out.println("Actualizando usuario..." + id + nombre + clave);
 					sentencia = DBstruct.updateUsuario(id, nombre, clave);
 					PreparedStatement ps = this.DBconn.prepareStatement(sentencia);
 					ps.executeQuery();
 				} else {
 					//insertar datos
+					System.out.println("Guardando nuevo usuario...");
 					sentencia = DBstruct.insertUsuario(id, nombre, clave);
 					PreparedStatement ps = this.DBconn.prepareStatement(sentencia);
 					ps.executeQuery();

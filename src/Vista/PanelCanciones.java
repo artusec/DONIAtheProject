@@ -26,6 +26,7 @@ public class PanelCanciones extends PanelDePaneles<Cancion> {
 	@Override
 	public void setList(ArrayList<Cancion> lista) {
 		super.setList(lista);
-		this.objList.clearSelection();
+		if (!objList.isSelectionEmpty())
+			this.objList.clearSelection();
 	}
 }

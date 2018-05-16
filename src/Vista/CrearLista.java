@@ -14,7 +14,7 @@ import Model.Objetos.ListaNormal;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import com.jgoodies.forms.factories.DefaultComponentFactory;
+//import com.jgoodies.forms.factories.DefaultComponentFactory;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
 public class CrearLista extends JPanel {
@@ -39,7 +39,7 @@ public class CrearLista extends JPanel {
 		
 		JButton btnCrear = new JButton("Crear");
 		
-		JLabel lblNombreInvalido = DefaultComponentFactory.getInstance().createLabel("NOMBRE INVALIDO");
+		JLabel lblNombreInvalido = new JLabel("NOMBRE INVALIDO");// DefaultComponentFactory.getInstance().createLabel("NOMBRE INVALIDO");
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
