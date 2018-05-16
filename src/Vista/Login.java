@@ -199,22 +199,20 @@ public class Login extends JDialog {
 			
 			@Override
 			public void keyTyped(KeyEvent e) {
-				// TODO Auto-generated method stub
 				
 			}
 			
 			@Override
 			public void keyReleased(KeyEvent e) {
-				// TODO Auto-generated method stub
-				
+
 			}
 			
 			@Override
 			public void keyPressed(KeyEvent e) {
-		                if(e.getKeyCode()==KeyEvent.VK_ENTER){
-		                	in(ventanaPrincipal);
-		                }
-				
+                if(e.getKeyCode()==KeyEvent.VK_ENTER){
+                		in(ventanaPrincipal);
+                }
+		
 			}
 		});
 		contentPanel.add(passwordField);
@@ -235,11 +233,8 @@ public class Login extends JDialog {
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {		
 				//si existe y es correcto
-
 				in(ventanaPrincipal);
-;
-				}
-
+			}
 		});
 		btnLogin.setBounds(258, 516, 97, 25);
 		contentPanel.add(btnLogin);
@@ -253,7 +248,6 @@ public class Login extends JDialog {
 		setTitle("Donia");
 	}
 
-	
 	public void in(VentanaPrincipal ventanaPrincipal) {
 		ControlUsuario ctrlU = new ControlUsuario(ventanaPrincipal.getUsuarioActual());
 		Usuario accesor = ctrlU.ingreso(textField.getText().trim(), String.valueOf(passwordField.getPassword()));
@@ -271,6 +265,7 @@ public class Login extends JDialog {
 			ventanaPrincipal.setVisible(true);
 		}
 	}
+	
 	public Boolean getCorrecto() {
 		return correcto;
 	}

@@ -80,8 +80,6 @@ public class Account_panel extends JPanel {
 					
 					@Override
 					public void actionPerformed(ActionEvent e) {
-						ControlUsuario ctrlU = new ControlUsuario(view.getUsuarioActual());
-						ctrlU.setUsuarioActual(null);
 						view.setUsuarioActual(null);
 						view.setVisible(false);
 						Login lgn = new Login(view);

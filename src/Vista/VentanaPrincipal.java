@@ -322,6 +322,7 @@ public class VentanaPrincipal extends JFrame {
 	public void setCancion(Cancion cancion) {
 		//habilitar el panel de letras
 		this.verPanelLetras();
+		if (cancion != null)
 		//esa linea es provisional, hay que pasarle toda la cancion
 		panelDeLetras.setTexto(cancion.getLetra().getTexto());
 	}

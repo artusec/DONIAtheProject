@@ -18,8 +18,7 @@ public class ToolBarCanciones extends JToolBar {
 
 	private static final long serialVersionUID = 1L;
 
-	public ToolBarCanciones(VentanaPrincipal mainWindow)
-	{
+	public ToolBarCanciones(VentanaPrincipal mainWindow) {
 		super();
 		
 		setLayout(new GridLayout(1, 4));
@@ -92,8 +91,7 @@ public class ToolBarCanciones extends JToolBar {
 		verLetra.setHorizontalTextPosition( SwingConstants.CENTER );
 		verLetra.setVerticalTextPosition( SwingConstants.BOTTOM );
 		verLetra.setIcon(new ImageIcon("src/icons/VerLetra.png"));
-		verLetra.addActionListener(new ActionListener()
-		{
+		verLetra.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				mainWindow.verPanelLetras();
