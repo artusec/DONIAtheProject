@@ -14,6 +14,8 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JPasswordField;
 
 import javax.swing.JButton;
+import javax.swing.BoxLayout;
+import java.awt.Dimension;
 
 public class Account_panel extends JPanel {
 	/**
@@ -29,18 +31,8 @@ public class Account_panel extends JPanel {
 	 */
 	public Account_panel() {
 		setBorder(new TitledBorder(null, "PERFIL", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		
-		this.setLayout(new BorderLayout());
 		JPanel panel = new JPanel();
-		GroupLayout groupLayout = new GroupLayout(this);
-		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addComponent(panel, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 485, Short.MAX_VALUE)
-		);
-		groupLayout.setVerticalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addComponent(panel, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 659, Short.MAX_VALUE)
-		);
+		setLayout(new BorderLayout(0, 0));
 		
 		JPanel panel_1 = new JPanel();
 		
@@ -53,23 +45,31 @@ public class Account_panel extends JPanel {
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(
 			gl_panel.createParallelGroup(Alignment.LEADING)
-				.addGroup(Alignment.TRAILING, gl_panel.createSequentialGroup()
-					.addContainerGap()
-					.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING)
-						.addComponent(panel_1, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 465, Short.MAX_VALUE)
-						.addComponent(panel_2, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 465, Short.MAX_VALUE)
-						.addComponent(panel_3, GroupLayout.DEFAULT_SIZE, 465, Short.MAX_VALUE))
-					.addContainerGap())
+				.addGroup(gl_panel.createSequentialGroup()
+					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_panel.createSequentialGroup()
+							.addContainerGap()
+							.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+								.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, 550, GroupLayout.PREFERRED_SIZE)
+								.addGroup(gl_panel.createSequentialGroup()
+									.addGap(76)
+									.addComponent(panel_3, GroupLayout.DEFAULT_SIZE, 411, Short.MAX_VALUE)
+									.addGap(63))))
+						.addGroup(gl_panel.createSequentialGroup()
+							.addGap(123)
+							.addComponent(panel_2, GroupLayout.DEFAULT_SIZE, 307, Short.MAX_VALUE)
+							.addGap(130)))
+					.addGap(10))
 		);
 		gl_panel.setVerticalGroup(
-			gl_panel.createParallelGroup(Alignment.LEADING)
-				.addGroup(Alignment.TRAILING, gl_panel.createSequentialGroup()
-					.addComponent(panel_2, GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+			gl_panel.createParallelGroup(Alignment.TRAILING)
+				.addGroup(gl_panel.createSequentialGroup()
+					.addComponent(panel_2, GroupLayout.PREFERRED_SIZE, 241, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(panel_3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, 442, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap())
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
 		
 		GroupLayout gl_panel_2 = new GroupLayout(panel_2);
@@ -89,29 +89,44 @@ public class Account_panel extends JPanel {
 		
 		JPanel panel_4 = new JPanel();
 		
-		JButton btnEditarPerfil = new JButton("Editar perfil");
+		JPanel panel_5 = new JPanel();
 		GroupLayout gl_panel_3 = new GroupLayout(panel_3);
 		gl_panel_3.setHorizontalGroup(
 			gl_panel_3.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel_3.createSequentialGroup()
 					.addContainerGap()
-					.addComponent(panel_4, GroupLayout.PREFERRED_SIZE, 235, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(btnEditarPerfil)
-					.addContainerGap(125, Short.MAX_VALUE))
+					.addComponent(panel_4, GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addComponent(panel_5, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+					.addContainerGap())
 		);
 		gl_panel_3.setVerticalGroup(
 			gl_panel_3.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel_3.createSequentialGroup()
-					.addGroup(gl_panel_3.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_panel_3.createSequentialGroup()
-							.addContainerGap()
-							.addComponent(panel_4, GroupLayout.DEFAULT_SIZE, 104, Short.MAX_VALUE))
-						.addGroup(gl_panel_3.createSequentialGroup()
-							.addGap(47)
-							.addComponent(btnEditarPerfil)))
+					.addContainerGap()
+					.addGroup(gl_panel_3.createParallelGroup(Alignment.LEADING, false)
+						.addComponent(panel_5, GroupLayout.PREFERRED_SIZE, 104, GroupLayout.PREFERRED_SIZE)
+						.addComponent(panel_4, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 104, GroupLayout.PREFERRED_SIZE))
 					.addContainerGap())
 		);
+		
+		JButton btnEditarPerfil = new JButton("Editar perfil");
+		GroupLayout gl_panel_5 = new GroupLayout(panel_5);
+		gl_panel_5.setHorizontalGroup(
+			gl_panel_5.createParallelGroup(Alignment.LEADING)
+				.addGroup(Alignment.TRAILING, gl_panel_5.createSequentialGroup()
+					.addContainerGap(61, Short.MAX_VALUE)
+					.addComponent(btnEditarPerfil)
+					.addGap(55))
+		);
+		gl_panel_5.setVerticalGroup(
+			gl_panel_5.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel_5.createSequentialGroup()
+					.addGap(40)
+					.addComponent(btnEditarPerfil)
+					.addContainerGap(41, Short.MAX_VALUE))
+		);
+		panel_5.setLayout(gl_panel_5);
 		
 		JLabel lblPrimeroEditaLos = new JLabel("Primero edita los campos de");
 		
@@ -160,38 +175,44 @@ public class Account_panel extends JPanel {
 		gl_panel_1.setHorizontalGroup(
 			gl_panel_1.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel_1.createSequentialGroup()
-					.addGap(63)
-					.addGroup(gl_panel_1.createParallelGroup(Alignment.TRAILING)
-						.addComponent(lblId)
-						.addComponent(lblNombre)
-						.addComponent(lblContrasea))
-					.addPreferredGap(ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
+					.addGap(89)
+					.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_panel_1.createSequentialGroup()
+							.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
+								.addComponent(lblId)
+								.addComponent(lblNombre, GroupLayout.DEFAULT_SIZE, 69, Short.MAX_VALUE))
+							.addGap(53))
+						.addGroup(gl_panel_1.createSequentialGroup()
+							.addComponent(lblContrasea)
+							.addPreferredGap(ComponentPlacement.RELATED)))
 					.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING, false)
 						.addComponent(passwordField)
-						.addComponent(textField)
-						.addComponent(textField_1, GroupLayout.DEFAULT_SIZE, 233, Short.MAX_VALUE))
-					.addGap(38))
+						.addComponent(textField_1)
+						.addComponent(textField, GroupLayout.DEFAULT_SIZE, 248, Short.MAX_VALUE))
+					.addContainerGap(91, Short.MAX_VALUE))
 		);
 		gl_panel_1.setVerticalGroup(
 			gl_panel_1.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel_1.createSequentialGroup()
 					.addGap(53)
 					.addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblId)
-						.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblId))
 					.addGap(81)
 					.addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblNombre)
 						.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addGap(79)
 					.addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblContrasea)
-						.addComponent(passwordField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addContainerGap(69, Short.MAX_VALUE))
+						.addComponent(passwordField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblContrasea))
+					.addContainerGap(169, Short.MAX_VALUE))
 		);
 		panel_1.setLayout(gl_panel_1);
 		panel.setLayout(gl_panel);
-		setLayout(groupLayout);
+		this.setSize(new Dimension(582, 759));
+		setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
+		add(panel);
 
 	}
 	
@@ -201,5 +222,4 @@ public class Account_panel extends JPanel {
 		this.textField.setText(user.getId());
 		this.textField_1.setText(user.getNombre());
 	}
-	
 }
