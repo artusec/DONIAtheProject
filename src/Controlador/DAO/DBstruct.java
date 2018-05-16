@@ -339,7 +339,7 @@ public abstract class DBstruct {
 	}
 	
 	public static String updateGenero(String id, String nombre) {
-		return 	"UPDATE donia.genero \n" +
+		return 	"UPDATE donia.genero\n" +
 				"SET nombre='" + nombre + "' \n" +
 				"WHERE genero='" + id + "'";
 	}
