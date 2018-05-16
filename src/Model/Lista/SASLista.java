@@ -123,25 +123,26 @@ public class SASLista implements InterfazSASLista {
     			ArrayList<Cancion> canciones = dao.getCancionesGeneroDB(lista.getGenero().getId());
     			if (canciones != null) {
         			int duracion = 0;
-	    	    	int i = 0;
-	    	    	if (canciones.size() > 0) {
-		    		Cancion cancion = canciones.get(i);
-		    		duracion += cancion.getDuracion();
-		    		while (duracion < duracionMax && i < canciones.size()) {
-		    			this.anadirCancion(cancion, lista, usuario);
-			    		cancion = canciones.get(i);
+		    	    	int i = 0;
+		    	    	if (canciones.size() > 0) {
+			    		Cancion cancion = canciones.get(i);
 			    		duracion += cancion.getDuracion();
-			    		i++;
-		    		}
-		    		dao.setListaAuto(lista, usuario);
-		    		//ESTO ESTA BIEN; PERO SI LO HACEMOS NO ACTUALIZA LA VISTA DEBIDO AL ERROR
-		    		/*if (i == canciones.size())
-		    			throw new ErrorCreacionObjeto("Lista creada\n Aviso: No hay suficientes canciones para llegar a la duracion solicitada");*/
+			    		while (duracion < duracionMax && i < canciones.size()) {
+			    			this.anadirCancion(cancion, lista, usuario);
+				    		cancion = canciones.get(i);
+				    		duracion += cancion.getDuracion();
+				    		i++;
+			    		}
+			    		dao.setListaAuto(lista, usuario);
+			    		if (i == canciones.size())
+			    			throw new ErrorCreacionObjeto("Lista creada\n Aviso: No hay suficientes canciones para llegar a la duracion solicitada");
+			    		if (lista.getCanciones().isEmpty())
+			    			throw new ErrorCreacionObjeto("Lista creada\n Aviso:La duracion TAN corta que no cabe ninguna cancion de " + lista.getGenero().getId());
+			    	}
+		    	} else {
+		    		throw new ErrorCreacionObjeto("No hay canciones de " + lista.getGenero());
 		    	}
-	    	} else {
-	    		throw new ErrorCreacionObjeto("No hay canciones de " + lista.getGenero());
-	    	}
-    	}	
+    		}	
     }
 
     /**
