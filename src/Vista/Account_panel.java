@@ -29,7 +29,6 @@ public class Account_panel extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private JTextField textField;
 	private JTextField textField_1;
-	private JPasswordField passwordField;
 	private VentanaPrincipal view;
 	private JLabel exito ;
 	/**
@@ -70,7 +69,7 @@ public class Account_panel extends JPanel {
 			public void actionPerformed(ActionEvent arg0) {
 				String id = textField.getText();
 				String nombre = textField_1.getText();
-				String clave = String.valueOf(passwordField.getPassword());
+				String clave = view.getUsuarioActual().getClave();
 				if (VentanaPrincipal.entradaValida(id) && VentanaPrincipal.entradaValida(nombre)
 					&& VentanaPrincipal.entradaValida(clave)) {
 					ControlUsuario ctrlUsuario = new ControlUsuario(view.getUsuarioActual());
@@ -154,7 +153,7 @@ public class Account_panel extends JPanel {
 		
 		
 		panel_2.add(panel_6, "cell 0 2,grow");
-		panel_6.setLayout(new MigLayout("", "[49px,grow][80px][][116px][][][116px][6px]", "[22px][][25.00,center][][21.00][][][]"));
+		panel_6.setLayout(new MigLayout("", "[49px,grow][80px,grow][grow][116px][][][116px][6px]", "[22px][][25.00,center][][21.00][][]"));
 		
 		
 			
@@ -164,31 +163,17 @@ public class Account_panel extends JPanel {
 		textField.setEditable(false);
 		textField.setColumns(10);
 		panel_6.add(textField, "cell 5 1,alignx left,aligny top");
-		
-		JSeparator separator_1 = new JSeparator();
-		panel_6.add(separator_1, "cell 1 2 6 1");
 		JLabel lblNombre = new JLabel("NOMBRE");
 		panel_6.add(lblNombre, "cell 2 3,alignx left,aligny center");
 		textField_1 = new JTextField();
 		textField_1.setColumns(10);
 		panel_6.add(textField_1, "cell 5 3,alignx left,aligny top");
-		JLabel lblContrasea = new JLabel("CONTRASEÑA");
-		panel_6.add(lblContrasea, "cell 2 5,alignx left,aligny center");
-		
-		passwordField = new JPasswordField();
-
-		panel_6.add(passwordField, "cell 5 5,growx,aligny top");
 		exito = new JLabel("");
-		panel_6.add(exito, "cell 3 7");
+		panel_6.add(exito, "cell 2 4 4 3,alignx left");
 		
-		
-
-
 	}
 	
 	public void setDatosUsuario(Usuario user) {
-		
-		this.passwordField.setText(user.getClave());
 		this.textField.setText(user.getId());
 		this.textField_1.setText(user.getNombre());
 	}

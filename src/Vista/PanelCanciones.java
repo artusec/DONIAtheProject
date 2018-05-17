@@ -17,7 +17,8 @@ public class PanelCanciones extends PanelDePaneles<Cancion> {
 	            public void valueChanged(ListSelectionEvent e) {
 	                if (!e.getValueIsAdjusting()) {
 	                		ventanaPrincipal.verPanelLetras();
-	                		ventanaPrincipal.setCancion(objList.getSelectedValue());
+	                		if (objList.getSelectedValue() != null)
+	                			ventanaPrincipal.setCancion(objList.getSelectedValue());
 	                }
 	            }
 	        }
