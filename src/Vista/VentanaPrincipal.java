@@ -280,9 +280,31 @@ public class VentanaPrincipal extends JFrame {
 		panelCambiante = new JPanel();
 		panelCambiante.setLayout(new BorderLayout());
 		this.panelCambiante.setOpaque(false);
-		DatosCancion_panel panelDatos = new DatosCancion_panel();
+		DatosCancion_panel panelDatos = new DatosCancion_panel(this);
 		PanelAreaTexto panelDeLetras = new PanelAreaTexto("Letra", false);
 		panelUnTercio = new PanelUnTercio(panelDeLetras, panelDatos);
+		
+		Cancion aux = panelCanciones.getSelectedItem();
+		if(aux != null) {
+			
+			setCancion(aux);
+		}
+		panelUnTercio.setVisible(true);
+		panelCambiante.add(panelUnTercio);
+		panelCentral.add(panelCambiante);
+	}
+
+	/**
+	 * Muestra el panel que muestra los datos de una cancion
+	 */
+	public void verPanelCancion() {
+		resetearPanelCambiante();
+		panelCambiante = new JPanel();
+		panelCambiante.setLayout(new BorderLayout());
+		this.panelCambiante.setOpaque(false);
+		DatosCancion_panel panelDatos = new DatosCancion_panel(this);
+		Enlaces_panel panelDeEnlaces = new Enlaces_panel();
+		panelUnTercio = new PanelUnTercio(panelDeEnlaces, panelDatos);
 		
 		Cancion aux = panelCanciones.getSelectedItem();
 		if(aux != null) {
@@ -297,6 +319,7 @@ public class VentanaPrincipal extends JFrame {
 	/**
 	 * Muestra el panel qeu permite modificar los datos de una cancion
 	 */
+
 	public void verModificarCancion() {
 		
 		resetearPanelCambiante();

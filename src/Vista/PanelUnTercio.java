@@ -2,14 +2,20 @@ package Vista;
 
 import javax.swing.JPanel;
 import Model.Objetos.Cancion;
+
+import java.awt.BorderLayout;
+import java.awt.GridLayout;
+
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.border.TitledBorder;
 
 public class PanelUnTercio extends JPanel {
 
 	private PanelAreaTexto panelDeLetra;
 	private DatosCancion_panel panelDeDatos;
+	private Enlaces_panel panelDeEnlaces;
 	/**
 	 * 
 	 */
@@ -23,6 +29,7 @@ public class PanelUnTercio extends JPanel {
 
 		this.panelDeDatos = panelDeDatos;
 		this.panelDeLetra = panelDeLetra;
+		this.panelDeEnlaces = null;
 		
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
@@ -48,15 +55,33 @@ public class PanelUnTercio extends JPanel {
 
 	}
 	
+	/**
+	 * @wbp.parser.constructor
+	 */
+	public PanelUnTercio(Enlaces_panel panelDeEnlaces, DatosCancion_panel panelDatos) {
+		this.panelDeDatos = panelDatos;
+		this.panelDeLetra = null;
+		this.panelDeEnlaces = panelDeEnlaces;
+		this.setLayout(new GridLayout(2, 1));
+		this.add(panelDatos, BorderLayout.SOUTH);
+		this.add(panelDeEnlaces, BorderLayout.NORTH);
+	}
+
 	public void setDatos(Cancion cancion) {
 		
-		panelDeLetra.setTexto(cancion);
 		panelDeDatos.setDatos(cancion);
+		if (panelDeLetra != null)
+			panelDeLetra.setTexto(cancion);
+		if (panelDeEnlaces != null)
+			panelDeEnlaces.setDatos(cancion);
 	}
 	
 	public void vaciaElPanel() {
 		
-		panelDeLetra.setTexto("");
 		panelDeDatos.vaciarCampos();
+		if (panelDeLetra != null)
+			panelDeLetra.setTexto("");
+		if (panelDeEnlaces != null)
+			panelDeEnlaces.vaciarCampos();
 	}
 }
