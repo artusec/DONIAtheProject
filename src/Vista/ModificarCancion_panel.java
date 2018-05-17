@@ -7,6 +7,8 @@ import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+
 import javax.swing.JButton;
 import javax.swing.JEditorPane;
 import javax.swing.JLabel;
@@ -49,14 +51,13 @@ public class ModificarCancion_panel extends JPanel {
 		panel_1.setBorder(new TitledBorder(null, "LETRA", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		
 		letra = new JEditorPane();
-		letra.setText("Escribe aqu\u00ED la letra");
 		setLayout(new GridLayout(0, 2, 0, 0));
 		add(panel);
 		GridBagLayout gbl_panel = new GridBagLayout();
 		gbl_panel.columnWidths = new int[]{199, 0};
-		gbl_panel.rowHeights = new int[]{34, 16, 26, 16, 26, 0, 16, 26, 26, 29, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+		gbl_panel.rowHeights = new int[]{34, 16, 26, 16, 26, 0, 16, 26, 26, 29, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 		gbl_panel.columnWeights = new double[]{1.0, Double.MIN_VALUE};
-		gbl_panel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_panel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		panel.setLayout(gbl_panel);
 		
 		JLabel lblNombreDeLa = new JLabel("NOMBRE DE LA CANCIÓN");
@@ -94,7 +95,7 @@ public class ModificarCancion_panel extends JPanel {
 		gbc_autor.fill = GridBagConstraints.HORIZONTAL;
 		gbc_autor.insets = new Insets(0, 0, 5, 0);
 		gbc_autor.gridx = 0;
-		gbc_autor.gridy = 5;
+		gbc_autor.gridy = 4;
 		panel.add(autor, gbc_autor);
 		
 		JLabel lbllbum = new JLabel("\u00C1LBUM");
@@ -102,7 +103,7 @@ public class ModificarCancion_panel extends JPanel {
 		gbc_lbllbum.anchor = GridBagConstraints.WEST;
 		gbc_lbllbum.insets = new Insets(0, 0, 5, 0);
 		gbc_lbllbum.gridx = 0;
-		gbc_lbllbum.gridy = 6;
+		gbc_lbllbum.gridy = 5;
 		panel.add(lbllbum, gbc_lbllbum);
 		
 		album = new JTextField();
@@ -111,7 +112,7 @@ public class ModificarCancion_panel extends JPanel {
 		gbc_album.insets = new Insets(0, 0, 5, 0);
 		gbc_album.fill = GridBagConstraints.HORIZONTAL;
 		gbc_album.gridx = 0;
-		gbc_album.gridy = 7;
+		gbc_album.gridy = 6;
 		panel.add(album, gbc_album);
 		
 		JLabel lblGnero = new JLabel("G\u00C9NERO");
@@ -119,7 +120,7 @@ public class ModificarCancion_panel extends JPanel {
 		gbc_lblGnero.fill = GridBagConstraints.HORIZONTAL;
 		gbc_lblGnero.insets = new Insets(0, 0, 5, 0);
 		gbc_lblGnero.gridx = 0;
-		gbc_lblGnero.gridy = 8;
+		gbc_lblGnero.gridy = 7;
 		panel.add(lblGnero, gbc_lblGnero);
 		
 		genero = new JTextField();
@@ -128,7 +129,7 @@ public class ModificarCancion_panel extends JPanel {
 		gbc_genero.insets = new Insets(0, 0, 5, 0);
 		gbc_genero.fill = GridBagConstraints.HORIZONTAL;
 		gbc_genero.gridx = 0;
-		gbc_genero.gridy = 9;
+		gbc_genero.gridy = 8;
 		panel.add(genero, gbc_genero);
 		
 		JLabel lblDuracin = new JLabel("DURAC\u00D3N");
@@ -136,7 +137,7 @@ public class ModificarCancion_panel extends JPanel {
 		gbc_lblDuracin.fill = GridBagConstraints.HORIZONTAL;
 		gbc_lblDuracin.insets = new Insets(0, 0, 5, 0);
 		gbc_lblDuracin.gridx = 0;
-		gbc_lblDuracin.gridy = 10;
+		gbc_lblDuracin.gridy = 9;
 		panel.add(lblDuracin, gbc_lblDuracin);
 		
 		duracion = new JTextField();
@@ -146,7 +147,7 @@ public class ModificarCancion_panel extends JPanel {
 		gbc_duracion.fill = GridBagConstraints.HORIZONTAL;
 		gbc_duracion.insets = new Insets(0, 0, 5, 0);
 		gbc_duracion.gridx = 0;
-		gbc_duracion.gridy = 11;
+		gbc_duracion.gridy = 10;
 		panel.add(duracion, gbc_duracion);
 		
 		JLabel label_1 = new JLabel("ENLACE");
@@ -154,7 +155,7 @@ public class ModificarCancion_panel extends JPanel {
 		gbc_label_1.anchor = GridBagConstraints.WEST;
 		gbc_label_1.insets = new Insets(0, 0, 5, 0);
 		gbc_label_1.gridx = 0;
-		gbc_label_1.gridy = 12;
+		gbc_label_1.gridy = 11;
 		panel.add(label_1, gbc_label_1);
 		
 		video = new JTextField();
@@ -163,7 +164,7 @@ public class ModificarCancion_panel extends JPanel {
 		gbc_video.insets = new Insets(0, 0, 5, 0);
 		gbc_video.fill = GridBagConstraints.HORIZONTAL;
 		gbc_video.gridx = 0;
-		gbc_video.gridy = 13;
+		gbc_video.gridy = 12;
 		panel.add(video, gbc_video);
 		
 		JLabel label_2 = new JLabel("DESCARGA");
@@ -171,7 +172,7 @@ public class ModificarCancion_panel extends JPanel {
 		gbc_label_2.anchor = GridBagConstraints.WEST;
 		gbc_label_2.insets = new Insets(0, 0, 5, 0);
 		gbc_label_2.gridx = 0;
-		gbc_label_2.gridy = 14;
+		gbc_label_2.gridy = 13;
 		panel.add(label_2, gbc_label_2);
 		
 		descarga = new JTextField();
@@ -180,10 +181,45 @@ public class ModificarCancion_panel extends JPanel {
 		gbc_descarga.insets = new Insets(0, 0, 5, 0);
 		gbc_descarga.fill = GridBagConstraints.HORIZONTAL;
 		gbc_descarga.gridx = 0;
-		gbc_descarga.gridy = 15;
+		gbc_descarga.gridy = 14;
 		panel.add(descarga, gbc_descarga);
-		
+
 		JButton btnHecho = new JButton("HECHO");
+		
+		ArrayList<Cancion> list = ventanaPrincipal.getCancionSelecccionada();
+		Cancion cancionVieja = null;
+		if (list.size() > 0) {
+			cancionVieja = list.get(0);
+		}
+		if (cancionVieja != null) {
+			letra.setText(cancionVieja.getLetra().getTexto());
+			titulo.setText(cancionVieja.getTitulo());
+			autor.setText(cancionVieja.getAutor());
+			album.setText(cancionVieja.getAlbum());
+			genero.setText(cancionVieja.getGenero().getId());
+			duracion.setText(String.valueOf(cancionVieja.getDuracion()));
+	
+			Video vid = cancionVieja.getVideo();
+			if (vid != null) {
+				video.setText(vid.getEnlace());
+				descarga.setText(vid.getEnlaceDescarga());
+			}
+			btnHecho.enable();
+		}
+		else {
+			letra.setText("Debes seleccionar una cancion");
+			titulo.setText("Debes seleccionar una cancion");
+			autor.setText("Debes seleccionar una cancion");
+			album.setText("Debes seleccionar una cancion");
+			genero.setText("Debes seleccionar una cancion");
+			duracion.setText("Debes seleccionar una cancion");
+			video.setText("Debes seleccionar una cancion");
+			descarga.setText("Debes seleccionar una cancion");
+			btnHecho.disable();
+		}
+		
+		
+		
 		btnHecho.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (ventanaPrincipal.entradaValida(titulo.getText()) &&
@@ -201,7 +237,7 @@ public class ModificarCancion_panel extends JPanel {
 						ControlCancion controlC = new ControlCancion(ventanaPrincipal.getUsuarioActual());
 						Cancion cancionNueva;
 						cancionNueva = new Cancion(ventanaPrincipal.generaId(), titulo.getText(), autor.getText(),
-								album.getText(), Integer.parseInt(duracion.getText()), letraNueva, videoNuevo, generoNuevo);
+								album.getText(), Double.parseDouble(duracion.getText()), letraNueva, videoNuevo, generoNuevo);
 						System.out.println("creacion cancion ok, guardando en db");
 						controlC.creaCancion(cancionNueva);
 					} catch (NumberFormatException | ErrorCreacionObjeto e1) {
@@ -212,20 +248,20 @@ public class ModificarCancion_panel extends JPanel {
 				}
 			}
 		});
-		
-		JSeparator separator = new JSeparator();
-		GridBagConstraints gbc_separator = new GridBagConstraints();
-		gbc_separator.insets = new Insets(0, 0, 5, 0);
-		gbc_separator.gridx = 0;
-		gbc_separator.gridy = 17;
-		panel.add(separator, gbc_separator);
 		GridBagConstraints gbc_btnHecho = new GridBagConstraints();
 		gbc_btnHecho.insets = new Insets(0, 0, 5, 0);
 		gbc_btnHecho.fill = GridBagConstraints.HORIZONTAL;
 		gbc_btnHecho.anchor = GridBagConstraints.NORTH;
 		gbc_btnHecho.gridx = 0;
-		gbc_btnHecho.gridy = 18;
+		gbc_btnHecho.gridy = 17;
 		panel.add(btnHecho, gbc_btnHecho);
+		
+		JSeparator separator = new JSeparator();
+		GridBagConstraints gbc_separator = new GridBagConstraints();
+		gbc_separator.insets = new Insets(0, 0, 5, 0);
+		gbc_separator.gridx = 0;
+		gbc_separator.gridy = 18;
+		panel.add(separator, gbc_separator);
 		add(panel_1);
 		panel_1.setLayout(new GridLayout(0, 1, 0, 0));
 		panel_1.add(letra);
