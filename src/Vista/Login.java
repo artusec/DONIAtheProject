@@ -210,14 +210,10 @@ public class Login extends JDialog {
 		passwordField.addKeyListener(new KeyListener() {
 			
 			@Override
-			public void keyTyped(KeyEvent e) {
-				
-			}
+			public void keyTyped(KeyEvent e) {}
 			
 			@Override
-			public void keyReleased(KeyEvent e) {
-
-			}
+			public void keyReleased(KeyEvent e) {}
 			
 			@Override
 			public void keyPressed(KeyEvent e) {
@@ -276,6 +272,9 @@ public class Login extends JDialog {
 				VentanaPrincipal.actualizaListas();
 				//Cargar canciones de la biblioteca (TODO) es para pruebas
 				VentanaPrincipal.actualizaCanciones("l0");
+				
+				if(accesor.getId() != "u0")
+					ventanaPrincipal.desactivarBotones();
 				
 				setVisible(false);
 				ventanaPrincipal.verPerfil();

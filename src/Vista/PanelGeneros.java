@@ -1,20 +1,14 @@
 package Vista;
 
 import java.awt.BorderLayout;
-import java.awt.GridLayout;
-
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
-
 import Controlador.ControlGenero;
 import Model.Objetos.Genero;
 import net.miginfocom.swing.MigLayout;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
@@ -22,7 +16,12 @@ import java.awt.event.ActionEvent;
 public class PanelGeneros extends JPanel{
 
 
-	 PanelGeneros(PanelDePaneles<Genero> panelFavoritos, VentanaPrincipal ventanaPrincipal) {
+	 /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	PanelGeneros(PanelDePaneles<Genero> panelFavoritos, VentanaPrincipal ventanaPrincipal) {
 
 			setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Géneros"));
 			JPanel panel = new JPanel();

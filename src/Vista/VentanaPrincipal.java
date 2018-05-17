@@ -303,7 +303,10 @@ public class VentanaPrincipal extends JFrame {
 		if (generos != null)
 			panelFavoritos.setList(generos);
 	}
-;
+	
+	/**
+	 * Actualiza las listas que tiene el usuario actual
+	 */
 	public static void actualizaListas() {
 		ControlLista control = new ControlLista(usuarioActual);
 		panelListas.setList(control.getListasUsuario());
@@ -332,6 +335,10 @@ public class VentanaPrincipal extends JFrame {
 			panelCanciones.setList(lista.getCanciones());
 	}
 	
+	/**
+	 * Establece el usuario actual
+	 * @param accesor
+	 */
 	public void setUsuarioActual(Usuario accesor) {
 		
 		VentanaPrincipal.usuarioActual = accesor;
@@ -342,6 +349,10 @@ public class VentanaPrincipal extends JFrame {
 		return panelCambiante;
 	}
 
+	/**
+	 * Establece el panel cambiante
+	 * @param panelCambiante
+	 */
 	public void setPanelCambiante(JPanel panelCambiante) {
 		
 		this.panelCambiante = panelCambiante;
@@ -351,12 +362,19 @@ public class VentanaPrincipal extends JFrame {
 		
 		return panelCentral;
 	}
-
+	/**
+	 * Establece el panel central
+	 * @param panelCentral
+	 */
 	public void setPanelCentral(JPanel panelCentral) {
 		
 		this.panelCentral = panelCentral;
 	}
 
+	/**
+	 * Devuelve el usuario que esta logueado actualmente en la sesion
+	 * @return usuario actual
+	 */
 	public Usuario getUsuarioActual() {
 		
 		return VentanaPrincipal.usuarioActual;
@@ -382,19 +400,34 @@ public class VentanaPrincipal extends JFrame {
 		return entrada.matches("[a-zA-Z0-9ñÑ& ]*");
 	}
 	
+	/**
+	 * Devuelve una lista de canciones con las seleccionadas en el panel
+	 * @return Lista con las canciones seleccionadas
+	 */
 	public ArrayList<Cancion> getCancionSelecccionada() {
 		
 		return VentanaPrincipal.panelCanciones.getSelectedItems();
 	}
 
+	/**
+	 * Devuelve una lista de listas de reproduccion con las seleccionadas en el panel
+	 * @return Lista con las listas de reproduccion seleccionadas
+	 */
 	public ArrayList<Lista> getListaSelecccionada() {
 		return VentanaPrincipal.panelListas.getSelectedItems();
 	}
 	
+	/**
+	 * Devuelve una lista de Generos con los seleccionados en el panel
+	 * @return Lista con los generos seleccionados
+	 */
 	public ArrayList<Genero> getGeneroSeleccionado(){
 		return VentanaPrincipal.panelFavoritos.getSelectedItems();
 	}
 	
+	/**
+	 * Elimina las canciones seleccionadas en el panel de canciones de la lista contenedora
+	 */
 	public void eliminarCancion() {
 		
 		ArrayList<Cancion> cancionesBorrar = this.getCancionSelecccionada();
@@ -404,11 +437,15 @@ public class VentanaPrincipal extends JFrame {
 		}
 	}
 	
+	/**
+	 * Desactiva los botones de la toolbar que solo puede usar el administrador
+	 */
 	public void desactivarBotones() {
 		
 		toolBar.desactivarBotones();
 	}
 
+	
 	public void deshacerSelecciones() {
 		
 		panelCanciones.borrarSeleccionado();
@@ -418,5 +455,4 @@ public class VentanaPrincipal extends JFrame {
 		
 		panelCanciones.listModel.clear();
 	}
-
 }
