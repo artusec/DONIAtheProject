@@ -410,7 +410,7 @@ public class VentanaPrincipal extends JFrame {
 	 * @return si es valido
 	 */
 	public static boolean entradaValida(String entrada) {
-		return entrada.matches("[a-zA-Z0-9ñÑ& ]*");
+		return entrada != null && entrada.matches("[a-zA-Z0-9ñÑ& ]*") && !entrada.equals("");
 	}
 	
 	/**
