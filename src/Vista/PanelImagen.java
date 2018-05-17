@@ -14,18 +14,18 @@ public class PanelImagen extends JPanel{
 	
 	private BufferedImage image;
 
-    public PanelImagen(boolean cual) {
+    public PanelImagen(String cual) {
 	    	super();
 	    	try {
-	    		if(cual)
-	    		   image = ImageIO.read(new File("src/icons/perfillogo.png"));
-	    		else
-	    		   image = ImageIO.read(new File("src/icons/LOGO_DONIA_pequeno.png"));
+	    		image = ImageIO.read(new File(cual));
+	    	
 	    	} catch (IOException ex) {}
     }
 
     @Override
     protected void paintComponent(Graphics g) {
+    	if(image == null)
+    		System.out.println("null");
         g.drawImage(image, 0 , 0, this); // 165
     }
 }
