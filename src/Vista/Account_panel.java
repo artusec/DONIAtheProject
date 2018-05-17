@@ -12,9 +12,12 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
+import javax.swing.JFrame;
+
 import net.miginfocom.swing.MigLayout;
 import javax.swing.JSeparator;
 //import com.jgoodies.forms.factories.DefaultComponentFactory;
@@ -123,7 +126,26 @@ public class Account_panel extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				
 				ControlUsuario contr = new ControlUsuario(view.getUsuarioActual());
+				int a = JOptionPane.showOptionDialog(new JFrame(), "¿Seguro que quieres borrar el usuario?", "BORRAR USUARIO",
+						JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, null, null);
 				
+				if (a == 0) {
+					if (view.getUsuarioActual().getId().equals("u0")) {
+						JOptionPane.showMessageDialog(new JFrame(), "No se puede borrar el usuario ADMINISTRADOR", "ERROR", JOptionPane.ERROR_MESSAGE);
+					}
+					else {
+						contr.borrar(view.getUsuarioActual());
+						view.setVisible(false);
+						Login lgn = null;
+						try {
+							lgn = new Login(view);
+						} catch (IOException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+						lgn.setVisible(true);
+					}
+				}
 			}
 		});
 		panel_5.add(btnBorrarCuenta, "cell 3 11");
