@@ -13,6 +13,8 @@ import Excepciones.ErrorCreacionObjeto;
 import Model.Objetos.ListaNormal;
 
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.ActionEvent;
 //import com.jgoodies.forms.factories.DefaultComponentFactory;
 import javax.swing.LayoutStyle.ComponentPlacement;
@@ -29,6 +31,7 @@ public class CrearLista extends JPanel {
 	 * @param ventanaPrincipal 
 	 */
 	public CrearLista(VentanaPrincipal ventanaPrincipal) {
+		
 		setBorder(new TitledBorder(null, "Crear lista", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		
 		JLabel lblNewLabel = new JLabel("Nombre:");
@@ -36,7 +39,7 @@ public class CrearLista extends JPanel {
 		entradaNombre = new JTextField();
 		entradaNombre.setColumns(10);
 		entradaNombre.setText("");
-		
+
 		JButton btnCrear = new JButton("Crear");
 		
 		JLabel lblNombreInvalido = new JLabel("NOMBRE INVALIDO");// DefaultComponentFactory.getInstance().createLabel("NOMBRE INVALIDO");
@@ -95,9 +98,23 @@ public class CrearLista extends JPanel {
 					VentanaPrincipal.muestraError(e1);
 				}
 			}
-		});
+			});
 		
-		
+		entradaNombre.addKeyListener(new KeyListener() {
+			
+			@Override
+			public void keyTyped(KeyEvent e) {}
+			
+			@Override
+			public void keyReleased(KeyEvent e) {}
+			
+			@Override
+			public void keyPressed(KeyEvent e) {
 
+                if(e.getKeyCode() == KeyEvent.VK_ENTER){
+                		btnCrear.doClick();
+                }
+			}
+		});
 	}
 }
