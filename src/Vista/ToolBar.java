@@ -89,8 +89,22 @@ public class ToolBar extends JToolBar {
 		
 		this.add(eliminarCancion);
 		
-
-		this.add(new Separator());
+		
+		JButton modifCancion = new JButton();
+		modifCancion.setToolTipText("Modificar cancion");
+		modifCancion.setIcon(new ImageIcon(("src/icons/modificarCancion.png")));
+		modifCancion.setText("Modificar canción");
+		modifCancion.setHorizontalTextPosition( SwingConstants.CENTER );
+		modifCancion.setVerticalTextPosition( SwingConstants.BOTTOM );
+		modifCancion.addActionListener(new ActionListener()
+		{
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				mainWindow.verModificarCancion();
+			}
+		 });
+		
+		this.add(modifCancion);
 		
 		
 		salir = new JButton();
@@ -115,9 +129,9 @@ public class ToolBar extends JToolBar {
 	}
 
 
-	public void Botones(Boolean b) {
-		
-		aniadirCancion.setEnabled(b);
-		eliminarCancion.setEnabled(b);
+
+	public void configurarBotones(boolean cual) {
+		aniadirCancion.setEnabled(cual);
+		eliminarCancion.setEnabled(cual);
 	}
 }

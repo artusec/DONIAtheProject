@@ -20,6 +20,7 @@ public class PanelAreaTexto extends JPanel {
 		this.areatexto.setEditable(editable);
 		this.add(new JScrollPane(areatexto));
 		this.setBorde(titulo);
+		areatexto.setLineWrap(true);
 	 }
 	 
 	 
