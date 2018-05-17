@@ -452,9 +452,9 @@ public class VentanaPrincipal extends JFrame {
 	/**
 	 * Desactiva los botones de la toolbar que solo puede usar el administrador
 	 */
-	public void desactivarBotones() {
+	public void Botones(Boolean b) {
 		
-		toolBar.desactivarBotones();
+		toolBar.Botones(b);
 	}
 
 	

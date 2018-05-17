@@ -115,9 +115,9 @@ public class ToolBar extends JToolBar {
 	}
 
 
-	public void desactivarBotones() {
+	public void Botones(Boolean b) {
 		
-		aniadirCancion.setEnabled(false);
-		eliminarCancion.setEnabled(false);
+		aniadirCancion.setEnabled(b);
+		eliminarCancion.setEnabled(b);
 	}
 }

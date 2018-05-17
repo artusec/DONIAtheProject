@@ -28,6 +28,7 @@ public class Account_panel extends JPanel {
 	private JTextField textField_1;
 	private JPasswordField passwordField;
 	private VentanaPrincipal view;
+	private JLabel exito ;
 	/**
 	 * Create the panel.
 	 */
@@ -52,9 +53,7 @@ public class Account_panel extends JPanel {
 		panel.setPreferredSize(new Dimension(200, 200));
 		panel.setLayout(null);
 
-		JPanel panel_6 = new JPanel();
-		JLabel lblNewJgoodiesLabel = new JLabel("");
-		panel_6.add(lblNewJgoodiesLabel, "cell 3 7");
+		JPanel panel_6 = new JPanel();;
 		
 
 		PanelImagen panelimg = null;
@@ -75,9 +74,9 @@ public class Account_panel extends JPanel {
 					try {
 						usuario = new Usuario(id, nombre, clave);
 						ctrlUsuario.modificar(usuario);
-						lblNewJgoodiesLabel.setText("Usuario modificado con éxito");
+						exito.setText("Datos cambiados con exito");
 					} catch (ErrorCreacionObjeto e) {
-						lblNewJgoodiesLabel.setText("Datos invalidos. Introduzcalos correctamente");
+						exito.setText("Error, imposible cambiar los datos");
 					}
 				}
 				else {
@@ -121,7 +120,7 @@ public class Account_panel extends JPanel {
 		
 		
 		panel_2.add(panel_6, "cell 0 2,grow");
-		panel_6.setLayout(new MigLayout("", "[49px,grow][80px][][116px][][116px][6px]", "[22px][][25.00,center][][21.00][][][]"));
+		panel_6.setLayout(new MigLayout("", "[49px,grow][80px][][116px][][][116px][6px]", "[22px][][25.00,center][][21.00][][][]"));
 		
 		
 			
@@ -130,21 +129,23 @@ public class Account_panel extends JPanel {
 		textField = new JTextField();
 		textField.setEditable(false);
 		textField.setColumns(10);
-		panel_6.add(textField, "cell 4 1,alignx left,aligny top");
+		panel_6.add(textField, "cell 5 1,alignx left,aligny top");
 		
 		JSeparator separator_1 = new JSeparator();
-		panel_6.add(separator_1, "cell 1 2 5 1");
+		panel_6.add(separator_1, "cell 1 2 6 1");
 		JLabel lblNombre = new JLabel("NOMBRE");
 		panel_6.add(lblNombre, "cell 2 3,alignx left,aligny center");
 		textField_1 = new JTextField();
 		textField_1.setColumns(10);
-		panel_6.add(textField_1, "cell 4 3,alignx left,aligny top");
+		panel_6.add(textField_1, "cell 5 3,alignx left,aligny top");
 		JLabel lblContrasea = new JLabel("CONTRASEÑA");
 		panel_6.add(lblContrasea, "cell 2 5,alignx left,aligny center");
 		
 		passwordField = new JPasswordField();
 
-		panel_6.add(passwordField, "cell 4 5,growx,aligny top");
+		panel_6.add(passwordField, "cell 5 5,growx,aligny top");
+		exito = new JLabel("");
+		panel_6.add(exito, "cell 3 7");
 		
 		
 
