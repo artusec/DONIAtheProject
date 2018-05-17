@@ -27,8 +27,11 @@ public class Enlaces_panel extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public Enlaces_panel() {
+
+	public Enlaces_panel(VentanaPrincipal ventanaPrincipal) {
 		setLayout(new MigLayout("", "[][405.00,center]", "[20px][][22px][20px][22px][25px][][][][][][]"));
+
+
 		
 		JLabel lblEnlaceVerVideo = new JLabel("Ver video");
 		lblEnlaceVerVideo.setFont(new Font("Rockwell Extra Bold", Font.BOLD, 16));
@@ -51,8 +54,7 @@ public class Enlaces_panel extends JPanel {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
-				setVisible(false);
+				ventanaPrincipal.verPanelLetras();
 			}
 		});
 		add(btnVolver, "cell 1 9,alignx center,aligny top");

@@ -9,7 +9,6 @@ import java.awt.GridLayout;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.border.TitledBorder;
 
 public class PanelUnTercio extends JPanel {
 
@@ -51,7 +50,7 @@ public class PanelUnTercio extends JPanel {
 					.addContainerGap())
 		);
 		setLayout(groupLayout);
-		
+		panelDeDatos.verBoton();
 
 	}
 	
@@ -63,8 +62,9 @@ public class PanelUnTercio extends JPanel {
 		this.panelDeLetra = null;
 		this.panelDeEnlaces = panelDeEnlaces;
 		this.setLayout(new GridLayout(2, 1));
-		this.add(panelDatos, BorderLayout.SOUTH);
 		this.add(panelDeEnlaces, BorderLayout.NORTH);
+		panelDeDatos.ocultarBoton();
+		this.add(panelDatos, BorderLayout.SOUTH);
 	}
 
 	public void setDatos(Cancion cancion) {

@@ -303,7 +303,7 @@ public class VentanaPrincipal extends JFrame {
 		panelCambiante.setLayout(new BorderLayout());
 		this.panelCambiante.setOpaque(false);
 		DatosCancion_panel panelDatos = new DatosCancion_panel(this);
-		Enlaces_panel panelDeEnlaces = new Enlaces_panel();
+		Enlaces_panel panelDeEnlaces = new Enlaces_panel(this);
 		panelUnTercio = new PanelUnTercio(panelDeEnlaces, panelDatos);
 		
 		Cancion aux = panelCanciones.getSelectedItem();

@@ -24,6 +24,7 @@ public class DatosCancion_panel extends JPanel {
 	private JTextField duracion;
 	private JTextField genero;
 	private Enlaces_panel enlacesPanel;
+	private JButton btnEnlaces;
 
 	/**
 	 * Create the panel.
@@ -59,10 +60,10 @@ public class DatosCancion_panel extends JPanel {
 		genero.setEditable(false);
 		genero.setColumns(10);
 		
-		enlacesPanel = new Enlaces_panel();
+		enlacesPanel = new Enlaces_panel(ventanaPrincipal);
 
 		
-		JButton btnEnlaces = new JButton("Enlaces");
+		btnEnlaces = new JButton("Enlaces");
 		btnEnlaces.addActionListener(new ActionListener() {
 			
 			@Override
@@ -144,5 +145,13 @@ public class DatosCancion_panel extends JPanel {
 		titulo.setText("");
 		artista.setText("");
 		duracion.setText("");
+	}
+
+	public void ocultarBoton() {
+		btnEnlaces.setVisible(false);
+	}
+
+	public void verBoton() {
+		btnEnlaces.setVisible(true);
 	}
 }
