@@ -26,7 +26,7 @@ public class Enlaces_panel extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public Enlaces_panel() {
+	public Enlaces_panel(VentanaPrincipal ventanaPrincipal) {
 		
 		JLabel lblEnlaceVerVideo = new JLabel("Ver video");
 		lblEnlaceVerVideo.setFont(new Font("Rockwell Extra Bold", Font.BOLD, 16));
@@ -45,8 +45,7 @@ public class Enlaces_panel extends JPanel {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
-				setVisible(false);
+				ventanaPrincipal.verPanelLetras();
 			}
 		});
 		GroupLayout groupLayout = new GroupLayout(this);
