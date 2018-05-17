@@ -28,7 +28,7 @@ public class DatosCancion_panel extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public DatosCancion_panel() {
+	public DatosCancion_panel(VentanaPrincipal ventanaPrincipal) {
 		setBorder(new TitledBorder(null, "Datos de la canción", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		
 		JLabel lblTtulo = new JLabel("Título");
@@ -67,8 +67,7 @@ public class DatosCancion_panel extends JPanel {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
-				enlacesPanel.setVisible(true);
+				ventanaPrincipal.verPanelCancion();
 			}
 		});
 		GroupLayout groupLayout = new GroupLayout(this);

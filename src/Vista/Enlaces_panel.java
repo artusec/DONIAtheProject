@@ -88,7 +88,7 @@ public class Enlaces_panel extends JPanel {
 		);
 		setLayout(groupLayout);
 		
-		setVisible(false);
+		setVisible(true);
 
 	}
 	
@@ -96,5 +96,10 @@ public class Enlaces_panel extends JPanel {
 		
 		this.textField.setText(cancion.getVideo().getEnlace());
 		this.textField_1.setText(cancion.getVideo().getEnlaceDescarga());
+	}
+
+	public void vaciarCampos() {
+		this.textField.setText("");
+		this.textField_1.setText("");		
 	}
 }
