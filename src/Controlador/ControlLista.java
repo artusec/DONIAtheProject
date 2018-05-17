@@ -15,26 +15,45 @@ import Model.Objetos.ListaAuto;
 import Model.Objetos.Usuario;
 import Vista.VentanaPrincipal;
 
+/**
+ * Clase ControlLista, permite la interacción entre la interfaz gráfica y el subsistema lista.
+ */
 public class ControlLista {
 
-	//el controlador necesita el usuario actual para acceder a solo a sus listas
-	Usuario usuarioActual = null;
+	//Usuario actual
+	Usuario usuarioActual;
+	//Fachada del subsistema
 	InterfazFachadaLista fLista;
-	VentanaPrincipal ventanaPrincipal;
 
+	/**
+	 * Construye el controlador.
+	 * @param usuarioActual el usuario actual
+	 */
 	public ControlLista(Usuario usuarioActual) {
 		this.setfLista();
 		this.setUsuarioActual(usuarioActual);
 	}
 
+	/**
+	 * Establece la fachada del subsistema a conectar.
+	 */
 	private void setfLista() {
 		this.fLista = new ListaFachada();
 	}
 
+	/**
+	 * Establece el usuario actual.
+	 * @param usuarioActual El usuario a establecer.
+	 */
 	private void setUsuarioActual(Usuario usuarioActual) {
 		this.usuarioActual = usuarioActual;
 	}
 	
+	/**
+	 * Solicita al subsistema lista el guardado de una lista, además la asocia al usuario solicitante.
+	 * Si hay error, lo notifica a la interfaz gráfica.
+	 * @param lista La lista a guardar.
+	 */
 	public void crearLista(Lista lista) {
 	    	try {
 	    		fLista.crearLista(lista, usuarioActual);
@@ -44,9 +63,15 @@ public class ControlLista {
 	    	}
     }
 
-    public void crearListaAuto(ListaAuto listaAuto, double d) {
+	/**
+	 * Solicita al subsistema lista la elaboración y guardado de una lista automática de una lista de reproducción
+	 * basada en el género indicado, además la asocia al usuario solicitante.
+	 * Si hay error, lo notifica a la interfaz gráfica.
+	 * @param lista La lista a guardar.
+	 */
+    public void crearListaAuto(ListaAuto listaAuto, double duracion) {
     		try {
-    			fLista.crearListaAuto(listaAuto, usuarioActual, d);
+    			fLista.crearListaAuto(listaAuto, usuarioActual, duracion);
     			VentanaPrincipal.actualizaListas();
 		} catch (ErrorAutenticacion | ErrorCreacionObjeto | ErrorConsulta | ErrorGuardado e) {
 			VentanaPrincipal.muestraError(e);
@@ -55,6 +80,12 @@ public class ControlLista {
 		}
     }
 
+    /**
+     * Solicita al subsistema lista la información de la lista indicada.
+     * Si hay error, lo notifica a la interfaz gráfica.
+     * @param idLista El identificador de la lista a consultar.
+     * @return La lista obtenida.
+     */
 	public Lista consulta(String idLista) {
     		try {
 			return fLista.consulta(idLista);
@@ -64,46 +95,82 @@ public class ControlLista {
     		return null;
 	}
 
+	/**
+	 * Solicita al subsistema lista la eliminación de una lista de reproducción.
+	 * Si la lista a borrar es la biblioteca, se impide la eliminación.
+	 * Si hay error, lo notifica a la interfaz gráfica.
+	 * @param cancion La canción a eliminar.
+	 */
 	public void eliminar(Lista lista) {
 		try {
-			if (lista.getId() != "l0")
+			if (lista.getId().equals("l0"))
 				fLista.eliminar(lista, usuarioActual);
 			else
-				VentanaPrincipal.muestraError(new ErrorEliminacion("No borres la biblioteca loc@!"));
+				VentanaPrincipal.muestraError(new ErrorEliminacion("No borres la biblioteca locx!"));
 		} catch (ErrorAutenticacion | ErrorEliminacion e) {
 			VentanaPrincipal.muestraError(e);
 		}
 		VentanaPrincipal.actualizaListas();
 		VentanaPrincipal.actualizaCanciones("l0");
 	}
-
+	
+	/**
+	 * Solicita al subsistema lista la modificación de una lista de reproducción.
+	 * Si la lista a modificar es la biblioteca, se impide la modificación.
+	 * Si hay error, lo notifica a la interfaz gráfica.
+	 * @param cancion La canción a eliminar.
+	 */
 	public void modificar(Lista lista) {
 		try {
-			fLista.modificar(lista, usuarioActual);
-			VentanaPrincipal.actualizaListas();
+			if (!lista.getId().equals("l0"))
+				fLista.modificar(lista, usuarioActual);
+			else
+				VentanaPrincipal.muestraError(new ErrorEliminacion("No toques la biblioteca!"));
 		} catch (ErrorAutenticacion | ErrorGuardado e) {
 			VentanaPrincipal.muestraError(e);
-		}		
+		}
+		VentanaPrincipal.actualizaListas();
 	}
 
+	/**
+	 * Solicita al subsistema lista la inserción de una canción en una lista de reproducción.
+	 * Si la lista a modificar es la biblioteca, se impide la inserción.
+	 * Si hay error, lo notifica a la interfaz gráfica.
+	 * @param cancion La canción a insertar.
+	 * @param lista La lista objetivo.
+	 */
 	public void anadirCancion(Cancion cancion, Lista lista) {
 		try {
-			fLista.anadirCancion(cancion, lista, usuarioActual);
+			if (!lista.getId().equals("l0"))
+				fLista.anadirCancion(cancion, lista, usuarioActual);
 			VentanaPrincipal.actualizaCanciones(lista.getId());
 		} catch (ErrorAutenticacion | ErrorCreacionObjeto | ErrorConsulta | ErrorGuardado e) {
 			VentanaPrincipal.muestraError(e);
 		}
 	}
 
+	/**
+	 * Solicita al subsistema lista la eliminación de una canción en una lista de reproducción.
+	 * Si la lista a modificar es la biblioteca, se impide la eliminación.
+	 * Si hay error, lo notifica a la interfaz gráfica.
+	 * @param cancion La canción a eliminar.
+	 * @param lista La lista objetivo.
+	 */
 	public void eliminarCancion(Cancion cancion, Lista lista) {
 		try {
-			fLista.eliminarCancion(cancion, lista, usuarioActual);
+			if (!lista.getId().equals("l0"))
+				fLista.eliminarCancion(cancion, lista, usuarioActual);
 			VentanaPrincipal.actualizaListas();
 		} catch (ErrorAutenticacion | ErrorCreacionObjeto | ErrorConsulta | ErrorGuardado e) {
 			VentanaPrincipal.muestraError(e);
 		}
 	}
 	
+	/**
+     * Solicita al subsistema lista la colección de listas del usuario actual.
+     * Si hay error, lo notifica a la interfaz gráfica.
+     * @return Las listas obtenidas.
+     */
 	public ArrayList<Lista> getListasUsuario() {
 		try {
 			return fLista.mostrar(usuarioActual);
