@@ -40,10 +40,8 @@ public class Account_panel extends JPanel {
 		
 
 		JPanel panel_2 = new JPanel();
-		add(panel_2, BorderLayout.NORTH);
-		panel_2.setLayout(new MigLayout("", "[445.00,grow]", "[164.00][206.00][84.00][]"));
-
-
+		add(panel_2, BorderLayout.CENTER);
+		panel_2.setLayout(new MigLayout("", "[445.00,grow]", "[303.00][157.00][]"));
 		
 		JPanel panel_5 = new JPanel();
 		panel_2.add(panel_5, "cell 0 0,grow");
@@ -85,7 +83,6 @@ public class Account_panel extends JPanel {
 				}
 			}
 		});
-		
 				
 
 		panel_5.add(btnEditarPerfil, "cell 3 4,growx,aligny top");

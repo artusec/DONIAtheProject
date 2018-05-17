@@ -8,8 +8,11 @@ import Model.Objetos.Cancion;
 import javax.swing.JLabel;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JTextField;
-import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
 
 public class DatosCancion_panel extends JPanel {
 	/**
@@ -20,8 +23,7 @@ public class DatosCancion_panel extends JPanel {
 	private JTextField artista;
 	private JTextField duracion;
 	private JTextField genero;
-	private JTextField enlace;
-	private JTextField descarga;
+	private Enlaces_panel enlacesPanel;
 
 	/**
 	 * Create the panel.
@@ -30,20 +32,16 @@ public class DatosCancion_panel extends JPanel {
 		setBorder(new TitledBorder(null, "Datos de la canción", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		
 		JLabel lblTtulo = new JLabel("Título");
-		lblTtulo.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		lblTtulo.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		
 		JLabel lblArtista = new JLabel("Artista");
-		lblArtista.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		lblArtista.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		
 		JLabel lblDuracin = new JLabel("Duración");
-		lblDuracin.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		lblDuracin.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		
 		JLabel lblGnero = new JLabel("Género");
-		lblGnero.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		
-		JLabel lblEnlace = new JLabel("Enlace de descarga");
-		lblEnlace.setFont(new Font("Arial Black", Font.ITALIC, 14));
-		lblEnlace.setBackground(Color.MAGENTA);
+		lblGnero.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		
 		titulo = new JTextField();
 		titulo.setEditable(false);
@@ -61,76 +59,66 @@ public class DatosCancion_panel extends JPanel {
 		genero.setEditable(false);
 		genero.setColumns(10);
 		
-		enlace = new JTextField();
-		enlace.setEnabled(true);
-		enlace.setColumns(10);
+		enlacesPanel = new Enlaces_panel();
+
 		
-		JLabel lblEnlaceVerVideoclip = new JLabel("Enlace ver videoclip");
-		lblEnlaceVerVideoclip.setFont(new Font("Arial Black", Font.ITALIC, 14));
-		
-		descarga = new JTextField();
-		descarga.setColumns(10);
+		JButton btnEnlaces = new JButton("Enlaces");
+		btnEnlaces.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				enlacesPanel.setVisible(true);
+			}
+		});
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.TRAILING)
+			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addGap(23)
+					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+						.addComponent(btnEnlaces)
+						.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+							.addComponent(artista, GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE)
+							.addComponent(lblArtista)
+							.addGroup(groupLayout.createSequentialGroup()
+								.addComponent(lblTtulo, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+								.addGap(154))
+							.addComponent(titulo, GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE)))
+					.addGap(29)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(artista, GroupLayout.PREFERRED_SIZE, 187, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblTtulo)
-						.addComponent(titulo, GroupLayout.PREFERRED_SIZE, 187, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblArtista))
-					.addPreferredGap(ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(duracion, GroupLayout.PREFERRED_SIZE, 78, GroupLayout.PREFERRED_SIZE)
 						.addComponent(lblGnero)
-						.addComponent(genero, GroupLayout.PREFERRED_SIZE, 77, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblDuracin))
-					.addGap(23))
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(103)
-					.addComponent(lblEnlace, GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE)
-					.addGap(78))
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(99)
-					.addComponent(lblEnlaceVerVideoclip, GroupLayout.PREFERRED_SIZE, 198, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(75, Short.MAX_VALUE))
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(8)
-					.addComponent(descarga, GroupLayout.PREFERRED_SIZE, 354, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(enlace, GroupLayout.DEFAULT_SIZE, 352, Short.MAX_VALUE)
-					.addContainerGap())
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(genero, GroupLayout.DEFAULT_SIZE, 77, Short.MAX_VALUE)
+							.addGap(1))
+						.addComponent(duracion, GroupLayout.DEFAULT_SIZE, 78, Short.MAX_VALUE)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(lblDuracin, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+							.addGap(23)))
+					.addGap(33))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(19)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblTtulo)
 						.addComponent(lblDuracin))
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-						.addComponent(duracion, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(titulo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(lblGnero)
-						.addComponent(lblArtista))
+					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(titulo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(duracion, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(18)
+					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblArtista)
+						.addComponent(lblGnero))
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(artista, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(genero, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(lblEnlace)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(enlace, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(lblEnlaceVerVideoclip)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(descarga, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+					.addGap(40)
+					.addComponent(btnEnlaces)
+					.addContainerGap(34, Short.MAX_VALUE))
 		);
 		setLayout(groupLayout);
 
@@ -146,12 +134,8 @@ public class DatosCancion_panel extends JPanel {
 			Double duracion = cancion.getDuracion();
 			int min = (int) (duracion / 60);
 			int seg = (int) (duracion % 60);
-			String a = String.valueOf(duracion);
 			this.duracion.setText(Integer.toString(min) + " min " + Integer.toString(seg) + " seg");
-			// enlace.setText(cancion.getVideo().getEnlace()); // no va bien
-			// descarga.setText(cancion.getVideo().getEnlaceDescarga());
 		}
-		
 	}
 
 	public void vaciarCampos() {
@@ -159,7 +143,5 @@ public class DatosCancion_panel extends JPanel {
 		titulo.setText("");
 		artista.setText("");
 		duracion.setText("");
-		enlace.setText("");
-		descarga.setText("");
 	}
 }
