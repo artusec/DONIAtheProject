@@ -6,8 +6,11 @@ import Controlador.ControlUsuario;
 import Excepciones.ErrorCreacionObjeto;
 import Model.Objetos.Usuario;
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
@@ -25,6 +28,7 @@ public class Account_panel extends JPanel {
 	private JTextField textField_1;
 	private JPasswordField passwordField;
 	private VentanaPrincipal view;
+	private JLabel exito ;
 	/**
 	 * Create the panel.
 	 */
@@ -39,28 +43,31 @@ public class Account_panel extends JPanel {
 		add(panel_2, BorderLayout.NORTH);
 		panel_2.setLayout(new MigLayout("", "[445.00,grow]", "[164.00][206.00][84.00][]"));
 
+
 		
 		JPanel panel_5 = new JPanel();
 		panel_2.add(panel_5, "cell 0 0,grow");
 		panel_5.setLayout(new MigLayout("", "[99px][111px,grow][163px][148px,grow][116px]", "[][25px,grow][][][][][][][][][][][][]"));
 		
 		JPanel panel = new JPanel();
-		panel_5.add(panel, "cell 2 0,grow");
+		panel_5.add(panel, "cell 1 0 3 1,grow");
+		panel.setPreferredSize(new Dimension(200, 200));
 		panel.setLayout(null);
 
+		JPanel panel_6 = new JPanel();;
+		
 
-		PanelImagen panelimg = new PanelImagen(false);
-		panelimg.setBounds(0, 0, panel.getWidth(),panel.getHeight());
+		PanelImagen panelimg = null;
+		panelimg = new PanelImagen("src/icons/perfilLogo.png");
+		panelimg.setBounds(160, 0, 131,131);
 		panel.add(panelimg);
-
-		JLabel lblNewJgoodiesLabel = new JLabel("");//DefaultComponentFactory.getInstance().createLabel("");
 		
 		JButton btnEditarPerfil = new JButton("Editar perfil");
 		btnEditarPerfil.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				String id = textField.getText();
 				String nombre = textField_1.getText();
-				String clave = passwordField.getText();
+				String clave = String.valueOf(passwordField.getPassword());
 				if (VentanaPrincipal.entradaValida(id) && VentanaPrincipal.entradaValida(nombre)
 					&& VentanaPrincipal.entradaValida(clave)) {
 					ControlUsuario ctrlUsuario = new ControlUsuario(view.getUsuarioActual());
@@ -68,9 +75,9 @@ public class Account_panel extends JPanel {
 					try {
 						usuario = new Usuario(id, nombre, clave);
 						ctrlUsuario.modificar(usuario);
-						lblNewJgoodiesLabel.setText("Usuario modificado con éxito");
+						exito.setText("Datos cambiados con exito");
 					} catch (ErrorCreacionObjeto e) {
-						lblNewJgoodiesLabel.setText("Datos invalidos. Introduzcalos correctamente");
+						exito.setText("Error, imposible cambiar los datos");
 					}
 				}
 				else {
@@ -96,7 +103,13 @@ public class Account_panel extends JPanel {
 					public void actionPerformed(ActionEvent e) {
 						view.setUsuarioActual(null);
 						view.setVisible(false);
-						Login lgn = new Login(view);
+						Login lgn = null;
+						try {
+							lgn = new Login(view);
+						} catch (IOException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
 						lgn.setVisible(true);
 					}
 				});
@@ -110,46 +123,44 @@ public class Account_panel extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				
 				ControlUsuario contr = new ControlUsuario(view.getUsuarioActual());
-				contr.borrar(usuario);
 				
 			}
 		});
 		panel_5.add(btnBorrarCuenta, "cell 3 11");
 		
-		panel_2.add(lblNewJgoodiesLabel, "cell 0 1,alignx center,aligny center");
-		
 		JSeparator separator = new JSeparator();
-		panel_2.add(separator, "cell 0 2");
+		panel_2.add(separator, "cell 0 1");
 		
-		JPanel panel_6 = new JPanel();
-		panel_2.add(panel_6, "cell 0 3,grow");
-		panel_6.setLayout(new MigLayout("", "[12px][49px,grow][80px][][116px][][116px][6px]", "[22px][][25.00,center][][21.00][][][]"));
+		
+		panel_2.add(panel_6, "cell 0 2,grow");
+		panel_6.setLayout(new MigLayout("", "[49px,grow][80px][][116px][][][116px][6px]", "[22px][][25.00,center][][21.00][][][]"));
 		
 		
 			
 		JLabel lblId = new JLabel("ID");
-		panel_6.add(lblId, "cell 3 1,alignx left,aligny center");
+		panel_6.add(lblId, "cell 2 1,alignx left,aligny center");
 		textField = new JTextField();
 		textField.setEditable(false);
 		textField.setColumns(10);
 		panel_6.add(textField, "cell 5 1,alignx left,aligny top");
 		
 		JSeparator separator_1 = new JSeparator();
-		panel_6.add(separator_1, "cell 2 2 5 1");
+		panel_6.add(separator_1, "cell 1 2 6 1");
 		JLabel lblNombre = new JLabel("NOMBRE");
-		panel_6.add(lblNombre, "cell 3 3,alignx left,aligny center");
+		panel_6.add(lblNombre, "cell 2 3,alignx left,aligny center");
 		textField_1 = new JTextField();
 		textField_1.setColumns(10);
 		panel_6.add(textField_1, "cell 5 3,alignx left,aligny top");
-		
-		JSeparator separator_2 = new JSeparator();
-		panel_6.add(separator_2, "cell 0 4 7 1");
 		JLabel lblContrasea = new JLabel("CONTRASEÑA");
-		panel_6.add(lblContrasea, "cell 3 5,alignx left,aligny center");
+		panel_6.add(lblContrasea, "cell 2 5,alignx left,aligny center");
 		
 		passwordField = new JPasswordField();
 
 		panel_6.add(passwordField, "cell 5 5,growx,aligny top");
+		exito = new JLabel("");
+		panel_6.add(exito, "cell 3 7");
+		
+		
 
 
 	}

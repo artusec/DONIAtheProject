@@ -7,6 +7,7 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.UUID;
 import javax.swing.BorderFactory;
@@ -48,7 +49,12 @@ public class VentanaPrincipal extends JFrame {
 	public VentanaPrincipal () {	
 		super("Donia");
 		initGUI();
-		Login = new Login(this);
+		try {
+			Login = new Login(this);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		Login.setVisible(true);
 	}
 	
@@ -164,7 +170,13 @@ public class VentanaPrincipal extends JFrame {
 		panelCambiante = new JPanel();
 		panelCambiante.setLayout(new BorderLayout());
 		this.panelCambiante.setOpaque(false);
-		Account_panel account = new Account_panel(this);
+		Account_panel account = null;
+		try {
+			account = new Account_panel(this);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		account.setDatosUsuario(usuarioActual);
 		account.setVisible(true);
 		account.setOpaque(false);
@@ -453,9 +465,11 @@ public class VentanaPrincipal extends JFrame {
 	/**
 	 * Desactiva los botones de la toolbar que solo puede usar el administrador
 	 */
+
 	public void configurarBotones(boolean cual) {
-		
+
 		toolBar.configurarBotones(cual);
+
 	}
 
 	

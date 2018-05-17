@@ -8,6 +8,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.io.IOException;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -170,14 +171,15 @@ public class Login extends JDialog {
 
 	/**
 	 * Create the dialog.
+	 * @throws IOException 
 	 */
-	public Login(VentanaPrincipal ventanaPrincipal) {
+	public Login(VentanaPrincipal ventanaPrincipal) throws IOException {
 		correcto = false;
 		singUp = new SingUp(this);
 		initGui(ventanaPrincipal);
 	}
 
-	private void initGui(VentanaPrincipal ventanaPrincipal) {
+	private void initGui(VentanaPrincipal ventanaPrincipal) throws IOException {
 		setBounds(100, 100, 501, 616);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -244,8 +246,8 @@ public class Login extends JDialog {
 		btnLogin.setBounds(258, 516, 97, 25);
 		contentPanel.add(btnLogin);
 		
-		PanelImagen panel = new PanelImagen(false);
-		panel.setBounds(10, 11, 475, 318);
+		PanelImagen panel = new PanelImagen("src/icons/LOGO_DONIA_pequeno.png");
+		panel.setBounds(10, 10, 475, 318);
 		panel.setOpaque(false);
 		contentPanel.add(panel, Alignment.CENTER);
 		setLocationRelativeTo(null);
@@ -269,9 +271,12 @@ public class Login extends JDialog {
 				VentanaPrincipal.actualizaCanciones("l0");
 				
 				if(!accesor.getId().equals("u0"))
+
+
 					ventanaPrincipal.configurarBotones(false);
 				else
 					ventanaPrincipal.configurarBotones(true);
+
 				
 				setVisible(false);
 				ventanaPrincipal.verPerfil();
