@@ -135,15 +135,16 @@ public class SASDAO implements InterfazSASDAO {
     private Video getVideoDB(String idVideo) throws ErrorConsulta, ErrorCreacionObjeto {
     		try {
 			if (this.conectado() && idVideo != null) {
+				System.out.println("obteniendo video...");
 				Video video = null;
 			    PreparedStatement stat = this.DBconn.prepareStatement("select * from video where video = '" + idVideo + "';");
 			    ResultSet datosVideo = stat.executeQuery();
 				if(datosVideo.next()) {
 					//si ha leido bien lo que queriamos
-					String id = datosVideo.getString("cancion");
+					String id = datosVideo.getString("video");
 					String enlace = datosVideo.getString("enlace");
 					String enlaceDescarga = datosVideo.getString("enlaceDescarga");
-					
+					System.out.println("hay video " + enlace);
 					video = new Video(id, enlace, enlaceDescarga);
 				}
 				return video;
@@ -677,12 +678,16 @@ public class SASDAO implements InterfazSASDAO {
 			if (this.conectado() && cancion != null) {
 				//recabar datos usuario
 				String idCancion = cancion.getId();
-				//borrar lista
-				String sentencia = "";
-				//al borrar la lista deberia hacer cascade
-				sentencia += DBstruct.deleteCancion(idCancion);
-				PreparedStatement ps = this.DBconn.prepareStatement(sentencia + ';');
-				ps.executeQuery();
+				if (this.existeCancion(idCancion)) {
+					//borrar cancion
+					String sentencia;
+					//al borrar la cancion deberia hacer cascade
+					sentencia = DBstruct.deleteCancion(idCancion);
+					PreparedStatement ps = this.DBconn.prepareStatement(sentencia + ';');
+					ps.executeQuery();
+				} else {
+					throw new ErrorEliminacion("La cancion no se encuentra!");
+				}
 			}
 		} catch (SQLException e) {
 			throw new ErrorEliminacion();

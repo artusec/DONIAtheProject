@@ -18,6 +18,7 @@ import java.awt.event.KeyListener;
 import java.awt.event.ActionEvent;
 //import com.jgoodies.forms.factories.DefaultComponentFactory;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import net.miginfocom.swing.MigLayout;
 
 public class CrearLista extends JPanel {
 	/**
@@ -34,71 +35,15 @@ public class CrearLista extends JPanel {
 		
 		setBorder(new TitledBorder(null, "Crear lista", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		
+		JButton btnCrear = new JButton("Crear");
+		
 		JLabel lblNewLabel = new JLabel("Nombre:");
+		setLayout(new MigLayout("", "[116.00px][184.00px,grow,center][159px]", "[26px][16px][29px,grow]"));
 		
 		entradaNombre = new JTextField();
 		entradaNombre.setColumns(10);
 		entradaNombre.setText("");
-
-		JButton btnCrear = new JButton("Crear");
-		
-		JLabel lblNombreInvalido = new JLabel("NOMBRE INVALIDO");// DefaultComponentFactory.getInstance().createLabel("NOMBRE INVALIDO");
-		GroupLayout groupLayout = new GroupLayout(this);
-		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(196)
-							.addComponent(btnCrear))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(121)
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addComponent(lblNombreInvalido)
-								.addGroup(groupLayout.createSequentialGroup()
-									.addComponent(lblNewLabel)
-									.addGap(18)
-									.addComponent(entradaNombre, GroupLayout.PREFERRED_SIZE, 159, GroupLayout.PREFERRED_SIZE)))))
-					.addContainerGap(99, Short.MAX_VALUE))
-		);
-		groupLayout.setVerticalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(92)
-					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblNewLabel)
-						.addComponent(entradaNombre, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(lblNombreInvalido)
-					.addGap(57)
-					.addComponent(btnCrear)
-					.addContainerGap(65, Short.MAX_VALUE))
-		);
-		setLayout(groupLayout);
-		lblNombreInvalido.setVisible(false);
-		
-		
-		btnCrear.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				try {
-					ListaNormal lista;
-					String nombre = "Nueva lista";
-					if (entradaNombre.getText() != null && !entradaNombre.getText().equals("") &&
-							VentanaPrincipal.entradaValida(entradaNombre.getText())) {
-						nombre = entradaNombre.getText();
-						lista = new ListaNormal(ventanaPrincipal.generaId(), nombre);
-						ControlLista controlador = new ControlLista(ventanaPrincipal.getUsuarioActual());
-						controlador.crearLista(lista);
-						lblNombreInvalido.setVisible(false);
-					}
-					else {
-						lblNombreInvalido.setVisible(true);
-					}
-				} catch (ErrorCreacionObjeto e1) {
-					VentanaPrincipal.muestraError(e1);
-				}
-			}
-			});
+		add(entradaNombre, "cell 1 0,growx,aligny top");
 		
 		entradaNombre.addKeyListener(new KeyListener() {
 			
@@ -116,5 +61,34 @@ public class CrearLista extends JPanel {
                 }
 			}
 		});
+		add(lblNewLabel, "cell 0 0,alignx right,aligny center");
+				
+				JLabel lblNombreInvalido = new JLabel("NOMBRE INVALIDO");
+				add(lblNombreInvalido, "cell 1 1,alignx center,aligny top");
+				lblNombreInvalido.setVisible(false);
+				
+				add(btnCrear, "cell 1 2,alignx center,aligny top");
+				
+				btnCrear.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						try {
+							ListaNormal lista;
+							String nombre = "Nueva lista";
+							if (entradaNombre.getText() != null && !entradaNombre.getText().equals("") &&
+									VentanaPrincipal.entradaValida(entradaNombre.getText())) {
+								nombre = entradaNombre.getText();
+								lista = new ListaNormal(ventanaPrincipal.generaId(), nombre);
+								ControlLista controlador = new ControlLista(ventanaPrincipal.getUsuarioActual());
+								controlador.crearLista(lista);
+								lblNombreInvalido.setVisible(false);
+							}
+							else {
+								lblNombreInvalido.setVisible(true);
+							}
+						} catch (ErrorCreacionObjeto e1) {
+							VentanaPrincipal.muestraError(e1);
+						}
+					}
+					});
 	}
 }
