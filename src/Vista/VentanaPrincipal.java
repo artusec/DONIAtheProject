@@ -272,6 +272,19 @@ public class VentanaPrincipal extends JFrame {
 		panelCentral.add(panelCambiante);
 	}
 	
+	public void verModificarLista() {
+		
+		resetearPanelCambiante();
+		panelCambiante = new JPanel();
+		panelCambiante.setLayout(new BorderLayout());
+		this.panelCambiante.setOpaque(false);
+		ModificarLista modificar = new ModificarLista(this);
+		modificar.setVisible(true);
+		modificar.setOpaque(false);
+		panelCambiante.add(modificar);
+		panelCentral.add(panelCambiante);
+	}
+	
 	public void verCrearListaAuto() {
 		
 		resetearPanelCambiante();
@@ -397,7 +410,7 @@ public class VentanaPrincipal extends JFrame {
 	 * @return si es valido
 	 */
 	public static boolean entradaValida(String entrada) {
-		return entrada.matches("[a-zA-Z0-9ñÑ& ]*");
+		return entrada != null && entrada.matches("[a-zA-Z0-9ñÑ& ]*") && !entrada.equals("");
 	}
 	
 	/**
