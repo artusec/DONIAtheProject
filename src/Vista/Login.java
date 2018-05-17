@@ -273,8 +273,10 @@ public class Login extends JDialog {
 				//Cargar canciones de la biblioteca (TODO) es para pruebas
 				VentanaPrincipal.actualizaCanciones("l0");
 				
-				if(accesor.getId() != "u0")
-					ventanaPrincipal.desactivarBotones();
+				if(!accesor.getId().equals("u0"))
+					ventanaPrincipal.configurarBotones(false);
+				else
+					ventanaPrincipal.configurarBotones(true);
 				
 				setVisible(false);
 				ventanaPrincipal.verPerfil();
