@@ -8,7 +8,6 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
-
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -19,7 +18,6 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
-
 import Controlador.ControlUsuario;
 import Excepciones.ErrorCreacionObjeto;
 import Model.Objetos.Usuario;
@@ -75,9 +73,9 @@ public class Login extends JDialog {
 			
 			@Override
 			public void windowClosing(WindowEvent e) {
+				
 				setVisible(false);
 				login.setVisible(true);	
-				
 			}
 			
 			@Override
@@ -167,7 +165,6 @@ public class Login extends JDialog {
 			}
 			setLocationRelativeTo(null);
 		}
-		
 	
 	}
 
@@ -192,7 +189,7 @@ public class Login extends JDialog {
 		lblNewLabel.setBounds(197, 360, 107, 28);
 		contentPanel.add(lblNewLabel);
 		
-		JLabel lblNewLabel_1 = new JLabel("Name");
+		JLabel lblNewLabel_1 = new JLabel("ID");
 		lblNewLabel_1.setBounds(135, 419, 56, 16);
 		contentPanel.add(lblNewLabel_1);
 		
@@ -268,9 +265,7 @@ public class Login extends JDialog {
 				correcto = true;
 				ventanaPrincipal.setUsuarioActual(accesor);
 				
-				//Cargar todas las listas del usuario
 				VentanaPrincipal.actualizaListas();
-				//Cargar canciones de la biblioteca (TODO) es para pruebas
 				VentanaPrincipal.actualizaCanciones("l0");
 				
 				if(!accesor.getId().equals("u0"))
