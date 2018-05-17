@@ -1,7 +1,7 @@
 package Model.Usuario;
 
-import Controlador.DAO.DAOFachada;
-import Controlador.DAO.InterfazDAOFachada;
+import DAO.DAOFachada;
+import DAO.InterfazDAOFachada;
 import Excepciones.ErrorAutenticacion;
 import Excepciones.ErrorConsulta;
 import Excepciones.ErrorCreacionObjeto;

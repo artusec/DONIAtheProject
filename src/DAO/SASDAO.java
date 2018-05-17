@@ -1,4 +1,4 @@
-package Controlador.DAO;
+package DAO;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -358,7 +358,7 @@ public class SASDAO implements InterfazSASDAO {
 	
     // --------------- SET ---------------
     @Override
-    public void setCancion(Cancion cancion) throws ErrorGuardado, ErrorCreacionObjeto {
+    public void setCancion(Cancion cancion) throws ErrorGuardado {
 	    	try {
 			if (this.conectado() && cancion != null) {
 				//recabar datos
@@ -579,9 +579,15 @@ public class SASDAO implements InterfazSASDAO {
 				if (lista.getCanciones() != null) {
 					System.out.println("insertando cancion en la lista");
 					for(Cancion cancion : lista.getCanciones()) {
-						sentencia = DBstruct.insertRlistaCancion(idLista, cancion.getId());
-						PreparedStatement ps = this.DBconn.prepareStatement(sentencia);
-						ps.executeQuery();
+						try {
+							sentencia = DBstruct.insertRlistaCancion(idLista, cancion.getId());
+							PreparedStatement ps = this.DBconn.prepareStatement(sentencia);
+							ps.executeQuery();
+						} catch (SQLException e) {
+							throw new ErrorGuardado("Error al insertar cancion en la lista.\n"
+													+ "La cancion ya estaba añadida!");
+						}
+						
 					}
 				}
 			} else {

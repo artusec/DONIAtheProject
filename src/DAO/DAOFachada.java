@@ -1,7 +1,8 @@
-package Controlador.DAO;
+package DAO;
 
 import java.util.ArrayList;
-import Controlador.DAO.SASDAO;
+
+import DAO.SASDAO;
 import Excepciones.ErrorAutenticacion;
 import Excepciones.ErrorConsulta;
 import Excepciones.ErrorCreacionObjeto;

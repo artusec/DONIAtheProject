@@ -17,6 +17,7 @@ public class ToolBar extends JToolBar {
 	private JButton verGustos;
 	private JButton aniadirCancion;
 	private JButton eliminarCancion;
+	private JButton modifCancion;
 	private JButton salir;
 	
 	public ToolBar(VentanaPrincipal mainWindow) {
@@ -90,7 +91,7 @@ public class ToolBar extends JToolBar {
 		this.add(eliminarCancion);
 		
 		
-		JButton modifCancion = new JButton();
+		modifCancion = new JButton();
 		modifCancion.setToolTipText("Modificar cancion");
 		modifCancion.setIcon(new ImageIcon(("src/icons/modificarCancion.png")));
 		modifCancion.setText("Modificar canción");
@@ -133,5 +134,7 @@ public class ToolBar extends JToolBar {
 	public void configurarBotones(boolean cual) {
 		aniadirCancion.setEnabled(cual);
 		eliminarCancion.setEnabled(cual);
+		modifCancion.setEnabled(cual);
+		
 	}
 }
