@@ -1,7 +1,7 @@
 package Model.Usuario;
 
-import Controlador.DAO.DAOFachada;
-import Controlador.DAO.InterfazDAOFachada;
+import DAO.DAOFachada;
+import DAO.InterfazDAOFachada;
 import Excepciones.ErrorAutenticacion;
 import Excepciones.ErrorConsulta;
 import Excepciones.ErrorCreacionObjeto;
@@ -50,7 +50,10 @@ public class SASUsuario implements InterfazSASUsuario {
      * @throws ErrorDeAutenticacion si se ha producido un error al validar los datos del usuario
      */
     public void eliminar(Usuario Usuario) throws ErrorAutenticacion, ErrorEliminacion {
+    	if (!Usuario.getId().equals("u0"))
     		dao.eliminarUsuario(Usuario);
+    	else
+    		throw new ErrorEliminacion("No se puede eliminar el usuario ADMINISTRADOR");
     }
 
     /**

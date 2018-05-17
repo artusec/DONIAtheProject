@@ -38,9 +38,9 @@ public class ModificarCancion_panel extends JPanel {
 	private JTextField video;
 	private JTextField descarga;
 	private JEditorPane letra;
-	/**
-	 * Create the panel.
-	 */
+
+	private Cancion cancionVieja = null;
+	
 	public ModificarCancion_panel(VentanaPrincipal ventanaPrincipal) {
 		setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "MODIFICAR CANCI\u00D3N", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		
@@ -186,10 +186,10 @@ public class ModificarCancion_panel extends JPanel {
 
 		JButton btnHecho = new JButton("HECHO");
 		
-		ArrayList<Cancion> list = ventanaPrincipal.getCancionSelecccionada();
-		Cancion cancionVieja = null;
-		if (list.size() > 0) {
-			cancionVieja = list.get(0);
+		ArrayList<Cancion> lista = ventanaPrincipal.getCancionSelecccionada();
+		cancionVieja = null;
+		if (!lista.isEmpty()) {
+			cancionVieja = lista.get(0);
 		}
 		if (cancionVieja != null) {
 			letra.setText(cancionVieja.getLetra().getTexto());
@@ -204,9 +204,8 @@ public class ModificarCancion_panel extends JPanel {
 				video.setText(vid.getEnlace());
 				descarga.setText(vid.getEnlaceDescarga());
 			}
-			btnHecho.enable();
-		}
-		else {
+			btnHecho.setEnabled(true);
+		} else {
 			letra.setText("Debes seleccionar una cancion");
 			titulo.setText("Debes seleccionar una cancion");
 			autor.setText("Debes seleccionar una cancion");
@@ -215,10 +214,8 @@ public class ModificarCancion_panel extends JPanel {
 			duracion.setText("Debes seleccionar una cancion");
 			video.setText("Debes seleccionar una cancion");
 			descarga.setText("Debes seleccionar una cancion");
-			btnHecho.disable();
+			btnHecho.setEnabled(false);
 		}
-		
-		
 		
 		btnHecho.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -236,9 +233,9 @@ public class ModificarCancion_panel extends JPanel {
 						Letra letraNueva = new Letra(ventanaPrincipal.generaId(), letra.getText());
 						ControlCancion controlC = new ControlCancion(ventanaPrincipal.getUsuarioActual());
 						Cancion cancionNueva;
-						cancionNueva = new Cancion(ventanaPrincipal.generaId(), titulo.getText(), autor.getText(),
+						cancionNueva = new Cancion(cancionVieja.getId(), titulo.getText(), autor.getText(),
 								album.getText(), Double.parseDouble(duracion.getText()), letraNueva, videoNuevo, generoNuevo);
-						System.out.println("creacion cancion ok, guardando en db");
+						System.out.println("cancion actualizada ok, guardando en db");
 						controlC.creaCancion(cancionNueva);
 					} catch (NumberFormatException | ErrorCreacionObjeto e1) {
 						VentanaPrincipal.muestraError(e1);

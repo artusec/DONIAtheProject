@@ -1,7 +1,7 @@
 package Model.Cancion;
 
-import Controlador.DAO.DAOFachada;
-import Controlador.DAO.InterfazDAOFachada;
+import DAO.DAOFachada;
+import DAO.InterfazDAOFachada;
 import Excepciones.ErrorConsulta;
 import Excepciones.ErrorCreacionObjeto;
 import Excepciones.ErrorEliminacion;

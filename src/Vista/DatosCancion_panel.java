@@ -135,6 +135,8 @@ public class DatosCancion_panel extends JPanel {
 			int min = (int) (duracion / 60);
 			int seg = (int) (duracion % 60);
 			this.duracion.setText(Integer.toString(min) + " min " + Integer.toString(seg) + " seg");
+			// enlace.setText(cancion.getVideo().getEnlace());
+			// descarga.setText(cancion.getVideo().getEnlaceDescarga());
 		}
 	}
 
