@@ -40,13 +40,14 @@ public class Account_panel extends JPanel {
 		
 
 		JPanel panel_2 = new JPanel();
-		add(panel_2, BorderLayout.CENTER);
-		panel_2.setLayout(new MigLayout("", "[445.00,grow]", "[303.00][157.00][]"));
+		add(panel_2, BorderLayout.NORTH);
+		panel_2.setLayout(new MigLayout("", "[445.00,grow]", "[164.00][206.00][84.00][]"));
+
 
 		
 		JPanel panel_5 = new JPanel();
 		panel_2.add(panel_5, "cell 0 0,grow");
-		panel_5.setLayout(new MigLayout("", "[99px][111px,grow][163px][148px,grow][116px]", "[][25px,grow][][][][][][][][][]"));
+		panel_5.setLayout(new MigLayout("", "[99px][111px,grow][163px][148px,grow][116px]", "[][25px,grow][][][][][][][][][][][][]"));
 		
 		JPanel panel = new JPanel();
 		panel_5.add(panel, "cell 1 0 3 1,grow");
@@ -84,17 +85,15 @@ public class Account_panel extends JPanel {
 				}
 			}
 		});
-	
-		JLabel lblPrimeroEditaLos = new JLabel("Primero edita los campos de");
-		panel_5.add(lblPrimeroEditaLos, "cell 1 6,alignx left,aligny center");
 		
 				
 
-		panel_5.add(btnEditarPerfil, "cell 3 6,growx,aligny top");
+		panel_5.add(btnEditarPerfil, "cell 3 4,growx,aligny top");
+	
+		JLabel lblPrimeroEditaLos = new JLabel("Primero edita los campos de");
+		panel_5.add(lblPrimeroEditaLos, "cell 1 7,alignx left,aligny center");
 		JLabel lblDebajoYDespus = new JLabel("debajo y después pulsa el");
-		panel_5.add(lblDebajoYDespus, "cell 1 7,alignx left,aligny center");
-		JLabel lblBotneditarPerfil = new JLabel("botón \"Editar perfil\".");
-		panel_5.add(lblBotneditarPerfil, "cell 1 8,alignx left,aligny center");
+		panel_5.add(lblDebajoYDespus, "cell 1 8,alignx left,aligny center");
 		JButton btnCerrarSesin = new JButton("Cerrar Sesión");
 		panel_5.add(btnCerrarSesin, "cell 3 8,alignx left,aligny top");
 		
@@ -114,6 +113,20 @@ public class Account_panel extends JPanel {
 						lgn.setVisible(true);
 					}
 				});
+		JLabel lblBotneditarPerfil = new JLabel("botón \"Editar perfil\".");
+		panel_5.add(lblBotneditarPerfil, "cell 1 10,alignx left,aligny center");
+		
+		JButton btnBorrarCuenta = new JButton("Borrar cuenta");
+		btnBorrarCuenta.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				ControlUsuario contr = new ControlUsuario(view.getUsuarioActual());
+				
+			}
+		});
+		panel_5.add(btnBorrarCuenta, "cell 3 11");
 		
 		JSeparator separator = new JSeparator();
 		panel_2.add(separator, "cell 0 1");
