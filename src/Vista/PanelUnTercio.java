@@ -2,6 +2,10 @@ package Vista;
 
 import javax.swing.JPanel;
 import Model.Objetos.Cancion;
+
+import java.awt.BorderLayout;
+import java.awt.GridLayout;
+
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
@@ -10,6 +14,7 @@ public class PanelUnTercio extends JPanel {
 
 	private PanelAreaTexto panelDeLetra;
 	private DatosCancion_panel panelDeDatos;
+	private Enlaces_panel panelDeEnlaces;
 	/**
 	 * 
 	 */
@@ -23,6 +28,7 @@ public class PanelUnTercio extends JPanel {
 
 		this.panelDeDatos = panelDeDatos;
 		this.panelDeLetra = panelDeLetra;
+		this.panelDeEnlaces = null;
 		
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
@@ -44,19 +50,38 @@ public class PanelUnTercio extends JPanel {
 					.addContainerGap())
 		);
 		setLayout(groupLayout);
-		
+		panelDeDatos.verBoton();
 
 	}
 	
-	public void setDatos(Cancion cancion) {
+	/**
+	 * @wbp.parser.constructor
+	 */
+	public PanelUnTercio(Enlaces_panel panelDeEnlaces, DatosCancion_panel panelDatos) {
+		this.panelDeDatos = panelDatos;
+		this.panelDeLetra = null;
+		this.panelDeEnlaces = panelDeEnlaces;
+		this.setLayout(new GridLayout(2, 1));
+		this.add(panelDeEnlaces, BorderLayout.NORTH);
+		panelDeDatos.ocultarBoton();
+		this.add(panelDatos, BorderLayout.SOUTH);
+	}
+
+	public void setDatos(Cancion cancion, VentanaPrincipal ventanaPrincipal) {
 		
-		panelDeLetra.setTexto(cancion);
 		panelDeDatos.setDatos(cancion);
+		if (panelDeLetra != null)
+			panelDeLetra.setTexto(cancion, ventanaPrincipal);
+		if (panelDeEnlaces != null)
+			panelDeEnlaces.setDatos(cancion, ventanaPrincipal);
 	}
 	
 	public void vaciaElPanel() {
 		
-		panelDeLetra.setTexto("");
 		panelDeDatos.vaciarCampos();
+		if (panelDeLetra != null)
+			panelDeLetra.setTexto("");
+		if (panelDeEnlaces != null)
+			panelDeEnlaces.vaciarCampos();
 	}
 }

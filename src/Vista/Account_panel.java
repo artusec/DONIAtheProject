@@ -42,13 +42,15 @@ public class Account_panel extends JPanel {
 		setLayout(new BorderLayout(0, 0));
 		
 
+
 		JPanel panel_2 = new JPanel();
 		add(panel_2, BorderLayout.CENTER);
 		panel_2.setLayout(new MigLayout("", "[445.00,grow]", "[303.00][157.00][]"));
+
 		
 		JPanel panel_5 = new JPanel();
 		panel_2.add(panel_5, "cell 0 0,grow");
-		panel_5.setLayout(new MigLayout("", "[99px][111px,grow][163px][148px,grow][116px]", "[][25px,grow][][][][][][][][][][][][]"));
+		panel_5.setLayout(new MigLayout("", "[99px][111px,grow][163px][148px,grow][116px]", "[][25px,grow][][][][][][][][][]"));
 		
 		JPanel panel = new JPanel();
 		panel_5.add(panel, "cell 1 0 3 1,grow");

@@ -6,7 +6,9 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
+import Controlador.ControlCancion;
 import Model.Objetos.Cancion;
+import Model.Objetos.Letra;
 
 public class PanelAreaTexto extends JPanel {
 
@@ -34,10 +36,11 @@ public class PanelAreaTexto extends JPanel {
 		 return areatexto.getText();
 	 }
 	 
-	 public void setTexto(Cancion cancion) {
-		 
-		 if(cancion != null)
-			 this.areatexto.setText(cancion.getLetra().getTexto());
+	 public void setTexto(Cancion cancion, VentanaPrincipal ventanaPrincipal) {
+		 ControlCancion ctrl = new ControlCancion(ventanaPrincipal.getUsuarioActual());
+		 Letra letra = ctrl.consultaLetra(cancion.getId());
+		 if (letra != null)
+			 areatexto.setText(letra.getTexto());
 	 }
 	 
 	 public void setTexto(String string) {

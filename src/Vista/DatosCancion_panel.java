@@ -4,6 +4,8 @@ import javax.swing.JPanel;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.border.TitledBorder;
+
+import Controlador.ControlCancion;
 import Model.Objetos.Cancion;
 import javax.swing.JLabel;
 import javax.swing.LayoutStyle.ComponentPlacement;
@@ -24,11 +26,12 @@ public class DatosCancion_panel extends JPanel {
 	private JTextField duracion;
 	private JTextField genero;
 	private Enlaces_panel enlacesPanel;
+	private JButton btnEnlaces;
 
 	/**
 	 * Create the panel.
 	 */
-	public DatosCancion_panel() {
+	public DatosCancion_panel(VentanaPrincipal ventanaPrincipal) {
 		setBorder(new TitledBorder(null, "Datos de la canción", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		
 		JLabel lblTtulo = new JLabel("Título");
@@ -59,16 +62,15 @@ public class DatosCancion_panel extends JPanel {
 		genero.setEditable(false);
 		genero.setColumns(10);
 		
-		enlacesPanel = new Enlaces_panel();
+		enlacesPanel = new Enlaces_panel(ventanaPrincipal);
 
 		
-		JButton btnEnlaces = new JButton("Enlaces");
+		btnEnlaces = new JButton("Enlaces");
 		btnEnlaces.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
-				enlacesPanel.setVisible(true);
+				ventanaPrincipal.verPanelCancion();
 			}
 		});
 		GroupLayout groupLayout = new GroupLayout(this);
@@ -124,10 +126,8 @@ public class DatosCancion_panel extends JPanel {
 
 	}
 	
-	public void setDatos(Cancion cancion) {
-		
+	public void setDatos(Cancion cancion) {	
 		if(cancion != null) {
-			
 			this.titulo.setText(cancion.getTitulo());
 			this.artista.setText(cancion.getAutor());
 			this.genero.setText(cancion.getGenero().toString());
@@ -145,5 +145,13 @@ public class DatosCancion_panel extends JPanel {
 		titulo.setText("");
 		artista.setText("");
 		duracion.setText("");
+	}
+
+	public void ocultarBoton() {
+		btnEnlaces.setVisible(false);
+	}
+
+	public void verBoton() {
+		btnEnlaces.setVisible(true);
 	}
 }

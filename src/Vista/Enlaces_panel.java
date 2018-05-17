@@ -11,9 +11,12 @@ import java.awt.event.ActionListener;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
+import Controlador.ControlCancion;
 import Model.Objetos.Cancion;
+import Model.Objetos.Video;
 
 import javax.swing.JButton;
+import net.miginfocom.swing.MigLayout;
 
 public class Enlaces_panel extends JPanel {
 	/**
@@ -26,75 +29,53 @@ public class Enlaces_panel extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public Enlaces_panel() {
+
+	public Enlaces_panel(VentanaPrincipal ventanaPrincipal) {
+		setLayout(new MigLayout("", "[][405.00,center]", "[20px][][22px][20px][22px][25px][][][][][][]"));
+
+
 		
 		JLabel lblEnlaceVerVideo = new JLabel("Ver video");
 		lblEnlaceVerVideo.setFont(new Font("Rockwell Extra Bold", Font.BOLD, 16));
-		
-		JLabel lblNewLabel = new JLabel("Enlace descarga");
-		lblNewLabel.setFont(new Font("Rockwell Extra Bold", Font.BOLD, 16));
+		add(lblEnlaceVerVideo, "cell 1 1,alignx center,aligny top");
 		
 		textField = new JTextField();
 		textField.setColumns(10);
+		add(textField, "cell 1 2,growx,aligny top");
+		
+		JLabel lblNewLabel = new JLabel("Enlace descarga");
+		lblNewLabel.setFont(new Font("Rockwell Extra Bold", Font.BOLD, 16));
+		add(lblNewLabel, "cell 1 4,alignx center,aligny top");
 		
 		textField_1 = new JTextField();
 		textField_1.setColumns(10);
+		add(textField_1, "cell 1 5,growx,aligny top");
 		
 		JButton btnVolver = new JButton("Volver");
 		btnVolver.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
-				setVisible(false);
+				ventanaPrincipal.verPanelLetras();
 			}
 		});
-		GroupLayout groupLayout = new GroupLayout(this);
-		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(22)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
-						.addComponent(textField_1, Alignment.TRAILING)
-						.addComponent(textField, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 407, Short.MAX_VALUE))
-					.addContainerGap(21, Short.MAX_VALUE))
-				.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
-					.addContainerGap(177, Short.MAX_VALUE)
-					.addComponent(lblEnlaceVerVideo)
-					.addGap(174))
-				.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
-					.addContainerGap(143, Short.MAX_VALUE)
-					.addComponent(lblNewLabel)
-					.addGap(131))
-				.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
-					.addContainerGap(197, Short.MAX_VALUE)
-					.addComponent(btnVolver)
-					.addGap(190))
-		);
-		groupLayout.setVerticalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(46)
-					.addComponent(lblEnlaceVerVideo)
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addGap(62)
-					.addComponent(lblNewLabel)
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addGap(41)
-					.addComponent(btnVolver)
-					.addContainerGap(42, Short.MAX_VALUE))
-		);
-		setLayout(groupLayout);
+		add(btnVolver, "cell 1 9,alignx center,aligny top");
 		
-		setVisible(false);
+		setVisible(true);
 
 	}
 	
-	public void setDatos(Cancion cancion) {
-		
-		this.textField.setText(cancion.getVideo().getEnlace());
-		this.textField_1.setText(cancion.getVideo().getEnlaceDescarga());
+	public void setDatos(Cancion cancion, VentanaPrincipal ventanaPrincipal) {
+		ControlCancion ctrl = new ControlCancion(ventanaPrincipal.getUsuarioActual());
+		Video video = ctrl.consultaVideo(cancion.getId());
+		if (video != null) {
+			this.textField.setText(video.getEnlace());
+			this.textField_1.setText(video.getEnlaceDescarga());
+		}
+	}
+
+	public void vaciarCampos() {
+		this.textField.setText("");
+		this.textField_1.setText("");		
 	}
 }
