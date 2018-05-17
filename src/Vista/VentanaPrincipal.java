@@ -46,6 +46,9 @@ public class VentanaPrincipal extends JFrame {
 
 	private Login Login;;
 
+	/**
+	 * Constructura de la Vista Principal
+	 */
 	public VentanaPrincipal () {	
 		super("Donia");
 		initGUI();
@@ -57,7 +60,9 @@ public class VentanaPrincipal extends JFrame {
 		}
 		Login.setVisible(true);
 	}
-	
+	/**
+	 * Inicializa la Vista
+	 */
 	private void initGUI() {
 		this.setIconImage(new ImageIcon("src/icons/LOGO_DONIA.png").getImage()); 
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
@@ -108,13 +113,20 @@ public class VentanaPrincipal extends JFrame {
 		setExtendedState(java.awt.Frame.MAXIMIZED_BOTH);
 	}
 
-
+	/**
+	 * Crea el panelSupremo
+	 * @return Devuelve el panelSupremo
+	 */
 	private JPanel creaPanelSupremo() {
 		JPanel principal = new JPanel();
 		principal.setLayout(new BorderLayout());
 		return principal;
 	}
 
+	/**
+	 * Añade al toolbar al panelSupremo
+	 * @param panelSupremo Panel al qeu se le añade la toolbar
+	 */
 	private void addToolBar(JPanel panelSupremo) {
 		toolBar = new ToolBar(this);
 		toolBar.setFloatable(false);
@@ -122,13 +134,19 @@ public class VentanaPrincipal extends JFrame {
 		panelSupremo.add(toolBar, BorderLayout.EAST);
 		
 	}
-	
+	/**
+	 * Crea el panelCentral
+	 * @return devuelve el panelCentral
+	 */
 	private JPanel createPanelCentral() {
 		JPanel panelCentral = new JPanel();
 		panelCentral.setLayout(new GridLayout(1,3));
 		return panelCentral;
 	}
-	
+	/**
+	 * Crea el panelListas y lo añade al panelCentral
+	 * @param panelCentral Panel al que se le añade el panelListas
+	 */
 	private void creaPanelListas(JPanel panelCentral) {
 		JPanel izquierda = new JPanel();
 		izquierda.setLayout(new BorderLayout());
@@ -142,6 +160,11 @@ public class VentanaPrincipal extends JFrame {
 		panelCentral.add(izquierda);	
 	}
 	
+	/**
+	 * Crea el panelCanciones y lo añade al panelCentral
+	 * @param panelCentral Panel al que se le añade el panelCanciones
+	 */
+	
 	private void creaPanelCanciones(JPanel panelCentral) {
 		
 		panelCanciones = new PanelCanciones("Canciones", this);
@@ -149,6 +172,10 @@ public class VentanaPrincipal extends JFrame {
 		panelCentral.add(new PanelMedio(barCanciones, panelCanciones));
 	}
 	
+	
+	/**
+	 * Crea el panel que cambia
+	 */
 	private void createPanelCambiante() {
 		
 		panelCambiante = new JPanel();
@@ -157,12 +184,20 @@ public class VentanaPrincipal extends JFrame {
 		panelCentral.add(panelCambiante);
 	}
 	
+	/**
+	 * Reinicia el panel que cambia
+	 */
+	
 	private void resetearPanelCambiante() {
 		
 		panelCambiante.removeAll();
 		panelCambiante.setVisible(false);
 		panelCentral.remove(panelCambiante);
 	}
+	
+	/**
+	 * Muestra el panel del perfil del usuario
+	 */
 	
 	public void verPerfil() {
 		
@@ -184,6 +219,10 @@ public class VentanaPrincipal extends JFrame {
 		panelCentral.add(panelCambiante);
 	}
 	
+	/**
+	 * 	Muestra el panel que permite ver los generos favoritos del usuario actual
+	*/
+	
 	public void verFavoritos() {
 		
 		resetearPanelCambiante();
@@ -200,6 +239,9 @@ public class VentanaPrincipal extends JFrame {
 		VentanaPrincipal.actualizaGeneros();
 	}
 	
+	/**
+	 * Muestra el panel que permite añadir una cancion al sistema	
+	 */
 	public void verAniadirCancion() {
 		
 		resetearPanelCambiante();
@@ -213,6 +255,10 @@ public class VentanaPrincipal extends JFrame {
 		panelCentral.add(panelCambiante);
 	}
 	
+	
+	/**
+	 * Muestra el panel que permite eliminar una cancion del sistema
+	 */
 	public void verEliminarCancion() {
 		resetearPanelCambiante();
 		panelCambiante = new JPanel();
@@ -225,6 +271,9 @@ public class VentanaPrincipal extends JFrame {
 		panelCentral.add(panelCambiante);
 	}
 	
+	/**
+	 * Muestra el panel que muestra la letra de una cancion
+	 */
 	public void verPanelLetras() {
 		
 		resetearPanelCambiante();
@@ -244,7 +293,10 @@ public class VentanaPrincipal extends JFrame {
 		panelCambiante.add(panelUnTercio);
 		panelCentral.add(panelCambiante);
 	}
-	
+
+	/**
+	 * Muestra el panel que muestra los datos de una cancion
+	 */
 	public void verPanelCancion() {
 		resetearPanelCambiante();
 		panelCambiante = new JPanel();
@@ -264,6 +316,10 @@ public class VentanaPrincipal extends JFrame {
 		panelCentral.add(panelCambiante);
 	}
 	
+	/**
+	 * Muestra el panel qeu permite modificar los datos de una cancion
+	 */
+
 	public void verModificarCancion() {
 		
 		resetearPanelCambiante();
@@ -278,6 +334,10 @@ public class VentanaPrincipal extends JFrame {
 		
 	}
 	
+	/**
+	 * Muestra el panel que permite añadir una cancion a una lista
+	 */
+	
 	public void verAniadirCancionALista() {	
 		resetearPanelCambiante();
 		panelCambiante = new JPanel();
@@ -289,7 +349,9 @@ public class VentanaPrincipal extends JFrame {
 		panelCambiante.add(cancion);
 		panelCentral.add(panelCambiante);
 	}
-	
+	/**
+	 * Muestra el panel de creacion de una lista
+	 */
 	public void verCrearLista() {
 		
 		resetearPanelCambiante();
@@ -303,6 +365,10 @@ public class VentanaPrincipal extends JFrame {
 		panelCentral.add(panelCambiante);
 	}
 	
+	
+	/**
+	 * Muestra el panel que permite modificar el nombre de una lista
+	 */
 	public void verModificarLista() {
 		
 		resetearPanelCambiante();
@@ -316,6 +382,9 @@ public class VentanaPrincipal extends JFrame {
 		panelCentral.add(panelCambiante);
 	}
 	
+	/**
+	 * Muestra el panel que permite crear listas automáticas
+	 */
 	public void verCrearListaAuto() {
 		
 		resetearPanelCambiante();
@@ -328,19 +397,27 @@ public class VentanaPrincipal extends JFrame {
 		panelCambiante.add(crear);
 		panelCentral.add(panelCambiante);		
 	}
-
+	/**
+	 * Muestra un mensaje de error en una ventana emergente
+	 * @param e Excepcion que se produce
+	 */
 	public static void muestraError(Exception e) {
 		JOptionPane.showOptionDialog(new JFrame(), e.getMessage(), "ERROR", JOptionPane.PLAIN_MESSAGE, 
 				JOptionPane.ERROR_MESSAGE, null, null, null);
 	}
 	
 	// --- ACTUALIZACION DE VISTA ----
-	
+	/**
+	 * Se actualizan las canciones que se encuentran dentro de una lista
+	 * @param idLista Lista en la que se actualizan las canciones
+	 */
 	public static void actualizaCanciones(String idLista) {
 		ControlLista control = new ControlLista(usuarioActual);
 		panelCanciones.setList(control.consulta(idLista).getCanciones());
 	}
-	
+	/**
+	 * Actualiza los generos de el usuario actual
+	 */
 	public static void actualizaGeneros() {
 		ControlUsuario control = new ControlUsuario(usuarioActual);
 		ArrayList<Genero> generos = control.ingreso(usuarioActual.getId(), usuarioActual.getClave()).getGustos();
@@ -362,7 +439,7 @@ public class VentanaPrincipal extends JFrame {
 
 	/**
 	 * Establece la cancion de la cual se muestra la informacion (letra, enlaces etc...)
-	 * @param lista
+	 * @param cancion Cancion de la que se muestra la informacion
 	 */
 	public void setCancion(Cancion cancion) {
 		
@@ -371,7 +448,7 @@ public class VentanaPrincipal extends JFrame {
 	
 	/**
 	 * Establece la lista de la cual se muestra la informacion
-	 * @param lista
+	 * @param lista Lista de al qeu se muestra la informacion
 	 */
 	public void setLista(Lista lista) {
 		
@@ -381,13 +458,16 @@ public class VentanaPrincipal extends JFrame {
 	
 	/**
 	 * Establece el usuario actual
-	 * @param accesor
+	 * @param accesor Usuario que se establece
 	 */
 	public void setUsuarioActual(Usuario accesor) {
 		
 		VentanaPrincipal.usuarioActual = accesor;
 	}
-
+/**
+ * 
+ * @return se devuelve el panel cambiante
+ */
 	public JPanel getPanelCambiante() {
 		
 		return panelCambiante;
@@ -395,20 +475,23 @@ public class VentanaPrincipal extends JFrame {
 
 	/**
 	 * Establece el panel cambiante
-	 * @param panelCambiante
+	 * @param panelCambiante Panel qeu se establece
 	 */
 	public void setPanelCambiante(JPanel panelCambiante) {
 		
 		this.panelCambiante = panelCambiante;
 	}
-
+	/**
+	 * 
+	 * @return Devuelve el panel central
+	 */
 	public JPanel getPanelCentral() {
 		
 		return panelCentral;
 	}
 	/**
 	 * Establece el panel central
-	 * @param panelCentral
+	 * @param panelCentral Panel qeu se establece
 	 */
 	public void setPanelCentral(JPanel panelCentral) {
 		
@@ -483,6 +566,7 @@ public class VentanaPrincipal extends JFrame {
 	
 	/**
 	 * Desactiva los botones de la toolbar que solo puede usar el administrador
+	 * @param cual Booleano qeu indica si los botones deben estar activos o inactivos
 	 */
 
 	public void configurarBotones(boolean cual) {
@@ -491,12 +575,16 @@ public class VentanaPrincipal extends JFrame {
 
 	}
 
-	
+	/**
+	 * LLama a la funcion borrarSeleccionado() de panelCanciones
+	 */
 	public void deshacerSelecciones() {
 		
 		panelCanciones.borrarSeleccionado();
 	}
-
+	/**
+	 * Vacia panelCanciones
+	 */
 	public void vaciaPanelCanciones() {
 		
 		panelCanciones.listModel.clear();
