@@ -190,7 +190,7 @@ public class ModificarCancion_panel extends JPanel {
 					ventanaPrincipal.entradaValida(autor.getText()) &&
 					ventanaPrincipal.entradaValida(genero.getText()) &&
 					ventanaPrincipal.entradaValida(album.getText()) &&
-					Integer.parseInt(duracion.getText()) > 0) {
+					Double.parseDouble(duracion.getText()) > 0) {
 					System.out.println("Entrada datos cancion valida");
 					try {
 						//ControlGenero controlG = new ControlGenero(ventanaPrincipal.getUsuarioActual());
