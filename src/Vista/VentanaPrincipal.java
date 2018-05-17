@@ -272,6 +272,19 @@ public class VentanaPrincipal extends JFrame {
 		panelCentral.add(panelCambiante);
 	}
 	
+	public void verModificarLista() {
+		
+		resetearPanelCambiante();
+		panelCambiante = new JPanel();
+		panelCambiante.setLayout(new BorderLayout());
+		this.panelCambiante.setOpaque(false);
+		ModificarLista modificar = new ModificarLista(this);
+		modificar.setVisible(true);
+		modificar.setOpaque(false);
+		panelCambiante.add(modificar);
+		panelCentral.add(panelCambiante);
+	}
+	
 	public void verCrearListaAuto() {
 		
 		resetearPanelCambiante();
@@ -440,9 +453,9 @@ public class VentanaPrincipal extends JFrame {
 	/**
 	 * Desactiva los botones de la toolbar que solo puede usar el administrador
 	 */
-	public void desactivarBotones() {
+	public void configurarBotones(boolean cual) {
 		
-		toolBar.desactivarBotones();
+		toolBar.configurarBotones(cual);
 	}
 
 	
