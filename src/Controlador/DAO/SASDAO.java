@@ -677,12 +677,16 @@ public class SASDAO implements InterfazSASDAO {
 			if (this.conectado() && cancion != null) {
 				//recabar datos usuario
 				String idCancion = cancion.getId();
-				//borrar lista
-				String sentencia = "";
-				//al borrar la lista deberia hacer cascade
-				sentencia += DBstruct.deleteCancion(idCancion);
-				PreparedStatement ps = this.DBconn.prepareStatement(sentencia + ';');
-				ps.executeQuery();
+				if (this.existeCancion(idCancion)) {
+					//borrar cancion
+					String sentencia;
+					//al borrar la cancion deberia hacer cascade
+					sentencia = DBstruct.deleteCancion(idCancion);
+					PreparedStatement ps = this.DBconn.prepareStatement(sentencia + ';');
+					ps.executeQuery();
+				} else {
+					throw new ErrorEliminacion("La cancion no se encuentra!");
+				}
 			}
 		} catch (SQLException e) {
 			throw new ErrorEliminacion();

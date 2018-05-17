@@ -89,7 +89,7 @@ public class ToolBar extends JToolBar {
 		
 		this.add(eliminarCancion);
 		
-
+		
 		JButton modifCancion = new JButton();
 		modifCancion.setToolTipText("Modificar cancion");
 		modifCancion.setIcon(new ImageIcon(("src/icons/modificarCancion.png")));
