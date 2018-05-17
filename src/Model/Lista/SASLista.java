@@ -173,10 +173,10 @@ public class SASLista implements InterfazSASLista {
     			
     			// Comprobar que la cancion que queremos añadir a la lista no este ya añadida
     			// No se por que esto no funciona Borja ayuda
-    			if(dao.getListaDB(lista.getId()).getCanciones().contains(cancion)) {
-    				
-    				throw new ErrorGuardado("La cancion " + cancion.getTitulo() + " ya esta en la lista " + lista.getNombre());
-    			}
+//    			if(dao.getListaDB(lista.getId()).getCanciones().contains(cancion)) {
+//    				
+//    				throw new ErrorGuardado("La cancion " + cancion.getTitulo() + " ya esta en la lista " + lista.getNombre());
+//    			}
     			
     			
     			if (!lista.getId().equals("l0")) {	
