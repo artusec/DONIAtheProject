@@ -135,15 +135,16 @@ public class SASDAO implements InterfazSASDAO {
     private Video getVideoDB(String idVideo) throws ErrorConsulta, ErrorCreacionObjeto {
     		try {
 			if (this.conectado() && idVideo != null) {
+				System.out.println("obteniendo video...");
 				Video video = null;
 			    PreparedStatement stat = this.DBconn.prepareStatement("select * from video where video = '" + idVideo + "';");
 			    ResultSet datosVideo = stat.executeQuery();
 				if(datosVideo.next()) {
 					//si ha leido bien lo que queriamos
-					String id = datosVideo.getString("cancion");
+					String id = datosVideo.getString("video");
 					String enlace = datosVideo.getString("enlace");
 					String enlaceDescarga = datosVideo.getString("enlaceDescarga");
-					
+					System.out.println("hay video " + enlace);
 					video = new Video(id, enlace, enlaceDescarga);
 				}
 				return video;
