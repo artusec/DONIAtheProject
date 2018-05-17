@@ -38,20 +38,10 @@ public class ModificarCancion_panel extends JPanel {
 	private JTextField video;
 	private JTextField descarga;
 	private JEditorPane letra;
-	
+
 	private Cancion cancionVieja = null;
 	
-	/**
-	 * Create the panel.
-	 */
 	public ModificarCancion_panel(VentanaPrincipal ventanaPrincipal) {
-
-		ArrayList<Cancion> list = ventanaPrincipal.getCancionSelecccionada();
-		cancionVieja = null;
-		if (!list.isEmpty()) {
-			cancionVieja = list.get(0);
-		}
-		
 		setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "MODIFICAR CANCI\u00D3N", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		
 		JPanel panel = new JPanel();
@@ -196,6 +186,11 @@ public class ModificarCancion_panel extends JPanel {
 
 		JButton btnHecho = new JButton("HECHO");
 		
+		ArrayList<Cancion> lista = ventanaPrincipal.getCancionSelecccionada();
+		cancionVieja = null;
+		if (!lista.isEmpty()) {
+			cancionVieja = lista.get(0);
+		}
 		if (cancionVieja != null) {
 			letra.setText(cancionVieja.getLetra().getTexto());
 			titulo.setText(cancionVieja.getTitulo());

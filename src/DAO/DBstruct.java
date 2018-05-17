@@ -1,4 +1,4 @@
-package Controlador.DAO;
+package DAO;
 
 /**
  * Esta clase proporciona las serntencias SQL para la creacion de tablas, insercion,
