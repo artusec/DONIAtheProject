@@ -67,13 +67,13 @@ public class PanelUnTercio extends JPanel {
 		this.add(panelDatos, BorderLayout.SOUTH);
 	}
 
-	public void setDatos(Cancion cancion) {
+	public void setDatos(Cancion cancion, VentanaPrincipal ventanaPrincipal) {
 		
 		panelDeDatos.setDatos(cancion);
 		if (panelDeLetra != null)
-			panelDeLetra.setTexto(cancion);
+			panelDeLetra.setTexto(cancion, ventanaPrincipal);
 		if (panelDeEnlaces != null)
-			panelDeEnlaces.setDatos(cancion);
+			panelDeEnlaces.setDatos(cancion, ventanaPrincipal);
 	}
 	
 	public void vaciaElPanel() {

@@ -443,7 +443,7 @@ public class VentanaPrincipal extends JFrame {
 	 */
 	public void setCancion(Cancion cancion) {
 		
-		panelUnTercio.setDatos(cancion);
+		panelUnTercio.setDatos(cancion, this);
 	}
 	
 	/**

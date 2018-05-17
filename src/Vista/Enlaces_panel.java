@@ -11,7 +11,9 @@ import java.awt.event.ActionListener;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
+import Controlador.ControlCancion;
 import Model.Objetos.Cancion;
+import Model.Objetos.Video;
 
 import javax.swing.JButton;
 import net.miginfocom.swing.MigLayout;
@@ -63,10 +65,13 @@ public class Enlaces_panel extends JPanel {
 
 	}
 	
-	public void setDatos(Cancion cancion) {
-		
-		this.textField.setText(cancion.getVideo().getEnlace());
-		this.textField_1.setText(cancion.getVideo().getEnlaceDescarga());
+	public void setDatos(Cancion cancion, VentanaPrincipal ventanaPrincipal) {
+		ControlCancion ctrl = new ControlCancion(ventanaPrincipal.getUsuarioActual());
+		Video video = ctrl.consultaVideo(cancion.getId());
+		if (video != null) {
+			this.textField.setText(video.getEnlace());
+			this.textField_1.setText(video.getEnlaceDescarga());
+		}
 	}
 
 	public void vaciarCampos() {

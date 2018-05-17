@@ -4,6 +4,8 @@ import javax.swing.JPanel;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.border.TitledBorder;
+
+import Controlador.ControlCancion;
 import Model.Objetos.Cancion;
 import javax.swing.JLabel;
 import javax.swing.LayoutStyle.ComponentPlacement;
@@ -124,10 +126,8 @@ public class DatosCancion_panel extends JPanel {
 
 	}
 	
-	public void setDatos(Cancion cancion) {
-		
+	public void setDatos(Cancion cancion) {	
 		if(cancion != null) {
-			
 			this.titulo.setText(cancion.getTitulo());
 			this.artista.setText(cancion.getAutor());
 			this.genero.setText(cancion.getGenero().toString());
