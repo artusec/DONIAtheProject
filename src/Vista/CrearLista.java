@@ -20,6 +20,9 @@ import java.awt.event.ActionEvent;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import net.miginfocom.swing.MigLayout;
 
+/**
+ * Clase que crea el panel con los campos para crear una lista vacia y añadirla a la base de datos.
+ */
 public class CrearLista extends JPanel {
 	
 	private static final long serialVersionUID = 1L;

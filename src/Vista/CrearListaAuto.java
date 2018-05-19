@@ -15,6 +15,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
+/**
+ * Clase que crea el panel que contiene los campos para añadir una lista automatica a la base de datos.
+ */
 public class CrearListaAuto extends JPanel {
 	/**
 	 * 
@@ -126,5 +129,4 @@ public class CrearListaAuto extends JPanel {
 		setLayout(groupLayout);
 
 	}
-
 }

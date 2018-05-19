@@ -17,11 +17,22 @@ import Model.Objetos.Cancion;
 import Model.Objetos.Lista;
 import net.miginfocom.swing.MigLayout;
 
+/**
+ * Clase que crea el panel que contiene los campos para borrar una canción de la base de datos.
+ */
 public class SongBorrarAdmin_panel extends JPanel {
 
+	/**
+	 * 
+	 */
 	private static final long serialVersionUID = 1L;
 	private PanelDePaneles<Cancion> panelCanciones;
 	
+	/**
+	 * Constructora. Crea un panel con la lista de todas las canciones de la base de datos. Al pulsar el botón se borrarán las
+	 * canciones seleccionadas por el usuario en la lista. Dicho botón sólo estará activo si eres el administrador.
+	 * @param ventanaPrincipal
+	 */
 	public SongBorrarAdmin_panel(VentanaPrincipal ventanaPrincipal) {
 		String titulo = "Eliminar canciones de la base de datos";
 		setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), titulo, TitledBorder.LEADING, TitledBorder.TOP, null, null));
@@ -30,7 +41,6 @@ public class SongBorrarAdmin_panel extends JPanel {
 		
 		JLabel lblNewLabel = new JLabel("");
 		
-		// --------------- boton magico
 		btnAadir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				ArrayList<Cancion> sel = panelCanciones.getSelectedItems();
@@ -44,7 +54,6 @@ public class SongBorrarAdmin_panel extends JPanel {
 		add(lblNewLabel, "cell 0 0,alignx left,aligny top");
 		add(btnAadir, "cell 1 2,alignx center,aligny bottom");
 		
-		// ---------------- panel con la lista de canciones
 		JPanel panelLista = new JPanel();
 		add(panelLista, "cell 1 1,grow");
 		setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{btnAadir}));

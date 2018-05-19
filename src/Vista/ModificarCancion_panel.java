@@ -8,7 +8,6 @@ import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-
 import javax.swing.JButton;
 import javax.swing.JEditorPane;
 import javax.swing.JLabel;
@@ -25,7 +24,11 @@ import Model.Objetos.Genero;
 import Model.Objetos.Letra;
 import Model.Objetos.Video;
 
+/**
+ * Clase que crea el panel que contiene los campos para modificar una canción.
+ */
 public class ModificarCancion_panel extends JPanel {
+	
 	/**
 	 * 
 	 */
@@ -38,7 +41,6 @@ public class ModificarCancion_panel extends JPanel {
 	private JTextField video;
 	private JTextField descarga;
 	private JEditorPane letra;
-
 	private Cancion cancionVieja = null;
 	
 	/**

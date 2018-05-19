@@ -16,12 +16,19 @@ import Model.Objetos.Cancion;
 import Model.Objetos.Lista;
 import net.miginfocom.swing.MigLayout;
 
+/**
+ * Clase que crea el panel que contiene los campos para añadir una cancion a la base de datos.
+ */
 public class AniadirCancionALista extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	private PanelDePaneles<Cancion> panelCanciones;
 	private Lista listaSel = null;
 	
+	/**
+	 * Constructora. Crea el panel.
+	 * @param ventanaPrincipal
+	 */
 	public AniadirCancionALista(VentanaPrincipal ventanaPrincipal) {
 		ArrayList<Lista> listas = ventanaPrincipal.getListaSelecccionada();
 		if (listas != null && !listas.isEmpty()) {
@@ -45,7 +52,6 @@ public class AniadirCancionALista extends JPanel {
 		
 		JButton botonAnadir = new JButton("A\u00F1adir");
 		
-		// --------------- boton magico
 		botonAnadir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				ArrayList<Cancion> sel = panelCanciones.getSelectedItems();
@@ -77,5 +83,4 @@ public class AniadirCancionALista extends JPanel {
 		if (listaSel == null || listaSel.getId().equals("l0")) botonAnadir.setEnabled(false);
 		else botonAnadir.setEnabled(true);	
 	}
-
 }

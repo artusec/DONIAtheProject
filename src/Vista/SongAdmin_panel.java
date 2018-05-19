@@ -24,6 +24,9 @@ import Model.Objetos.Letra;
 import Model.Objetos.Video;
 import javax.swing.JScrollPane;
 
+/**
+ * Clase que crea el panel que contiene los campos para introducir una canción a la base de datos.
+ */
 public class SongAdmin_panel extends JPanel {
 	/**
 	 * 
@@ -39,8 +42,8 @@ public class SongAdmin_panel extends JPanel {
 	private JEditorPane letra;
 
 	/**
-	 * Crea un panel con un campo de texto a rellenar para cada atributo de una canción.
-	 * Si algún campo recibe un parámetro mal, se ve un error en la vista, sino, el botón llama a los métodos necesarios para insertar la canción en la DB.
+	 * Constructora. Crea un panel con un campo de texto a rellenar para cada atributo de una canción.
+	 * Si algún campo recibe un parámetro mal, se ve un error en la vista, si no, el botón llama a los métodos necesarios para insertar la canción en la DB.
 	 * El botón solo está activo si eres un administrador.
 	 * @param ventanaPrincipal ventana principal donde se ve toda la información.
 	 */
@@ -185,6 +188,7 @@ public class SongAdmin_panel extends JPanel {
 		JButton btnHecho = new JButton("HECHO");
 		btnHecho.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
 				if (VentanaPrincipal.entradaValida(titulo.getText()) &&
 					VentanaPrincipal.entradaValida(autor.getText()) &&
 					VentanaPrincipal.entradaValida(genero.getText()) &&
@@ -236,6 +240,5 @@ public class SongAdmin_panel extends JPanel {
 		letra = new JEditorPane();
 		scrollPane_1.setViewportView(letra);
 		letra.setText("Escribe aquí la letra");
-
 	}
 }

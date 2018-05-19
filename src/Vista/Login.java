@@ -23,17 +23,26 @@ import Controlador.ControlUsuario;
 import Excepciones.ErrorCreacionObjeto;
 import Model.Objetos.Usuario;
 
+/**
+ * Clase que crea una ventana para recoger los datos que el usuario introduce nada más iniciar la aplicación con los que
+ * se identifica. Tiene una clase interna SingUp.
+ */
 public class Login extends JDialog {
 
+	/**
+	 * 
+	 */
 	private static final long serialVersionUID = 1L;
 	
 	private final JPanel contentPanel = new JPanel();
 	private JTextField textField;
 	private JPasswordField passwordField;
 	private Boolean correcto;
-	
 	private SingUp singUp;
 
+	/**
+	 * Clase que crea una ventana, al pricipio oculta, para registrar un usuario nuevo en la aplicación.
+	 */
 	public class SingUp extends JDialog {
 
 		private static final long serialVersionUID = 1L;
@@ -124,7 +133,6 @@ public class Login extends JDialog {
 					
 					@Override
 					public void actionPerformed(ActionEvent e) {
-						//Registrar usuario
 						Usuario nuevoUsuario = null;
 						try {
 							String id = textField.getText().trim();
@@ -172,7 +180,7 @@ public class Login extends JDialog {
 	}
 
 	/**
-	 * Crea la Ventana de Login
+	 * Constructora. Crea la ventana de Login.
 	 * @throws IOException 
 	 */
 	public Login(VentanaPrincipal ventanaPrincipal) throws IOException {
@@ -181,7 +189,7 @@ public class Login extends JDialog {
 		initGui(ventanaPrincipal);
 	}
 	/**
-	 * Crea la parte visual del Login
+	 * Crea la parte visual del Login.
 	 * @param ventanaPrincipal Ventana Principal del programa que cargara tras hacer un login correcto
 	 * @throws IOException
 	 */
@@ -262,9 +270,9 @@ public class Login extends JDialog {
 	}
 	
 	/**
-	 * Comprueba que los datos introducidos en el laventana de Login son validos y si existen en la base de datos, si ambas suceden
-	 * introduce al usuario a la aplicacion qeu se hace visible
-	 * @param ventanaPrincipal Venetana Principal a la que el usuario es introducido
+	 * Comprueba que los datos introducidos en el la ventana de Login son válidos y si existen en la base de datos.
+	 * Si ambas suceden, introduce al usuario a la aplicacion que se hace visible.
+	 * @param ventanaPrincipal Ventaana Principal a la que el usuario es introducido.
 	 */
 	public void in(VentanaPrincipal ventanaPrincipal) {
 		ControlUsuario ctrlU = new ControlUsuario(ventanaPrincipal.getUsuarioActual());
@@ -298,9 +306,10 @@ public class Login extends JDialog {
 			JOptionPane.showMessageDialog(new JFrame(), "Caracteres invalidos", "ERROR", JOptionPane.ERROR_MESSAGE);
 		}
 	}
+	
 	/**
-	 * Devuelve si el login ha ocurrido con éxito
-	 * @return Devuelve el booleano que determina si el Login ha ocurrido con éxito
+	 * Devuelve si el login ha ocurrido con éxito.
+	 * @return Devuelve el booleano que determina si el Login ha ocurrido con éxito.
 	 */
 	public Boolean getCorrecto() {
 		return correcto;

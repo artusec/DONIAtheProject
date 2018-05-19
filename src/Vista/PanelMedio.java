@@ -4,6 +4,9 @@ import java.awt.BorderLayout;
 
 import javax.swing.JPanel;
 
+/**
+ * Panel que ocupa la posición central de la ventana principal. Contiene una lista de canciones y una barra de tareas.
+ */
 public class PanelMedio extends JPanel {
 
 	/**

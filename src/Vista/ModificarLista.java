@@ -1,28 +1,27 @@
 package Vista;
 
 import javax.swing.JPanel;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.border.TitledBorder;
-
 import Controlador.ControlLista;
-import Excepciones.ErrorCreacionObjeto;
 import Model.Objetos.Lista;
-import Model.Objetos.ListaNormal;
-
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
-import javax.swing.LayoutStyle.ComponentPlacement;
 import net.miginfocom.swing.MigLayout;
 
+/**
+ * Clase que crea un panel que contiene los campos para modificar una lista de reproducción.
+ */
 public class ModificarLista extends JPanel {
 	
+	/**
+	 * 
+	 */
 	private static final long serialVersionUID = 1L;
 	private JTextField entradaNombre;
 

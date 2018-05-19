@@ -4,20 +4,23 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JToolBar;
 import javax.swing.SwingConstants;
-
 import Controlador.ControlLista;
 import Model.Objetos.Lista;
 
+/**
+ * Clase que crea la barra de herramientas de las listas de reproducción,
+ */
 public class ToolBarListas extends JToolBar {
 
+	/**
+	 * 
+	 */
 	private static final long serialVersionUID = 1L;
 
-	
 	/**
 	 * Crea y añade una barra herramientas con funciones sobre las listas a la ventana principal.
 	 * @param mainWindow Ventana principal a la qeu se añade la barra de herramientas sobre listas.
@@ -56,6 +59,7 @@ public class ToolBarListas extends JToolBar {
 				public void actionPerformed(ActionEvent arg0) {
 					ArrayList<Lista> listas =  ventanaPrincipal.getListaSelecccionada();
 					if (listas != null && !listas.isEmpty()) {
+						
 						for (Lista l : listas) {
 							ControlLista controlador = new ControlLista(ventanaPrincipal.getUsuarioActual());
 							controlador.eliminar(l);
@@ -77,6 +81,7 @@ public class ToolBarListas extends JToolBar {
 		{
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
+				
 				ventanaPrincipal.verCrearListaAuto();
 			}
 		 });
@@ -93,6 +98,7 @@ public class ToolBarListas extends JToolBar {
 		{
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
+				
 				ventanaPrincipal.verModificarLista();
 			}
 		 });

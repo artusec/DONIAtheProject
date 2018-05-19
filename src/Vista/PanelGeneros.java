@@ -13,14 +13,21 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 
+/**
+ * Clase que crea el panel que contiene los géneros que le han gustado al usuario.
+ */
 public class PanelGeneros extends JPanel{
 
-
-	 /**
+	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
+	/**
+	 * Constructora. Crea el panel y accede a la base de datos para ver los géneros favoritos del usuario.
+	 * @param panelFavoritos
+	 * @param ventanaPrincipal
+	 */
 	PanelGeneros(PanelDePaneles<Genero> panelFavoritos, VentanaPrincipal ventanaPrincipal) {
 
 			setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Géneros"));

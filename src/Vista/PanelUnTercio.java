@@ -10,18 +10,24 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
+/**
+ * Clase que gestiona el panel que contiene el panel de letras y el panel de información de una canción.
+ */
 public class PanelUnTercio extends JPanel {
 
-	private PanelAreaTexto panelDeLetra;
-	private DatosCancion_panel panelDeDatos;
-	private Enlaces_panel panelDeEnlaces;
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	private PanelAreaTexto panelDeLetra;
+	private DatosCancion_panel panelDeDatos;
+	private Enlaces_panel panelDeEnlaces;
+	
 
 	/**
-	 * Create the panel.
+	 * Constructora. Crea el panel.
+	 * @param panelDeLetra
+	 * @param panelDeDatos
 	 */
 	public PanelUnTercio(PanelAreaTexto panelDeLetra, DatosCancion_panel panelDeDatos) {
 		
@@ -56,8 +62,11 @@ public class PanelUnTercio extends JPanel {
 	
 	/**
 	 * @wbp.parser.constructor
+	 * @param panelDeEnlaces
+	 * @param panelDatos
 	 */
 	public PanelUnTercio(Enlaces_panel panelDeEnlaces, DatosCancion_panel panelDatos) {
+		
 		this.panelDeDatos = panelDatos;
 		this.panelDeLetra = null;
 		this.panelDeEnlaces = panelDeEnlaces;
@@ -67,6 +76,11 @@ public class PanelUnTercio extends JPanel {
 		this.add(panelDatos, BorderLayout.SOUTH);
 	}
 
+	/**
+	 * Establece la letra y los datos de la cancion en sus respectivos campos.
+	 * @param cancion
+	 * @param ventanaPrincipal
+	 */
 	public void setDatos(Cancion cancion, VentanaPrincipal ventanaPrincipal) {
 		
 		panelDeDatos.setDatos(cancion);
@@ -76,6 +90,9 @@ public class PanelUnTercio extends JPanel {
 			panelDeEnlaces.setDatos(cancion, ventanaPrincipal);
 	}
 	
+	/**
+	 * Vacía los campos del panel.
+	 */
 	public void vaciaElPanel() {
 		
 		panelDeDatos.vaciarCampos();

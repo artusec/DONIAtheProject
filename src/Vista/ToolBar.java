@@ -9,10 +9,17 @@ import javax.swing.JOptionPane;
 import javax.swing.JToolBar;
 import javax.swing.SwingConstants;
 
+/**
+ * Clase que crea la barra de herramientas principal de la aplicación.
+ * @author Arturo
+ *
+ */
 public class ToolBar extends JToolBar {
 	
+	/**
+	 * 
+	 */
 	private static final long serialVersionUID = 1L;
-	
 	private JButton perfil;
 	private JButton verGustos;
 	private JButton aniadirCancion;
@@ -20,9 +27,8 @@ public class ToolBar extends JToolBar {
 	private JButton modifCancion;
 	private JButton salir;
 	
-	
 	/**
-	 * Crea la barra de herramientas y la añade a la Ventana Principal
+	 * Constructora. Crea la barra de herramientas y la añade a la Ventana Principal
 	 * @param mainWindow Ventana Pricipal a la que se añade la Barra de herramientas
 	 */
 	public ToolBar(VentanaPrincipal mainWindow) {
@@ -72,6 +78,7 @@ public class ToolBar extends JToolBar {
 		{
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
+				
 				mainWindow.verAniadirCancion();
 			}
 		 });
@@ -89,6 +96,7 @@ public class ToolBar extends JToolBar {
 		{
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
+				
 				mainWindow.verEliminarCancion();
 			}
 		 });
@@ -106,6 +114,7 @@ public class ToolBar extends JToolBar {
 		{
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
+				
 				mainWindow.verModificarCancion();
 			}
 		 });
@@ -123,6 +132,7 @@ public class ToolBar extends JToolBar {
 		{
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
+				
 				int a = JOptionPane.showOptionDialog(new JFrame(), "Do you really want to exit?", "EXIT",
 						JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, null, null);
 				
@@ -140,9 +150,9 @@ public class ToolBar extends JToolBar {
 	 * @param cual Booleano que define si los botones se activan o se desactivan
 	 */
 	public void configurarBotones(boolean cual) {
+		
 		aniadirCancion.setEnabled(cual);
 		eliminarCancion.setEnabled(cual);
 		modifCancion.setEnabled(cual);
-		
 	}
 }

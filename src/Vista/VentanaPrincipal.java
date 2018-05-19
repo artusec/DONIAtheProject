@@ -50,20 +50,22 @@ public class VentanaPrincipal extends JFrame {
 	 * Constructura de la Vista Principal.
 	 */
 	public VentanaPrincipal () {	
+		
 		super("Donia");
 		initGUI();
 		try {
 			Login = new Login(this);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		Login.setVisible(true);
 	}
+	
 	/**
-	 * Inicializa la Vista.
+	 * Inicializa la Vista, creando y colocando los respectivos paneles y barras de herramientas.
 	 */
 	private void initGUI() {
+		
 		this.setIconImage(new ImageIcon("src/icons/LOGO_DONIA.png").getImage()); 
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		addWindowListener(new WindowListener() {
@@ -124,7 +126,7 @@ public class VentanaPrincipal extends JFrame {
 	}
 
 	/**
-	 * Añade al toolbar al panelSupremo.
+	 * Añade el toolbar al panelSupremo.
 	 * @param panelSupremo Panel al que se le añade la toolbar.
 	 */
 	private void addToolBar(JPanel panelSupremo) {
@@ -207,7 +209,6 @@ public class VentanaPrincipal extends JFrame {
 		try {
 			account = new Account_panel(this);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		account.setDatosUsuario(usuarioActual);
@@ -226,10 +227,8 @@ public class VentanaPrincipal extends JFrame {
 		panelCambiante = new JPanel();
 		panelCambiante.setLayout(new BorderLayout());
 		this.panelCambiante.setOpaque(false);
-		
 	 	panelFavoritos = new PanelDePaneles<Genero>("Géneros favoritos");
 	 	VentanaPrincipal.actualizaGeneros();
-		
 		PanelGeneros pg = new PanelGeneros(panelFavoritos, this);
 		panelCambiante.add(pg);
 		panelCentral.add(panelCambiante);
@@ -237,7 +236,7 @@ public class VentanaPrincipal extends JFrame {
 	}
 	
 	/**
-	 * Muestra el panel que permite añadir una cancion al sistema.
+	 * Muestra el panel que permite añadir una cancion a la base de datos.
 	 */
 	public void verAniadirCancion() {
 		
@@ -254,7 +253,7 @@ public class VentanaPrincipal extends JFrame {
 	
 	
 	/**
-	 * Muestra el panel que permite eliminar una cancion del sistema.
+	 * Muestra el panel que permite eliminar una cancion de la base de datos.
 	 */
 	public void verEliminarCancion() {
 		resetearPanelCambiante();
@@ -269,7 +268,7 @@ public class VentanaPrincipal extends JFrame {
 	}
 	
 	/**
-	 * Muestra el panel que muestra la letra de una cancion.
+	 * Muestra el panel que muestra la letra de una canción.
 	 */
 	public void verPanelLetras() {
 		
@@ -280,7 +279,6 @@ public class VentanaPrincipal extends JFrame {
 		DatosCancion_panel panelDatos = new DatosCancion_panel(this);
 		PanelAreaTexto panelDeLetras = new PanelAreaTexto("Letra", false);
 		panelUnTercio = new PanelUnTercio(panelDeLetras, panelDatos);
-		
 		Cancion aux = panelCanciones.getSelectedItem();
 		if(aux != null) {
 			
@@ -292,9 +290,10 @@ public class VentanaPrincipal extends JFrame {
 	}
 
 	/**
-	 * Muestra el panel que muestra los datos de una cancion.
+	 * Muestra el panel que muestra los datos de una canción.
 	 */
 	public void verPanelCancion() {
+		
 		resetearPanelCambiante();
 		panelCambiante = new JPanel();
 		panelCambiante.setLayout(new BorderLayout());
@@ -302,7 +301,6 @@ public class VentanaPrincipal extends JFrame {
 		DatosCancion_panel panelDatos = new DatosCancion_panel(this);
 		Enlaces_panel panelDeEnlaces = new Enlaces_panel(this);
 		panelUnTercio = new PanelUnTercio(panelDeEnlaces, panelDatos);
-		
 		Cancion aux = panelCanciones.getSelectedItem();
 		if(aux != null) {
 			
@@ -327,7 +325,6 @@ public class VentanaPrincipal extends JFrame {
 		modificar.setOpaque(false);
 		panelCambiante.add(modificar);
 		panelCentral.add(panelCambiante);
-		
 	}
 	
 	/**
@@ -403,18 +400,22 @@ public class VentanaPrincipal extends JFrame {
 	}
 	
 	// --- ACTUALIZACION DE VISTA ----
+	
 	/**
 	 * Se actualizan las canciones que se encuentran dentro de una lista.
 	 * @param idLista Lista en la que se actualizan las canciones.
 	 */
 	public static void actualizaCanciones(String idLista) {
+		
 		ControlLista control = new ControlLista(usuarioActual);
 		panelCanciones.setList(control.consulta(idLista).getCanciones());
 	}
+	
 	/**
 	 * Actualiza los generos de el usuario actual.
 	 */
 	public static void actualizaGeneros() {
+		
 		ControlUsuario control = new ControlUsuario(usuarioActual);
 		ArrayList<Genero> generos = control.ingreso(usuarioActual.getId(), usuarioActual.getClave()).getGustos();
 		if (generos != null)
@@ -425,13 +426,10 @@ public class VentanaPrincipal extends JFrame {
 	 * Actualiza las listas que tiene el usuario actual.
 	 */
 	public static void actualizaListas() {
+		
 		ControlLista control = new ControlLista(usuarioActual);
 		panelListas.setList(control.getListasUsuario());
 	}
-
-//	public static void actualizaUsuario() {
-//		// TODO Auto-generated method stub
-//	}
 
 	/**
 	 * Establece la canción de la cual se muestra la información (letra, enlaces etc...).
@@ -460,10 +458,11 @@ public class VentanaPrincipal extends JFrame {
 		
 		VentanaPrincipal.usuarioActual = accesor;
 	}
-/**
- * 
- * @return se devuelve el panel cambiante.
- */
+	
+	/**
+	 * Devuelve el panel cambiante.
+	 * @return se devuelve el panel cambiante.
+	 */
 	public JPanel getPanelCambiante() {
 		
 		return panelCambiante;
@@ -477,11 +476,13 @@ public class VentanaPrincipal extends JFrame {
 		
 		this.panelCambiante = panelCambiante;
 	}
+	
 	/**
-	 * 
+	 * Devuelve el panel cambiante.
 	 * @return Devuelve el panel central.
 	 */
 	public JPanel getPanelCentral() {
+		
 		
 		return panelCentral;
 	}
@@ -568,7 +569,6 @@ public class VentanaPrincipal extends JFrame {
 	public void configurarBotones(boolean cual) {
 
 		toolBar.configurarBotones(cual);
-
 	}
 
 	/**
@@ -578,6 +578,7 @@ public class VentanaPrincipal extends JFrame {
 		
 		panelCanciones.borrarSeleccionado();
 	}
+	
 	/**
 	 * Vacia panelCanciones.
 	 */

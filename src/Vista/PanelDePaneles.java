@@ -7,13 +7,23 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.TitledBorder;
 
+/**
+ * Panel para representar listas.
+ * @param <T> contenido de la lista.
+ */
 public class PanelDePaneles<T> extends JPanel {
 
+	/**
+	 * 
+	 */
 	private static final long serialVersionUID = 1L;
-
 	protected ListModel<T> listModel;
 	protected JList<T> objList;
 	
+	/**
+	 * Constructora. Crea el panel con el título pasado por parámetro.
+	 * @param titulo
+	 */
 	public PanelDePaneles(String titulo) {
 		
 		this.setLayout(new BorderLayout());
@@ -25,6 +35,10 @@ public class PanelDePaneles<T> extends JPanel {
 				JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED), BorderLayout.CENTER);
 	}
 	
+	/**
+	 * Devuelve una lista con los elementos seleccionados.
+	 * @return ArrayList<T>
+	 */
 	public ArrayList<T> getSelectedItems() {
 		ArrayList<T> l = new ArrayList<>();
 		for (int i : this.objList.getSelectedIndices()) {
@@ -33,6 +47,10 @@ public class PanelDePaneles<T> extends JPanel {
 		return l;
 	}
 	
+	/**
+	 * Devuelve un único elemento seleccionado de la lista.
+	 * @return T
+	 */
 	public T getSelectedItem() {
 		int i = this.objList.getMinSelectionIndex();
 		if (i < 0)
@@ -40,14 +58,25 @@ public class PanelDePaneles<T> extends JPanel {
 		return listModel.getElementAt(i);
 	}
 	
+	/**
+	 * Establece el modelo de lista a partir de un parámetro
+	 * @param lista
+	 */
 	public void setList(ArrayList<T> lista) {
 		this.listModel.setList(lista);
 	}
 
+	/**
+	 * Devuelve el modelo de lista.
+	 * @return ListModel<T>
+	 */
 	public ListModel<T> getModelo() {
 		return listModel;
 	}
 	
+	/**
+	 * Borra las selecciones de la lista.
+	 */
 	public void borrarSeleccionado() {
 		
 		objList.clearSelection();

@@ -14,6 +14,9 @@ import Controlador.ControlLista;
 import Model.Objetos.Cancion;
 import Model.Objetos.Lista;
 
+/**
+ * Clase que crea la barra de herramientas de las canciones.
+ */
 public class ToolBarCanciones extends JToolBar {
 
 	private static final long serialVersionUID = 1L;
@@ -36,6 +39,7 @@ public class ToolBarCanciones extends JToolBar {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				
 				mainWindow.verAniadirCancionALista();
 			}
 		});
@@ -56,6 +60,7 @@ public class ToolBarCanciones extends JToolBar {
 				ArrayList<Cancion> selC = mainWindow.getCancionSelecccionada();
 				ArrayList<Lista> selL = mainWindow.getListaSelecccionada();
 				if (selC != null && !selC.isEmpty() && selL != null && !selL.isEmpty() ) {
+					
 					for (Cancion c : selC) {
 						for (Lista l : selL) {
 							ControlLista control = new ControlLista(mainWindow.getUsuarioActual());
@@ -81,6 +86,7 @@ public class ToolBarCanciones extends JToolBar {
 				
 				ArrayList<Cancion> sel = mainWindow.getCancionSelecccionada();
 				if (sel != null && !sel.isEmpty()) {
+					
 					for (Cancion c : sel) {
 						ControlGenero control = new ControlGenero(mainWindow.getUsuarioActual());
 						control.Anadir(c.getGenero());

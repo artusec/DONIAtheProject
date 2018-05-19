@@ -4,8 +4,6 @@ import javax.swing.JPanel;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.border.TitledBorder;
-
-import Controlador.ControlCancion;
 import Model.Objetos.Cancion;
 import javax.swing.JLabel;
 import javax.swing.LayoutStyle.ComponentPlacement;
@@ -13,9 +11,11 @@ import javax.swing.JTextField;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.JButton;
 
+/**
+ * Clase que crea el panel que contiene los campos con la informacion de la cancion que se esta consultando actualmente.
+ */
 public class DatosCancion_panel extends JPanel {
 	/**
 	 * 
@@ -25,11 +25,11 @@ public class DatosCancion_panel extends JPanel {
 	private JTextField artista;
 	private JTextField duracion;
 	private JTextField genero;
-	private Enlaces_panel enlacesPanel;
 	private JButton btnEnlaces;
-
+	
 	/**
-	 * Create the panel.
+	 * Constructora. Crea el panel.
+	 * @param ventanaPrincipal
 	 */
 	public DatosCancion_panel(VentanaPrincipal ventanaPrincipal) {
 		setBorder(new TitledBorder(null, "Datos de la canción", TitledBorder.LEADING, TitledBorder.TOP, null, null));
@@ -61,9 +61,6 @@ public class DatosCancion_panel extends JPanel {
 		genero = new JTextField();
 		genero.setEditable(false);
 		genero.setColumns(10);
-		
-		enlacesPanel = new Enlaces_panel(ventanaPrincipal);
-
 		
 		btnEnlaces = new JButton("Enlaces");
 		btnEnlaces.addActionListener(new ActionListener() {
@@ -126,7 +123,12 @@ public class DatosCancion_panel extends JPanel {
 
 	}
 	
+	/**
+	 * Rellena los campos del panel a partir de una cancion pasada por argumento.
+	 * @param cancion
+	 */
 	public void setDatos(Cancion cancion) {	
+		
 		if(cancion != null) {
 			this.titulo.setText(cancion.getTitulo());
 			this.artista.setText(cancion.getAutor());
@@ -135,11 +137,12 @@ public class DatosCancion_panel extends JPanel {
 			int min = (int) (duracion / 60);
 			int seg = (int) (duracion % 60);
 			this.duracion.setText(Integer.toString(min) + " min " + Integer.toString(seg) + " seg");
-			// enlace.setText(cancion.getVideo().getEnlace());
-			// descarga.setText(cancion.getVideo().getEnlaceDescarga());
 		}
 	}
 
+	/**
+	 * Vacia los campos del panel, poniendo su contenido a vacío.
+	 */
 	public void vaciarCampos() {
 		
 		titulo.setText("");
@@ -147,10 +150,16 @@ public class DatosCancion_panel extends JPanel {
 		duracion.setText("");
 	}
 
+	/**
+	 * Oculta el boton de "Ver enlaces".
+	 */
 	public void ocultarBoton() {
 		btnEnlaces.setVisible(false);
 	}
 
+	/**
+	 * Hace visible el boton de "Ver enlaces".
+	 */
 	public void verBoton() {
 		btnEnlaces.setVisible(true);
 	}
