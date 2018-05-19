@@ -15,7 +15,7 @@ public class Letra {
      */
     public Letra(String id, String texto) throws ErrorCreacionObjeto {
 		this.setId(id);
-		texto = texto.replace("'", ""); //Quitamos las comillas simples por problemas con la BD
+		texto = texto.replace("'", "");
 		texto = texto.replace(";", ",");
 		this.setTexto(texto);
 	}

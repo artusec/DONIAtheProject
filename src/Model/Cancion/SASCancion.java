@@ -12,11 +12,6 @@ public class SASCancion implements InterfazSASCancion {
 	
 	private InterfazDAOFachada dao;
 	
-	//Para los siguientes metodos:
-	//Si hubiese errores en el acceso a datos el dao nos notifica
-	//Si letra (u otro atributo) no estuviese definida para el objeto, la gui recoge en null y no
-	//	escribe nada en pantalla
-	
 	public SASCancion() {
 		this.setDao();
 	}
@@ -24,13 +19,13 @@ public class SASCancion implements InterfazSASCancion {
 	private void setDao() {
 		this.dao = new DAOFachada();
 	}
-	
-	@Override
+
 	/**
 	 * Anade una cancion a la base de datos
-	 * @param cancion cancion que se quiere anadir a la base de datos
+	 * @param cancion cancion que se quiere anadir a la base de datos.
 	 * @throws ErrorCreacionObjeto
 	 */
+	@Override
 	public void creaCancion(Cancion cancion) throws ErrorCreacionObjeto, ErrorGuardado {
 		if (cancion == null)
 			throw new ErrorCreacionObjeto("Error al crear la cancion");
@@ -39,19 +34,19 @@ public class SASCancion implements InterfazSASCancion {
 			//la cancion deberia eliminarse anadirse sola a la biblioteca
 	}
 	
-	@Override
+
 	/**
-	 * Elimina una cancion de la base de datos
+	 * Elimina una cancion de la base de datos.
 	 * @param cancion cancion a eliminar
 	 * @throws 
 	 */
+	@Override
 	public void eliminaCancion(Cancion cancion) throws ErrorEliminacion { 
 		dao.eliminarCancion(cancion);
-		//la cancion deberia eliminarse de la biblioteca en el dao
 	}
 	
 	/**
-	 * Devuelve una cancion de la DB
+	 * Devuelve una canción de la base de datos.
 	 * @param cancion id de la cancion
 	 * @return la cancion, null si no existe
 	 * @throws ErrorConsulta 
@@ -67,7 +62,7 @@ public class SASCancion implements InterfazSASCancion {
     }
 	
 	/**
-	 * Devuelve la letra de una cancion
+	 * Devuelve la letra de una canción.
 	 * @param cancion id de la cancion
 	 * @return la letra, null si no existe
 	 * @throws ErrorConsulta 
@@ -83,7 +78,7 @@ public class SASCancion implements InterfazSASCancion {
 	}
 	
 	/**
-	 * Devuelve el video de una cancion
+	 * Devuelve el video de una canción.
 	 * @param cancion id de la cancion
 	 * @return el video, null si no existe
 	 * @throws ErrorConsulta 
@@ -99,7 +94,7 @@ public class SASCancion implements InterfazSASCancion {
     }
 
 	/**
-	 * Devuelve el enlace de descarga del un video de la DB
+	 * Devuelve el enlace de descarga del un video de la base de datos.
 	 * @param cancion id de la cancion
 	 * @return el enlace a descarga video, null si no existe
 	 * @throws ErrorConsulta 

@@ -3,9 +3,11 @@ package Main;
 import Excepciones.ErrorCreacionObjeto;
 import Vista.VentanaPrincipal;
 
+/**
+ * Clase principal desde la cual se crea la ventana principal.
+ */
 public class Main {
 	
-	// VISTA
 	private static VentanaPrincipal vista;
 	
 	public static void main (String [] args) {
@@ -14,8 +16,7 @@ public class Main {
 			iniciarGUI();
 			
 		} catch (Exception e) {
-			System.out.println("imposible arrancar esto");
-			e.printStackTrace();
+			System.out.println("Error al iniciar la ventana principal");
 		}
 	}
 

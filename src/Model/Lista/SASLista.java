@@ -20,8 +20,6 @@ import Vista.VentanaPrincipal;
 public class SASLista implements InterfazSASLista {
 	
 	private InterfazDAOFachada dao;
-	//hay un objeto dao, solo que no se donde deberiamos ponerlo
-	//tambien necesitamos en algunas clases (como esta) saber cual es el usuario con el que estamos trabajando ahora
 	
 	public SASLista() {
 		this.setDao();
@@ -33,8 +31,6 @@ public class SASLista implements InterfazSASLista {
 
 	/**
 	 * Devuelve la lista solicitada
-	 * 
-	 * TODO: quizas la lista deberia ser un string con la id
 	 * 
 	 * @param id id de la lista a consultar
 	 * @return la lista buscada, null si no existe
@@ -51,7 +47,7 @@ public class SASLista implements InterfazSASLista {
     }
 	
 	/**
-	 * Devuelve todas las listas del usuario
+	 * Devuelve todas las listas del usuario.
 	 * @param usuarioActual
 	 * @return
 	 * @throws ErrorCreacionObjeto 
@@ -68,7 +64,7 @@ public class SASLista implements InterfazSASLista {
     }
 	
     /**
-     * borra una lista existente (obvio)
+     * Borra una lista.
      * @param lista lista a borrar
      * @param usuario usuario que desea borrar la lista
      * @throws ErrorEliminacion
@@ -81,7 +77,7 @@ public class SASLista implements InterfazSASLista {
     }
     
     /**
-     * modifica una lista existente
+     * Modifica una lista.
      * @param nombre el nuevo nombre
      * @param lista lista a modificar
      * @throws ErrorGuardado 
@@ -93,7 +89,7 @@ public class SASLista implements InterfazSASLista {
     }
 
     /**
-     * Crea una lista vacia (las canciones se anaden aparte) y la guarda en la DB
+     * Crea una lista vacia y la guarda en la base de datos.
      * @param nombre nombre de la lista
      * @param usuario usuario que desea crear la lista
      * @throws ErrorCreacionObjeto 
@@ -105,7 +101,7 @@ public class SASLista implements InterfazSASLista {
     }
 
     /**
-     * Crea una listaAuto con sus temas correspondientes y la guarda en la DB
+     * Crea una listaAuto con sus temas correspondientes y la guarda en la base de datos.
      * @param lista objeto que se quiere crear
      * @param genero el genero del cual seleccionar las canciones
      * @param usuario usuario que quiere crear la lista
@@ -119,7 +115,6 @@ public class SASLista implements InterfazSASLista {
 		if (lista == null)
 			throw new ErrorCreacionObjeto("Error al crear lista auto");
 		else {
-			//obtener lista de canciones con el genero que nos interesa
 			ArrayList<Cancion> canciones = dao.getCancionesGeneroDB(lista.getGenero().getId());
 			if (canciones != null) 
 			{
@@ -156,8 +151,7 @@ public class SASLista implements InterfazSASLista {
     }
 
     /**
-     * Guardado en la DB la pertenencia de una cancion a una lista, vamos que mete
-     * la cancion en la lista
+     * Guardado en la DB la pertenencia de una cancion a una lista.
      * @param cancion cancion a anadir
      * @param lista lista objetivo
      * @param usuario usuario que quiere anadir la cancion
@@ -168,17 +162,8 @@ public class SASLista implements InterfazSASLista {
      */
     @Override
     public void anadirCancion(Cancion cancion, Lista lista, Usuario usuario) throws ErrorAutenticacion, ErrorCreacionObjeto, ErrorConsulta, ErrorGuardado {
+    	
     		if (dao.getCancionDB(cancion.getId()).getId().equals(cancion.getId())) {
-    			//comprueba que vamos a anadir una cancion valida
-    			
-    			// Comprobar que la cancion que queremos añadir a la lista no este ya añadida
-    			// No se por que esto no funciona Borja ayuda
-//    			if(dao.getListaDB(lista.getId()).getCanciones().contains(cancion)) {
-//    				
-//    				throw new ErrorGuardado("La cancion " + cancion.getTitulo() + " ya esta en la lista " + lista.getNombre());
-//    			}
-    			
-    			
     			if (!lista.getId().equals("l0")) {	
 	    			lista.anadirCancion(cancion);
 	    			dao.setLista(lista, usuario);
@@ -189,7 +174,7 @@ public class SASLista implements InterfazSASLista {
     }
     
     /**
-     * Elimina de la DB la pertenencia de una cancion a una lista
+     * Elimina de la base de datos la pertenencia de una cancion a una lista.
      * @param cancion cancion a eliminar
      * @param lista lista objetivo
      * @param usuario usuario que quiere eliminar la cancion

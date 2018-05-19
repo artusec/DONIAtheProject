@@ -47,7 +47,7 @@ public class Cancion {
     }
 
     /**
-     * Métod setter de la canción
+     * Método setter de la canción
      * @param id Id con el que se identifica la canción. 
      * @throws ErrorCreacionObjeto
      */

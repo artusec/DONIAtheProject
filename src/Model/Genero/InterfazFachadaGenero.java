@@ -11,7 +11,7 @@ import Model.Objetos.Usuario;
 public interface InterfazFachadaGenero {
 	
 	/**
-	 * Añade un género a la DB.
+	 * Añade un género a la base de datos.
 	 * @param genero Género a añadir.
 	 * @param usuario Usuario en el que se quiere añadir el género.
 	 * @throws ErrorAutenticacion
@@ -20,7 +20,7 @@ public interface InterfazFachadaGenero {
     void Anadir(Genero genero, Usuario usuario) throws ErrorAutenticacion, ErrorGuardado;
     
     /**
-     * Elimina un género de la DB.
+     * Elimina un género de la base de datos.
      * @param genero género a eliminar.
      * @param usuario usuario que quiere eliminar el género.
      * @throws ErrorEliminacion
@@ -29,7 +29,7 @@ public interface InterfazFachadaGenero {
     void Eliminar(Genero genero, Usuario usuario) throws ErrorEliminacion, ErrorAutenticacion;
     
     /**
-     * Obtiene un género de la DB.
+     * Obtiene un género de la base de datos.
      * @param idGenero id del género.
      * @return el género buscado, null si no existe.
      * @throws ErrorConsulta

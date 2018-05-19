@@ -1,7 +1,6 @@
 package Model.Lista;
 
 import java.util.ArrayList;
-
 import Excepciones.ErrorAutenticacion;
 import Excepciones.ErrorConsulta;
 import Excepciones.ErrorCreacionObjeto;

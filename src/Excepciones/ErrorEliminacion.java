@@ -7,6 +7,9 @@ package Excepciones;
  */
 public class ErrorEliminacion extends Exception {
 
+	/**
+	 * 
+	 */
 	private static final long serialVersionUID = 1L;
 
 	private static String defaultError = "Error al eliminar datos";

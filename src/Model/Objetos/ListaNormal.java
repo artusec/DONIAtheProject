@@ -1,7 +1,6 @@
 package Model.Objetos;
 
 import java.util.ArrayList;
-
 import Excepciones.ErrorCreacionObjeto;
 
 public class ListaNormal extends Lista {

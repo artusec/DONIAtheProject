@@ -7,7 +7,7 @@ public class Genero {
     private String id;
 
     /**
-     * COonstructora de la clase.
+     * Constructora de la clase.
      * @param id Id que identifica al género.
      * @throws ErrorCreacionObjeto
      */

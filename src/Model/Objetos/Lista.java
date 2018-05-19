@@ -1,8 +1,6 @@
 package Model.Objetos;
 
 import java.util.ArrayList;
-import java.util.List;
-
 import Excepciones.ErrorCreacionObjeto;
 
 public abstract class Lista {

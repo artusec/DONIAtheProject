@@ -1,5 +1,9 @@
 package Excepciones;
 
+/**
+ * Esta clase es para los errores en las consultas a la base de datos.
+
+ */
 public class ErrorConsulta extends Exception {
 
 	/**

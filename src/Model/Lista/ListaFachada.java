@@ -13,6 +13,9 @@ public class ListaFachada implements InterfazFachadaLista {
 	
     public InterfazSASLista sasLista;
 
+    /**
+     * Constructora.
+     */
     public ListaFachada(){
     		sasLista = new SASLista();
     }
