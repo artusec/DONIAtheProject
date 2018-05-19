@@ -41,6 +41,12 @@ public class ModificarCancion_panel extends JPanel {
 
 	private Cancion cancionVieja = null;
 	
+	/**
+	 * Crea un panel con un campo de texto a rellenar para cada atributo de una canción.
+	 * Si algún campo recibe un parámetro mal, se ve un error en la vista, sino, el botón llama a los métodos necesarios para actualizar la canción en la DB.
+	 * El botón solo está activo si eres un administrador.
+	 * @param ventanaPrincipal ventana principal donde se ve toda la información.
+	 */
 	public ModificarCancion_panel(VentanaPrincipal ventanaPrincipal) {
 		setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "MODIFICAR CANCI\u00D3N", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		

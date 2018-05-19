@@ -37,8 +37,12 @@ public class SongAdmin_panel extends JPanel {
 	private JTextField video;
 	private JTextField descarga;
 	private JEditorPane letra;
+
 	/**
-	 * Create the panel.
+	 * Crea un panel con un campo de texto a rellenar para cada atributo de una canción.
+	 * Si algún campo recibe un parámetro mal, se ve un error en la vista, sino, el botón llama a los métodos necesarios para insertar la canción en la DB.
+	 * El botón solo está activo si eres un administrador.
+	 * @param ventanaPrincipal ventana principal donde se ve toda la información.
 	 */
 	public SongAdmin_panel(VentanaPrincipal ventanaPrincipal) {
 		setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "NUEVA CANCION", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));

@@ -25,8 +25,11 @@ public class CrearListaAuto extends JPanel {
 	private JTextField duracion; //Duracion
 
 	/**
-	 * Create the panel.
-	 * @param ventanaPrincipal 
+	 * Crea un panel en el que escribes el nombre de la lista, el género sobre el que crearla y el tiempo máximo de duración.
+	 * Tiene un botón que se encarga de realizar las llamadas necesarias para crear la lista automática.
+	 * El género debe existir en la base de datos.
+	 * Si no hay canciones suficientes para rellenar todo el tiempo deseado, se manda un mensaje a la vista.
+	 * @param ventanaPrincipal ventana principal donde se ve toda la información.
 	 */
 	public CrearListaAuto(VentanaPrincipal ventanaPrincipal) {
 		setBorder(new TitledBorder(null, "Crear lista automatica", TitledBorder.LEADING, TitledBorder.TOP, null, null));

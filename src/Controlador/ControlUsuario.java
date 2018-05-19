@@ -45,7 +45,7 @@ public class ControlUsuario {
 	public void borrar(Usuario usuario) {
 		try {
 			fUsuario.eliminar(usuario);
-			VentanaPrincipal.actualizaUsuario();
+			//VentanaPrincipal.actualizaUsuario();
 		} catch (ErrorAutenticacion | ErrorEliminacion e) {
 			VentanaPrincipal.muestraError(e);
 		}
@@ -59,7 +59,7 @@ public class ControlUsuario {
 	public void registro(Usuario usuario) {
 		try {
 			fUsuario.registro(usuario);
-			VentanaPrincipal.actualizaUsuario();
+			//VentanaPrincipal.actualizaUsuario();
 		} catch (ErrorCreacionObjeto | ErrorAutenticacion | ErrorGuardado e) {
 			VentanaPrincipal.muestraError(e);
 		}
@@ -73,7 +73,7 @@ public class ControlUsuario {
 	public void modificar(Usuario usuario) {
 		try {
 			fUsuario.modificar(usuario);
-			VentanaPrincipal.actualizaUsuario();
+			//VentanaPrincipal.actualizaUsuario();
 		} catch (ErrorCreacionObjeto | ErrorAutenticacion | ErrorGuardado e) {
 			VentanaPrincipal.muestraError(e);
 		}

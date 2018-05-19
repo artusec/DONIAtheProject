@@ -21,15 +21,13 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import net.miginfocom.swing.MigLayout;
 
 public class CrearLista extends JPanel {
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 1L;
 	private JTextField entradaNombre;
 
 	/**
-	 * Create the panel.
-	 * @param ventanaPrincipal 
+	 * Crea un panel con un campo de texto para escribir el nombre de la lista a crear y un botón que realiza las llamadas necesarias para crear la lista vacía.
+	 * @param ventanaPrincipal ventana principal donde se ve toda la información.
 	 */
 	public CrearLista(VentanaPrincipal ventanaPrincipal) {
 		

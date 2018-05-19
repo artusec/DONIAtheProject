@@ -15,17 +15,24 @@ public class SASGenero implements InterfazSASGenero {
 	
 	private InterfazDAOFachada dao;
 	
+	/**
+	 * Constructura de la clase.
+	 */
 	public SASGenero() {
 		this.setDao();
 	}
 	
+	/**
+	 * Actualiza el atributo dao a un nuevo DAOFachada.
+	 */
 	private void setDao() {
 		this.dao = new DAOFachada();
 	}
 	
 	/**
-	 * Anade un genero a la DB
-	 * @param genero genero a anadir
+	 * Añade un género a la DB.
+	 * @param genero Género a anadir.
+	 * @param usuario Usuario en el que se quiere añadir el género.
 	 * @throws ErrorGuardado 
 	 * @throws ErrorAutenticacion 
 	 */
@@ -36,9 +43,9 @@ public class SASGenero implements InterfazSASGenero {
     }
 
     /**
-	 * Elimina un genero de la DB
-	 * @param genero genero a eliminar
-	 * @param usuario usuario que quiere eliminar el genero
+	 * Elimina un género de la DB.
+	 * @param genero género a eliminar.
+	 * @param usuario usuario que quiere eliminar el género.
      * @throws ErrorAutenticacion 
      * @throws ErrorEliminacion 
 	 */
@@ -49,9 +56,9 @@ public class SASGenero implements InterfazSASGenero {
     	}
 
     /**
-     * Obitiene un genero de la DB
-     * @param id id del genero
-     * @return el genero buscado, null si no existe
+     * Obtiene un género de la DB.
+     * @param idGenero id del género.
+     * @return el género buscado, null si no existe.
      * @throws ErrorConsulta 
      * @throws ErrorCreacionObjeto 
      */
