@@ -46,16 +46,18 @@ public class Login extends JDialog {
 		private Login login;
 		
 		/**
-		 * Create the dialog.
-		 * @param login 
-		 * @param ctrlU 
+		 * Crea la ventana de Registro
+		 * @param login Ventana a la que te redirige despues de registrarte
+		 * @param ctrlU Controlador que permite el registro
 		 */
 		public SingUp(Login login) {
 			this.login = login;
 			initGui();
 			setVisible(false);
 		}
-		
+		/**
+		 * Crea la parte visual de la ventana de registro
+		 */
 		private void initGui() {
 			
 		addWindowListener(new WindowListener() {
@@ -170,7 +172,7 @@ public class Login extends JDialog {
 	}
 
 	/**
-	 * Create the dialog.
+	 * Crea la Ventana de Login
 	 * @throws IOException 
 	 */
 	public Login(VentanaPrincipal ventanaPrincipal) throws IOException {
@@ -178,7 +180,11 @@ public class Login extends JDialog {
 		singUp = new SingUp(this);
 		initGui(ventanaPrincipal);
 	}
-
+	/**
+	 * Crea la parte visual del Login
+	 * @param ventanaPrincipal Ventana Principal del programa que cargara tras hacer un login correcto
+	 * @throws IOException
+	 */
 	private void initGui(VentanaPrincipal ventanaPrincipal) throws IOException {
 		setBounds(100, 100, 501, 616);
 		getContentPane().setLayout(new BorderLayout());
@@ -254,7 +260,12 @@ public class Login extends JDialog {
 		setResizable(false);
 		setTitle("Donia");
 	}
-
+	
+	/**
+	 * Comprueba que los datos introducidos en el laventana de Login son validos y si existen en la base de datos, si ambas suceden
+	 * introduce al usuario a la aplicacion qeu se hace visible
+	 * @param ventanaPrincipal Venetana Principal a la que el usuario es introducido
+	 */
 	public void in(VentanaPrincipal ventanaPrincipal) {
 		ControlUsuario ctrlU = new ControlUsuario(ventanaPrincipal.getUsuarioActual());
 		String id = textField.getText().trim();
@@ -287,7 +298,10 @@ public class Login extends JDialog {
 			JOptionPane.showMessageDialog(new JFrame(), "Caracteres invalidos", "ERROR", JOptionPane.ERROR_MESSAGE);
 		}
 	}
-	
+	/**
+	 * Devuelve si el login ha ocurrido con éxito
+	 * @return Devuelve el booleano que determina si el Login ha ocurrido con éxito
+	 */
 	public Boolean getCorrecto() {
 		return correcto;
 	}

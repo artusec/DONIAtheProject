@@ -18,6 +18,10 @@ public class ToolBarCanciones extends JToolBar {
 
 	private static final long serialVersionUID = 1L;
 
+	/**
+	 * Crea y añade una barra herramientas con funciones sobre las canciones a la ventana principal.
+	 * @param mainWindow Ventana principal a la qeu se añade la barra de herramientas sobre canciones
+	 */
 	public ToolBarCanciones(VentanaPrincipal mainWindow) {
 		super();
 		setLayout(new GridLayout(1, 4));

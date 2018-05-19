@@ -13,7 +13,11 @@ public class PanelImagen extends JPanel{
 	private static final long serialVersionUID = 1L;
 	
 	private BufferedImage image;
-
+	
+	/**
+	 * Crea un panel que llevará una imagen pintada en él
+	 * @param cual Ruta en al que se encuentra la imagen
+	 */
     public PanelImagen(String cual) {
 	    	super();
 	    	try {
@@ -21,7 +25,9 @@ public class PanelImagen extends JPanel{
 	    	
 	    	} catch (IOException ex) {}
     }
-
+	/**
+	 * Pinta la imagen en el panel
+	 */
     @Override
     protected void paintComponent(Graphics g) {
     	if(image == null)

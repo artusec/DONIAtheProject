@@ -20,6 +20,11 @@ public class ToolBar extends JToolBar {
 	private JButton modifCancion;
 	private JButton salir;
 	
+	
+	/**
+	 * Crea la barra de herramientas y la añade a la Ventana Principal
+	 * @param mainWindow Ventana Pricipal a la que se añade la Barra de herramientas
+	 */
 	public ToolBar(VentanaPrincipal mainWindow) {
 		super();	
 
@@ -130,7 +135,10 @@ public class ToolBar extends JToolBar {
 	}
 
 
-
+	/**
+	 * Activa o desactiva los botones
+	 * @param cual Booleano que define si los botones se activan o se desactivan
+	 */
 	public void configurarBotones(boolean cual) {
 		aniadirCancion.setEnabled(cual);
 		eliminarCancion.setEnabled(cual);

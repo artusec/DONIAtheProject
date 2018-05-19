@@ -14,29 +14,23 @@ import java.io.IOException;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
-import javax.swing.JPasswordField;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 
 import net.miginfocom.swing.MigLayout;
 import javax.swing.JSeparator;
-//import com.jgoodies.forms.factories.DefaultComponentFactory;
 
 public class Account_panel extends JPanel {
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 	private JTextField textField;
 	private JTextField textField_1;
-	private VentanaPrincipal view;
 	private JLabel exito ;
 	/**
-	 * Create the panel.
+	 * Crea el panel funcional y visualmente
 	 */
 
 	public Account_panel(VentanaPrincipal view) {
-		this.view = view;
 		setBorder(new TitledBorder(null, "PERFIL", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		setLayout(new BorderLayout(0, 0));
 		
@@ -172,7 +166,10 @@ public class Account_panel extends JPanel {
 		panel_6.add(exito, "cell 2 4 4 3,alignx left");
 		
 	}
-	
+	/**
+	 * Escribe los datos del usuario en los campos de texto	
+	 * @param user Usuario del que se escribe la informacion
+	 */
 	public void setDatosUsuario(Usuario user) {
 		this.textField.setText(user.getId());
 		this.textField_1.setText(user.getNombre());

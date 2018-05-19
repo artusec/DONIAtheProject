@@ -17,6 +17,11 @@ public class ToolBarListas extends JToolBar {
 
 	private static final long serialVersionUID = 1L;
 
+	
+	/**
+	 * Crea y añade una barra herramientas con funciones sobre las listas a la ventana principal.
+	 * @param mainWindow Ventana principal a la qeu se añade la barra de herramientas sobre listas.
+	 */
 	public ToolBarListas(VentanaPrincipal ventanaPrincipal){
 		super();
 		
