@@ -13,6 +13,11 @@ import Excepciones.ErrorEliminacion;
 import Excepciones.ErrorGuardado;
 import Model.Objetos.*;
 
+/**
+ * Clase SASDAO, implementa los métodos necesarios para leer y escribir
+ * de la base de datos
+ *
+ */
 public class SASDAO implements InterfazSASDAO {
 	
 	private static final String JDBC = "org.mariadb.jdbc.Driver";
@@ -25,6 +30,9 @@ public class SASDAO implements InterfazSASDAO {
 	private static final String USER = "usr";
     private static final String PASS = "usr";
     
+    /**
+     * Constructor de la clase, inicializa algunos argumentos y accede a los datos de la DB.
+     */
     public SASDAO() {
     		SASDAO.DBserver = "jdbc:" + SASDAO.DBsys + "://" + DBhost + "/" + SASDAO.DBnom;
     		try {
@@ -36,11 +44,11 @@ public class SASDAO implements InterfazSASDAO {
     
     /**
      * Inicializa la estructura de la base de datos. Para la primera ejecucion.
-     * @throws SQLException 
-     * @throws ClassNotFoundException 
+     * @throws SQLException Error SQL.
+     * @throws ClassNotFoundException Si no existe esta clase (no debería suceder)
      */
     public void initDB() throws ClassNotFoundException, SQLException {
-    		//de algun modo deberia crear una mariaDB en localhost que sa llame donia con user = usr pass = usr
+    		//requisito: crear una mariaDB en localhost que sa llame donia con user = usr pass = usr
     		
     		// Para crear la tabla y usuario en mariaDB:
     	
@@ -50,7 +58,7 @@ public class SASDAO implements InterfazSASDAO {
     		// "CREATE USER usr IDENTIFIED BY 'usr';"
     		// ejecutar el script de inicializacion
     	
-    		//creacion de tablas
+    		//creacion de tablas (alternativo al script)
     		this.conectaDB();
     		if (this.conectado()) {
     			/*String sentencia = DBstruct.getUsuario() + DBstruct.getUsuarioadmin() +
@@ -65,9 +73,9 @@ public class SASDAO implements InterfazSASDAO {
     }
     
     /**
-     * Inicializa conexion con maria
-     * @throws SQLException 
-     * @throws ClassNotFoundException 
+     * Inicializa conexion con mariaDB
+     * @throws SQLException Si no existe esta clase.
+     * @throws ClassNotFoundException Si no existe esta clase (no debería suceder)
      */
     private void conectaDB() throws SQLException, ClassNotFoundException {
         //driver
@@ -84,14 +92,17 @@ public class SASDAO implements InterfazSASDAO {
     
     /**
      * Check de si esta conectado a la DB
-     * @return
-     * @throws SQLException 
+     * @return True si está conectado, false si no.
+     * @throws SQLException Error SQL.
      */
     private boolean conectado() throws SQLException {
     		return this.DBconn != null && !this.DBconn.isClosed();
     }
     
     // --------------- GET ---------------
+    /**
+     * Implementación de getCancionDB, hace lo descrito en la interfaz.
+     */
     @Override
     public Cancion getCancionDB(String id) throws ErrorCreacionObjeto, ErrorConsulta  {
     		try {
@@ -131,7 +142,14 @@ public class SASDAO implements InterfazSASDAO {
 		}
 		return null;
     }
-
+    
+    /**
+     * Obtiene un video de la base de datos
+     * @param idVideo Id del video
+     * @return El video creado.
+     * @throws ErrorConsulta
+     * @throws ErrorCreacionObjeto
+     */
     private Video getVideoDB(String idVideo) throws ErrorConsulta, ErrorCreacionObjeto {
     		try {
 			if (this.conectado() && idVideo != null) {
@@ -155,6 +173,13 @@ public class SASDAO implements InterfazSASDAO {
 		return null;
 	}
 
+    /**
+     * 
+     * @param idLetra
+     * @return
+     * @throws ErrorConsulta
+     * @throws ErrorCreacionObjeto
+     */
 	private Letra getLetraDB(String idLetra) throws ErrorConsulta, ErrorCreacionObjeto {
 		try {
 			if (this.conectado() && idLetra != null) {
@@ -176,6 +201,9 @@ public class SASDAO implements InterfazSASDAO {
 		return null;
 	}
 
+	/**
+     * Implementación de getListaDB, hace lo descrito en la interfaz.
+     */
 	@Override
 	public Lista getListaDB(String idLista) throws ErrorConsulta, ErrorCreacionObjeto {
 		try {
@@ -231,6 +259,9 @@ public class SASDAO implements InterfazSASDAO {
 		return null;  
 	}
 
+	/**
+     * Implementación de getListasDB, hace lo descrito en la interfaz.
+     */
 	@Override
 	public ArrayList<Lista> getListasDB(String idUsuario, String clave) throws ErrorAutenticacion, ErrorConsulta, ErrorCreacionObjeto {
 		try {
@@ -256,6 +287,9 @@ public class SASDAO implements InterfazSASDAO {
 		return null;
 	}
 	
+	/**
+     * Implementación de getGeneroDB, hace lo descrito en la interfaz.
+     */
 	@Override
     public Genero getGeneroDB(String idGenero) throws ErrorConsulta, ErrorCreacionObjeto {
     		try {
@@ -276,6 +310,9 @@ public class SASDAO implements InterfazSASDAO {
 		return null;
     }
 
+	/**
+     * Implementación de getUsuarioDB, hace lo descrito en la interfaz.
+     */
     @Override
     public Usuario getUsuarioDB(String idUsuario, String clave) throws ErrorAutenticacion, ErrorConsulta, ErrorCreacionObjeto {
     	try {
@@ -310,6 +347,9 @@ public class SASDAO implements InterfazSASDAO {
 		return null;   
 	}
 
+    /**
+     * Implementación de getCancionesGenero, hace lo descrito en la interfaz.
+     */
 	@Override
 	public ArrayList<Cancion> getCancionesGeneroDB(String id) throws ErrorConsulta, ErrorCreacionObjeto {
 		try {
@@ -357,6 +397,9 @@ public class SASDAO implements InterfazSASDAO {
 	}
 	
     // --------------- SET ---------------
+	/**
+     * Implementación de setCancionDB, hace lo descrito en la interfaz.
+     */
     @Override
     public void setCancion(Cancion cancion) throws ErrorGuardado {
 	    	try {
@@ -419,6 +462,11 @@ public class SASDAO implements InterfazSASDAO {
 		}
     }
     
+    /**
+     * 
+     * @param letra
+     * @throws ErrorGuardado
+     */
 	private void setLetra(Letra letra) throws ErrorGuardado {
 		try {
 			if (this.conectado() && letra != null) {
@@ -439,6 +487,11 @@ public class SASDAO implements InterfazSASDAO {
 		}
     }
 	
+	/**
+	 * 
+	 * @param video
+	 * @throws ErrorGuardado
+	 */
 	private void setVideo(Video video) throws ErrorGuardado {
 		try {
 			if (this.conectado() && video != null) {
@@ -460,6 +513,9 @@ public class SASDAO implements InterfazSASDAO {
 		}
 	}
 
+	/**
+     * Implementación de setUsuario, hace lo descrito en la interfaz.
+     */
 	@Override
     public void setUsuario(Usuario usuario) throws ErrorAutenticacion, ErrorGuardado {
      	try {
@@ -499,6 +555,9 @@ public class SASDAO implements InterfazSASDAO {
 		}
     }
 	
+	/**
+     * Implementación de setGenero, hace lo descrito en la interfaz.
+     */
 	@Override
     public void setGenero(Genero genero, Usuario usuario) throws ErrorAutenticacion, ErrorGuardado {
      	try {
@@ -541,6 +600,9 @@ public class SASDAO implements InterfazSASDAO {
 		}
     }
 
+	/**
+     * Implementación de setLista, hace lo descrito en la interfaz.
+     */
     @Override
     public void setLista(Lista lista, Usuario usuario) throws ErrorAutenticacion, ErrorGuardado {
 	    	try {
@@ -598,6 +660,9 @@ public class SASDAO implements InterfazSASDAO {
 		}
     }
     
+    /**
+     * Implementación de setListaAuto, hace lo descrito en la interfaz.
+     */
     @Override
 	public void setListaAuto(ListaAuto lista, Usuario usuario) throws ErrorAutenticacion, ErrorGuardado {
 		try {	
@@ -622,6 +687,13 @@ public class SASDAO implements InterfazSASDAO {
 		}
 	}
     
+    /**
+     * 
+     * @param usuario
+     * @param generos
+     * @throws ErrorAutenticacion
+     * @throws ErrorGuardado
+     */
     private void setGenerosUsuario(Usuario usuario, ArrayList<Genero> generos) throws ErrorAutenticacion, ErrorGuardado {
 	    	try {
 			if (this.conectado() && usuario != null && generos != null) {
@@ -658,6 +730,9 @@ public class SASDAO implements InterfazSASDAO {
     }
     
     // --------------- ELIMINAR ---------------
+    /**
+     * Implementación de eliminarLista, hace lo descrito en la interfaz.
+     */
 	@Override
 	public void eliminarLista(Lista lista) throws ErrorEliminacion {
 		try {
@@ -678,6 +753,9 @@ public class SASDAO implements InterfazSASDAO {
 		}
 	}
 
+	/**
+     * Implementación de eliminarCancion, hace lo descrito en la interfaz.
+     */
 	@Override
 	public void eliminarCancion(Cancion cancion) throws ErrorEliminacion {
 		try {
@@ -700,6 +778,9 @@ public class SASDAO implements InterfazSASDAO {
 		}
 	}
 
+	/**
+     * Implementación de eliminarGenero, hace lo descrito en la interfaz.
+     */
 	@Override
 	public void eliminarGenero(Genero genero, Usuario usuario) throws ErrorEliminacion, ErrorAutenticacion {
 		try {
@@ -724,6 +805,9 @@ public class SASDAO implements InterfazSASDAO {
 		}
 	}
 
+	/**
+     * Implementación de eliminarUsuario, hace lo descrito en la interfaz.
+     */
 	@Override
 	public void eliminarUsuario(Usuario usuario) throws ErrorEliminacion, ErrorAutenticacion  {
 		try {
@@ -746,6 +830,11 @@ public class SASDAO implements InterfazSASDAO {
 	}
     
     // --------------- EXISTE ---------------
+	/**
+	 * Comprueba si existe una canción en la DB.
+	 * @param cancionId Id de la canción.
+	 * @return true si existe, false si no.
+	 */
     private boolean existeCancion(String cancionId) {
     		try {
 			return this.getCancionDB(cancionId) != null;
@@ -754,6 +843,13 @@ public class SASDAO implements InterfazSASDAO {
 		}
     }
     
+    /**
+     * Comprueba si existe un usuario en la DB.
+     * @param usuarioId Id del usuario.
+     * @param clave Clave del usuario.
+     * @return true si existe, false si no.
+     * @throws ErrorAutenticacion Si la clave no coincide con la esperada.
+     */
     private boolean existeUsuario(String usuarioId, String clave) throws ErrorAutenticacion {
 		try {
 			return this.getUsuarioDB(usuarioId, clave) != null;
@@ -762,6 +858,11 @@ public class SASDAO implements InterfazSASDAO {
 		}
     }
     
+    /**
+     * Comprueba si existe una lista en la DB.
+     * @param listaId  Id de la lista.
+     * @return true si existe, false si no.
+     */
     private boolean existeLista(String listaId) {
 		try {
 			return this.getListaDB(listaId) != null;
@@ -769,7 +870,12 @@ public class SASDAO implements InterfazSASDAO {
 			return false;
 		}
     }
-
+    
+	/**
+	 * Comprueba si existe una lista automática en la DB.
+	 * @param id Id de la lista.
+	 * @return true si existe, false si no.
+	 */
 	private boolean existeListaAuto(String id) {
 		try {
 			if (this.conectado() && id != null) {
@@ -785,6 +891,11 @@ public class SASDAO implements InterfazSASDAO {
 		return false;
 	}
 
+	/**
+	 * Comprueba si existe un género en la DB.
+	 * @param generoId Id del género.
+	 * @return true si existe, false si no.
+	 */
     private boolean existeGenero(String generoId) {
 		try {
 			return this.getGeneroDB(generoId) != null;
@@ -793,6 +904,11 @@ public class SASDAO implements InterfazSASDAO {
 		}
     }
     
+    /**
+     * Comprueba si existe un vídeo en la DB.
+     * @param videoId Id del vídeo.
+     * @return true si existe, false si no.
+     */
     private boolean existeVideo(String videoId) {
 		try {
 			return this.getVideoDB(videoId) != null;
@@ -801,6 +917,11 @@ public class SASDAO implements InterfazSASDAO {
 		}
     }
     
+    /**
+     * Comprueba si existe una letra en la DB.
+     * @param letraId Id de la letra.
+     * @return true si existe, false si no.
+     */
     private boolean existeLetra(String letraId) {
 		try {
 			return this.getLetraDB(letraId) != null;
