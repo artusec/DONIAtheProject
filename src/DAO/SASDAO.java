@@ -147,8 +147,8 @@ public class SASDAO implements InterfazSASDAO {
      * Obtiene un video de la base de datos
      * @param idVideo Id del video
      * @return El video creado.
-     * @throws ErrorConsulta
-     * @throws ErrorCreacionObjeto
+	 * @throws ErrorConsulta Si no se ha padido encontrar.
+	 * @throws ErrorCreacionObjeto Si no se puede devolver.
      */
     private Video getVideoDB(String idVideo) throws ErrorConsulta, ErrorCreacionObjeto {
     		try {
@@ -174,11 +174,11 @@ public class SASDAO implements InterfazSASDAO {
 	}
 
     /**
-     * 
-     * @param idLetra
-     * @return
-     * @throws ErrorConsulta
-     * @throws ErrorCreacionObjeto
+     * Consulta la base de datos y crea la letra solicitada.
+     * @param idLetra Id de la letra.
+     * @return La letra solicitada, null si no existe.
+	 * @throws ErrorConsulta Si no se ha padido encontrar.
+	 * @throws ErrorCreacionObjeto Si no se puede devolver.
      */
 	private Letra getLetraDB(String idLetra) throws ErrorConsulta, ErrorCreacionObjeto {
 		try {
@@ -463,9 +463,9 @@ public class SASDAO implements InterfazSASDAO {
     }
     
     /**
-     * 
-     * @param letra
-     * @throws ErrorGuardado
+     * Guarda la latra en la DB.
+     * @param letra La letra a guardar.
+	 * @throws ErrorGuardado Si no se ha podido guardar.
      */
 	private void setLetra(Letra letra) throws ErrorGuardado {
 		try {
@@ -489,8 +489,8 @@ public class SASDAO implements InterfazSASDAO {
 	
 	/**
 	 * 
-	 * @param video
-	 * @throws ErrorGuardado
+	 * @param video El vídeo a guardar.
+	 * @throws ErrorGuardado Si no se ha podido guardar.
 	 */
 	private void setVideo(Video video) throws ErrorGuardado {
 		try {
@@ -688,11 +688,11 @@ public class SASDAO implements InterfazSASDAO {
 	}
     
     /**
-     * 
-     * @param usuario
-     * @param generos
-     * @throws ErrorAutenticacion
-     * @throws ErrorGuardado
+     * Establece los géneros preferidos de un usuario en la DB.
+     * @param usuario Usuario al que asociar géneros.
+     * @param generos Géneros del usuario.
+     * @throws ErrorAutenticacion Si la clave no coincide con la esperada, o el usuario no existe.
+     * @throws ErrorGuardado Si no se ha podido guardar.
      */
     private void setGenerosUsuario(Usuario usuario, ArrayList<Genero> generos) throws ErrorAutenticacion, ErrorGuardado {
 	    	try {

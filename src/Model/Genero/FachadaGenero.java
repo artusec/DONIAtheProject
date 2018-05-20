@@ -23,8 +23,8 @@ public class FachadaGenero implements InterfazFachadaGenero {
 	 * Añade un género a la DB.
 	 * @param genero Género a añadir.
 	 * @param usuario Usuario en el que se quiere añadir el género.
-	 * @throws ErrorAutenticacion
-	 * @throws ErrorGuardado
+	 * @throws ErrorAutenticacion Si la clave no coincide con la esperada, o el usuario no existe.
+     * @throws ErrorGuardado Si no se ha podido guardar.
 	 */
     @Override
     public void Anadir(Genero genero, Usuario usuario) throws ErrorAutenticacion, ErrorGuardado {
@@ -35,8 +35,8 @@ public class FachadaGenero implements InterfazFachadaGenero {
      * Elimina un género de la DB.
      * @param genero género a eliminar.
      * @param usuario usuario que quiere eliminar el género.
-     * @throws ErrorEliminacion
-     * @throws ErrorAutenticacion
+	 * @throws ErrorAutenticacion Si la clave no coincide con la esperada, o el usuario no existe.
+	 * @throws ErrorEliminacion Si no se ha podido eliminar.
      */
     @Override
     public void Eliminar(Genero genero, Usuario usuario) throws ErrorEliminacion, ErrorAutenticacion {
@@ -45,10 +45,10 @@ public class FachadaGenero implements InterfazFachadaGenero {
     
     /**
      * Obtiene un género de la DB.
-     * @param idGenero id del género.
-     * @return el género buscado, null si no existe.
-     * @throws ErrorConsulta
-     * @throws ErrorCreacionObjeto
+     * @param idGenero Id del género.
+     * @return El género buscado, null si no existe.
+	 * @throws ErrorCreacionObjeto Si no se puede devolver.
+	 * @throws ErrorConsulta Si no se ha padido encontrar.
      */
     @Override
     public Genero Consultar(String idGenero) throws ErrorConsulta, ErrorCreacionObjeto {
