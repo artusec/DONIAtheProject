@@ -13,7 +13,7 @@ public class Video {
      * @param id Id que identifica al video.
      * @param enlace Enlace al video.
      * @param enlaceDescarga Enlace de descarga del video.
-     * @throws ErrorCreacionObjeto
+     * @throws ErrorCreacionObjeto Si la id es null.
      */
     public Video(String id, String enlace, String enlaceDescarga) throws ErrorCreacionObjeto {
 		this.id = id;
@@ -32,7 +32,7 @@ public class Video {
 	/**
 	 * Método setter del id del video.
 	 * @param id Id que identifica al video.
-	 * @throws ErrorCreacionObjeto
+	 * @throws ErrorCreacionObjeto Si la id es null.
 	 */
 	public void setId(String id) throws ErrorCreacionObjeto {
 		if (id == null) throw new ErrorCreacionObjeto();

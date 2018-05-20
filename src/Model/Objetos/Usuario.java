@@ -16,7 +16,7 @@ public class Usuario {
      * @param nombre Nombre del usuario.
      * @param clave Constraseña del usuario.
      * @param generos Lista de géneros favoritos del usuario.
-     * @throws ErrorCreacionObjeto
+     * @throws ErrorCreacionObjeto Si la id, el nombre o la clave son nulos.
      */
     public Usuario(String id, String nombre, String clave, ArrayList<Genero> generos) throws ErrorCreacionObjeto {
 	    	this.setId(id);
@@ -30,7 +30,7 @@ public class Usuario {
      * @param id Id único en la DB que identifica al usuario.
      * @param nombre Nombre del usuario.
      * @param clave Constraseña del usuario.
-     * @throws ErrorCreacionObjeto
+     * @throws ErrorCreacionObjeto Si la id, el nombre o la clave son nulos.
      */
     public Usuario(String id, String nombre, String clave) throws ErrorCreacionObjeto {
 	    	this.setId(id);
@@ -49,7 +49,7 @@ public class Usuario {
 	/**
 	 * Método setter del id del usuario.
 	 * @param id Id único en la DB que identifica al usuario.
-	 * @throws ErrorCreacionObjeto
+	 * @throws ErrorCreacionObjeto Si la id es null.
 	 */
     public void setId(String id) throws ErrorCreacionObjeto {
 	    	if (id == null) throw new ErrorCreacionObjeto();
@@ -67,7 +67,7 @@ public class Usuario {
     /**
      * Método setter del nombre del usuario.
      * @param nombre Nombre que se pone al usuario.
-     * @throws ErrorCreacionObjeto
+     * @throws ErrorCreacionObjeto Si el nombre es null.
      */
     public void setNombre(String nombre) throws ErrorCreacionObjeto {
     		if (nombre == null) throw new ErrorCreacionObjeto();
@@ -85,7 +85,7 @@ public class Usuario {
     /**
      * Método setter de la clave del usuario.
      * @param clave Clave que se pone al usuario.
-     * @throws ErrorCreacionObjeto
+     * @throws ErrorCreacionObjeto Si la clave es null.
      */
     public void setClave(String clave) throws ErrorCreacionObjeto {
     		if (clave == null) throw new ErrorCreacionObjeto();

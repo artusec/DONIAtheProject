@@ -14,7 +14,7 @@ public class ListaAuto extends ListaNormal {
 	 * @param id Id que identifica a la lista.
 	 * @param nombre Nombre de la lista.
 	 * @param genero Género de las canciones con las que se creara la lista.
-	 * @throws ErrorCreacionObjeto
+	 * @throws ErrorCreacionObjeto Si la id es null.
 	 */
     public ListaAuto(String id, String nombre, Genero genero) throws ErrorCreacionObjeto {
     		super(id, nombre);
@@ -28,7 +28,7 @@ public class ListaAuto extends ListaNormal {
      * @param nombre Nombre de la lista.
      * @param genero Género de las canciones con las que se creara la lista.
      * @param canciones Lista de canciones.
-     * @throws ErrorCreacionObjeto
+     * @throws ErrorCreacionObjeto Si la id es null.
      */
     public ListaAuto(String id, String nombre, Genero genero, ArrayList<Cancion> canciones) throws ErrorCreacionObjeto {
 		super(id, nombre, canciones);
@@ -38,7 +38,7 @@ public class ListaAuto extends ListaNormal {
     /**
      * Método setter del género de la lista.
      * @param genero Género de las canciones con las que se creara la lista.
-     * @throws ErrorCreacionObjeto
+     * @throws ErrorCreacionObjeto Si la id es null.
      */
 	public void setGenero(Genero genero) throws ErrorCreacionObjeto {
 		if (genero == null) throw new ErrorCreacionObjeto();

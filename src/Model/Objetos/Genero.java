@@ -9,7 +9,7 @@ public class Genero {
     /**
      * Constructora de la clase.
      * @param id Id que identifica al género.
-     * @throws ErrorCreacionObjeto
+     * @throws ErrorCreacionObjeto Si la id es null.
      */
     public Genero(String id) throws ErrorCreacionObjeto {
 	    	this.setId(id);
@@ -26,7 +26,7 @@ public class Genero {
 	/**
 	 * Método setter del id del género.
 	 * @param id Id que identifica al género.
-	 * @throws ErrorCreacionObjeto
+	 * @throws ErrorCreacionObjeto Si la id es null.
 	 */
     public void setId(String id) throws ErrorCreacionObjeto {
 	    	if (id == null) throw new ErrorCreacionObjeto();

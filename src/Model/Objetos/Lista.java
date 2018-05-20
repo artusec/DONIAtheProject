@@ -44,7 +44,7 @@ public abstract class Lista {
 	/**
 	 * Método setter de la lista de canciones.
 	 * @param canciones Lista de canciones.
-	 * @throws ErrorCreacionObjeto
+	 * @throws ErrorCreacionObjeto Si la lista de canciones es null.
 	 */
     private void setCanciones(ArrayList<Cancion> canciones) throws ErrorCreacionObjeto {
 		if (canciones == null) throw new ErrorCreacionObjeto();
@@ -80,7 +80,7 @@ public abstract class Lista {
 	/**
 	 * Método setter del id de la lista.
 	 * @param id Id que identifica a la lista.
-	 * @throws ErrorCreacionObjeto
+	 * @throws ErrorCreacionObjeto Si la id es null.
 	 */
     public void setId(String id) throws ErrorCreacionObjeto {
     	if (id == null) throw new ErrorCreacionObjeto();

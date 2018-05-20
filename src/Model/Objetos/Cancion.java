@@ -23,7 +23,7 @@ public class Cancion {
      * @param letra Letra de la canción.
      * @param video Video de la canción (enlace al video y enlace de descarga).
      * @param genero Género de la canción.
-     * @throws ErrorCreacionObjeto
+     * @throws ErrorCreacionObjeto Si la id, título o duración son null.
      */
     public Cancion(String id, String titulo, String autor, String album,
     					double duracion, Letra letra, Video video, Genero genero) throws ErrorCreacionObjeto {
@@ -34,7 +34,6 @@ public class Cancion {
     		this.setDuracion(duracion);
     		this.setLetra(letra);
     		this.setVideo(video);
-    		this.setTitulo(titulo);
     		this.setGenero(genero);
     }
     
@@ -49,7 +48,7 @@ public class Cancion {
     /**
      * Método setter de la canción
      * @param id Id con el que se identifica la canción. 
-     * @throws ErrorCreacionObjeto
+     * @throws ErrorCreacionObjeto Si la id es null.
      */
     public void setId(String id) throws ErrorCreacionObjeto {
     	if (id == null) throw new ErrorCreacionObjeto();
@@ -67,7 +66,7 @@ public class Cancion {
     /**
      * Método setter del título de la canción.
      * @param titulo Título de la canción
-     * @throws ErrorCreacionObjeto
+     * @throws ErrorCreacionObjeto Si el título es null.
      */
     public void setTitulo(String titulo) throws ErrorCreacionObjeto {
     		if (titulo == null) throw new ErrorCreacionObjeto();
@@ -117,7 +116,7 @@ public class Cancion {
     /**
      * Método setter de la duración de la canción.
      * @param duracion Duración de la canción.
-     * @throws ErrorCreacionObjeto
+     * @throws ErrorCreacionObjeto Si la duración es null.
      */
     public void setDuracion(double duracion) throws ErrorCreacionObjeto {
     		if (duracion < 0) throw new ErrorCreacionObjeto();

@@ -11,7 +11,7 @@ public class Letra {
      * Constructora de la clase.
      * @param id Id que identifica la letra.
      * @param texto String con toda la letra de la canción.
-     * @throws ErrorCreacionObjeto
+     * @throws ErrorCreacionObjeto Si la id es null.
      */
     public Letra(String id, String texto) throws ErrorCreacionObjeto {
 		this.setId(id);
@@ -31,7 +31,7 @@ public class Letra {
 	/**
 	 * Método setter del id de la letra.
 	 * @param id Id que identifica la letra.
-	 * @throws ErrorCreacionObjeto
+	 * @throws ErrorCreacionObjeto Si la id es null.
 	 */
 	public void setId(String id) throws ErrorCreacionObjeto {
 		if (id == null) throw new ErrorCreacionObjeto();
