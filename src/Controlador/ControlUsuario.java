@@ -16,9 +16,9 @@ import Vista.VentanaPrincipal;
 public class ControlUsuario {
 	
 	//El controlador necesita el usuario actual para acceder a su informacion
-	Usuario usuarioActual;
+	private Usuario usuarioActual;
 	//Fachada del subsistema
-	InterfazFachadaUsuario fUsuario;
+	private InterfazFachadaUsuario fUsuario;
 	
 	/**
 	 * Crea el controlador.
