@@ -98,7 +98,9 @@ public class Enlaces_panel extends JPanel {
 			this.textField_1.setText(video.getEnlaceDescarga());
 		}
 	}
-
+	/**
+	 * Vacia campos de texto 
+	 */
 	public void vaciarCampos() {
 		this.textField.setText("");
 		this.textField_1.setText("");		
