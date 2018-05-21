@@ -4,6 +4,11 @@ import java.util.ArrayList;
 
 import Excepciones.ErrorCreacionObjeto;
 
+/**
+ * Clase biblioteca. Extiende a Lista.
+ * @author Raúl
+ *
+ */
 public class Biblioteca extends Lista {
     
 	/**

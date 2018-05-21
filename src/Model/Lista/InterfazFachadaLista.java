@@ -8,6 +8,11 @@ import Excepciones.ErrorEliminacion;
 import Excepciones.ErrorGuardado;
 import Model.Objetos.*;
 
+/**
+ * Interfaz de la fachada de lista.
+ * @author Raúl
+ *
+ */
 public interface InterfazFachadaLista {
 	
 	/**

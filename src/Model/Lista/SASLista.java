@@ -14,17 +14,22 @@ import Model.Objetos.*;
 import Vista.VentanaPrincipal;
 
 /**
- * Clase SASLista
- *
+ * Servicio de aplicación de lista.
  */
 public class SASLista implements InterfazSASLista {
 	
 	private InterfazDAOFachada dao;
 	
+	/**
+	 * Constructora de la clase.
+	 */
 	public SASLista() {
 		this.setDao();
 	}
 	
+	/**
+	 * Actualiza el atributo dao a un nuevo DAOFachada.
+	 */
 	private void setDao() {
 		this.dao = new DAOFachada();
 	}

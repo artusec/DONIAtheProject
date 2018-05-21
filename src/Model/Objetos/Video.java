@@ -2,6 +2,11 @@ package Model.Objetos;
 
 import Excepciones.ErrorCreacionObjeto;
 
+/**
+ * Clase que representa el objeto Video.
+ * @author Raúl
+ *
+ */
 public class Video {
 
 	private String id;

@@ -10,6 +10,11 @@ import Excepciones.ErrorGuardado;
 import Model.Objetos.Usuario;
 import Vista.VentanaPrincipal;
 
+/**
+ * Servicio de aplicación de usuario.
+ * @author Raúl
+ *
+ */
 public class SASUsuario implements InterfazSASUsuario {
 	
 	private InterfazDAOFachada dao;

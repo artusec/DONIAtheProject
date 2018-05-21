@@ -7,6 +7,11 @@ import Excepciones.ErrorEliminacion;
 import Excepciones.ErrorGuardado;
 import Model.Objetos.Usuario;
 
+/**
+ * Interfaz del servicio de aplicación de usuario.
+ * @author Raúl
+ *
+ */
 public interface InterfazSASUsuario {
 	
     /**

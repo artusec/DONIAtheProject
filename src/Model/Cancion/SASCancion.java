@@ -8,14 +8,25 @@ import Excepciones.ErrorEliminacion;
 import Excepciones.ErrorGuardado;
 import Model.Objetos.*;
 
+/**
+ * Servicio de aplicación de canción.
+ * @author Raúl
+ *
+ */
 public class SASCancion implements InterfazSASCancion {
 	
 	private InterfazDAOFachada dao;
 	
+	/**
+	 * Constructora de la clase.
+	 */
 	public SASCancion() {
 		this.setDao();
 	}
 	
+	/**
+	 * Método que actualiza el atributo "dao" a un nuevo DAOFachada.
+	 */
 	private void setDao() {
 		this.dao = new DAOFachada();
 	}

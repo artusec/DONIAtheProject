@@ -3,6 +3,11 @@ package Model.Objetos;
 import java.util.ArrayList;
 import Excepciones.ErrorCreacionObjeto;
 
+/**
+ * Clase ListaNormal. Extiende a Lista
+ * @author Raúl
+ *
+ */
 public class ListaNormal extends Lista {
 
 	/**
