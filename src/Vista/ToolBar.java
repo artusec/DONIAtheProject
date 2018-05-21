@@ -133,7 +133,7 @@ public class ToolBar extends JToolBar {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				
-				int a = JOptionPane.showOptionDialog(new JFrame(), "Do you really want to exit?", "EXIT",
+				int a = JOptionPane.showOptionDialog(new JFrame(), "¿Seguro que quieres salir?", "EXIT",
 						JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, null, null);
 				
 				if (a == 0)

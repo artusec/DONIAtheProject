@@ -27,7 +27,7 @@ public class Enlaces_panel extends JPanel {
 	private JTextField textField_1;
 
 	/**
-	 * Create the panel.
+	 * Crea el panel para visualizar el enlace del video y el enlace de descarga de una cancion
 	 */
 
 	public Enlaces_panel(VentanaPrincipal ventanaPrincipal) {
@@ -99,7 +99,9 @@ public class Enlaces_panel extends JPanel {
 			this.textField_1.setText(video.getEnlaceDescarga());
 		}
 	}
-
+	/**
+	 * Vacia campos de texto 
+	 */
 	public void vaciarCampos() {
 		this.textField.setText("");
 		this.textField_1.setText("");		
