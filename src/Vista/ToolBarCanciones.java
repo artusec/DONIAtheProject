@@ -40,7 +40,7 @@ public class ToolBarCanciones extends JToolBar {
 		aniadirCancion.setText("Añadir cancion");
 		aniadirCancion.setHorizontalTextPosition( SwingConstants.CENTER );
 		aniadirCancion.setVerticalTextPosition( SwingConstants.BOTTOM );
-		aniadirCancion.setIcon(new ImageIcon("src/icons/add.png"));
+		aniadirCancion.setIcon(new ImageIcon("Donia/icons/add.png"));
 		aniadirCancion.addActionListener(new ActionListener() {
 			
 			@Override
@@ -57,7 +57,7 @@ public class ToolBarCanciones extends JToolBar {
 		eliminarCancion.setText("Borrar cancion");
 		eliminarCancion.setHorizontalTextPosition( SwingConstants.CENTER );
 		eliminarCancion.setVerticalTextPosition( SwingConstants.BOTTOM );
-		eliminarCancion.setIcon(new ImageIcon("src/icons/delete.png"));
+		eliminarCancion.setIcon(new ImageIcon("Donia/icons/delete.png"));
 		eliminarCancion.addActionListener(new ActionListener() {
 		
 			@Override
@@ -84,7 +84,7 @@ public class ToolBarCanciones extends JToolBar {
 		meGusta.setText("Me gusta!");
 		meGusta.setHorizontalTextPosition( SwingConstants.CENTER );
 		meGusta.setVerticalTextPosition( SwingConstants.BOTTOM );
-		meGusta.setIcon(new ImageIcon(("src/icons/hand.png")));
+		meGusta.setIcon(new ImageIcon(("Donia/icons/hand.png")));
 		meGusta.addActionListener(new ActionListener()
 		{
 			@Override
@@ -107,7 +107,7 @@ public class ToolBarCanciones extends JToolBar {
 		verLetra.setText("Ver letra");
 		verLetra.setHorizontalTextPosition( SwingConstants.CENTER );
 		verLetra.setVerticalTextPosition( SwingConstants.BOTTOM );
-		verLetra.setIcon(new ImageIcon("src/icons/VerLetra.png"));
+		verLetra.setIcon(new ImageIcon("Donia/icons/VerLetra.png"));
 		verLetra.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {

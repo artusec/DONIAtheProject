@@ -55,7 +55,7 @@ public class Account_panel extends JPanel {
 		
 
 		PanelImagen panelimg = null;
-		panelimg = new PanelImagen("src/icons/perfilLogo.png");
+		panelimg = new PanelImagen("Donia/icons/perfilLogo.png");
 		panelimg.setBounds(160, 0, 131,131);
 		panel.add(panelimg);
 		

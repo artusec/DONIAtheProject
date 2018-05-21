@@ -262,7 +262,7 @@ public class Login extends JDialog {
 		btnLogin.setBounds(258, 516, 97, 25);
 		contentPanel.add(btnLogin);
 		
-		PanelImagen panel = new PanelImagen("src/icons/LOGO_DONIA_pequeno.png");
+		PanelImagen panel = new PanelImagen("Donia/icons/LOGO_DONIA_pequeno.png");
 		panel.setBounds(10, 10, 475, 318);
 		panel.setOpaque(false);
 		contentPanel.add(panel, Alignment.CENTER);
