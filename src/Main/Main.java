@@ -10,18 +10,18 @@ public class Main {
 	
 	private static VentanaPrincipal vista;
 	
+	/**
+	 * Función main con la que empieza el programa.
+	 * @param args Argumentos.
+	 */
 	public static void main (String [] args) {
-		
-		try {
-			iniciarGUI();
-			
-		} catch (Exception e) {
-			System.out.println("Error al iniciar la ventana principal");
-		}
+		iniciarGUI();
 	}
 
-	private static void iniciarGUI() throws ErrorCreacionObjeto {
-		
+	/**
+	 * Método que inicia la vista.
+	 */
+	private static void iniciarGUI() {
 		 vista = new VentanaPrincipal();
 	}
 }

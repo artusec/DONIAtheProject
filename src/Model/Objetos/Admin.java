@@ -4,6 +4,11 @@ import java.util.ArrayList;
 
 import Excepciones.ErrorCreacionObjeto;
 
+/**
+ * Clase admin. Extiende a Usuario.
+ * @author Raúl
+ *
+ */
 public class Admin extends Usuario {
 
 	/**

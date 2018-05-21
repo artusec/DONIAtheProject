@@ -8,6 +8,11 @@ import Excepciones.ErrorGuardado;
 import Model.Objetos.Genero;
 import Model.Objetos.Usuario;
 
+/**
+ * Interfaz del servicio de aplicación de género.s
+ * @author Raúl
+ *
+ */
 public interface InterfazSASGenero {
 	
 	/**

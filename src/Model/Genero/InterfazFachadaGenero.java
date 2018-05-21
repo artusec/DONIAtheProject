@@ -8,6 +8,11 @@ import Excepciones.ErrorGuardado;
 import Model.Objetos.Genero;
 import Model.Objetos.Usuario;
 
+/**
+ * Interfaz de la fachada de género.
+ * @author Raúl
+ *
+ */
 public interface InterfazFachadaGenero {
 	
 	/**

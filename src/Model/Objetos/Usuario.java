@@ -3,6 +3,11 @@ package Model.Objetos;
 import java.util.ArrayList;
 import Excepciones.ErrorCreacionObjeto;
 
+/**
+ * Clase que representa el objeto Usuario.
+ * @author Raúl
+ *
+ */
 public class Usuario {
     
     private String id;

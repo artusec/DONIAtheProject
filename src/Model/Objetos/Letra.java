@@ -2,6 +2,11 @@ package Model.Objetos;
 
 import Excepciones.ErrorCreacionObjeto;
 
+/**
+ * Clase que representa el objeto Letra.
+ * @author Raúl
+ *
+ */
 public class Letra {
 
     private String id;

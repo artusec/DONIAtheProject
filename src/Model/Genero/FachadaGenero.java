@@ -8,6 +8,11 @@ import Excepciones.ErrorGuardado;
 import Model.Objetos.Genero;
 import Model.Objetos.Usuario;
 
+/**
+ * Fachada de género. Implementa InterfazFachadaGenero.
+ * @author Raúl
+ *
+ */
 public class FachadaGenero implements InterfazFachadaGenero {
 	
     public InterfazSASGenero sasGenero;

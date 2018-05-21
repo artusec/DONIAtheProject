@@ -21,7 +21,6 @@ public class PanelCanciones extends PanelDePaneles<Cancion> {
 	
 	/**
 	 * Constructora. Crea el panel de canciones e implementa la acción al seleccionar una fila de la lista.
-	 * @param nombre Título del Titled border.
 	 * @param ventanaPrincipal Panel principal de la aplicación.
 	 */
 	public PanelCanciones(VentanaPrincipal ventanaPrincipal) {

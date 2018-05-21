@@ -11,6 +11,11 @@ import Model.Objetos.Genero;
 import Model.Objetos.Usuario;
 import Vista.VentanaPrincipal;
 
+/**
+ * Servicio de aplicación de género.
+ * @author Raúl
+ *
+ */
 public class SASGenero implements InterfazSASGenero {
 	
 	private InterfazDAOFachada dao;

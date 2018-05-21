@@ -4,6 +4,11 @@ import java.util.ArrayList;
 
 import Excepciones.ErrorCreacionObjeto;
 
+/**
+ * Clase ListaAuto. Extiende a ListaNormal.
+ * @author Raúl
+ *
+ */
 public class ListaAuto extends ListaNormal {
 	
 	private Genero genero;

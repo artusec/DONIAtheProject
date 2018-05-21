@@ -2,6 +2,11 @@ package Model.Objetos;
 
 import Excepciones.ErrorCreacionObjeto;
 
+/**
+ * Clase que representa el objero Genero.
+ * @author Raúl
+ *
+ */
 public class Genero {
 	
     private String id;

@@ -3,6 +3,11 @@ package Model.Objetos;
 import java.util.ArrayList;
 import Excepciones.ErrorCreacionObjeto;
 
+/**
+ * Clase abstrata que representa el objeto Lista.
+ * @author Raúl
+ *
+ */
 public abstract class Lista {
 	
 	private String id;
