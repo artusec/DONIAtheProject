@@ -23,13 +23,13 @@ public class ModificarLista extends JPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	
 	private JTextField entradaNombre;
-
 	private Lista listaSel = null;
 	
 	/**
-	 * Create the panel.
-	 * @param ventanaPrincipal Panel principal de la aplicación.
+	 * Constructora. Crea el panel de modificar lista.
+	 * @param ventanaPrincipal Ventana principal de la aplicación.
 	 */
 	public ModificarLista(VentanaPrincipal ventanaPrincipal) {
 		ArrayList<Lista> listas = ventanaPrincipal.getListaSelecccionada();

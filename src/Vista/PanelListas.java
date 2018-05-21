@@ -7,7 +7,7 @@ import Controlador.ControlLista;
 import Model.Objetos.Lista;
 
 /**
- * Clase que gestiona el panel de listas.
+ * Clase que gestiona el panel de listas y reconoce y actua si se selecciona alguna fila de la lista.
  */
 public class PanelListas extends PanelDePaneles<Lista> {
 
@@ -15,6 +15,7 @@ public class PanelListas extends PanelDePaneles<Lista> {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	
 	private VentanaPrincipal ventanaPrincipal;
 	
 	/**
@@ -43,7 +44,7 @@ public class PanelListas extends PanelDePaneles<Lista> {
 
 	/**
 	 * Establece la lista de listas de reproducción del panel a partir del parámetro.
-	 * @param lista  Lista de listas de reproducción a la cual se actualiza nuestro atributo lista.
+	 * @param lista Lista de listas de reproducción a la cual se actualiza nuestro atributo lista.
 	 */
 	@Override
 	public void setList(ArrayList<Lista> lista) {

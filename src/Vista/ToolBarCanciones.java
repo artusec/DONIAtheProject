@@ -15,10 +15,15 @@ import Model.Objetos.Cancion;
 import Model.Objetos.Lista;
 
 /**
- * Clase que crea la barra de herramientas de las canciones.
+ * Clase que crea la barra de herramientas de las canciones la cual contiene los botones de añadir canción a la 
+ * lista seleccionada, eliminar canción de la lista seleccionada, darle me gusta a la canción actual, y ver
+ * letra de la canción actual.
  */
 public class ToolBarCanciones extends JToolBar {
 
+	/**
+	 * 
+	 */
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -26,6 +31,7 @@ public class ToolBarCanciones extends JToolBar {
 	 * @param mainWindow Ventana principal a la qeu se añade la barra de herramientas sobre canciones
 	 */
 	public ToolBarCanciones(VentanaPrincipal mainWindow) {
+		
 		super();
 		setLayout(new GridLayout(1, 4));
 		

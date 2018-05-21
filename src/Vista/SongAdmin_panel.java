@@ -28,10 +28,12 @@ import javax.swing.JScrollPane;
  * Clase que crea el panel que contiene los campos para introducir una canción a la base de datos.
  */
 public class SongAdmin_panel extends JPanel {
+	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	
 	private JTextField titulo;
 	private JTextField autor;
 	private JTextField duracion;

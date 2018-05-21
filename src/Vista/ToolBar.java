@@ -10,9 +10,9 @@ import javax.swing.JToolBar;
 import javax.swing.SwingConstants;
 
 /**
- * Clase que crea la barra de herramientas principal de la aplicación.
- * @author Arturo
- *
+ * Clase que crea la barra de herramientas principal de la aplicación, la cual contiene los botones de ver perfil, 
+ * ver gustos del usuario, añadir cancion a la base de datos (solo admin), eliminar canción de la base de datos
+ * (solo admin), modificar canción de la base de datos (solo admin) y salir de la aplicación.
  */
 public class ToolBar extends JToolBar {
 	
@@ -20,6 +20,7 @@ public class ToolBar extends JToolBar {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	
 	private JButton perfil;
 	private JButton verGustos;
 	private JButton aniadirCancion;
@@ -32,6 +33,7 @@ public class ToolBar extends JToolBar {
 	 * @param mainWindow Ventana Pricipal a la que se añade la Barra de herramientas
 	 */
 	public ToolBar(VentanaPrincipal mainWindow) {
+		
 		super();	
 
 		perfil = new JButton();

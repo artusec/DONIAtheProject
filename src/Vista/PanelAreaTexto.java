@@ -18,10 +18,11 @@ public class PanelAreaTexto extends JPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	
 	protected JTextArea areatexto;
 	
 	/**
-	 * Constructora. 
+	 * Constructora. Crea el panel que contiene el texto.
 	 * @param titulo Título del Titled border.
 	 * @param editable Booleano que indica si el JTextArea se puede editar o no.
 	 */
@@ -46,7 +47,7 @@ public class PanelAreaTexto extends JPanel {
 	 
 	 /**
 	  * Devuelve el texto que hay en el panel.
-	  * @return String - Texto del panel.
+	  * @return Texto del panel.
 	  */
 	 public String getTexto() {
 		 

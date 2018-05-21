@@ -12,7 +12,9 @@ import Controlador.ControlLista;
 import Model.Objetos.Lista;
 
 /**
- * Clase que crea la barra de herramientas de las listas de reproducción,
+ * Clase que crea la barra de herramientas de las listas de reproducción, la cual contiene los botones de
+ * añadir una nueva lista, eliminar una lista existente, crear una lista automatica y cambiar el 
+ * nombre de una lista.
  */
 public class ToolBarListas extends JToolBar {
 
@@ -26,6 +28,7 @@ public class ToolBarListas extends JToolBar {
 	 * @param ventanaPrincipal Ventana principal a la qeu se añade la barra de herramientas sobre listas.
 	 */
 	public ToolBarListas(VentanaPrincipal ventanaPrincipal){
+		
 		super();
 		
 		setLayout(new GridLayout(1, 3));

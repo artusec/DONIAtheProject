@@ -17,10 +17,12 @@ import javax.swing.JButton;
  * Clase que crea el panel que contiene los campos con la informacion de la cancion que se esta consultando actualmente.
  */
 public class DatosCancion_panel extends JPanel {
+	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	
 	private JTextField titulo;
 	private JTextField artista;
 	private JTextField duracion;
@@ -154,6 +156,7 @@ public class DatosCancion_panel extends JPanel {
 	 * Oculta el boton de "Ver enlaces".
 	 */
 	public void ocultarBoton() {
+		
 		btnEnlaces.setVisible(false);
 	}
 
@@ -161,6 +164,7 @@ public class DatosCancion_panel extends JPanel {
 	 * Hace visible el boton de "Ver enlaces".
 	 */
 	public void verBoton() {
+		
 		btnEnlaces.setVisible(true);
 	}
 }

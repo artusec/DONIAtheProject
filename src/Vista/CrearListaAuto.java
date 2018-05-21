@@ -19,13 +19,15 @@ import javax.swing.LayoutStyle.ComponentPlacement;
  * Clase que crea el panel que contiene los campos para añadir una lista automatica a la base de datos.
  */
 public class CrearListaAuto extends JPanel {
+	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private JTextField nombre; //NOmbre
-	private JTextField genero; //Genero
-	private JTextField duracion; //Duracion
+	
+	private JTextField nombre;	 	// Nombre
+	private JTextField genero; 		// Genero
+	private JTextField duracion;	// Duracion
 
 	/**
 	 * Crea un panel en el que escribes el nombre de la lista, el género sobre el que crearla y el tiempo máximo de duración.

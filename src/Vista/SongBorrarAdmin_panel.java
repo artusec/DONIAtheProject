@@ -26,6 +26,7 @@ public class SongBorrarAdmin_panel extends JPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	
 	private PanelDePaneles<Cancion> panelCanciones;
 	
 	/**
