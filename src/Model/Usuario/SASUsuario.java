@@ -8,7 +8,6 @@ import Excepciones.ErrorCreacionObjeto;
 import Excepciones.ErrorEliminacion;
 import Excepciones.ErrorGuardado;
 import Model.Objetos.Usuario;
-import Vista.VentanaPrincipal;
 
 /**
  * Servicio de aplicación de usuario.

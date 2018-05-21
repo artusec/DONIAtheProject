@@ -227,10 +227,10 @@ public class ModificarCancion_panel extends JPanel {
 		
 		btnHecho.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (ventanaPrincipal.entradaValida(titulo.getText()) &&
-					ventanaPrincipal.entradaValida(autor.getText()) &&
-					ventanaPrincipal.entradaValida(genero.getText()) &&
-					ventanaPrincipal.entradaValida(album.getText()) &&
+				if (VentanaPrincipal.entradaValida(titulo.getText()) &&
+					VentanaPrincipal.entradaValida(autor.getText()) &&
+					VentanaPrincipal.entradaValida(genero.getText()) &&
+					VentanaPrincipal.entradaValida(album.getText()) &&
 					Double.parseDouble(duracion.getText()) > 0) {
 					System.out.println("Entrada datos cancion valida");
 					try {

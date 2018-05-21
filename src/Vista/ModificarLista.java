@@ -38,16 +38,12 @@ public class ModificarLista extends JPanel {
 		}
 		
 		String titulo;
-		String aviso;
 		if (listaSel == null){
 			titulo = "No hay lista seleccionada";
-			aviso = "Selecciona primero una lista";
 		} else if (listaSel.getId().equals("l0")){
 			titulo = "No hay lista seleccionada";
-			aviso = "No se puede modificar la biblioteca";
 		} else {
 			titulo = "A\u00F1adir canciones a la lista " + listaSel.getNombre();
-			aviso = "";
 		}
 		
 		setBorder(new TitledBorder(null, titulo, TitledBorder.LEADING, TitledBorder.TOP, null, null));

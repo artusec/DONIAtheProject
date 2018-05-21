@@ -1,8 +1,6 @@
 package Vista;
 
 import javax.swing.JPanel;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
@@ -16,8 +14,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.ActionEvent;
-//import com.jgoodies.forms.factories.DefaultComponentFactory;
-import javax.swing.LayoutStyle.ComponentPlacement;
 import net.miginfocom.swing.MigLayout;
 
 /**
