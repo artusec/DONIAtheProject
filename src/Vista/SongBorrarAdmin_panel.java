@@ -31,7 +31,7 @@ public class SongBorrarAdmin_panel extends JPanel {
 	/**
 	 * Constructora. Crea un panel con la lista de todas las canciones de la base de datos. Al pulsar el botón se borrarán las
 	 * canciones seleccionadas por el usuario en la lista. Dicho botón sólo estará activo si eres el administrador.
-	 * @param ventanaPrincipal
+	 * @param ventanaPrincipal Panel principal de la aplicación.
 	 */
 	public SongBorrarAdmin_panel(VentanaPrincipal ventanaPrincipal) {
 		String titulo = "Eliminar canciones de la base de datos";

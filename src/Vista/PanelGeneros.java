@@ -25,8 +25,8 @@ public class PanelGeneros extends JPanel{
 
 	/**
 	 * Constructora. Crea el panel y accede a la base de datos para ver los géneros favoritos del usuario.
-	 * @param panelFavoritos
-	 * @param ventanaPrincipal
+	 * @param panelFavoritos Panel de géneros.
+	 * @param ventanaPrincipal Panel principal de la aplicación.
 	 */
 	PanelGeneros(PanelDePaneles<Genero> panelFavoritos, VentanaPrincipal ventanaPrincipal) {
 

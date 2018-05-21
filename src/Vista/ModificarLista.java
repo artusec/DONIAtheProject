@@ -29,7 +29,7 @@ public class ModificarLista extends JPanel {
 	
 	/**
 	 * Create the panel.
-	 * @param ventanaPrincipal 
+	 * @param ventanaPrincipal Panel principal de la aplicación.
 	 */
 	public ModificarLista(VentanaPrincipal ventanaPrincipal) {
 		ArrayList<Lista> listas = ventanaPrincipal.getListaSelecccionada();

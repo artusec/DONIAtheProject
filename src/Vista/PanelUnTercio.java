@@ -26,9 +26,9 @@ public class PanelUnTercio extends JPanel {
 
 	/**
 	 * Constructora. Crea el panel.
-	 * @param panelDeLetra
-	 * @param panelDeDatos
-	 */
+	 * @param panelDeLetra Panel con la letra de una canción.
+	 * @param panelDeDatos Panel con los datos principales de una canción.
+	 */ 
 	public PanelUnTercio(PanelAreaTexto panelDeLetra, DatosCancion_panel panelDeDatos) {
 		
 
@@ -61,9 +61,9 @@ public class PanelUnTercio extends JPanel {
 	}
 	
 	/**
-	 * @wbp.parser.constructor
-	 * @param panelDeEnlaces
-	 * @param panelDatos
+	 * 
+	 * @param panelDeEnlaces Panel con los enlaces al video y de descarga.
+	 * @param panelDatos Panel con los datos principales de una canción.
 	 */
 	public PanelUnTercio(Enlaces_panel panelDeEnlaces, DatosCancion_panel panelDatos) {
 		
@@ -78,8 +78,8 @@ public class PanelUnTercio extends JPanel {
 
 	/**
 	 * Establece la letra y los datos de la cancion en sus respectivos campos.
-	 * @param cancion
-	 * @param ventanaPrincipal
+	 * @param cancion Canción que contiene los datos con los que se rellenan los campos. 
+	 * @param ventanaPrincipal Panel principal de la aplicación.
 	 */
 	public void setDatos(Cancion cancion, VentanaPrincipal ventanaPrincipal) {
 		

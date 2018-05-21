@@ -29,7 +29,7 @@ public class DatosCancion_panel extends JPanel {
 	
 	/**
 	 * Constructora. Crea el panel.
-	 * @param ventanaPrincipal
+	 * @param ventanaPrincipal Panel principal de la aplicación.
 	 */
 	public DatosCancion_panel(VentanaPrincipal ventanaPrincipal) {
 		setBorder(new TitledBorder(null, "Datos de la canción", TitledBorder.LEADING, TitledBorder.TOP, null, null));
@@ -125,7 +125,7 @@ public class DatosCancion_panel extends JPanel {
 	
 	/**
 	 * Rellena los campos del panel a partir de una cancion pasada por argumento.
-	 * @param cancion
+	 * @param cancion Canción que contiene los datos con los que se rellenan los campos.
 	 */
 	public void setDatos(Cancion cancion) {	
 		

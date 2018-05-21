@@ -18,7 +18,7 @@ public class Cancion {
      * @param id Id único en la DB.
      * @param titulo Titulo de la canción.
      * @param autor Autor de la canción.
-     * @param album Álbum de la canción.
+     * @param album álbum de la canción.
      * @param duracion Duración de la canción.
      * @param letra Letra de la canción.
      * @param video Video de la canción (enlace al video y enlace de descarga).
@@ -91,7 +91,7 @@ public class Cancion {
 
     /**
      * Método getter del álbum de la canción.
-     * @return Álbum de la canción.
+     * @return álbum de la canción.
      */
     public String getAlbum() {
 		return album;
@@ -99,7 +99,7 @@ public class Cancion {
 
     /**
      * Método setter del álbum de la canción.
-     * @param album Álbum de la canción.
+     * @param album álbum de la canción.
      */
     public void setAlbum(String album) {
     		this.album = album;

@@ -22,8 +22,8 @@ public class PanelAreaTexto extends JPanel {
 	
 	/**
 	 * Constructora. 
-	 * @param titulo
-	 * @param editable
+	 * @param titulo Título del Titled border.
+	 * @param editable Booleano que indica si el JTextArea se puede editar o no.
 	 */
 	 public PanelAreaTexto(String titulo, boolean editable) {	
 		 
@@ -37,7 +37,7 @@ public class PanelAreaTexto extends JPanel {
 	 
 	 /**
 	  * Crea un borde de tipo "Titled border" con el parámetro de entrada.
-	  * @param titulo
+	  * @param titulo Título del "Titled border".
 	  */
 	 public void setBorde(String titulo){
 		 
@@ -56,8 +56,8 @@ public class PanelAreaTexto extends JPanel {
 	 /**
 	  * Establece el texto del panel. Obtiene el usuario actual de la sesión y consulta en la base de datos
 	  * la cancion que se va a escribir en caso de que exista dicha letra.
-	  * @param cancion
-	  * @param ventanaPrincipal
+	  * @param cancion Canción a la que se le actualiza el parametro "letra".
+	  * @param ventanaPrincipal Panel principal de la aplicación.
 	  */
 	 public void setTexto(Cancion cancion, VentanaPrincipal ventanaPrincipal) {
 		 
@@ -69,7 +69,7 @@ public class PanelAreaTexto extends JPanel {
 	 
 	 /**
 	  * Escribe en el panel de texto la cadena que le pasan por parámetro.
-	  * @param string
+	  * @param string String que se escribe en el JTextArea.
 	  */
 	 public void setTexto(String string) {
 		 
@@ -86,7 +86,7 @@ public class PanelAreaTexto extends JPanel {
 	 
 	 /**
 	  * Inserta una cadena de caracteres en el area de texto.
-	  * @param valor
+	  * @param valor String que se inserta en el JTextArea.
 	  */
 	 public void inserta(String valor) {
 		 

@@ -16,8 +16,8 @@ public class PanelMedio extends JPanel {
 
 	/**
 	 * Create the panel.
-	 * @param panelCanciones 
-	 * @param barCanciones 
+	 * @param panelCanciones Panel con las canciones de una lista de reproducción.
+	 * @param barCanciones ToolBar con las operaciones disponibles para canciones.
 	 */
 	public PanelMedio(ToolBarCanciones barCanciones, PanelCanciones panelCanciones) {
 		

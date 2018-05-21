@@ -22,7 +22,7 @@ public class PanelDePaneles<T> extends JPanel {
 	
 	/**
 	 * Constructora. Crea el panel con el título pasado por parámetro.
-	 * @param titulo
+	 * @param titulo Título del Titled border.
 	 */
 	public PanelDePaneles(String titulo) {
 		
@@ -37,7 +37,7 @@ public class PanelDePaneles<T> extends JPanel {
 	
 	/**
 	 * Devuelve una lista con los elementos seleccionados.
-	 * @return ArrayList<T>
+	 * @return Lista de componentes tipo "T" que han sido seleccionados en la vista.
 	 */
 	public ArrayList<T> getSelectedItems() {
 		ArrayList<T> l = new ArrayList<>();
@@ -60,7 +60,7 @@ public class PanelDePaneles<T> extends JPanel {
 	
 	/**
 	 * Establece el modelo de lista a partir de un parámetro
-	 * @param lista
+	 * @param lista Lista parametrizable por T a la cual se actualiza nuestro parámetro lista.
 	 */
 	public void setList(ArrayList<T> lista) {
 		this.listModel.setList(lista);
@@ -68,7 +68,7 @@ public class PanelDePaneles<T> extends JPanel {
 
 	/**
 	 * Devuelve el modelo de lista.
-	 * @return ListModel<T>
+	 * @return Lista de objetos tipo "T".
 	 */
 	public ListModel<T> getModelo() {
 		return listModel;

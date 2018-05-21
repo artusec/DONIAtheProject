@@ -14,8 +14,8 @@ public class PanelCanciones extends PanelDePaneles<Cancion> {
 
 	/**
 	 * Constructora. Crea el panel de canciones e implementa la acción al seleccionar una fila de la lista.
-	 * @param nombre
-	 * @param ventanaPrincipal
+	 * @param nombre Título del Titled border.
+	 * @param ventanaPrincipal Panel principal de la aplicación.
 	 */
 	public PanelCanciones(String nombre, VentanaPrincipal ventanaPrincipal) {
 		
@@ -37,7 +37,7 @@ public class PanelCanciones extends PanelDePaneles<Cancion> {
 	
 	/**
 	 * Establece la lista de canciones del panel a partir del parámetro.
-	 * @param lista 
+	 * @param lista Lista de canciones a la cual se actualiza nuestro parametro lista.
 	 */
 	@Override
 	public void setList(ArrayList<Cancion> lista) {

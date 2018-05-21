@@ -19,17 +19,16 @@ import Model.Objetos.Video;
 import net.miginfocom.swing.MigLayout;
 
 public class Enlaces_panel extends JPanel {
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 	private JTextField textField;
 	private JTextField textField_1;
 
-	/**
-	 * Create the panel.
-	 */
 
+	/**
+	 * Crea el panel.
+	 * @param ventanaPrincipal Panel principal de la aplicación.
+	 */
 	public Enlaces_panel(VentanaPrincipal ventanaPrincipal) {
 		setLayout(new MigLayout("", "[363.00,center][55.00,grow,left]", "[20px][][22px][20px][22px][25px][][][][][][]"));
 		

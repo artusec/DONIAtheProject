@@ -5,7 +5,7 @@ import javax.swing.DefaultListModel;
 
 /**
  * Clase para gestionar un modelo de lista.
- * @param <T>
+ * @param <T> Tipo parametrizable de la lista.
  */
 public class ListModel<T> extends DefaultListModel<T> {
 
@@ -26,7 +26,7 @@ public class ListModel<T> extends DefaultListModel<T> {
 
 	/**
 	 * Establece la lista a una proporcionada por parámetro.
-	 * @param lista
+	 * @param lista Lista parametrizable por T a la cual se actualiza nuestro parametro lista.
 	 */
 	public void setList(List<T> lista) {
 		this.lista = lista;
@@ -36,7 +36,7 @@ public class ListModel<T> extends DefaultListModel<T> {
 
 	/**
 	 * Devuelve el elemento que se encuentre en la posicion indicada por el parámetro.
-	 * @param index. Índice de la lista.
+	 * @param index. índice de la lista.
 	 */
 	@Override
 	public T getElementAt(int index) {

@@ -33,7 +33,6 @@ public class ControlCancion {
 	
 	/**
 	 * Establece la fachada del subsistema a conectar.
-	 * @param fCancion
 	 */
 	private void setfCancion() {
 		this.fCancion = new FachadaCancion();
@@ -93,6 +92,7 @@ public class ControlCancion {
 	 * Solicita al subsistema canción la informacion del vídeo de una canción.
 	 * Si hay error, lo notifica a la interfaz gráfica.
 	 * @param cancion El identificador de la canción de la cual se quiere obtener el vídeo.
+	 * @return Devuelve el parámetro Video de la canción que se consulta.
 	 */
 	public Video consultaVideo(String cancion) {
 		try {
@@ -119,11 +119,12 @@ public class ControlCancion {
 		}
 		return null;
 	}
-	
+
 	/**
 	 * Solicita al subsistema canción la informacion de una canción.
 	 * Si hay error, lo notifica a la interfaz gráfica.
 	 * @param cancion El identificador de la canción de la cual se quieren obtener los datos.
+	 * @return Canción que se consulta a la base de datos.
 	 */
 	public Cancion consultaCancion(String cancion) {
 		try {

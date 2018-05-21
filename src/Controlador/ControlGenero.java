@@ -73,10 +73,12 @@ public class ControlGenero {
 		VentanaPrincipal.actualizaGeneros();
 	}
 
+
 	/**
 	 * Solicita al subsistema género la informacion de un género.
 	 * Si hay error, lo notifica a la interfaz gráfica.
-	 * @param genero Identificador del género a consulatr.
+	 * @param idGenero Identificador del género a consulatr.
+	 * @return Género que se consulta a la base de datos.
 	 */
 	public Genero Consultar(String idGenero) {
 		try {

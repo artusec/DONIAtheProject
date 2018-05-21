@@ -27,7 +27,7 @@ public class AniadirCancionALista extends JPanel {
 	
 	/**
 	 * Constructora. Crea el panel.
-	 * @param ventanaPrincipal
+	 * @param ventanaPrincipal Panel principal de la aplicación.
 	 */
 	public AniadirCancionALista(VentanaPrincipal ventanaPrincipal) {
 		ArrayList<Lista> listas = ventanaPrincipal.getListaSelecccionada();

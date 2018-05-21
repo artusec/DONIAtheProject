@@ -53,11 +53,7 @@ public class VentanaPrincipal extends JFrame {
 		
 		super("Donia");
 		initGUI();
-		try {
-			Login = new Login(this);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		Login = new Login(this);
 		Login.setVisible(true);
 	}
 	

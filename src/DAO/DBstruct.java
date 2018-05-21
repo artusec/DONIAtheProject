@@ -326,7 +326,7 @@ public abstract class DBstruct {
 	 * @param titulo Título de la canción. 
 	 * @param autor Autor de la canción.
 	 * @param duracion Duración de la canción.
-	 * @param album Álbum de la canción.
+	 * @param album álbum de la canción.
 	 * @param genero Id del género de la canción.
 	 * @param video Id del vídeo de la canción.
 	 * @param letra Id de la letra de la canción.
@@ -447,7 +447,7 @@ public abstract class DBstruct {
 	 * @param titulo Título de la canción. 
 	 * @param autor Autor de la canción.
 	 * @param duracion Duración de la canción.
-	 * @param album Álbum de la canción.
+	 * @param album álbum de la canción.
 	 * @param genero Id del género de la canción.
 	 * @param video Id del vídeo de la canción.
 	 * @param letra Id de la letra de la canción.

@@ -1,7 +1,7 @@
 package Excepciones;
 
 /**
- * Esta clase es para los errores en la autenticaci.on de usuarios.
+ * Esta clase es para los errores en la autenticación de usuarios.
  */
 public class ErrorAutenticacion extends Exception {
 

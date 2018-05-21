@@ -67,7 +67,8 @@ public class ControlLista {
 	 * Solicita al subsistema lista la elaboración y guardado de una lista automática de una lista de reproducción
 	 * basada en el género indicado, además la asocia al usuario solicitante.
 	 * Si hay error, lo notifica a la interfaz gráfica.
-	 * @param lista La lista a guardar.
+	 * @param listaAuto Objeto ya creado que se actualizará con los datos correspondientes a la creación de la lista.
+	 * @param duracion Duración máxima que se desea para la lista.
 	 */
     public void crearListaAuto(ListaAuto listaAuto, double duracion) {
     		try {
@@ -99,11 +100,11 @@ public class ControlLista {
 	 * Solicita al subsistema lista la eliminación de una lista de reproducción.
 	 * Si la lista a borrar es la biblioteca, se impide la eliminación.
 	 * Si hay error, lo notifica a la interfaz gráfica.
-	 * @param cancion La canción a eliminar.
+	 * @param lista Lista que de quiere eliminar.
 	 */
 	public void eliminar(Lista lista) {
 		try {
-			if (lista.getId().equals("l0"))
+			if (!lista.getId().equals("l0"))
 				fLista.eliminar(lista, usuarioActual);
 			else
 				VentanaPrincipal.muestraError(new ErrorEliminacion("No borres la biblioteca locx!"));
@@ -118,7 +119,7 @@ public class ControlLista {
 	 * Solicita al subsistema lista la modificación de una lista de reproducción.
 	 * Si la lista a modificar es la biblioteca, se impide la modificación.
 	 * Si hay error, lo notifica a la interfaz gráfica.
-	 * @param cancion La canción a eliminar.
+	 * @param lista Lista que se desea modificar.
 	 */
 	public void modificar(Lista lista) {
 		try {

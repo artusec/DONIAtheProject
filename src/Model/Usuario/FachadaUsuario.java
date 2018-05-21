@@ -20,9 +20,9 @@ public class FachadaUsuario implements InterfazFachadaUsuario {
     
     /**
      * Elimina el usuario de la DB.
-     * @param Usuario usuario a eliminar.
-     * @throws ErrorEliminacion 
-     * @throws ErrorDeAutenticacion Error si se ha producido un error al validar los datos del usuario.
+     * @param usuario Usuario a eliminar.
+     * @throws ErrorEliminacion Si no se ha podido eliminar.
+     * @throws ErrorAutenticacion Error si se ha producido un error al validar los datos del usuario.
      */
 	@Override
 	public void eliminar(Usuario usuario) throws ErrorAutenticacion, ErrorEliminacion {
@@ -31,10 +31,10 @@ public class FachadaUsuario implements InterfazFachadaUsuario {
 
     /**
      * Crea un usuario y lo guarda en la DB, siempre que no se repita la id elegida.
-     * @param usuario usuario que se quiere registrar.
-     * @throws ErrorCreacionObjeto 
-     * @throws ErrorAutenticacion 
-     * @throws ErrorGuardado 
+     * @param usuario Usuario que se quiere registrar.
+     * @throws ErrorCreacionObjeto Si se ha producido un error al crear el objeto.
+     * @throws ErrorAutenticacion Si el usuario no existe.
+     * @throws ErrorGuardado Si no se ha podido guardar la información.
      */
 	@Override
 	public void registro(Usuario usuario) throws ErrorCreacionObjeto, ErrorAutenticacion, ErrorGuardado {
@@ -43,10 +43,10 @@ public class FachadaUsuario implements InterfazFachadaUsuario {
 
     /**
      * Genera el usuario con las modificaciones y lo guarda si es posible en la DB.
-     * @param usuario usuario nuevo.
+     * @param nuevo Usuario nuevo.
      * @throws ErrorCreacionObjeto si los nombre o pass intruducidos no son validos.
-     * @throws ErrorGuardado 
-     * @throws ErrorDeAutenticacion si se ha producido un error al validar los datos del usuario (la contrasena está mal).
+     * @throws ErrorGuardado Si no se ha podido guardar la información.
+     * @throws ErrorAutenticacion Si se ha producido un error al validar los datos del usuario (la contrasena está mal).
      */
 	@Override
 	public void modificar(Usuario nuevo) throws ErrorCreacionObjeto, ErrorAutenticacion, ErrorGuardado {
@@ -58,9 +58,9 @@ public class FachadaUsuario implements InterfazFachadaUsuario {
 	 * @param id id del usuario.
 	 * @param pass contraseña.
 	 * @return usuario usuario encontrado .
-	 * @throws ErrorCreacionObjeto 
-	 * @throws ErrorConsulta 
-	 * @throws ErrorDeAutenticacion si se ha producido un error al validar los datos del usuario (la contrasena está mal).
+	 * @throws ErrorCreacionObjeto Si se ha producido un error al crear el objeto.
+	 * @throws ErrorConsulta Si se ha producido un error al buscar usuario.
+	 * @throws ErrorAutenticacion si se ha producido un error al validar los datos del usuario (la contrasena está mal).
 	 */
 	@Override
 	public Usuario ingreso(String id, String pass) throws ErrorAutenticacion, ErrorConsulta, ErrorCreacionObjeto {

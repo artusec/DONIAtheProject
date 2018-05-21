@@ -23,7 +23,7 @@ public class SASCancion implements InterfazSASCancion {
 	/**
 	 * Anade una cancion a la base de datos
 	 * @param cancion cancion que se quiere anadir a la base de datos.
-	 * @throws ErrorCreacionObjeto
+	 * @throws ErrorCreacionObjeto Si se ha producido un error al crear el objeto.
 	 */
 	@Override
 	public void creaCancion(Cancion cancion) throws ErrorCreacionObjeto, ErrorGuardado {
@@ -38,7 +38,7 @@ public class SASCancion implements InterfazSASCancion {
 	/**
 	 * Elimina una cancion de la base de datos.
 	 * @param cancion cancion a eliminar
-	 * @throws 
+	 * @throws ErrorEliminacion Si no se ha podido eliminar.
 	 */
 	@Override
 	public void eliminaCancion(Cancion cancion) throws ErrorEliminacion { 
@@ -49,8 +49,8 @@ public class SASCancion implements InterfazSASCancion {
 	 * Devuelve una canción de la base de datos.
 	 * @param cancion id de la cancion
 	 * @return la cancion, null si no existe
-	 * @throws ErrorConsulta 
-	 * @throws ErrorCreacionObjeto 
+	 * @throws ErrorConsulta Si se ha producido un error al buscar la canción.
+	 * @throws ErrorCreacionObjeto Si se ha producido un error al crear el objeto.
 	 */
 	@Override
     public Cancion consultaCancion(String cancion) throws ErrorConsulta, ErrorCreacionObjeto {
@@ -65,8 +65,8 @@ public class SASCancion implements InterfazSASCancion {
 	 * Devuelve la letra de una canción.
 	 * @param cancion id de la cancion
 	 * @return la letra, null si no existe
-	 * @throws ErrorConsulta 
-	 * @throws ErrorCreacionObjeto 
+	 * @throws ErrorConsulta Si se ha producido un error al buscar la letra.
+	 * @throws ErrorCreacionObjeto Si se ha producido un error al crear el objeto.
 	 */
 	@Override
 	public Letra consultaLetra(String cancion) throws ErrorConsulta, ErrorCreacionObjeto {
@@ -81,8 +81,8 @@ public class SASCancion implements InterfazSASCancion {
 	 * Devuelve el video de una canción.
 	 * @param cancion id de la cancion
 	 * @return el video, null si no existe
-	 * @throws ErrorConsulta 
-	 * @throws ErrorCreacionObjeto 
+	 * @throws ErrorConsulta Si se ha producido un error al buscar el video.
+	 * @throws ErrorCreacionObjeto Si se ha producido un error al crear el objeto.
 	 */
 	@Override
     public Video consultaVideo(String cancion) throws ErrorConsulta, ErrorCreacionObjeto {
@@ -97,8 +97,8 @@ public class SASCancion implements InterfazSASCancion {
 	 * Devuelve el enlace de descarga del un video de la base de datos.
 	 * @param cancion id de la cancion
 	 * @return el enlace a descarga video, null si no existe
-	 * @throws ErrorConsulta 
-	 * @throws ErrorCreacionObjeto 
+	 * @throws ErrorConsulta Si se ha producido un error al buscar el video.
+	 * @throws ErrorCreacionObjeto Si se ha producido un error al crear el objeto.
 	 */
 	@Override
     public String descargaVideo(String cancion) throws ErrorConsulta, ErrorCreacionObjeto {

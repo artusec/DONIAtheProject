@@ -57,7 +57,6 @@ public class Login extends JDialog {
 		/**
 		 * Crea la ventana de Registro
 		 * @param login Ventana a la que te redirige despues de registrarte
-		 * @param ctrlU Controlador que permite el registro
 		 */
 		public SingUp(Login login) {
 			this.login = login;
@@ -181,9 +180,9 @@ public class Login extends JDialog {
 
 	/**
 	 * Constructora. Crea la ventana de Login.
-	 * @throws IOException 
+	 * @param ventanaPrincipal Panel principal de la aplicación.
 	 */
-	public Login(VentanaPrincipal ventanaPrincipal) throws IOException {
+	public Login(VentanaPrincipal ventanaPrincipal) {
 		correcto = false;
 		singUp = new SingUp(this);
 		initGui(ventanaPrincipal);
@@ -191,9 +190,8 @@ public class Login extends JDialog {
 	/**
 	 * Crea la parte visual del Login.
 	 * @param ventanaPrincipal Ventana Principal del programa que cargara tras hacer un login correcto
-	 * @throws IOException
 	 */
-	private void initGui(VentanaPrincipal ventanaPrincipal) throws IOException {
+	private void initGui(VentanaPrincipal ventanaPrincipal) {
 		setBounds(100, 100, 501, 616);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));

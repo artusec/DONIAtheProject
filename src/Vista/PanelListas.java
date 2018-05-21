@@ -19,8 +19,8 @@ public class PanelListas extends PanelDePaneles<Lista> {
 	
 	/**
 	 * Constructora. Crea el panel de listas de reproducción e implementa la acción al seleccionar una fila de la lista.
-	 * @param nombre
-	 * @param ventanaPrincipal
+	 * @param nombre Título del Titled border.
+	 * @param ventanaPrincipal Panel principal de la aplicación.
 	 */
 	public PanelListas(String nombre, VentanaPrincipal ventanaPrincipal) {
 		super(nombre);
@@ -43,7 +43,7 @@ public class PanelListas extends PanelDePaneles<Lista> {
 
 	/**
 	 * Establece la lista de listas de reproducción del panel a partir del parámetro.
-	 * @param lista 
+	 * @param lista  Lista de listas de reproducción a la cual se actualiza nuestro atributo lista.
 	 */
 	@Override
 	public void setList(ArrayList<Lista> lista) {

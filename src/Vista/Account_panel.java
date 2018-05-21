@@ -24,10 +24,11 @@ public class Account_panel extends JPanel {
 	private JTextField textField;
 	private JTextField textField_1;
 	private JLabel exito ;
+
 	/**
 	 * Crea el panel funcional y visualmente
+	 * @param view Panel principal de la aplicación.
 	 */
-
 	public Account_panel(VentanaPrincipal view) {
 		setBorder(new TitledBorder(null, "PERFIL", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		setLayout(new BorderLayout(0, 0));
@@ -97,12 +98,9 @@ public class Account_panel extends JPanel {
 						view.setUsuarioActual(null);
 						view.setVisible(false);
 						Login lgn = null;
-						try {
-							lgn = new Login(view);
-						} catch (IOException e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
-						}
+						
+						lgn = new Login(view);
+
 						lgn.setVisible(true);
 					}
 				});
@@ -127,12 +125,9 @@ public class Account_panel extends JPanel {
 						contr.borrar(view.getUsuarioActual());
 						view.setVisible(false);
 						Login lgn = null;
-						try {
-							lgn = new Login(view);
-						} catch (IOException e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
-						}
+
+						lgn = new Login(view);
+
 						lgn.setVisible(true);
 					}
 				}
