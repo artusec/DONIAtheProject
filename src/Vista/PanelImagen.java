@@ -20,8 +20,8 @@ public class PanelImagen extends JPanel {
 	private BufferedImage image;
 	
 	/**
-	 * Constructora. Crea un panel que llevará una imagen pintada en él
-	 * @param cual Ruta en al que se encuentra la imagen
+	 * Constructora. Crea un panel que llevará una imagen pintada en él.
+	 * @param cual Ruta en al que se encuentra la imagen.
 	 */
     public PanelImagen(String cual) {
     	
@@ -32,7 +32,8 @@ public class PanelImagen extends JPanel {
     	} catch (IOException ex) {}
     }
 	/**
-	 * Pinta la imagen en el panel
+	 * Pinta la imagen en el panel.
+	 * @param g Gráficos de la imagen.
 	 */
     @Override
     protected void paintComponent(Graphics g) {

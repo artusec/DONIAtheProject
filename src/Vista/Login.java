@@ -40,17 +40,20 @@ public class Login extends JDialog {
 	private SingUp singUp;
 
 	/**
-	 * Clase que crea una ventana, al pricipio oculta, para registrar un usuario nuevo en la aplicación.
+	 * Clase que crea una ventana, al pricipio oculta, para registrar un usuario nuevo en la aplicación. Contiene
+	 * los campos de Id, nombre y contraseña para que el usuario los rellene con sus datos.
 	 */
 	public class SingUp extends JDialog {
 
+		/**
+		 * 
+		 */
 		private static final long serialVersionUID = 1L;
 		
 		private final JPanel contentPanel = new JPanel();
 		private JTextField textField;
 		private JTextField textField_1;
 		private JPasswordField passwordField;
-
 		private Login login;
 		
 		/**
@@ -58,10 +61,12 @@ public class Login extends JDialog {
 		 * @param login Ventana a la que te redirige despues de registrarte
 		 */
 		public SingUp(Login login) {
+			
 			this.login = login;
 			initGui();
 			setVisible(false);
 		}
+		
 		/**
 		 * Crea la parte visual de la ventana de registro
 		 */

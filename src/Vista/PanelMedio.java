@@ -15,7 +15,9 @@ public class PanelMedio extends JPanel {
 	private static final long serialVersionUID = 1L;
 
 	/**
-	 * Create the panel.
+	 * Crea el panel que ocupa la posición cetral de la Ventana principal, el cual contiene la lista
+	 * de canciones de la lista de reproducción actual y una barra de herramientas para interactuar
+	 * con las canciones.
 	 * @param panelCanciones Panel con las canciones de una lista de reproducción.
 	 * @param barCanciones ToolBar con las operaciones disponibles para canciones.
 	 */

@@ -18,15 +18,22 @@ import Model.Objetos.Cancion;
 import Model.Objetos.Video;
 import net.miginfocom.swing.MigLayout;
 
+/**
+ * Clase que crea el panel que contiene los enlaces de una canción y sus respectivos botones para
+ * verlos en el navegador.
+ */
 public class Enlaces_panel extends JPanel {
 
+	/**
+	 * 
+	 */
 	private static final long serialVersionUID = 1L;
+	
 	private JTextField textField;
 	private JTextField textField_1;
 
-
 	/**
-	 * Crea el panel.
+	 * Constructora. Crea el panel.
 	 * @param ventanaPrincipal Panel principal de la aplicación.
 	 */
 	public Enlaces_panel(VentanaPrincipal ventanaPrincipal) {
@@ -90,6 +97,11 @@ public class Enlaces_panel extends JPanel {
 
 	}
 	
+	/**
+	 * Establece los enlaces de una cancion en el panel.
+	 * @param cancion Cancion de la cual son los enlaces.
+	 * @param ventanaPrincipal Ventana principal de la aplicación.
+	 */
 	public void setDatos(Cancion cancion, VentanaPrincipal ventanaPrincipal) {
 		ControlCancion ctrl = new ControlCancion(ventanaPrincipal.getUsuarioActual());
 		Video video = ctrl.consultaVideo(cancion.getId());
@@ -98,8 +110,9 @@ public class Enlaces_panel extends JPanel {
 			this.textField_1.setText(video.getEnlaceDescarga());
 		}
 	}
+	
 	/**
-	 * Vacia campos de texto 
+	 * Vacia los campos de texto. 
 	 */
 	public void vaciarCampos() {
 		this.textField.setText("");

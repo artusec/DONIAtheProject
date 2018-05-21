@@ -19,19 +19,21 @@ public class PanelUnTercio extends JPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	
 	private PanelAreaTexto panelDeLetra;
 	private DatosCancion_panel panelDeDatos;
 	private Enlaces_panel panelDeEnlaces;
 	
 
 	/**
-	 * Constructora. Crea el panel.
+	 * Constructora. Crea el panel. Se divide en dos partes, el panel de las letras de la canción y el panel de 
+	 * información de la misma. A su vez este último tiene un botón que hace visible otro panel para ver los
+	 *  enlaces de descarga y visualización de la canción.
 	 * @param panelDeLetra Panel con la letra de una canción.
 	 * @param panelDeDatos Panel con los datos principales de una canción.
 	 */ 
 	public PanelUnTercio(PanelAreaTexto panelDeLetra, DatosCancion_panel panelDeDatos) {
 		
-
 		this.panelDeDatos = panelDeDatos;
 		this.panelDeLetra = panelDeLetra;
 		this.panelDeEnlaces = null;
@@ -61,7 +63,7 @@ public class PanelUnTercio extends JPanel {
 	}
 	
 	/**
-	 * 
+	 * Constructora del panel que contiene los enlaces de una canción y su información.
 	 * @param panelDeEnlaces Panel con los enlaces al video y de descarga.
 	 * @param panelDatos Panel con los datos principales de una canción.
 	 */

@@ -17,17 +17,21 @@ import Model.Objetos.Lista;
 import net.miginfocom.swing.MigLayout;
 
 /**
- * Clase que crea el panel que contiene los campos para añadir una cancion a la base de datos.
+ * Clase que crea el panel que contiene los campos para añadir una canción a la base de datos.
  */
 public class AniadirCancionALista extends JPanel {
 
+	/**
+	 * 
+	 */
 	private static final long serialVersionUID = 1L;
+	
 	private PanelDePaneles<Cancion> panelCanciones;
 	private Lista listaSel = null;
 	
 	/**
 	 * Constructora. Crea el panel.
-	 * @param ventanaPrincipal Panel principal de la aplicación.
+	 * @param ventanaPrincipal Ventana principal de la aplicación.
 	 */
 	public AniadirCancionALista(VentanaPrincipal ventanaPrincipal) {
 		ArrayList<Lista> listas = ventanaPrincipal.getListaSelecccionada();

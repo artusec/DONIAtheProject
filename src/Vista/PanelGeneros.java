@@ -24,7 +24,8 @@ public class PanelGeneros extends JPanel{
 	private static final long serialVersionUID = 1L;
 
 	/**
-	 * Constructora. Crea el panel y accede a la base de datos para ver los géneros favoritos del usuario.
+	 * Constructora. Crea el panel y accede a la base de datos para ver los géneros favoritos del usuario. A su 
+	 * vez contiene un botón que borra el género musical seleccionado de la lista de gustos.
 	 * @param panelFavoritos Panel de géneros.
 	 * @param ventanaPrincipal Panel principal de la aplicación.
 	 */

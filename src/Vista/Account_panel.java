@@ -17,6 +17,9 @@ import javax.swing.JFrame;
 import net.miginfocom.swing.MigLayout;
 import javax.swing.JSeparator;
 
+/**
+ * Clase que crea el panel que contiene los datos del usuario actual de la aplicación.
+ */
 public class Account_panel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
@@ -25,7 +28,7 @@ public class Account_panel extends JPanel {
 	private JLabel exito ;
 
 	/**
-	 * Crea el panel funcional y visualmente
+	 * Constructora. Crea el panel.
 	 * @param view Panel principal de la aplicación.
 	 */
 	public Account_panel(VentanaPrincipal view) {
@@ -159,10 +162,11 @@ public class Account_panel extends JPanel {
 		
 	}
 	/**
-	 * Escribe los datos del usuario en los campos de texto	
-	 * @param user Usuario del que se escribe la informacion
+	 * Escribe los datos del usuario en los campos de texto.
+	 * @param user Usuario del que se escribe la informacion.
 	 */
 	public void setDatosUsuario(Usuario user) {
+		
 		this.textField.setText(user.getId());
 		this.textField_1.setText(user.getNombre());
 	}

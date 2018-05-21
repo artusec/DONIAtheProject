@@ -8,7 +8,7 @@ import javax.swing.JScrollPane;
 import javax.swing.border.TitledBorder;
 
 /**
- * Panel para representar listas.
+ * Panel para representar y gestionar listas.
  * @param <T> contenido de la lista.
  */
 public class PanelDePaneles<T> extends JPanel {

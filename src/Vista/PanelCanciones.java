@@ -13,10 +13,12 @@ import Model.Objetos.Lista;
  */
 public class PanelCanciones extends PanelDePaneles<Cancion> {
 
+	/**
+	 * 
+	 */
 	private static final long serialVersionUID = 1L;
 
 	private String nombre = "";
-
 	private VentanaPrincipal ventanaPrincipal;
 	
 	/**
@@ -54,6 +56,10 @@ public class PanelCanciones extends PanelDePaneles<Cancion> {
 			this.objList.clearSelection();
 	}
 
+	/**
+	 * Actualiza el nombre del panel de canciones según la lista de reproducción que este
+	 * seleccionada.
+	 */
 	private void actualizarNombre() {
 		if (ventanaPrincipal.getListaSelecccionada() != null && !ventanaPrincipal.getListaSelecccionada().isEmpty()) {
 			Lista listaSel = ventanaPrincipal.getListaSelecccionada().get(0);

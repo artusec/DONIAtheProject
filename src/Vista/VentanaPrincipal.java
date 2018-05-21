@@ -1,4 +1,3 @@
-
 package Vista;
 
 import java.awt.BorderLayout;
@@ -23,10 +22,16 @@ import Model.Objetos.Genero;
 import Model.Objetos.Lista;
 import Model.Objetos.Usuario;
 
+/**
+ * Ventana principal del sistema que contiene todos los paneles con la información de la aplicación y los 
+ * botones para interactuar con ella.
+ */
 public class VentanaPrincipal extends JFrame {
 
+	/**
+	 * 
+	 */
 	private static final long serialVersionUID = 1L;
-	
 	public static Border bordePorDefecto = BorderFactory.createLineBorder(Color.black, 2);
 
 	// PANELES
@@ -161,7 +166,6 @@ public class VentanaPrincipal extends JFrame {
 	 * Crea el panelCanciones y lo añade al panelCentral.
 	 * @param panelCentral Panel al que se le añade el panelCanciones.
 	 */
-	
 	private void creaPanelCanciones(JPanel panelCentral) {
 		
 		panelCanciones = new PanelCanciones(this);
@@ -171,7 +175,8 @@ public class VentanaPrincipal extends JFrame {
 	
 	
 	/**
-	 * Crea el panel que cambia.
+	 * Crea el panel cambiante. Panel el cual va cambiando de contenido según el botón que pulses
+	 * de la barra de herramientas principal.
 	 */
 	private void createPanelCambiante() {
 		
@@ -182,7 +187,7 @@ public class VentanaPrincipal extends JFrame {
 	}
 	
 	/**
-	 * Reinicia el panel que cambia.
+	 * Reinicia el panel cambiante.
 	 */
 	private void resetearPanelCambiante() {
 		
@@ -192,7 +197,7 @@ public class VentanaPrincipal extends JFrame {
 	}
 	
 	/**
-	 * Muestra el panel del perfil del usuario.
+	 * Muestra el panel del perfil del usuario, cargandolo en el panel cambiante tras resetearlo.
 	 */
 	public void verPerfil() {
 		
@@ -214,7 +219,7 @@ public class VentanaPrincipal extends JFrame {
 	}
 	
 	/**
-	 * 	Muestra el panel que permite ver los generos favoritos del usuario actual.
+	 * 	Muestra el panel que permite ver los generos favoritos del usuario actual cargandolo en el panel cambiante tras resetearlo.
 	*/
 	public void verFavoritos() {
 		
@@ -231,7 +236,7 @@ public class VentanaPrincipal extends JFrame {
 	}
 	
 	/**
-	 * Muestra el panel que permite añadir una cancion a la base de datos.
+	 * Muestra el panel que permite añadir una cancion a la base de datos cargandolo en el panel cambiante tras resetearlo.
 	 */
 	public void verAniadirCancion() {
 		
@@ -248,7 +253,7 @@ public class VentanaPrincipal extends JFrame {
 	
 	
 	/**
-	 * Muestra el panel que permite eliminar una cancion de la base de datos.
+	 * Muestra el panel que permite eliminar una cancion de la base de datos cargandolo en el panel cambiante tras resetearlo.
 	 */
 	public void verEliminarCancion() {
 		resetearPanelCambiante();
@@ -263,7 +268,7 @@ public class VentanaPrincipal extends JFrame {
 	}
 	
 	/**
-	 * Muestra el panel que muestra la letra de una canción.
+	 * Muestra el panel que muestra la letra de una canción cargandolo en el panel cambiante tras resetearlo.
 	 */
 	public void verPanelLetras() {
 		
@@ -285,7 +290,7 @@ public class VentanaPrincipal extends JFrame {
 	}
 
 	/**
-	 * Muestra el panel que muestra los datos de una canción.
+	 * Muestra el panel que muestra los datos de una canción cargandolo en el panel cambiante tras resetearlo.
 	 */
 	public void verPanelCancion() {
 		
@@ -307,7 +312,7 @@ public class VentanaPrincipal extends JFrame {
 	}
 	
 	/**
-	 * Muestra el panel que permite modificar los datos de una canción.
+	 * Muestra el panel que permite modificar los datos de una canción cargandolo en el panel cambiante tras resetearlo.
 	 */
 	public void verModificarCancion() {
 		
@@ -323,7 +328,7 @@ public class VentanaPrincipal extends JFrame {
 	}
 	
 	/**
-	 * Muestra el panel que permite añadir una cancion a una lista.
+	 * Muestra el panel que permite añadir una cancion a una lista cargandolo en el panel cambiante tras resetearlo.
 	 */
 	public void verAniadirCancionALista() {	
 		resetearPanelCambiante();
@@ -338,7 +343,7 @@ public class VentanaPrincipal extends JFrame {
 	}
 	
 	/**
-	 * Muestra el panel de creacion de una lista.
+	 * Muestra el panel de creacion de una lista cargandolo en el panel cambiante tras resetearlo.
 	 */
 	public void verCrearLista() {
 		
@@ -355,7 +360,7 @@ public class VentanaPrincipal extends JFrame {
 	
 	
 	/**
-	 * Muestra el panel que permite modificar el nombre de una lista.
+	 * Muestra el panel que permite modificar el nombre de una lista cargandolo en el panel cambiante tras resetearlo.
 	 */
 	public void verModificarLista() {
 		
@@ -371,7 +376,7 @@ public class VentanaPrincipal extends JFrame {
 	}
 	
 	/**
-	 * Muestra el panel que permite crear listas automáticas.
+	 * Muestra el panel que permite crear listas automáticas cargandolo en el panel cambiante tras resetearlo.
 	 */
 	public void verCrearListaAuto() {
 		
@@ -476,9 +481,9 @@ public class VentanaPrincipal extends JFrame {
 	 */
 	public JPanel getPanelCentral() {
 		
-		
 		return panelCentral;
 	}
+	
 	/**
 	 * Establece el panel central.
 	 * @param panelCentral Panel que se establece.
@@ -500,7 +505,7 @@ public class VentanaPrincipal extends JFrame {
 	/**
 	 * Genera un id de forma aleatoria y presuntamente única para
 	 * los objetos nuevos.
-	 * @return id
+	 * @return El id generado.
 	 */
 	public String generaId() {
 		
@@ -511,7 +516,7 @@ public class VentanaPrincipal extends JFrame {
 	/**
 	 * Calcula si una entrada del usuario es válida o no.
 	 * @param entrada texto a validar.
-	 * @return si es válido.
+	 * @return valido true, no valido false.
 	 */
 	public static boolean entradaValida(String entrada) {
 		return entrada != null && entrada.matches("[a-zA-Z0-9ñÑ& ]*") && !entrada.equals("");

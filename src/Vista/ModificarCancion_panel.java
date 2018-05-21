@@ -33,6 +33,7 @@ public class ModificarCancion_panel extends JPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	
 	private JTextField titulo;
 	private JTextField autor;
 	private JTextField duracion;
@@ -270,6 +271,5 @@ public class ModificarCancion_panel extends JPanel {
 		add(panel_1);
 		panel_1.setLayout(new GridLayout(0, 1, 0, 0));
 		panel_1.add(letra);
-
 	}
 }
