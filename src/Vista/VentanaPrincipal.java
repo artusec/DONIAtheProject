@@ -169,7 +169,7 @@ public class VentanaPrincipal extends JFrame {
 	
 	private void creaPanelCanciones(JPanel panelCentral) {
 		
-		panelCanciones = new PanelCanciones("Canciones", this);
+		panelCanciones = new PanelCanciones(this);
 		ToolBarCanciones barCanciones = new ToolBarCanciones(this);
 		panelCentral.add(new PanelMedio(barCanciones, panelCanciones));
 	}
@@ -406,7 +406,6 @@ public class VentanaPrincipal extends JFrame {
 	 * @param idLista Lista en la que se actualizan las canciones.
 	 */
 	public static void actualizaCanciones(String idLista) {
-		
 		ControlLista control = new ControlLista(usuarioActual);
 		panelCanciones.setList(control.consulta(idLista).getCanciones());
 	}
@@ -445,9 +444,8 @@ public class VentanaPrincipal extends JFrame {
 	 * @param lista Lista de al qeu se muestra la información.
 	 */
 	public void setLista(Lista lista) {
-		
 		if (lista != null)
-			panelCanciones.setList(lista.getCanciones());
+			VentanaPrincipal.actualizaCanciones(lista.getId());
 	}
 	
 	/**
