@@ -17,9 +17,9 @@ import Vista.VentanaPrincipal;
 public class ControlGenero {
 	
 	//Fachada del subsistema
-	InterfazFachadaGenero fGenero;
+	private InterfazFachadaGenero fGenero;
 	//Usuario actual
-	Usuario usuarioActual;
+	private Usuario usuarioActual;
 	
 	/**
 	 * Construye el controlador.

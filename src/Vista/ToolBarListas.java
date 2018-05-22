@@ -38,7 +38,7 @@ public class ToolBarListas extends JToolBar {
 		nuevLista.setText("Nueva lista");
 		nuevLista.setHorizontalTextPosition( SwingConstants.CENTER );
 		nuevLista.setVerticalTextPosition( SwingConstants.BOTTOM );
-		nuevLista.setIcon(new ImageIcon(("src/icons/add.png")));
+		nuevLista.setIcon(new ImageIcon(("Donia/icons/add.png")));
 		nuevLista.addActionListener(new ActionListener()
 		{
 			@Override
@@ -55,7 +55,7 @@ public class ToolBarListas extends JToolBar {
 		eliminarLista.setText("Borrar lista");
 		eliminarLista.setHorizontalTextPosition( SwingConstants.CENTER );
 		eliminarLista.setVerticalTextPosition( SwingConstants.BOTTOM );
-		eliminarLista.setIcon(new ImageIcon(("src/icons/delete.png")));
+		eliminarLista.setIcon(new ImageIcon(("Donia/icons/delete.png")));
 		eliminarLista.addActionListener(
 			new ActionListener() {
 				@Override
@@ -79,7 +79,7 @@ public class ToolBarListas extends JToolBar {
 		listaAuto.setText("Lista automatica");
 		listaAuto.setHorizontalTextPosition( SwingConstants.CENTER );
 		listaAuto.setVerticalTextPosition( SwingConstants.BOTTOM );
-		listaAuto.setIcon(new ImageIcon(("src/icons/auto.png")));
+		listaAuto.setIcon(new ImageIcon(("Donia/icons/auto.png")));
 		listaAuto.addActionListener(new ActionListener()
 		{
 			@Override
@@ -96,7 +96,7 @@ public class ToolBarListas extends JToolBar {
 		cambiarNombre.setText("Cambiar nombre");
 		cambiarNombre.setHorizontalTextPosition( SwingConstants.CENTER );
 		cambiarNombre.setVerticalTextPosition( SwingConstants.BOTTOM );
-		cambiarNombre.setIcon(new ImageIcon(("src/icons/modificarCancion.png")));
+		cambiarNombre.setIcon(new ImageIcon(("Donia/icons/modificarCancion.png")));
 		cambiarNombre.addActionListener(new ActionListener()
 		{
 			@Override

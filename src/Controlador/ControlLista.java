@@ -21,9 +21,9 @@ import Vista.VentanaPrincipal;
 public class ControlLista {
 
 	//Usuario actual
-	Usuario usuarioActual;
+	private Usuario usuarioActual;
 	//Fachada del subsistema
-	InterfazFachadaLista fLista;
+	private InterfazFachadaLista fLista;
 
 	/**
 	 * Construye el controlador.

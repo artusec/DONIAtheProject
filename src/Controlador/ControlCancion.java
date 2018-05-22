@@ -18,9 +18,9 @@ import Vista.VentanaPrincipal;
 public class ControlCancion {
 	
 	//Fachada 
-	InterfazFachadaCancion fCancion;
+	private InterfazFachadaCancion fCancion;
 	//El controlador necesita el usuario actual para acceder a solo a sus listas
-	Usuario usuarioActual;
+	private Usuario usuarioActual;
 
 	/**
 	 * Crea el controlador.
