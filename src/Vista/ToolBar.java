@@ -38,7 +38,7 @@ public class ToolBar extends JToolBar {
 
 		perfil = new JButton();
 		perfil.setToolTipText("Perfil");
-		perfil.setIcon(new ImageIcon("src/icons/perfil.png"));
+		perfil.setIcon(new ImageIcon("Donia/icons/perfil.png"));
 		perfil.setText("Perfil");
 		perfil.setHorizontalTextPosition( SwingConstants.CENTER );
 		perfil.setVerticalTextPosition( SwingConstants.BOTTOM );

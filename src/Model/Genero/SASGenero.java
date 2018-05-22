@@ -44,7 +44,6 @@ public class SASGenero implements InterfazSASGenero {
 	@Override
     public void Anadir(Genero genero, Usuario usuario) throws ErrorAutenticacion, ErrorGuardado { 
     		dao.setGenero(genero, usuario);
-    		VentanaPrincipal.actualizaGeneros();
     }
 
     /**
@@ -57,7 +56,6 @@ public class SASGenero implements InterfazSASGenero {
 	@Override
     public void Eliminar(Genero genero, Usuario usuario) throws ErrorEliminacion, ErrorAutenticacion { 
 		dao.eliminarGenero(genero, usuario);
-		VentanaPrincipal.actualizaGeneros();
     	}
 
     /**

@@ -120,18 +120,13 @@ public class Account_panel extends JPanel {
 						JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, null, null);
 				
 				if (a == 0) {
-					if (view.getUsuarioActual().getId().equals("u0")) {
-						JOptionPane.showMessageDialog(new JFrame(), "No se puede borrar el usuario ADMINISTRADOR", "ERROR", JOptionPane.ERROR_MESSAGE);
-					}
-					else {
-						contr.borrar(view.getUsuarioActual());
-						view.setVisible(false);
-						Login lgn = null;
+					contr.borrar(view.getUsuarioActual());
+					view.setVisible(false);
+					Login lgn = null;
 
-						lgn = new Login(view);
+					lgn = new Login(view);
 
-						lgn.setVisible(true);
-					}
+					lgn.setVisible(true);
 				}
 			}
 		});
