@@ -9,12 +9,9 @@ import Excepciones.ErrorEliminacion;
 import Excepciones.ErrorGuardado;
 import Model.Objetos.Genero;
 import Model.Objetos.Usuario;
-import Vista.VentanaPrincipal;
 
 /**
  * Servicio de aplicación de género.
- * @author Raúl
- *
  */
 public class SASGenero implements InterfazSASGenero {
 	
@@ -44,7 +41,6 @@ public class SASGenero implements InterfazSASGenero {
 	@Override
     public void Anadir(Genero genero, Usuario usuario) throws ErrorAutenticacion, ErrorGuardado { 
     		dao.setGenero(genero, usuario);
-    		VentanaPrincipal.actualizaGeneros();
     }
 
     /**
@@ -57,7 +53,6 @@ public class SASGenero implements InterfazSASGenero {
 	@Override
     public void Eliminar(Genero genero, Usuario usuario) throws ErrorEliminacion, ErrorAutenticacion { 
 		dao.eliminarGenero(genero, usuario);
-		VentanaPrincipal.actualizaGeneros();
     	}
 
     /**

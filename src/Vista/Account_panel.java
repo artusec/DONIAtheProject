@@ -16,6 +16,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import net.miginfocom.swing.MigLayout;
 import javax.swing.JSeparator;
+import javax.swing.ImageIcon;
 
 /**
  * Clase que crea el panel que contiene los datos del usuario actual de la aplicación.
@@ -44,21 +45,20 @@ public class Account_panel extends JPanel {
 		
 		JPanel panel_5 = new JPanel();
 		panel_2.add(panel_5, "cell 0 0,grow");
-		panel_5.setLayout(new MigLayout("", "[99px][111px,grow][163px][148px,grow][116px]", "[][25px,grow][][][][][][][][][]"));
+		panel_5.setLayout(new MigLayout("", "[99px][111px,grow][163px][148px,grow][116px]", "[][25px,grow][][][][][][][][][][]"));
 		
 		JPanel panel = new JPanel();
-		panel_5.add(panel, "cell 1 0 3 1,grow");
+		panel_5.add(panel, "cell 0 0 5 1,grow");
 		panel.setPreferredSize(new Dimension(200, 200));
 		panel.setLayout(null);
+		
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setIcon(new ImageIcon(Account_panel.class.getResource("/image/perfillogo.png")));
+		lblNewLabel.setBounds(165, 11, 143, 120);
+		panel.add(lblNewLabel);
 
 		JPanel panel_6 = new JPanel();;
-		
-
-		PanelImagen panelimg = null;
-		panelimg = new PanelImagen("Donia/icons/perfilLogo.png");
-		panelimg.setBounds(160, 0, 131,131);
-		panel.add(panelimg);
-		
+				
 		JButton btnEditarPerfil = new JButton("Editar perfil");
 		btnEditarPerfil.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -76,9 +76,8 @@ public class Account_panel extends JPanel {
 					} catch (ErrorCreacionObjeto e) {
 						exito.setText("Error, imposible cambiar los datos");
 					}
-				}
-				else {
-					
+				} else {
+					VentanaPrincipal.muestraError(new Exception("Datos no válidos"));
 				}
 			}
 		});
@@ -120,18 +119,13 @@ public class Account_panel extends JPanel {
 						JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, null, null);
 				
 				if (a == 0) {
-					if (view.getUsuarioActual().getId().equals("u0")) {
-						JOptionPane.showMessageDialog(new JFrame(), "No se puede borrar el usuario ADMINISTRADOR", "ERROR", JOptionPane.ERROR_MESSAGE);
-					}
-					else {
-						contr.borrar(view.getUsuarioActual());
-						view.setVisible(false);
-						Login lgn = null;
+					contr.borrar(view.getUsuarioActual());
+					view.setVisible(false);
+					Login lgn = null;
 
-						lgn = new Login(view);
+					lgn = new Login(view);
 
-						lgn.setVisible(true);
-					}
+					lgn.setVisible(true);
 				}
 			}
 		});
@@ -166,7 +160,7 @@ public class Account_panel extends JPanel {
 	 * @param user Usuario del que se escribe la informacion.
 	 */
 	public void setDatosUsuario(Usuario user) {
-		
+
 		this.textField.setText(user.getId());
 		this.textField_1.setText(user.getNombre());
 	}
