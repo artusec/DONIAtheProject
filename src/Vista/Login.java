@@ -8,7 +8,6 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
-import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
@@ -21,6 +20,8 @@ import javax.swing.border.EmptyBorder;
 import Controlador.ControlUsuario;
 import Excepciones.ErrorCreacionObjeto;
 import Model.Objetos.Usuario;
+import javax.swing.ImageIcon;
+import java.awt.Color;
 
 /**
  * Clase que crea una ventana para recoger los datos que el usuario introduce nada más iniciar la aplicación con los que
@@ -198,6 +199,7 @@ public class Login extends JDialog {
 	private void initGui(VentanaPrincipal ventanaPrincipal) {
 		setBounds(100, 100, 501, 616);
 		getContentPane().setLayout(new BorderLayout());
+		contentPanel.setBackground(Color.LIGHT_GRAY);
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
@@ -262,10 +264,10 @@ public class Login extends JDialog {
 		btnLogin.setBounds(258, 516, 97, 25);
 		contentPanel.add(btnLogin);
 		
-		PanelImagen panel = new PanelImagen(Login.class.getResource("/icons/LOGO_DONIA_pequeno.png"));
-		panel.setBounds(10, 10, 475, 318);
-		panel.setOpaque(false);
-		contentPanel.add(panel, Alignment.CENTER);
+		JLabel lblNewLabel_3 = new JLabel("");
+		lblNewLabel_3.setIcon(new ImageIcon(Login.class.getResource("/image/LOGO_DONIA_pequeno.png")));
+		lblNewLabel_3.setBounds(0, 0, 495, 350);
+		contentPanel.add(lblNewLabel_3);
 		setLocationRelativeTo(null);
 		setResizable(false);
 		setTitle("Donia");

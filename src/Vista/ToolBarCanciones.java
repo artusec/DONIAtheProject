@@ -40,7 +40,7 @@ public class ToolBarCanciones extends JToolBar {
 		aniadirCancion.setText("Añadir cancion");
 		aniadirCancion.setHorizontalTextPosition( SwingConstants.CENTER );
 		aniadirCancion.setVerticalTextPosition( SwingConstants.BOTTOM );
-		aniadirCancion.setIcon(new ImageIcon(ToolBarCanciones.class.getResource("/icons/add.png")));
+		aniadirCancion.setIcon(new ImageIcon(ToolBarCanciones.class.getResource("/image/add.png")));
 		aniadirCancion.addActionListener(new ActionListener() {
 			
 			@Override
@@ -57,7 +57,7 @@ public class ToolBarCanciones extends JToolBar {
 		eliminarCancion.setText("Borrar cancion");
 		eliminarCancion.setHorizontalTextPosition( SwingConstants.CENTER );
 		eliminarCancion.setVerticalTextPosition( SwingConstants.BOTTOM );
-		eliminarCancion.setIcon(new ImageIcon(ToolBarCanciones.class.getResource("/icons/delete.png")));
+		eliminarCancion.setIcon(new ImageIcon(ToolBarCanciones.class.getResource("/image/delete.png")));
 		eliminarCancion.addActionListener(new ActionListener() {
 		
 			@Override
@@ -84,7 +84,7 @@ public class ToolBarCanciones extends JToolBar {
 		meGusta.setText("Me gusta!");
 		meGusta.setHorizontalTextPosition( SwingConstants.CENTER );
 		meGusta.setVerticalTextPosition( SwingConstants.BOTTOM );
-		meGusta.setIcon(new ImageIcon(ToolBarCanciones.class.getResource("/icons/hand.png")));
+		meGusta.setIcon(new ImageIcon(ToolBarCanciones.class.getResource("/image/hand.png")));
 		meGusta.addActionListener(new ActionListener()
 		{
 			@Override
@@ -107,7 +107,7 @@ public class ToolBarCanciones extends JToolBar {
 		verLetra.setText("Ver letra");
 		verLetra.setHorizontalTextPosition( SwingConstants.CENTER );
 		verLetra.setVerticalTextPosition( SwingConstants.BOTTOM );
-		verLetra.setIcon(new ImageIcon(ToolBarCanciones.class.getResource("/icons/VerLetra.png")));
+		verLetra.setIcon(new ImageIcon(ToolBarCanciones.class.getResource("/image/VerLetra.png")));
 		verLetra.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {

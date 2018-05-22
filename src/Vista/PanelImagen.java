@@ -28,9 +28,9 @@ public class PanelImagen extends JPanel {
     public PanelImagen(URL url) {
     	
     	super();
-    	
+    	String aux1 = url.getPath();
     	try {
-    		image = ImageIO.read(new File(url.getPath()));
+    		image = ImageIO.read(new File(aux1));
     	
     	} catch (IOException ex) {}
     }
@@ -43,6 +43,6 @@ public class PanelImagen extends JPanel {
     	
     	if(image == null)
     		System.out.println("null");
-        g.drawImage(image, 0 , 0, this); // 165
+        g.drawImage(image, 0 , 0, this);
     }
 }

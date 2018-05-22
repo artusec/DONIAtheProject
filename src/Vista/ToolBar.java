@@ -2,6 +2,8 @@ package Vista;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.URL;
+
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -38,7 +40,7 @@ public class ToolBar extends JToolBar {
 
 		perfil = new JButton();
 		perfil.setToolTipText("Perfil");
-		perfil.setIcon(new ImageIcon(ToolBar.class.getResource("/icons/perfil.png")));
+		perfil.setIcon(new ImageIcon(ToolBar.class.getResource("/image/perfil.png")));
 		perfil.setText("Perfil");
 		perfil.setHorizontalTextPosition( SwingConstants.CENTER );
 		perfil.setVerticalTextPosition( SwingConstants.BOTTOM );
@@ -55,7 +57,7 @@ public class ToolBar extends JToolBar {
 		
 		verGustos = new JButton();
 		verGustos.setToolTipText("Gustos");
-		verGustos.setIcon(new ImageIcon(ToolBar.class.getResource("/icons/gustos.png")));
+		verGustos.setIcon(new ImageIcon(ToolBar.class.getResource("/image/gustos.png")));
 		verGustos.setText("Gustos");
 		verGustos.setHorizontalTextPosition( SwingConstants.CENTER );
 		verGustos.setVerticalTextPosition( SwingConstants.BOTTOM );
@@ -72,7 +74,7 @@ public class ToolBar extends JToolBar {
 		
 		aniadirCancion = new JButton();
 		aniadirCancion.setToolTipText("Añadir cancion");
-		aniadirCancion.setIcon(new ImageIcon(ToolBar.class.getResource("/icons/addCancion.png")));
+		aniadirCancion.setIcon(new ImageIcon(ToolBar.class.getResource("/image/addCancion.png")));
 		aniadirCancion.setText("Añadir cancion");
 		aniadirCancion.setHorizontalTextPosition( SwingConstants.CENTER );
 		aniadirCancion.setVerticalTextPosition( SwingConstants.BOTTOM );
@@ -90,7 +92,7 @@ public class ToolBar extends JToolBar {
 		
 		eliminarCancion = new JButton();
 		eliminarCancion.setToolTipText("Borrar cancion");
-		eliminarCancion.setIcon(new ImageIcon(ToolBar.class.getResource("/icons/eliminarCancion.png")));
+		eliminarCancion.setIcon(new ImageIcon(ToolBar.class.getResource("/image/eliminarCancion.png")));
 		eliminarCancion.setText("Borrar cancion");
 		eliminarCancion.setHorizontalTextPosition( SwingConstants.CENTER );
 		eliminarCancion.setVerticalTextPosition( SwingConstants.BOTTOM );
@@ -108,7 +110,8 @@ public class ToolBar extends JToolBar {
 		
 		modifCancion = new JButton();
 		modifCancion.setToolTipText("Modificar cancion");
-		modifCancion.setIcon(new ImageIcon(ToolBar.class.getResource("/icons/modificarCancion.png")));
+		URL aux = ToolBar.class.getResource("/image/modificarCancion.png");
+		modifCancion.setIcon(new ImageIcon(aux));
 		modifCancion.setText("Modificar canción");
 		modifCancion.setHorizontalTextPosition( SwingConstants.CENTER );
 		modifCancion.setVerticalTextPosition( SwingConstants.BOTTOM );
@@ -126,7 +129,7 @@ public class ToolBar extends JToolBar {
 		
 		salir = new JButton();
 		salir.setToolTipText("Salir");
-		salir.setIcon(new ImageIcon(ToolBar.class.getResource("/icons/exit.png")));
+		salir.setIcon(new ImageIcon(ToolBar.class.getResource("/image/exit.png")));
 		salir.setText("Salir");
 		salir.setHorizontalTextPosition( SwingConstants.CENTER );
 		salir.setVerticalTextPosition( SwingConstants.BOTTOM );
