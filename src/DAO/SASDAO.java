@@ -15,8 +15,7 @@ import Model.Objetos.*;
 
 /**
  * Clase SASDAO, implementa los métodos necesarios para leer y escribir
- * de la base de datos
- *
+ * de la base de datos. GJ.
  */
 public class SASDAO implements InterfazSASDAO {
 	
