@@ -4,6 +4,8 @@ import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
+
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
@@ -21,13 +23,14 @@ public class PanelImagen extends JPanel {
 	
 	/**
 	 * Constructora. Crea un panel que llevará una imagen pintada en él.
-	 * @param cual Ruta en al que se encuentra la imagen.
+	 * @param url Ruta en al que se encuentra la imagen.
 	 */
-    public PanelImagen(String cual) {
+    public PanelImagen(URL url) {
     	
     	super();
+    	
     	try {
-    		image = ImageIO.read(new File(cual));
+    		image = ImageIO.read(new File(url.getPath()));
     	
     	} catch (IOException ex) {}
     }
